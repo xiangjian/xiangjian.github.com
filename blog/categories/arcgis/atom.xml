@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: arcgis | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/arcgis/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/arcgis/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[开始学习flex for arcgis server了]]></title>
-    <link href="http://xiangjian.github.com/2009/02/flex-for-arcgis-server.html"/>
+    <link href="http://blog.xiangjian.info/2009/02/flex-for-arcgis-server.html"/>
     <updated>2009-02-06T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/02/flex-for-arcgis-server</id>
+    <id>http://blog.xiangjian.info/2009/02/flex-for-arcgis-server</id>
     <content type="html"><![CDATA[<p><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_Ea3JwBJzx7s/SYwNxtTKVuI/AAAAAAAAB_A/knCrAoAWwmA/s1600-h/pic.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 400px; height: 260px;" src="http://3.bp.blogspot.com/_Ea3JwBJzx7s/SYwNxtTKVuI/AAAAAAAAB_A/knCrAoAWwmA/s400/pic.png" alt="" id="BLOGGER_PHOTO_ID_5299626009132947170" border="0" /></a>
 由于要使用Arcgis flex开发一个demo。以前没有使用过flex开发，今天上午在Arcgis 的官方网站下载了flex的支持文件，照着esri官方的例子做了几个。还是比较容易上手的，跟xhtml+javascript开发很类似，flex开发真是不错。
 </p>
@@ -27,9 +27,9 @@
   
   <entry>
     <title type="html"><![CDATA[栅格图像的worldfile总结]]></title>
-    <link href="http://xiangjian.github.com/2008/11/raster-worldfile.html"/>
+    <link href="http://blog.xiangjian.info/2008/11/raster-worldfile.html"/>
     <updated>2008-11-27T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2008/11/raster-worldfile</id>
+    <id>http://blog.xiangjian.info/2008/11/raster-worldfile</id>
     <content type="html"><![CDATA[<p>影像文件的world file文件示例如下：<br />
 20.17541308822119 (左上角X坐标)<br />
 0.00000000000000(X方向旋转量)<br />
@@ -60,9 +60,9 @@ dwg--dwf
   
   <entry>
     <title type="html"><![CDATA[ArcGIS中的文件拓展名（转）]]></title>
-    <link href="http://xiangjian.github.com/2008/11/arcgis-extension-name.html"/>
+    <link href="http://blog.xiangjian.info/2008/11/arcgis-extension-name.html"/>
     <updated>2008-11-12T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2008/11/arcgis-extension-name</id>
+    <id>http://blog.xiangjian.info/2008/11/arcgis-extension-name</id>
     <content type="html"><![CDATA[<p><ul class="simple">
 <li>adf - ARC/INFO coverage data file</li>
 <li>agf - Atlas GIS native binary geodataset file</li>
@@ -178,9 +178,9 @@ dwg--dwf
   
   <entry>
     <title type="html"><![CDATA[arcgis server cache的几种格式的区别]]></title>
-    <link href="http://xiangjian.github.com/2008/10/arcgis-server-cache-image-type.html"/>
+    <link href="http://blog.xiangjian.info/2008/10/arcgis-server-cache-image-type.html"/>
     <updated>2008-10-19T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2008/10/arcgis-server-cache-image-type</id>
+    <id>http://blog.xiangjian.info/2008/10/arcgis-server-cache-image-type</id>
     <content type="html"><![CDATA[<p>资料参考arcgis 官方blog:<br />
 arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四种格式各有不同的用处。
 <ul><li>PNG8:生成的文件最小，最节省空间.当你的地图文档使用的颜色不超过256色，推荐使用这种文件格式。（ArcGIS9.2在生成PNG8图像时在地图上经常出现小麻点，咨询ESRI技术人员，也不知是何原因）。</li><li>PNG24:与PNG差不多，只是支持更多的地图颜色，文件稍大(不支持IE6以及以前的版本)。</li><li>PNG32:文件最大，支持最多的地图颜色（支持所有浏览器）。</li><li>JPEG:这是一种有损文件压缩格式，生成地图会有颜色损失，一般可以作为影像图的压缩格式。</li></ul>参考：<a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2008/10/17/Tips-for-choosing-a-cache-image-format.aspx">Tips for choosing a cache image format</a>
@@ -191,9 +191,9 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
   
   <entry>
     <title type="html"><![CDATA[arcigis通过oledb连接属性数据库问题]]></title>
-    <link href="http://xiangjian.github.com/2008/09/arcigis-oledb.html"/>
+    <link href="http://blog.xiangjian.info/2008/09/arcigis-oledb.html"/>
     <updated>2008-09-25T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2008/09/arcigis-oledb</id>
+    <id>http://blog.xiangjian.info/2008/09/arcigis-oledb</id>
     <content type="html"><![CDATA[<p>arcgis通过oledb连oracle数据库,识别number数据有点问题,如果数据库中表的number没有指定number(p,s)中的p,s.arcgis 将数据统一识别为长longinteger,如果数据中含有小数据点,数据全部识别为0.指定了p,值后正常.
 </p>
 

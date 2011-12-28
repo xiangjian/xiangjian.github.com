@@ -9,7 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="在悉尼举行的FOSS4G 2009大会上的演讲PPT,关于MapGerver和GeoServer WMS服务性能的对比。测试比较全面，使用了shp,postgis，oracle spatial,arcgis sde(安装在oracle上)。分别测试了点,线,面数据源的WMS性能。 另： &hellip;">
+  <meta name="description" content="OGR2GUI是什么呢？首先给介绍GIS空间数据读取的一个通用包，GDAL（Geospatial Data Abstraction Library）。ogr是其中读写矢量数据的包，因为可以读写矢量数据，因此有人做了一个开源项目ogr2ogr，做通用空间矢量数据源间的转换,支持多种数据。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xiangjian.github.com/page/4/index.html">
+  <link rel="canonical" href="http://blog.xiangjian.info/page/4/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -61,7 +61,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input type="hidden" name="q" value="site:blog.xiangjian.info" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -76,6 +76,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/ogr2gui.html">OGR2GUI介绍</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-05T00:00:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/ogr2gui.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><!-- 介绍ogr2ogr图形界面 --> <br />
+<p>OGR2GUI是什么呢？</p><p>首先给介绍GIS空间数据读取的一个通用包，GDAL（Geospatial Data Abstraction Library）。ogr是其中读写矢量数据的包，因为可以读写矢量数据，因此有人做了一个开源项目ogr2ogr，做通用空间矢量数据源间的转换,支持多种数据。ogr2ogr是一个命令行程序，各种参数相当复杂。OGR2GUI就是基于ogr2ogr的GUI界面，方便做空间数据转换生成命令行参数。这个基本上和autodesk mapguide sdf loader提供的GUI一个原理。</p><p>下面介绍一下ogr2gui新版(v0.6)的特点：</p><ul class="simple"><li>基于Nokia的QT(QT现在是Nokia的了)</li>
+<li>这个版本支持空间库Oracle Spatial, PostgreSQL(POSTGIS), MySQL, SQLite 和 ODBC</li>
+<li>支持　GPX, GMT, GeoJSON, Geoconcept and FME Objects Gateway formats</li>
+</ul><br />
+<br />
+<br />
+<img alt="screenshot1" src="http://www.ogr2gui.ca/images/screenshot06/1.jpg" /></p><p><img alt="screenshot2" src="http://www.ogr2gui.ca/images/screenshot06/4.jpg" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -474,50 +519,6 @@ YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/10/web-editor-wmd.html">介绍一个基于web所想既所得编辑器&#8221;WMD&#8221;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-08T00:00:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2009</time>
-        
-         | <a href="/2009/10/web-editor-wmd.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><!-- 介绍一个所想既所得Web 编辑器 wmd --> <br />
-<div class="section" id="web"><h1>介绍一个基于Web的所想既所得编辑器</h1><p>前面介绍了几个基于Web的所见既所得(<strong>WYSIWYG</strong>)的web编辑器，这一篇介绍一个轻量级的所想既所得(<br />
-<strong>WYSIWYM</strong>)Web 编辑器 <a class="reference external" href="http://wmd-editor.com/">WMD</a> 。一提到所想既所得，大家可能会想到 <strong>latex</strong>,latex是一个强大的所想既<br />
-所得编辑器，今天介绍的这个没有latex那么复杂。和 <a class="reference external" href="http://wiki.woodpecker.org.cn/moin/reST">reStructuredText</a> 格式差不多，这是一种结构化的文<br />
-本格式。因此通过这种格式生成的 <strong>HTML</strong> 语法会更精简，清晰，很少产生多于的html垃圾。所见既所得<br />
-编辑器生成的代码可读性太差，举个例子：dreamweaver就是一个很好的所见既所得的工具，可以生成好看的界面，但是生成的代码的可读性不好。</p><p>看下面的应用截图：</p><p><img alt="UMD" src="http://farm3.static.flickr.com/2461/3992170639_690a7f509b.jpg" /></p><p>这篇blog就是通过 reStructuredText_文档生成的。</p></div>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/5/">&larr; Older</a>
@@ -535,6 +536,10 @@ YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
       </li>
     
@@ -548,10 +553,6 @@ YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http
     
       <li class="post">
         <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
       </li>
     
   </ul>

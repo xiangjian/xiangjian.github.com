@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: xml | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/xml/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/xml/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[xml中节点的命名规则]]></title>
-    <link href="http://xiangjian.github.com/2007/10/xml-element-name.html"/>
+    <link href="http://blog.xiangjian.info/2007/10/xml-element-name.html"/>
     <updated>2007-10-12T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2007/10/xml-element-name</id>
+    <id>http://blog.xiangjian.info/2007/10/xml-element-name</id>
     <content type="html"><![CDATA[<p><p>XML elements命名必须遵循以下几个规则：<br /></p>
 <ul>
 <li>可以包含字母、数字、和其它的字符</li>

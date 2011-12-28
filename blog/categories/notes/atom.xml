@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: notes | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/notes/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/notes/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -14,10 +14,29 @@
 
   
   <entry>
+    <title type="html"><![CDATA[blog 迁移到 octopress]]></title>
+    <link href="http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress.html"/>
+    <updated>2011-12-28T09:32:00+08:00</updated>
+    <id>http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress</id>
+    <content type="html"><![CDATA[<p>很久没有写blog了，这次是我的aws一周年试用到期了，准备换一个空间继续写。wordpress使用了一年左右，还是感觉不爽，不够geek。原来是先写rst格式文件，生成html然后再到Wordpress中发布，主要还是有洁癖，不喜欢所见即所得编辑器生成的html代码，相当凌乱。在v2ex上看到讨论jekll模版引擎来写文章，mrakdown我不熟悉，blog发布的原理与movbletype。当年我就想，如果有一个blog程序,有movable type的静态文件生成能力，又能不用写html发布,那就完美了。octopress刚好能满足这种需求，足够简洁， 静态文件发布，爱不失手。</p>
+
+<p>主要改变：</p>
+
+<ol>
+<li><p>wordpress 迁移到otcopress,原来文件进行了迁移。</p></li>
+<li><p>熟悉git ,原来是使用hg，主要原因是bitbucket当时不支持git.git使用起来真是相当爽，比hg还好用.相比git ,svn、tfs这类简直没法用.</p></li>
+<li><p>域名服务器从godaddy转到国内的dnspod,更改生效的时间相当快，改域名后很短时间内就可以生效。</p></li>
+<li><p>使用github 的pages服务，并设置了CNAME映射，blog.xiangjian.info就映射到xiangjian.github.com.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
-    <link href="http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
+    <link href="http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
     <updated>2011-08-17T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx</id>
+    <id>http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx</id>
     <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
 怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
 以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
@@ -119,9 +138,9 @@ numprocs_start=1
   
   <entry>
     <title type="html"><![CDATA[32位系统充分使用多余的内存]]></title>
-    <link href="http://xiangjian.github.com/2011/08/32bit_use_4g_ram.html"/>
+    <link href="http://blog.xiangjian.info/2011/08/32bit_use_4g_ram.html"/>
     <updated>2011-08-15T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/08/32bit_use_4g_ram</id>
+    <id>http://blog.xiangjian.info/2011/08/32bit_use_4g_ram</id>
     <content type="html"><![CDATA[<p>我的T410i很久以前就升级了4G内存，但是32位系统使用不了全部的内存，单位的网络准入系统又不支持64位系统。内存一直都没有充分利用，其实可以做一个内存盘把一些暂存的内容放到这个上面来。有几个好处：<br />
 1.速度快，本来这块内存是用不到的，内存的速度比硬盘快很多。<br />
 2.重启系统这一块内容会消失，可以做临时存储。如totalcommand解压缓存。</p>

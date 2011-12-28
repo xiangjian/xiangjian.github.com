@@ -9,9 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="XML elements命名必须遵循以下几个规则： 可以包含字母、数字、和其它的字符
-不能以数字和标点字符开始
-不能包含有空格 注意在你创建命名的时候注意以下规则：你可以使用任何名字，没有保留字符,最好使用有含义的名字。如果有空格可以使用下划线来分格。.Examples: , .在名称里避免使用 &hellip;">
+  <meta name="description" content="今天Oracle Spatial数据终于可以在Geoserver中发布了，期间发现了不少的问题：在配置过程中注意的问题：使用oracle 9i还是10g，从理论上讲,Geoserver数据源可以支持Oracle Spatial 9i和10g的数据，但是我们存储到数据库的数据是转换到WGS-84（ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xiangjian.github.com/page/11/index.html">
+  <link rel="canonical" href="http://blog.xiangjian.info/page/11/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,7 +61,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input type="hidden" name="q" value="site:blog.xiangjian.info" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -78,6 +76,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/10/geoserver-use-oracle-spatial.html">Oracle Spatial数据终于能在geoserver中发布了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-22T00:00:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2007</time>
+        
+         | <a href="/2007/10/geoserver-use-oracle-spatial.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>今天Oracle Spatial数据终于可以在Geoserver中发布了，期间发现了不少的问题：</p><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_Ea3JwBJzx7s/Rxy9NBaiuRI/AAAAAAAAA-A/nsx2Pp4v5ro/s1600-h/2007-10-22_223926.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;" src="http://1.bp.blogspot.com/_Ea3JwBJzx7s/Rxy9NBaiuRI/AAAAAAAAA-A/nsx2Pp4v5ro/s400/2007-10-22_223926.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5124178507456493842" /></a><br /><p>在配置过程中注意的问题：</p><br /><ul class="noindent" /><br /><li>使用oracle 9i还是10g，从理论上讲,Geoserver数据源可以支持Oracle Spatial 9i和10g的数据，但是我们存储到数据库的数据是转换到WGS-84（LL84）的经纬度数据。但是数据Oracle Spatial 9i的部分数据函数不支持测地数据（geodetic data），导致Geoserver不能正常出现浏览数据，而Oracle Spatial 10g可以支持。</li><br /><li>使用数据制作图层的时候，最好不要使用Geoserver提供的自动生成地图的范围，我试过自动生成的范围不对，不能正常出图。因此地图范围的值最好自己输入，大一点小一点没有关系，自动生成的可能会有很大的误差，这会导致看不到数据，并且日志中也不会看出什么异常。</li><br /><br /><p>注意：最好使用oracle 10g,最好自己提供地图范围，不要太依赖Geoserver算出来的结果。<br /></p>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1002,45 +1039,6 @@ select * from oilwell where uwi in (select uwi from oilwell group by uwi having 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/05/internet-in-home.html">终于可以在宿舍上网了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-05-20T00:00:00+08:00" pubdate data-updated="true">May 20<span>th</span>, 2007</time>
-        
-         | <a href="/2007/05/internet-in-home.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天装好了网线，终于可以在宿舍上网了，好久没有上晚上上过网了，记录一下
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/12/">&larr; Older</a>
@@ -1058,6 +1056,10 @@ select * from oilwell where uwi in (select uwi from oilwell group by uwi having 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
       </li>
     
@@ -1071,10 +1073,6 @@ select * from oilwell where uwi in (select uwi from oilwell group by uwi having 
     
       <li class="post">
         <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
       </li>
     
   </ul>

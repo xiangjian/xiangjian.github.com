@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 杂 | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/杂/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/杂/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[程序员犯的可乐错误]]></title>
-    <link href="http://xiangjian.github.com/2011/06/program_error.html"/>
+    <link href="http://blog.xiangjian.info/2011/06/program_error.html"/>
     <updated>2011-06-21T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/06/program_error</id>
+    <id>http://blog.xiangjian.info/2011/06/program_error</id>
     <content type="html"><![CDATA[<p><p>上周五，reddit programming区有人贴出了个一段代码的code review，引发了大家讨论，堪称是github.com网站最热烈的讨论。一个程序的升级脚本中写了如下一段代码:</p>
 <pre class="literal-block">
 rm -rf /usr /lib/nvidia-current/xorg/xorg
@@ -34,9 +34,9 @@ rm -rf /usr /lib/nvidia-current/xorg/xorg
   
   <entry>
     <title type="html"><![CDATA[3月总结]]></title>
-    <link href="http://xiangjian.github.com/2011/04/summary_3month.html"/>
+    <link href="http://blog.xiangjian.info/2011/04/summary_3month.html"/>
     <updated>2011-04-04T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/04/summary_3month</id>
+    <id>http://blog.xiangjian.info/2011/04/summary_3month</id>
     <content type="html"><![CDATA[<p><p>三月已经过去了，总体是比较纠结，月底一切都还好。家里的事一直不断，想不到拆迁会到我们那边去，真是没法说。最高兴的是感情稳定，原来自己几个愿望，找一个善善良良的妻子，养一全聪聪明明的孩子，想一个简简单单道理，过一辈子。</p> 
 <p>还可以的：</p> 
 <ul class="simple"> 
@@ -61,9 +61,9 @@ rm -rf /usr /lib/nvidia-current/xorg/xorg
   
   <entry>
     <title type="html"><![CDATA[本周推荐]]></title>
-    <link href="http://xiangjian.github.com/2011/03/week1.html"/>
+    <link href="http://blog.xiangjian.info/2011/03/week1.html"/>
     <updated>2011-03-09T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/03/week1</id>
+    <id>http://blog.xiangjian.info/2011/03/week1</id>
     <content type="html"><![CDATA[<p>隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。
 <div id="id2" class="section">
 <h2>技术：</h2>
@@ -90,9 +90,9 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
   
   <entry>
     <title type="html"><![CDATA[试用free aws]]></title>
-    <link href="http://xiangjian.github.com/2010/12/movable_vps.html"/>
+    <link href="http://blog.xiangjian.info/2010/12/movable_vps.html"/>
     <updated>2010-12-27T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/12/movable_vps</id>
+    <id>http://blog.xiangjian.info/2010/12/movable_vps</id>
     <content type="html"><![CDATA[<p><p>vps 下个月就到期了，前一段时间看到amazon有免费一年的free aws,决定试用下，明年不用继续用原来的vps使用amazon提供的aws。free aws 安装配置非常方便，很短时间就可以配置好一个可用服务。服务性能也相当不错。</p> 
 <p>今天下午配置好了服务器，申请了个固定IP，将原来的博客移植到新机器上，以下是使用感受：</p> 
 <ol class="arabic simple"> 
@@ -106,9 +106,9 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
   
   <entry>
     <title type="html"><![CDATA[更新]]></title>
-    <link href="http://xiangjian.github.com/2010/07/update.html"/>
+    <link href="http://blog.xiangjian.info/2010/07/update.html"/>
     <updated>2010-07-25T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/07/update</id>
+    <id>http://blog.xiangjian.info/2010/07/update</id>
     <content type="html"><![CDATA[<p><p>好久没有更新了，上次更新还是4月份从青海回来。主要这段时间工作太忙，基本上都在外面出差，生活没有规律。现在有点问题，鸭梨很大，体重保持在140，要想办法减，肚子已经有点明显胖，原来坚持了几年的跑步也中断了。这些好的习惯要逐渐再拾起来。</p>
 <p>blog我名字改了叫作"鉴行志"，鉴：就是镜子，希望这个是我的影子，能够看到我学习生活中的东西，李世民有一句名言就有这个字。其实我原来名字也是用这个字，小学和初中也是这个字，后来不知道怎么就改为建了。行：是我的辈份，一般不用在名字中。这个就是我取这个blog名字的原因。</p>
 <p>总结一下这段时间的工作吧：</p>

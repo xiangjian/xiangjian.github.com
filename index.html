@@ -9,7 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率， &hellip;">
+  <meta name="description" content="很久没有写blog了，这次是我的aws一周年试用到期了，准备换一个空间继续写。wordpress使用了一年左右，还是感觉不爽，不够geek。原来是先写rst格式文件，生成html然后再到Wordpress中发布，主要还是有洁癖，不喜欢所见即所得编辑器生成的html代码，相当凌乱。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xiangjian.github.com/index.html">
+  <link rel="canonical" href="http://blog.xiangjian.info/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -61,7 +61,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input type="hidden" name="q" value="site:blog.xiangjian.info" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -76,6 +76,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/12/blog-migrate-to-octopress.html">Blog 迁移到 Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-28T09:32:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
+        
+         | <a href="/2011/12/blog-migrate-to-octopress.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>很久没有写blog了，这次是我的aws一周年试用到期了，准备换一个空间继续写。wordpress使用了一年左右，还是感觉不爽，不够geek。原来是先写rst格式文件，生成html然后再到Wordpress中发布，主要还是有洁癖，不喜欢所见即所得编辑器生成的html代码，相当凌乱。在v2ex上看到讨论jekll模版引擎来写文章，mrakdown我不熟悉，blog发布的原理与movbletype。当年我就想，如果有一个blog程序,有movable type的静态文件生成能力，又能不用写html发布,那就完美了。octopress刚好能满足这种需求，足够简洁， 静态文件发布，爱不失手。</p>
+
+<p>主要改变：</p>
+
+<ol>
+<li><p>wordpress 迁移到otcopress,原来文件进行了迁移。</p></li>
+<li><p>熟悉git ,原来是使用hg，主要原因是bitbucket当时不支持git.git使用起来真是相当爽，比hg还好用.相比git ,svn、tfs这类简直没法用.</p></li>
+<li><p>域名服务器从godaddy转到国内的dnspod,更改生效的时间相当快，改域名后很短时间内就可以生效。</p></li>
+<li><p>使用github 的pages服务，并设置了CNAME映射，blog.xiangjian.info就映射到xiangjian.github.com.</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -832,60 +880,6 @@ sendpic('.')
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/03/week1.html">本周推荐</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-09T00:00:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time>
-        
-         | <a href="/2011/03/week1.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。
-<div id="id2" class="section">
-<h2>技术：</h2>
-<ul class="simple">
-	<li><a class="reference external" href="http://redis.io">redis</a></li>
-</ul>
-去年主要使用memcached，memcached在使用过程中发现，有些东西功能不足：不能选择性持久化；存储的值不能太大，默认为4M；加之缓存结构单一。redis可以很好解决这个问题，可以持久化，提供多种数据类型，支持LIST,这个可以方便进行扩展（我想实现一个简单的MQ）
-<ul class="simple">
-	<li><a class="reference external" href="http://headjs.com">headjs</a></li>
-</ul>
-head.js是一个异步加载javascript的js脚本，像它的名字一样，这个脚本只会在head处加载它自己，后台使用javascript异步加载，可以在script比较多的页面中加快加载速度（一般情况下加载javascript浏览器会等待脚本下载）。
-<ul class="simple">
-	<li><a class="reference external" href="http://socket.io">socket.io</a></li>
-</ul>
-这个可以在很多场合使用的javascript包，可以使用IE使用websocket通信。websockets比ajax更好使用到服务器需要推送的环境下。</div></p>
-
-<p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -901,6 +895,10 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
       </li>
     
@@ -914,10 +912,6 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
     
       <li class="post">
         <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
       </li>
     
   </ul>

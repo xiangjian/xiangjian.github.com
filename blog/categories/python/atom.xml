@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: python | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/python/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[快速图片上传到flickr,google]]></title>
-    <link href="http://xiangjian.github.com/2011/03/picture_upload_flickr_google.html"/>
+    <link href="http://blog.xiangjian.info/2011/03/picture_upload_flickr_google.html"/>
     <updated>2011-03-15T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/03/picture_upload_flickr_google</id>
+    <id>http://blog.xiangjian.info/2011/03/picture_upload_flickr_google</id>
     <content type="html"><![CDATA[<p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
 邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
 <p>晚上写了如下代码(当然是使用python)::</p> 
@@ -71,9 +71,9 @@ sendpic('.')
   
   <entry>
     <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
-    <link href="http://xiangjian.github.com/2010/10/douglas-peucker.html"/>
+    <link href="http://blog.xiangjian.info/2010/10/douglas-peucker.html"/>
     <updated>2010-10-07T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/10/douglas-peucker</id>
+    <id>http://blog.xiangjian.info/2010/10/douglas-peucker</id>
     <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
 <img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
 <p>通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来</p>
@@ -279,9 +279,9 @@ doctest.testmod()
   
   <entry>
     <title type="html"><![CDATA[使用python脚本将邮件备份到Gmail]]></title>
-    <link href="http://xiangjian.github.com/2009/01/python-backup-to-gmail.html"/>
+    <link href="http://blog.xiangjian.info/2009/01/python-backup-to-gmail.html"/>
     <updated>2009-01-14T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/01/python-backup-to-gmail</id>
+    <id>http://blog.xiangjian.info/2009/01/python-backup-to-gmail</id>
     <content type="html"><![CDATA[<p>整理磁盘，看到了这个将邮件备份到gmail的python代码（可以备份到任何邮箱），记得不太清楚了，原来好像是从别的地方下载的，时间太长了不记得从哪找的。代码的使用方法：
 <ol>
 <li>将要备份的邮件存为eml格式，保存到一个文件夹中（foxmail,outlook,dreammail,foomail等都可以做到）</li><li>将下面的代码存为一个py文件，放到该文件夹中，在py文件中填好一个可用的SMTP服务器地址，填写用户名密码，写好要发送到的邮箱。</li><li>运行py文件，就会将邮件备份到您指定的邮箱中，备份后会删除原eml文件。

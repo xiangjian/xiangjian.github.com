@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: gis | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/gis/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/gis/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
-    <link href="http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
+    <link href="http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
     <updated>2011-08-17T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx</id>
+    <id>http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx</id>
     <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
 怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
 以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
@@ -119,9 +119,9 @@ numprocs_start=1
   
   <entry>
     <title type="html"><![CDATA[十种GIS矢量数据转换工具]]></title>
-    <link href="http://xiangjian.github.com/2010/02/top-10-gis-tools.html"/>
+    <link href="http://blog.xiangjian.info/2010/02/top-10-gis-tools.html"/>
     <updated>2010-02-27T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/02/top-10-gis-tools</id>
+    <id>http://blog.xiangjian.info/2010/02/top-10-gis-tools</id>
     <content type="html"><![CDATA[<p><p>做GIS这一块的工作,GIS空间数据的转换处理工作会比较多.下面整理了这几个用过的和知道的一些GIS空间数据转换工具,写了下面的文章.文章也标题党一把,取名&quot;十种GIS矢量数据转换工具&quot;,希望对大家有用.</p>
 <ul class="simple">
 <li><a class="reference external" href="http://www.safe.com/">FME</a></li>
@@ -177,9 +177,9 @@ numprocs_start=1
   
   <entry>
     <title type="html"><![CDATA[几种栅格图片GIS服务器性能比较(MapServer vs. Geoserver vs ERDAS Apollo)]]></title>
-    <link href="http://xiangjian.github.com/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo.html"/>
+    <link href="http://blog.xiangjian.info/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo.html"/>
     <updated>2010-01-13T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo</id>
+    <id>http://blog.xiangjian.info/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo</id>
     <content type="html"><![CDATA[<p><p>在这个 <a class="reference external" href="http://blog.webmapper.com.au/image-server-benchmark/">blog</a> 中做了一个关于图像地图服务器性能测试，在同样的情况下测试了(MapServer vs Geoserver vs ERDAS Apollo),mapguide配置出错也就没有参加测试。Arcgis imageserver 没有参加这次测试。</p><ul class="simple"><li>ERDAS Apollo:</li>
 </ul><ol class="arabic simple"><li>ECW (116.8 maps / sec) &#64; 150 users</li>
 <li>TIFF External Pyramid (64.4 maps /sec) &#64; 40 users</li>
@@ -200,9 +200,9 @@ numprocs_start=1
   
   <entry>
     <title type="html"><![CDATA[今后几年增长速度最快的技术]]></title>
-    <link href="http://xiangjian.github.com/2009/12/increase.html"/>
+    <link href="http://blog.xiangjian.info/2009/12/increase.html"/>
     <updated>2009-12-27T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/12/increase</id>
+    <id>http://blog.xiangjian.info/2009/12/increase</id>
     <content type="html"><![CDATA[<p><p>在这篇 <a class="reference external" href="http://news.idg.no/cw/art.cfm?id=6F64F930-1A64-67EA-E461E2E958B82E66">文章</a> 里讲到了今后5年快速增长的5大技术，现在看准什么技术比较有前景，现在就往这一块学习。</p><ul class="simple"><li>Cloud computing</li>
 <li>Open source software</li>
 <li>Virtualization</li>
@@ -221,9 +221,9 @@ numprocs_start=1
   
   <entry>
     <title type="html"><![CDATA[mapguide open source 2.1推出]]></title>
-    <link href="http://xiangjian.github.com/2009/12/mapguide-open-source-2-1.html"/>
+    <link href="http://blog.xiangjian.info/2009/12/mapguide-open-source-2-1.html"/>
     <updated>2009-12-11T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/12/mapguide-open-source-2-1</id>
+    <id>http://blog.xiangjian.info/2009/12/mapguide-open-source-2-1</id>
     <content type="html"><![CDATA[<p>11月21日mapguide open source推出2.1版。新版本修正不少错误，主要有以下更新。<br />
 <ul class="simple"><li>在性能，稳定性，可伸缩性方面的改进</li>
 </ul>哪个系统版本升级都可以这么说。<br />

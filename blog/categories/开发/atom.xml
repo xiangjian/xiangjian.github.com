@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 开发 | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/开发/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/开发/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
-    <link href="http://xiangjian.github.com/2010/10/douglas-peucker.html"/>
+    <link href="http://blog.xiangjian.info/2010/10/douglas-peucker.html"/>
     <updated>2010-10-07T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/10/douglas-peucker</id>
+    <id>http://blog.xiangjian.info/2010/10/douglas-peucker</id>
     <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
 <img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
 <p>通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来</p>
@@ -223,9 +223,9 @@ doctest.testmod()
   
   <entry>
     <title type="html"><![CDATA[使用javascript方法给后台WCF服务直接post对象]]></title>
-    <link href="http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf.html"/>
+    <link href="http://blog.xiangjian.info/2010/02/javascript-post-object-to-wcf.html"/>
     <updated>2010-02-11T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf</id>
+    <id>http://blog.xiangjian.info/2010/02/javascript-post-object-to-wcf</id>
     <content type="html"><![CDATA[<p><p>一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。</p>
 <p>下面直接使用WCF特性做元数据的自定义转换</p>
 <p>定义元数据契约定义:</p>
@@ -260,9 +260,9 @@ bool testpost(person p);
   
   <entry>
     <title type="html"><![CDATA[查询oracle联合外键]]></title>
-    <link href="http://xiangjian.github.com/2009/11/oracle-key.html"/>
+    <link href="http://blog.xiangjian.info/2009/11/oracle-key.html"/>
     <updated>2009-11-01T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/11/oracle-key</id>
+    <id>http://blog.xiangjian.info/2009/11/oracle-key</id>
     <content type="html"><![CDATA[<p><!-- 数据字典 --><br />
 <br />
 从oracle元数据字典中提取数据库表外键信息，写了一个查询，查询出的结果一个字段有多个外键，很困<br />
@@ -283,9 +283,9 @@ and ucc.OWNER in ('用户名')</pre>
   
   <entry>
     <title type="html"><![CDATA[Cheat sheet 介绍]]></title>
-    <link href="http://xiangjian.github.com/2009/10/cheat-sheet.html"/>
+    <link href="http://blog.xiangjian.info/2009/10/cheat-sheet.html"/>
     <updated>2009-10-04T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/10/cheat-sheet</id>
+    <id>http://blog.xiangjian.info/2009/10/cheat-sheet</id>
     <content type="html"><![CDATA[<p><!-- 介绍大家经常见到Cheat sheet -->
 <div class="section" id="id1">
 <h1>cheat sheet 简介</h1>
@@ -321,9 +321,9 @@ cheat sheet"原来是出自考试作弊，但又不完全是作弊："有些考�
   
   <entry>
     <title type="html"><![CDATA[在firefox中你最想要的5新特性]]></title>
-    <link href="http://xiangjian.github.com/2009/09/new-in-firefox.html"/>
+    <link href="http://blog.xiangjian.info/2009/09/new-in-firefox.html"/>
     <updated>2009-09-12T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/09/new-in-firefox</id>
+    <id>http://blog.xiangjian.info/2009/09/new-in-firefox</id>
     <content type="html"><![CDATA[<p>lifehacker近期整理出了一个5个你最想要的新特性,看看firefox用户希望firefox会有什么新的特性:
 <ol><li>更好的内存管理.现在使用firefox一次打开10来个页面基本是很常见的现象,但是内存占用也很惊人,显然现在的机器内存都比较大,firefox动辄上G的内存使用总是让人不爽.</li><li>firefox同步功能可以同步firefox的一切数据.这样我们在不同的机器上,重装系统后,都可以使用自己原来的东西,不仅仅是书签.</li><li>插件的身后兼容,这个问题一直都有.firefox升级了,有些插件就不能使用了,如果作者没有提供更新,就用不了了.</li><li>一个诊断插件的工具.给用户提供一个插件诊断工具,用户可以找出一些插件错误,什么插件拖慢了系统的速度.</li><li>标签隔离,类似于google chrome.在浏览网页的时候一个页面假死,别的页面也看不了,这个很影响用户体验.google chrome这一点就做得很好,标签隔离,一个死掉其余不受影响.</li></ol>firefox看来还有不少工作要做
 </p>

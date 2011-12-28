@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[鉴行志]]></title>
-  <link href="http://xiangjian.github.com/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -14,10 +14,29 @@
 
   
   <entry>
+    <title type="html"><![CDATA[blog 迁移到 octopress]]></title>
+    <link href="http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress.html"/>
+    <updated>2011-12-28T09:32:00+08:00</updated>
+    <id>http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress</id>
+    <content type="html"><![CDATA[<p>很久没有写blog了，这次是我的aws一周年试用到期了，准备换一个空间继续写。wordpress使用了一年左右，还是感觉不爽，不够geek。原来是先写rst格式文件，生成html然后再到Wordpress中发布，主要还是有洁癖，不喜欢所见即所得编辑器生成的html代码，相当凌乱。在v2ex上看到讨论jekll模版引擎来写文章，mrakdown我不熟悉，blog发布的原理与movbletype。当年我就想，如果有一个blog程序,有movable type的静态文件生成能力，又能不用写html发布,那就完美了。octopress刚好能满足这种需求，足够简洁， 静态文件发布，爱不失手。</p>
+
+<p>主要改变：</p>
+
+<ol>
+<li><p>wordpress 迁移到otcopress,原来文件进行了迁移。</p></li>
+<li><p>熟悉git ,原来是使用hg，主要原因是bitbucket当时不支持git.git使用起来真是相当爽，比hg还好用.相比git ,svn、tfs这类简直没法用.</p></li>
+<li><p>域名服务器从godaddy转到国内的dnspod,更改生效的时间相当快，改域名后很短时间内就可以生效。</p></li>
+<li><p>使用github 的pages服务，并设置了CNAME映射，blog.xiangjian.info就映射到xiangjian.github.com.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
-    <link href="http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
+    <link href="http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
     <updated>2011-08-17T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx</id>
+    <id>http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx</id>
     <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
 怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
 以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
@@ -118,9 +137,9 @@ numprocs_start=1
   
   <entry>
     <title type="html"><![CDATA[32位系统充分使用多余的内存]]></title>
-    <link href="http://xiangjian.github.com/2011/08/32bit_use_4g_ram.html"/>
+    <link href="http://blog.xiangjian.info/2011/08/32bit_use_4g_ram.html"/>
     <updated>2011-08-15T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/08/32bit_use_4g_ram</id>
+    <id>http://blog.xiangjian.info/2011/08/32bit_use_4g_ram</id>
     <content type="html"><![CDATA[<p>我的T410i很久以前就升级了4G内存，但是32位系统使用不了全部的内存，单位的网络准入系统又不支持64位系统。内存一直都没有充分利用，其实可以做一个内存盘把一些暂存的内容放到这个上面来。有几个好处：<br />
 1.速度快，本来这块内存是用不到的，内存的速度比硬盘快很多。<br />
 2.重启系统这一块内容会消失，可以做临时存储。如totalcommand解压缓存。</p>
@@ -132,9 +151,9 @@ VS2010额编译速度一直不是太快，把编译内容放到ramdisk中可以�
   
   <entry>
     <title type="html"><![CDATA[程序员犯的可乐错误]]></title>
-    <link href="http://xiangjian.github.com/2011/06/program_error.html"/>
+    <link href="http://blog.xiangjian.info/2011/06/program_error.html"/>
     <updated>2011-06-21T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/06/program_error</id>
+    <id>http://blog.xiangjian.info/2011/06/program_error</id>
     <content type="html"><![CDATA[<p><p>上周五，reddit programming区有人贴出了个一段代码的code review，引发了大家讨论，堪称是github.com网站最热烈的讨论。一个程序的升级脚本中写了如下一段代码:</p>
 <pre class="literal-block">
 rm -rf /usr /lib/nvidia-current/xorg/xorg
@@ -150,9 +169,9 @@ rm -rf /usr /lib/nvidia-current/xorg/xorg
   
   <entry>
     <title type="html"><![CDATA[linux 系统动态链接库引]]></title>
-    <link href="http://xiangjian.github.com/2011/06/linux_so.html"/>
+    <link href="http://blog.xiangjian.info/2011/06/linux_so.html"/>
     <updated>2011-06-20T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/06/linux_so</id>
+    <id>http://blog.xiangjian.info/2011/06/linux_so</id>
     <content type="html"><![CDATA[<p><p>最近要编译一个mapnik2，其中安装依赖环境icu和boost这两个东西费尽周折。最后总算弄明白了linux下的动态链接库是怎么管理的？动态链接库多版本会不会冲突?</p>
 <p>linux支持unix中的动态链接库方法，使用export LD_LIBRARY_PATH= 这各方式。linux的动态链接库引用是通过ldconfig来实现的。<br />
 linux 动态链接库使用ldconfig命令来查找系统动态链接库，并生成缓存方便系统引用。编译代码时，软件依赖一般是从ldconfig的cache中查找。下面主要说下linux如何管理动态链接库</p>
@@ -187,9 +206,9 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   
   <entry>
     <title type="html"><![CDATA[redhat使用yum安装程序]]></title>
-    <link href="http://xiangjian.github.com/2011/05/redhat_use_yum.html"/>
+    <link href="http://blog.xiangjian.info/2011/05/redhat_use_yum.html"/>
     <updated>2011-05-11T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/05/redhat_use_yum</id>
+    <id>http://blog.xiangjian.info/2011/05/redhat_use_yum</id>
     <content type="html"><![CDATA[<p><p>最近，要给一台redhat4服务器安装mapnik，在我自己工作的台机使用的是archlinux上，使用ABS安装环境那是相当方便，这台机器安装让人大伤脑筋。rpm包依赖要一个个找，而且，经常要自己编译源代码。</p></p>
 
 <p><p>在centos系统中使用yum安装一点都不折腾，redhat4和centos算是同源，可以使用centos来做rh的更新。下面是安装yum的步骤。</p></p>
@@ -317,9 +336,9 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   
   <entry>
     <title type="html"><![CDATA[3月总结]]></title>
-    <link href="http://xiangjian.github.com/2011/04/summary_3month.html"/>
+    <link href="http://blog.xiangjian.info/2011/04/summary_3month.html"/>
     <updated>2011-04-04T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/04/summary_3month</id>
+    <id>http://blog.xiangjian.info/2011/04/summary_3month</id>
     <content type="html"><![CDATA[<p><p>三月已经过去了，总体是比较纠结，月底一切都还好。家里的事一直不断，想不到拆迁会到我们那边去，真是没法说。最高兴的是感情稳定，原来自己几个愿望，找一个善善良良的妻子，养一全聪聪明明的孩子，想一个简简单单道理，过一辈子。</p> 
 <p>还可以的：</p> 
 <ul class="simple"> 
@@ -343,9 +362,9 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   
   <entry>
     <title type="html"><![CDATA[本周推荐]]></title>
-    <link href="http://xiangjian.github.com/2011/03/week_2.html"/>
+    <link href="http://blog.xiangjian.info/2011/03/week_2.html"/>
     <updated>2011-03-20T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/03/week_2</id>
+    <id>http://blog.xiangjian.info/2011/03/week_2</id>
     <content type="html"><![CDATA[<p><div class="section" id="id2"> 
 <h3>技术</h3> 
 <ul class="simple"> 
@@ -397,9 +416,9 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   
   <entry>
     <title type="html"><![CDATA[wordpress配置及网站SEO]]></title>
-    <link href="http://xiangjian.github.com/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html"/>
+    <link href="http://blog.xiangjian.info/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html"/>
     <updated>2011-03-17T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/03/wordpress_cache_with_nginx_and_duplicate_seo</id>
+    <id>http://blog.xiangjian.info/2011/03/wordpress_cache_with_nginx_and_duplicate_seo</id>
     <content type="html"><![CDATA[<p><p>前一段时间使用wordpress 的一个缓存插件，几天使用下来发现好像没有起到缓存作用。晚上查了下nginx配置，终于找到了为什么。原来是我的nginx配置不对，缓存的路径没有设置对。<br />
 找到了问题改正就很容易了。同时也把使用插件生成sitemap.xml也进行了重写，搜索引擎也可以很好的索引相关网页。</p> 
 <pre class="literal-block"> 
@@ -454,9 +473,9 @@ rewrite ^ http://blog.xiangjian.info$uri permanent;
   
   <entry>
     <title type="html"><![CDATA[快速图片上传到flickr,google]]></title>
-    <link href="http://xiangjian.github.com/2011/03/picture_upload_flickr_google.html"/>
+    <link href="http://blog.xiangjian.info/2011/03/picture_upload_flickr_google.html"/>
     <updated>2011-03-15T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/03/picture_upload_flickr_google</id>
+    <id>http://blog.xiangjian.info/2011/03/picture_upload_flickr_google</id>
     <content type="html"><![CDATA[<p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
 邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
 <p>晚上写了如下代码(当然是使用python)::</p> 
@@ -509,9 +528,9 @@ sendpic('.')
   
   <entry>
     <title type="html"><![CDATA[本周推荐]]></title>
-    <link href="http://xiangjian.github.com/2011/03/week1.html"/>
+    <link href="http://blog.xiangjian.info/2011/03/week1.html"/>
     <updated>2011-03-09T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2011/03/week1</id>
+    <id>http://blog.xiangjian.info/2011/03/week1</id>
     <content type="html"><![CDATA[<p>隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。
 <div id="id2" class="section">
 <h2>技术：</h2>
@@ -534,9 +553,9 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
   
   <entry>
     <title type="html"><![CDATA[试用free aws]]></title>
-    <link href="http://xiangjian.github.com/2010/12/movable_vps.html"/>
+    <link href="http://blog.xiangjian.info/2010/12/movable_vps.html"/>
     <updated>2010-12-27T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/12/movable_vps</id>
+    <id>http://blog.xiangjian.info/2010/12/movable_vps</id>
     <content type="html"><![CDATA[<p><p>vps 下个月就到期了，前一段时间看到amazon有免费一年的free aws,决定试用下，明年不用继续用原来的vps使用amazon提供的aws。free aws 安装配置非常方便，很短时间就可以配置好一个可用服务。服务性能也相当不错。</p> 
 <p>今天下午配置好了服务器，申请了个固定IP，将原来的博客移植到新机器上，以下是使用感受：</p> 
 <ol class="arabic simple"> 
@@ -549,9 +568,9 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
   
   <entry>
     <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
-    <link href="http://xiangjian.github.com/2010/10/douglas-peucker.html"/>
+    <link href="http://blog.xiangjian.info/2010/10/douglas-peucker.html"/>
     <updated>2010-10-07T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/10/douglas-peucker</id>
+    <id>http://blog.xiangjian.info/2010/10/douglas-peucker</id>
     <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
 <img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
 <p>通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来</p>
@@ -756,9 +775,9 @@ doctest.testmod()
   
   <entry>
     <title type="html"><![CDATA[在vps上安装dabr]]></title>
-    <link href="http://xiangjian.github.com/2010/08/vps-dabr.html"/>
+    <link href="http://blog.xiangjian.info/2010/08/vps-dabr.html"/>
     <updated>2010-08-11T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/08/vps-dabr</id>
+    <id>http://blog.xiangjian.info/2010/08/vps-dabr</id>
     <content type="html"><![CDATA[<p><p>前几天twa.sh网站访问不了，有一段时间没有上过twitter了。因为知道twa.sh是dabr搭建的，我的vps也有PHP环境，决定架一个dabr. 主要按照http://zou.lu/dabr/ 写的搭建方法，完成dabr环境搭建。有一些小的改动主要是PHP环境配置问题，PHP默认有些包没有使用，没有默认的时区设置。这些可以看nginx输出的的错误日志。使用tail -f /srv/log/nginx/error.log 命令就可以查看，改下配置就可以了。</p>
 <p>话说linux系统很不错，命令行开始可能感觉上手不易，但linux的配置，日志输出都比较固定，查看相应的信息基本上可以看到问题是出在哪了。这点比Windows强的地方，有时真不知道错误出在哪。</p>
 <p>这几天不知道为什么php-cgi在fast-cgi下跑不很稳定，过一段时间就挂掉.不知道是不是系统的问题，我的vps安装的是archlinux。写了个bash脚本扔到/etc/cron.hourly目录中定时检查php-cgi进程是否存在，否则重启php-cgi。暂时就这样了，慢慢再找不稳定的原因。脚本:</p>
@@ -774,9 +793,9 @@ fi;
   
   <entry>
     <title type="html"><![CDATA[更新]]></title>
-    <link href="http://xiangjian.github.com/2010/07/update.html"/>
+    <link href="http://blog.xiangjian.info/2010/07/update.html"/>
     <updated>2010-07-25T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/07/update</id>
+    <id>http://blog.xiangjian.info/2010/07/update</id>
     <content type="html"><![CDATA[<p><p>好久没有更新了，上次更新还是4月份从青海回来。主要这段时间工作太忙，基本上都在外面出差，生活没有规律。现在有点问题，鸭梨很大，体重保持在140，要想办法减，肚子已经有点明显胖，原来坚持了几年的跑步也中断了。这些好的习惯要逐渐再拾起来。</p>
 <p>blog我名字改了叫作&#8221;鉴行志&#8221;，鉴：就是镜子，希望这个是我的影子，能够看到我学习生活中的东西，李世民有一句名言就有这个字。其实我原来名字也是用这个字，小学和初中也是这个字，后来不知道怎么就改为建了。行：是我的辈份，一般不用在名字中。这个就是我取这个blog名字的原因。</p>
 <p>总结一下这段时间的工作吧：</p>
@@ -792,9 +811,9 @@ fi;
   
   <entry>
     <title type="html"><![CDATA[关于地震]]></title>
-    <link href="http://xiangjian.github.com/2010/04/earthquake.html"/>
+    <link href="http://blog.xiangjian.info/2010/04/earthquake.html"/>
     <updated>2010-04-17T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/04/earthquake</id>
+    <id>http://blog.xiangjian.info/2010/04/earthquake</id>
     <content type="html"><![CDATA[<p><p>上周从青海回来,昨天青海玉树发生地震。新闻上报地震是7.1级大地震，好奇上 <a class="reference external" href="http://earthquake.usgs.gov/earthquakes/recenteqsww/Quakes/us2010vacp.php#details">usgs</a> (美国国家地震局),看看地震信息。结果看到地震是6.9级，不知为何中国跟美国测的结果有差别。看到校舍的抗震级别是7级就明白了，有些事明白就行，不能说明白了。</p>
 </p>
 ]]></content>
@@ -802,9 +821,9 @@ fi;
   
   <entry>
     <title type="html"><![CDATA[十种GIS矢量数据转换工具]]></title>
-    <link href="http://xiangjian.github.com/2010/02/top-10-gis-tools.html"/>
+    <link href="http://blog.xiangjian.info/2010/02/top-10-gis-tools.html"/>
     <updated>2010-02-27T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/02/top-10-gis-tools</id>
+    <id>http://blog.xiangjian.info/2010/02/top-10-gis-tools</id>
     <content type="html"><![CDATA[<p><p>做GIS这一块的工作,GIS空间数据的转换处理工作会比较多.下面整理了这几个用过的和知道的一些GIS空间数据转换工具,写了下面的文章.文章也标题党一把,取名&quot;十种GIS矢量数据转换工具&quot;,希望对大家有用.</p>
 <ul class="simple">
 <li><a class="reference external" href="http://www.safe.com/">FME</a></li>
@@ -859,9 +878,9 @@ fi;
   
   <entry>
     <title type="html"><![CDATA[使用javascript方法给后台WCF服务直接post对象]]></title>
-    <link href="http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf.html"/>
+    <link href="http://blog.xiangjian.info/2010/02/javascript-post-object-to-wcf.html"/>
     <updated>2010-02-11T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf</id>
+    <id>http://blog.xiangjian.info/2010/02/javascript-post-object-to-wcf</id>
     <content type="html"><![CDATA[<p><p>一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。</p>
 <p>下面直接使用WCF特性做元数据的自定义转换</p>
 <p>定义元数据契约定义:</p>
@@ -895,9 +914,9 @@ bool testpost(person p);
   
   <entry>
     <title type="html"><![CDATA[vps使用一月体验]]></title>
-    <link href="http://xiangjian.github.com/2010/02/vps-use-one-month.html"/>
+    <link href="http://blog.xiangjian.info/2010/02/vps-use-one-month.html"/>
     <updated>2010-02-02T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/02/vps-use-one-month</id>
+    <id>http://blog.xiangjian.info/2010/02/vps-use-one-month</id>
     <content type="html"><![CDATA[<p><p>从买VPS到现在差不多一个月了，经过这段时间的摸索配置，基本已经可用，这个VPS主要使用以下几个功能。</p>
 <ul class="simple">
 <li>网站：架设了一个多用户的 blog 。</li>
@@ -922,9 +941,9 @@ archlinux 中找不到snmp的配置文件，可以使用这个命令配置用户
   
   <entry>
     <title type="html"><![CDATA[mapguide 绘图引擎 GD与AGG的比较]]></title>
-    <link href="http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg.html"/>
+    <link href="http://blog.xiangjian.info/2010/01/mapguide-dg-vs-gg.html"/>
     <updated>2010-01-31T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg</id>
+    <id>http://blog.xiangjian.info/2010/01/mapguide-dg-vs-gg</id>
     <content type="html"><![CDATA[<p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
 <p>AGG:<br />
 AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口，其产生的图形的质量也非常高。AGG引擎最突出的特点是Anti-alias（反锯齿）和subpixel rendering(亚像素渲染)，使用AGG引擎绘制的地图平滑，清晰，速度快。现在AGG现在还不能使GPU来绘图，将来使用GPU绘图也是绘图引擎的发展趋势。</p>
@@ -940,28 +959,6 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
 <p>参考资料：</p>
 <p><a class="reference external" href="http://www.cnblogs.com/kane_zzt/archive/2008/08/19/1271793.html">AGG</a></p>
 <p><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">绘图知识</a></p>
-</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[手机被偷了]]></title>
-    <link href="http://xiangjian.github.com/2010/01/lost_phone.html"/>
-    <updated>2010-01-17T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/01/lost_phone</id>
-    <content type="html"><![CDATA[<p><p>好不容易有时间去西安走走，结果去大雁塔手机被偷，听着歌呢，回头看不出是谁。马上报警，第一次跟警察做笔录，估计找回来的可能性不大了。</p>
-<p>回忆一下我曾经用过的手机：</p>
-<p>第一个手机是大四那年，要找工作了，2005年十一去买了个手机amoi S6手机。滑盖的,当时看着相当不错还可以当收音机使用一直使用到2007年十一整整两年。不用的原因是手机经常自动关机，最后屏幕坏了，弃之不用。妹妹上大学没有手机，就拿这个手机去修理屏幕，修好后她还用了一段时间。</p>
-<a href="http://www.flickr.com/photos/xiangjian/4290253658/" title="amoi_s6 by 项建, on Flickr"><img src="http://farm3.static.flickr.com/2775/4290253658_1c14ffa2fe.jpg" width="300" height="375" alt="amoi_s6" /></a>
-<p>第二个手机就是blackberry 7230最经典的一款全键盘手机，当时花了二百多。用起来手感相当好，打字速度快，最喜欢blackberry手机收发短信，那是相当爽，只有用过才知道。后来不用blackberry手机也提不起发短信的兴趣了。2008年4月来北京的火车上坏了。</p>
-<a href="http://www.flickr.com/photos/xiangjian/4306064938/" title="blackberry_7230_large by 项建, on Flickr"><img src="http://farm3.static.flickr.com/2598/4306064938_652864ebde.jpg" width="288" height="416" alt="blackberry_7230_large" /></a>
-<p>第三个是一山寨机名字不记得了，功能相当多，价格便宜，但是我没有用多久。原因是这机器在办公楼里没有信号，只有在外面才有信号。后来也是给妹妹用，她现在还在用这个手机。</p>
-<p>第四个手机，08年奥运期间买了一个blackberry 8700手机，那个手机相当不错，内存也大。用来看电子书不错。09年7月在北京公交车被偷。</p>
-<a href="http://www.flickr.com/photos/xiangjian/4306065642/" title="8700tmo by 项建, on Flickr"><img src="http://farm5.static.flickr.com/4049/4306065642_3d84dc0f25.jpg" width="436" height="500" alt="8700tmo" /></a>
-<p>第五个手机，gsmart i350手机，台湾产。wm系统，相当不好使，后悔没有接着买blackberry的机器，blackberry是我用过的手机中最好的。</p></p>
-
-<p><!--more-->
-<p>准备给放这几个手机的图，但是今天好像flickr图片不能访问了，还是逃不了google picasa一样的下场。</p>
 </p>
 ]]></content>
   </entry>

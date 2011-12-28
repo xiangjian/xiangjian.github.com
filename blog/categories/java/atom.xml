@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: java | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/java/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[myeclipse常用快捷键(转)]]></title>
-    <link href="http://xiangjian.github.com/2009/03/myeclipse-shortcut-key.html"/>
+    <link href="http://blog.xiangjian.info/2009/03/myeclipse-shortcut-key.html"/>
     <updated>2009-03-19T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/03/myeclipse-shortcut-key</id>
+    <id>http://blog.xiangjian.info/2009/03/myeclipse-shortcut-key</id>
     <content type="html"><![CDATA[<p>（1）Ctrl+M切换窗口的大小<br />
 （2）Ctrl+Q跳到最后一次的编辑处<br />
 （3）F2当鼠标放在一个标记处出现Tooltip时候按F2则把鼠标移开时Tooltip还会显示即Show Tooltip Description。F3跳到声明或定义的地方。F5单步调试进入函数内部。F6单步调试不进入函数内部，如果装了金山词霸2006则要把"取词开关 "的快捷键改成其他的。F7由函数内部返回到调用处。F8一直执行到下一个断点。<br />
@@ -80,9 +80,9 @@ Ctrl+Shift+K 文本编辑器 查找下一个
   
   <entry>
     <title type="html"><![CDATA[eclipse中类图标的含义]]></title>
-    <link href="http://xiangjian.github.com/2009/01/eclipse-icon.html"/>
+    <link href="http://blog.xiangjian.info/2009/01/eclipse-icon.html"/>
     <updated>2009-01-12T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/01/eclipse-icon</id>
+    <id>http://blog.xiangjian.info/2009/01/eclipse-icon</id>
     <content type="html"><![CDATA[<p>最近几天学习JAVA，使用的IDE是Eclipse，java语法还行不是太难，能看明白。感觉eclipse比JAVA还要难，一般接触的是Microsoft的IDE有点不适应，今天看到eclipse类结构图中的图标，搜了下下面是介绍图标的含义的引用
 <a href="http://publib.boulder.ibm.com/infocenter/rtnlhelp/v6r0m0/index.jsp?topic=/org.eclipse.jdt.doc.user/reference/ref-156.htm" target="new">eclipse 中类图标含义</a>
 <div class="zemanta-pixie" style="margin-top:10px;height:15px"><a class="zemanta-pixie-a" href="http://reblog.zemanta.com/zemified/2c89425d-9433-47fc-8f45-4f1bde44a8f0/" title="Reblog this post [with Zemanta]"><img class="zemanta-pixie-img" src="http://img.zemanta.com/reblog_e.png?x-id=2c89425d-9433-47fc-8f45-4f1bde44a8f0" alt="Reblog this post [with Zemanta]" style="border:none;float:right" /></a><span class="zem-script more-related pretty-attribution"><script type="text/javascript" src="http://static.zemanta.com/readside/loader.js" defer="defer"></script></span></div>

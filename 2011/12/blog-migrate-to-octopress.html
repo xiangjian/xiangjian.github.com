@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>快速图片上传到flickr,google - 鉴行志</title>
+  <title>blog 迁移到 octopress - 鉴行志</title>
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用
-邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。 &hellip;">
+  <meta name="description" content="很久没有写blog了，这次是我的aws一周年试用到期了，准备换一个空间继续写。wordpress使用了一年左右，还是感觉不爽，不够geek。原来是先写rst格式文件，生成html然后再到Wordpress中发布，主要还是有洁癖，不喜欢所见即所得编辑器生成的html代码，相当凌乱。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.xiangjian.info/2011/03/picture_upload_flickr_google.html">
+  <link rel="canonical" href="http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -80,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">快速图片上传到flickr,google</h1>
+      <h1 class="entry-title">Blog 迁移到 Octopress</h1>
     
     
       <p class="meta">
@@ -96,7 +95,7 @@
   
 
 
-<time datetime="2011-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2011</time>
+<time datetime="2011-12-28T09:32:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,53 +104,17 @@
   </header>
 
 
-<div class="entry-content"><p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
-邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
-<p>晚上写了如下代码(当然是使用python)::</p> 
-<pre class="literal-block"> 
-#! coding=utf-8
-import smtplib
-import os
-from email.mime.image import MIMEImage
-from email.mime.multipart import MIMEMultipart
- 
-family = ['XXXXXXX&#64;photos.flickr.com','XXXXXXXXXXXXX&#64;picasaweb.com']
-SMTP_SERVER='XXXXXXXXXx'
-SMTP_USER='XXXXXXXx'
-SMTP_PASS='XXXXXXX'
-SENDER =&quot;XXXXXXXXXXx&quot;
- 
- 
-COMMASPACE = ', '
- 
-# Create the container (outer) email message.
-msg = MIMEMultipart()
-msg['Subject'] = 'my picture'
-msg['From'] = 'xiangjian'
-msg['To'] = COMMASPACE.join(family)
-msg.preamble = 'my picture'
- 
-def forward(toAddr, msg):
-    server = smtplib.SMTP( SMTP_SERVER )
-    server.login( SMTP_USER, SMTP_PASS )
-    server.sendmail( SENDER,toAddr , msg )
-    server.quit()
-    return True
- 
-def sendpic(dir):
-    for root,dirs,files in os.walk(dir):
-        for name in files:
-            if(name.splitext()[1].lower() in ['.jpg','.png']):
-                print name
-                fp=open(name,'rb')
-                img=MIMEImage(fp.read())
-                fp.close()
-                msg.attach(img)
-                forward(COMMASPACE.join(family),msg)
- 
-sendpic('.')
-</pre> 
-<p>将以上代码拷贝到照片文件夹，配置代码中的XXXXXXX。运行就可以将照片发布到多个服务器图床。经测试速度非常快，比通过http上传数据快很多。</p> </p>
+<div class="entry-content"><p>很久没有写blog了，这次是我的aws一周年试用到期了，准备换一个空间继续写。wordpress使用了一年左右，还是感觉不爽，不够geek。原来是先写rst格式文件，生成html然后再到Wordpress中发布，主要还是有洁癖，不喜欢所见即所得编辑器生成的html代码，相当凌乱。在v2ex上看到讨论jekll模版引擎来写文章，mrakdown我不熟悉，blog发布的原理与movbletype。当年我就想，如果有一个blog程序,有movable type的静态文件生成能力，又能不用写html发布,那就完美了。octopress刚好能满足这种需求，足够简洁， 静态文件发布，爱不失手。</p>
+
+<p>主要改变：</p>
+
+<ol>
+<li><p>wordpress 迁移到otcopress,原来文件进行了迁移。</p></li>
+<li><p>熟悉git ,原来是使用hg，主要原因是bitbucket当时不支持git.git使用起来真是相当爽，比hg还好用.相比git ,svn、tfs这类简直没法用.</p></li>
+<li><p>域名服务器从godaddy转到国内的dnspod,更改生效的时间相当快，改域名后很短时间内就可以生效。</p></li>
+<li><p>使用github 的pages服务，并设置了CNAME映射，blog.xiangjian.info就映射到xiangjian.github.com.</p></li>
+</ol>
+
 </div>
 
 
@@ -174,12 +137,12 @@ sendpic('.')
   
 
 
-<time datetime="2011-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2011</time>
+<time datetime="2011-12-28T09:32:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/python/'>python</a>
+    <a class='category' href='/blog/categories/notes/'>notes</a>
   
 </span>
 
@@ -197,10 +160,8 @@ sendpic('.')
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2011/03/week1.html" title="Previous Post: 本周推荐">&laquo; 本周推荐</a>
+        <a class="basic-alignment left" href="/2011/08/deploy_tornado_with_supervisor_nginx.html" title="Previous Post: 使用supervisor和nginx发布tornado程序">&laquo; 使用supervisor和nginx发布tornado程序</a>
       
-      
-        <a class="basic-alignment right" href="/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html" title="next Post: wordpress配置及网站SEO">wordpress配置及网站SEO &raquo;</a>
       
     </p>
   </footer>
@@ -328,8 +289,8 @@ sendpic('.')
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.xiangjian.info/2011/03/picture_upload_flickr_google.html';
-        var disqus_url = 'http://blog.xiangjian.info/2011/03/picture_upload_flickr_google.html';
+        var disqus_identifier = 'http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress.html';
+        var disqus_url = 'http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress.html';
         var disqus_script = 'embed.js';
       
     (function () {

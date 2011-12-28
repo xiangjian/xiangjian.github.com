@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: javascript | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/javascript/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[项目中extjs升级]]></title>
-    <link href="http://xiangjian.github.com/2010/01/extjs.html"/>
+    <link href="http://blog.xiangjian.info/2010/01/extjs.html"/>
     <updated>2010-01-17T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2010/01/extjs</id>
+    <id>http://blog.xiangjian.info/2010/01/extjs</id>
     <content type="html"><![CDATA[<p><p>前几天extjs发布了extjs 3.1,犹豫是否要升级它，我们项目中真的需要升级吗？</p>
 <p>我们看一个软件是否需要升级的判断主要是升级的原因，和升级的代价两部分来决定的。</p>
 <p>升级的原因：什么原因让我们选择升级，软件升级一般是带来了新特性，修复了原来的bug这两类。这是促使我们升级软件的主要驱动力，如果不是要使用新特性，修复原来的bug，一般不建议升级。</p>
@@ -37,9 +37,9 @@
   
   <entry>
     <title type="html"><![CDATA[利用Underscore扩展基本的javascrpt函数功能]]></title>
-    <link href="http://xiangjian.github.com/2009/11/underscore.html"/>
+    <link href="http://blog.xiangjian.info/2009/11/underscore.html"/>
     <updated>2009-11-04T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/11/underscore</id>
+    <id>http://blog.xiangjian.info/2009/11/underscore</id>
     <content type="html"><![CDATA[<p><h2>利用Underscore扩展基本的javascrpt函数功能</h2><p>今天介绍一个扩展javascript功能的包 <a class="reference external" href="http://documentcloud.github.com/underscore/">Underscore</a> ，扩展了javascript语言的核心功能。如Array.each()这一类的函数。这个功能函数在一般的javascript框架，如prototype.jsjquery.js,YUI,dojo,mootools中包含，但是这个功能更为强大、完整。它只是包含了对功能的扩展，方便你在编写javascript时使用，没有其它框架一样的附加东西，因此它很小，压缩后只有３KB。</p><p>下面是扩展了那些功能。</p><p><img alt="截图" src="http://farm3.static.flickr.com/2713/4075234248_278b5e3a5b.jpg" /></p>
 </p>
 
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[extjs treenode高亮问题]]></title>
-    <link href="http://xiangjian.github.com/2009/10/extjs-treenode.html"/>
+    <link href="http://blog.xiangjian.info/2009/10/extjs-treenode.html"/>
     <updated>2009-10-20T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/10/extjs-treenode</id>
+    <id>http://blog.xiangjian.info/2009/10/extjs-treenode</id>
     <content type="html"><![CDATA[<p><!-- extjs treenode 高亮显示的问题 --> <br />
 <div class="section" id="extjs-treenode"><h1>extjs treenode高亮问题</h1><p>介绍如何做extjs treenode高亮的问题</p><div class="section" id="extjs"><h2>extjs 如果高亮一个对象</h2><p>extjs中有一个highlight方法，可以对任意的dom element对象进行高亮，因此我们只要</p><pre name="code" class="javascript">node.getUI().getEL().highlight();</pre><p>这样就可以实现一个结节的高亮，但是在使用过程中，我发现只是第一次对象可以高亮，以后选择的对象都<br />
 没有高亮，很是苦恼。后在Extjs论坛提问，有人提出使用fly方法来选择dom对象。</p><p>为什么使用fly呢，我查阅了一些资料发现，为了避免查询后的对象占用内存，使用的了Ext.fly()方法，查询对象可以覆盖。改了以后还是这个情况，只是第一次可以高亮，后几次无法高亮。</p></div><div class="section" id="treenode"><h2>为何不能高亮treenode</h2><p>没有办法，我只有通过firebug来调试了，对比可以高亮和不能高亮的树节点，我发现一个问题extjs treenode生成的dom有些生成了id值(很奇怪，Extjs只为部分结点都生成id值)。我想是不是因为没有id所以没有所<br />
@@ -68,9 +68,9 @@ eldoc.highlight();
   
   <entry>
     <title type="html"><![CDATA[flickr图片上传]]></title>
-    <link href="http://xiangjian.github.com/2009/10/flickr-upload.html"/>
+    <link href="http://blog.xiangjian.info/2009/10/flickr-upload.html"/>
     <updated>2009-10-11T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/10/flickr-upload</id>
+    <id>http://blog.xiangjian.info/2009/10/flickr-upload</id>
     <content type="html"><![CDATA[<p><h1>flickr图片上传的组件</h1><p>使用用flickr的用户会发现flickr的图片上传很有特色，基于ajax的多个图片上传，界面很清爽。上传体验很不错。</p><p><img alt="pic" src="http://farm3.static.flickr.com/2530/4000631222_8f5c16f739.jpg" /></p><p>查了下这个上传的实现方式，原来是使用YUI的upload组件实现的，flickr被Yahoo收购了，当然使用YUI了。<br />
 YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http://yuiblog.com/blog/2009/02/26/flickr-uploadr/">技术实现</a> .</p><p>如果在自己的项目中要使用这个，可以考虑使用，YUI做得还是很不错的。</p><p>另外，还有一个jquery的多文件上传的组件 <a class="reference external" href="http://sziebert.net/posts/flickr-style-multiple-file-upload-with-jquery/">jquery多文件上传</a> .</p>
 </p>
@@ -80,9 +80,9 @@ YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http
   
   <entry>
     <title type="html"><![CDATA[浏览器排版引擎与javascript引擎的对比]]></title>
-    <link href="http://xiangjian.github.com/2009/09/web-javascript-engine.html"/>
+    <link href="http://blog.xiangjian.info/2009/09/web-javascript-engine.html"/>
     <updated>2009-09-06T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/09/web-javascript-engine</id>
+    <id>http://blog.xiangjian.info/2009/09/web-javascript-engine</id>
     <content type="html"><![CDATA[<p>打算给同事讲一下,javacript编程,做了一个几个浏览器排版引擎和javascript引擎的对比.
 <style> <!--tr  {mso-height-source:auto;} col  {mso-width-source:auto;} td  {padding-top:1.0px;  padding-right:1.0px;  padding-left:1.0px;  mso-ignore:padding;  color:windowtext;  font-size:18.0pt;  font-weight:400;  font-style:normal;  text-decoration:none;  font-family:Arial;  mso-generic-font-family:auto;  mso-font-charset:0;  text-align:general;  vertical-align:bottom;  border:none;  mso-background-source:auto;  mso-pattern:auto;} .oa1  {border-top:1.0pt solid white;  border-right:1.0pt solid white;  border-bottom:3.0pt solid white;  border-left:1.0pt solid white;  background:#F07F09;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa2  {border-top:3.0pt solid white;  border-right:1.0pt solid white;  border-bottom:1.0pt solid white;  border-left:1.0pt solid white;  background:#F9D8CC;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa3  {border:1.0pt solid white;  background:#FCECE7;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa4  {border:1.0pt solid white;  background:#F9D8CC;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} --> </style>  <table style="border-collapse: collapse; width: 641pt;" border="0" cellpadding="0" cellspacing="0" width="855">  <col style="width: 214pt;" span="3" width="285" />  <tbody><tr style="height: 38.23pt;" height="51">   <td class="oa1" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="color: white; font-weight: bold;">浏览器</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>   <td class="oa1" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="color: white; font-weight: bold;">页面排版引擎</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>   <td class="oa1" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: white; font-weight: bold;">Javascript</span><span style="color: white; font-weight: bold;">解释器</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa2" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">IE</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa2" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Trident</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa2" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Jscript</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa3" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Firefox</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Gecko</span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">TraceMonkey</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa4" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Apple</span><span style="font-family: Verdana; color: black; vertical-align: baseline;"> </span><span style="font-family: Verdana; color: black;">safari</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Webkit</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">JavaScriptCore</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa3" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Google Chrome</span><span style="font-family: Verdana; color: black;"> </span></p>   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Webkit</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">V8</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa4" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Opera</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Presto</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Carakan</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr> </tbody></table>
 </p>

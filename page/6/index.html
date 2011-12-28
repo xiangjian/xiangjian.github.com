@@ -9,8 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="看看这个路径分析的PPT,值得一看。列举了常见的路径分析中道路权重的问题。
-Shortest path search for real road networks and dynamic costs with pgRoutingView more documents from antonpa. ">
+  <meta name="description" content="我的笔记本安装的是深度的xp系统，没有安装IIS。我尝试过安装，没有成功没有办法只有使用vs 2008自带的Server开发。今天做了一个Extjs + wcf的例子想给同事看看，结果地址看不了，咱们局域网只能使用80端口做Web服务，vs 2008　Server使用的不是80端口。怎么办？ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Shortest path search for real road networks and dynamic costs with pgRoutingView
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xiangjian.github.com/page/6/index.html">
+  <link rel="canonical" href="http://blog.xiangjian.info/page/6/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -62,7 +61,7 @@ Shortest path search for real road networks and dynamic costs with pgRoutingView
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input type="hidden" name="q" value="site:blog.xiangjian.info" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -77,6 +76,54 @@ Shortest path search for real road networks and dynamic costs with pgRoutingView
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/08/nginx-reverse-asp-dot-net.html">使用nginx反向代理asp.net</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-31T00:00:00+08:00" pubdate data-updated="true">Aug 31<span>st</span>, 2009</time>
+        
+         | <a href="/2009/08/nginx-reverse-asp-dot-net.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我的笔记本安装的是深度的xp系统，没有安装IIS。我尝试过安装，没有成功没有办法只有使用vs 2008自带的Server开发。今天做了一个Extjs + wcf的例子想给同事看看，结果地址看不了，咱们局域网只能使用80端口做Web服务，vs 2008　Server使用的不是80端口。怎么办？<br />
+想到<span style="font-weight:bold;">nginx </span>支持<span style="font-weight:bold;">反向代理</span>(reverse proxy),刚好前几个下载了一个windows下的版本，配置用了下，同事可以在局域网看了。下面是<br />
+<textarea code="js" /><br />
+location / {<br />
+proxy_pass        http://localhost:14037;//vs 2008 server 动态生成的端口<br />
+proxy_set_header  X-Real-IP  $remote_addr;<br />
+<br />
+}<br />
+<br />
+查资料这还有一篇使用nginx使用iis反向代理的文章：<a href="http://www.napthali.com/ramblings/proxyiis.aspx">Reverse Proxy IIS</a>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -543,56 +590,6 @@ http://quirksmode.org/css/clearing.html
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/06/db-comp.html">推荐几篇对比学习数据库的文章</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-27T00:00:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2009</time>
-        
-         | <a href="/2009/06/db-comp.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>推荐几篇学习常见的几个数据库基础知道的文章，文章是ibm developer Works上的.IBM介绍db2推出的与个常用数据库的对比，把这个系列的文章放到一起看其实很不错。根据自己了解的数据库去对比学习其它的数据库，对比学习很不错。<br />
-Oracle
-<b><a href="http://www.ibm.com/developerworks/cn/db2/library/techarticles/dm-0401gupta/">利用 Oracle 10g 技能学习 DB2 9.1 for Linux, UNIX and Windows</a></b>
-MySQL
-<b><a href="http://www.ibm.com/developerworks/cn/db2/library/techarticles/dm-0602tham2/">利用 MySQL 技能学习 DB2 Express: DB2 与 MySQL 的管理任务和基本任务</a></b>
-<b><a href="http://www.ibm.com/developerworks/cn/db2/library/techarticles/dm-0606tham/">利用 MySQL 技能学习 DB2 Express: DB2 与 MySQL 的备份和恢复</a></b>
-<b><a href="http://www.ibm.com/developerworks/cn/db2/library/techarticles/dm-0602tham2/table8.html">利用 MySQL 技能学习 DB2 Express: DB2 与 MySQL 的管理任务和基本任务</a></b>
-<b><a href="http://www.ibm.com/developerworks/cn/db2/library/techarticles/dm-0606khatri/">从 MySQL 或 PostgreSQL 迁移到 DB2 Express-C</a></b>
-MS SQL
-<b><a href="http://www.ibm.com/developerworks/cn/db2/library/techarticles/0307chong2/0307chong2.html">利用您的 Microsoft SQL Server 2000 技能来学习 DB2 UDB V8</a></b>
-PostgreSQL
-<b><a href="http://www.ibm.com/developerworks/cn/db2/library/techarticles/dm-0603wasserman2/">利用 PostgreSQL V8.1 技能学习 DB2 Express-C</a></b>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/7/">&larr; Older</a>
@@ -610,6 +607,10 @@ PostgreSQL
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
       </li>
     
@@ -623,10 +624,6 @@ PostgreSQL
     
       <li class="post">
         <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
       </li>
     
   </ul>

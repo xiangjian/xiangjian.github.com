@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: flex | 鉴行志]]></title>
-  <link href="http://xiangjian.github.com/blog/categories/flex/atom.xml" rel="self"/>
-  <link href="http://xiangjian.github.com/"/>
-  <updated>2011-12-28T09:22:37+08:00</updated>
-  <id>http://xiangjian.github.com/</id>
+  <link href="http://blog.xiangjian.info/blog/categories/flex/atom.xml" rel="self"/>
+  <link href="http://blog.xiangjian.info/"/>
+  <updated>2011-12-28T13:19:53+08:00</updated>
+  <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
     <email><![CDATA[xiangjiangis@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[介绍一款flex 地图插件]]></title>
-    <link href="http://xiangjian.github.com/2009/10/flex-map.html"/>
+    <link href="http://blog.xiangjian.info/2009/10/flex-map.html"/>
     <updated>2009-10-07T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/10/flex-map</id>
+    <id>http://blog.xiangjian.info/2009/10/flex-map</id>
     <content type="html"><![CDATA[<p><!-- 介绍一款flex 地图插件 -->
 <p>今天介绍一个flex地图插件: <strong>UMAP_</strong> 。这是一个免费软件，可以拿来使用，这个组件默认提供了<strong>yahoo</strong> 地图， <strong>bing</strong> 地图， <strong>google</strong> 地图（要API支持）更重要的是他支持 <strong>ArcGIS</strong> 的Tile地图。应该是 目前支持最全面的地图组件。比 <strong>ArcGIS</strong> 支持的功能还要多，不过这个不支持 <strong>ArcGIS</strong> 的GP服务。功能应该说是现在能找到的最全面的。我们在做项目的时候需要使用以上地图服务可以直接使用。
 </p>截图
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[开始学习flex for arcgis server了]]></title>
-    <link href="http://xiangjian.github.com/2009/02/flex-for-arcgis-server.html"/>
+    <link href="http://blog.xiangjian.info/2009/02/flex-for-arcgis-server.html"/>
     <updated>2009-02-06T00:00:00+08:00</updated>
-    <id>http://xiangjian.github.com/2009/02/flex-for-arcgis-server</id>
+    <id>http://blog.xiangjian.info/2009/02/flex-for-arcgis-server</id>
     <content type="html"><![CDATA[<p><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_Ea3JwBJzx7s/SYwNxtTKVuI/AAAAAAAAB_A/knCrAoAWwmA/s1600-h/pic.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 400px; height: 260px;" src="http://3.bp.blogspot.com/_Ea3JwBJzx7s/SYwNxtTKVuI/AAAAAAAAB_A/knCrAoAWwmA/s400/pic.png" alt="" id="BLOGGER_PHOTO_ID_5299626009132947170" border="0" /></a>
 由于要使用Arcgis flex开发一个demo。以前没有使用过flex开发，今天上午在Arcgis 的官方网站下载了flex的支持文件，照着esri官方的例子做了几个。还是比较容易上手的，跟xhtml+javascript开发很类似，flex开发真是不错。
 </p>
