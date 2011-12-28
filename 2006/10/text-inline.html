@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>让文字在同行内显示 - 鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="以前我遇到几个对象在同一行内显示的时候，通常是将它们放置在一个Table的中。
+感觉很是不爽，table是用来显示表格数据的，不是用来布局的&#8212;-一个CSS的前辈说的。
+仔细看了一下CSS的文档，发现有一个属性可以实现。
+display版本：CSS1/CSS2　 兼容性：IE4+ NS4 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/2006/10/text-inline.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">让文字在同行内显示</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-10-25T00:00:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2006</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><div>以前我遇到几个对象在同一行内显示的时候，通常是将它们放置在一个Table的中。<br />
+感觉很是不爽，table是用来显示表格数据的，不是用来布局的&#8212;-一个CSS的前辈说的。<br />
+仔细看了一下CSS的文档，发现有一个属性可以实现。</div>
+<div id="idContentTitle"><span id="idTitleName">display</span>版本：CSS1/CSS2　 兼容性：IE4+  NS4+　继承性：有</div> <div class="cssColumnTitle">语法：</div> <div><b>display : </b><b>block</b> | <b>none</b> | <span class="cssDefault"><b>inline</b></span> | <b>compact</b> | <b>marker</b> |  <b>inline-table</b> | <b>list-item</b> | <b>run-in</b> | <b>table</b> |  <b>table-caption</b> | <b>table-cell</b> | <b>table-column</b> |  <b>table-column-group</b> | <b>table-footer-group</b> |  <b>table-header-group</b> | <b>table-row</b> | <b>table-row-group</b> </div> <div class="cssColumnTitle">取值：</div> <table style="width: 675px; height: 488px;"> <tbody> <tr> <td nowrap="nowrap"><b>block </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS1 </td> <td>块对象的默认值。将对象强制作为块对象呈递，为对象之后添加新行</td></tr> <tr> <td nowrap="nowrap"><b>none </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS1 </td> <td>隐藏对象。与<a href="http://beta.blogger.com/c_visibility.html"> visibility  </a>属性的hidden值不同，其不为被隐藏的对象保留其物理空间</td></tr> <tr> <td nowrap="nowrap"><b>inline </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS1 </td> <td>内联对象的默认值。将对象强制作为内联对象呈递，从对象中删除行</td></tr> <tr> <td nowrap="nowrap"><b>inline-block </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">IE5.5 </td> <td>将对象呈递为内联对象，但是对象的内容作为块对象呈递。旁边的内联对象会被呈递在同一行内</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">compact </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。分配对象为块对象或基于内容之上的内联对象</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">marker </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。指定内容在容器对象之前或之后。要使用此参数，对象必须和<a href="http://beta.blogger.com/p_after.html"> :after </a>及<a href="http://beta.blogger.com/p_before.html"> :before </a>伪元素一起使用</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">inline-table </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将表格显示为无前后换行的内联对象或内联容器</td></tr> <tr> <td nowrap="nowrap"><b>list-item </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td>将块对象指定为列表项目。并可以添加可选项目标志</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">run-in </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。分配对象为块对象或基于内容之上的内联对象</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">table </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将对象作为块元素级的表格显示</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">table-caption </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将对象作为表格标题显示</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">table-cell </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将对象作为表格单元格显示</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">table-column </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将对象作为表格列显示</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">table-column-group </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将对象作为表格列组显示</td></tr> <tr> <td nowrap="nowrap"><b>table-header-group </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td>将对象作为表格标题组显示</td></tr> <tr> <td nowrap="nowrap"><b>table-footer-group </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td>将对象作为表格脚注组显示</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">table-row </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将对象作为表格行显示</td></tr> <tr> <td nowrap="nowrap"><b class="cssNone">table-row-group </b></td> <td nowrap="nowrap"><b>:　</b></td> <td class="cssVersion" nowrap="nowrap">CSS2 </td> <td><b>未支持</b>。将对象作为表格行组显示
+</td></tr></tbody></table>
+<div>使用dispaly:inline;可以让对象在同行内显示，但是不能使用Float属性了，因为Float是针对block对象的。
+</div>
+</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">xiangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-10-25T00:00:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2006</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/开发/'>开发</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2006/10/asp-ado-pagger.html" title="Previous Post: asp利用ADO分页的问题">&laquo; asp利用ADO分页的问题</a>
+      
+      
+        <a class="basic-alignment right" href="/2006/11/asp-use-python.html" title="next Post: 在ASP中使用python脚本">在ASP中使用python脚本 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiangjian.github.com/2006/10/text-inline.html';
+        var disqus_url = 'http://xiangjian.github.com/2006/10/text-inline.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

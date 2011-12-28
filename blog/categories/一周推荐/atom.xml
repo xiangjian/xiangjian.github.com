@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 一周推荐 | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/一周推荐/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[本周推荐]]></title>
+    <link href="http://xiangjian.github.com/2011/03/week_2.html"/>
+    <updated>2011-03-20T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/03/week_2</id>
+    <content type="html"><![CDATA[<p><div class="section" id="id2"> 
+<h3>技术</h3> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-overcommit-kvm-resources/index.html">管理超量使用的 KVM 主机资源</a></li> 
+</ul> 
+<p>最新比较关注KVM虚拟机，linux内核虚拟机，虚拟效果相当不错，不需要安装复杂的vmware,vbox.vmware创建的虚拟机也可以很方便的在kvm中运行。这篇文章主要讲kvm主机资源超量使用，kvm性能调优，值得关注。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-cn-pagerecycle/index.html">Linux 2.6 中的页面回收与反向映射</a></li> 
+</ul> 
+<p>2.6页面回收与反向映射，本周linux 2.6.38发布，主要更新之一就是支持透明大内存页(Transparent Hugepages).这个可以显著提高kvm内存使用率。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.wardking.com/2011/03/clonezilla/">clonezllia 再生龙</a></li> 
+</ul> 
+<p>再生龙，功能与ghost相似，提供比ghost更多的功能。不过几乎很少有人使用正版的ghost吧，放心使用再生龙。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ragepank.com/articles/3/preventing-duplicate-content/">防止重复内容</a></li> 
+</ul> 
+<p>这个是关于SEO的，搜索引擎对重复内容有惩罚措施，如果你不清楚你的网站是否有重复内容，你可以看下这篇文章。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.drizzle.org/">drizzle mysql分支数据库</a></li> 
+</ul> 
+<p>Drizzle是一个精简版的MySQL分支，在目前的MySQL代码基本之上，将存储过程、视图、触发器、查询缓存、PREPARE语句等等功能从代码中删掉，简化对数据类型和存储引擎的支持，并且进行大胆的重构。最终要实现的目的是将MySQL的代码大大简化，理顺MySQL的架构，改善 MySQL的代码质量，提高系统的稳定性和性能。</p> 
+</div> 
+<div class="section" id="id4"> 
+<h3>非技术</h3> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.mifengtd.cn/articles/why-we-lack-of-self-discipline.html">一个人为什么会缺少自虑</a></li> 
+</ul> 
+<p>找到人缺少自虑的原因。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.lztopic.com/archives/4669/">从人群中看出真正优秀的人</a></li> 
+</ul> 
+<p>一家之言，也未必全信</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.mgreview.com/archives/151">美股开启攻略</a></li> 
+</ul> 
+<p>有点闲钱，可以到美股投资试试 。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://bigfools.com/2011/03/21682.html">全国密码麦当劳密码</a></li> 
+</ul> 
+<p>记下，下次去麦当劳可能会用上。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ohmymedia.info/%E4%B8%AD%E5%9B%BD%E9%9D%92%E5%B9%B4%E6%8A%A5%EF%BC%9A%E8%80%81%E6%97%A0%E6%89%80%E4%BE%9D%E7%9A%84%E5%8F%B2%E5%AD%A6%E5%A4%A7%E5%AE%B6.html">中国青年报：老无所依的史学大家</a></li> 
+</ul> 
+<p>心酸，看文章，啥也不说</p> 
+</div> </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本周文章推荐]]></title>
+    <link href="http://xiangjian.github.com/2009/12/week-1-3.html"/>
+    <updated>2009-12-13T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/12/week-1-3</id>
+    <content type="html"><![CDATA[<p><p>前一段时间出差，上不了网，blog有一段时间没有更新了。今天一直捣ubuntu，现在终于可以进行基本的工作了，这篇文章就是在ubuntu上写的。</p><div class="section" id="id2"><h1>技术</h1><p>前段时间工作太忙，上不了网，开发需要，只能看机器上的MSDN。把C#没有用到的功能好好看看了,c#增加了对泛型的支持，提供了新的类方法扩展方式，不需要继承，可以直接扩展类型方法，很动态语言javascript prototye很像。</p><ul class="simple"><li><a class="reference external" href="http://donmeltz.com/blog/index.php/2009/10/25/gis-is-dead-long-live-gis/">GIS_IS_dead</a> ?</li>
+</ul><p>GIS 已死？GIS从一开始作为专门的科学研究项目，到现在人人都会接触到的技术。GIS现状怎样，会往哪发展。这篇blog做了些探讨。</p><ul class="simple"><li><a class="reference external" href="http://www.abcdown.net/InfoView/Article_273958.html">OracleDDL</a></li>
+</ul><p>如何使用SQL语句得到oracle数据库的建表DDL，项目中用到，资料主要从这找到的。</p><ul class="simple"><li><a class="reference external" href="http://www.tzwhx.com/newOperate/Html/3/32/321/8395.html">Oracle_Session</a></li>
+</ul><p>前一段时间我们被session问题折腾坏了，IIS session 无故丢失，通过监控oracle找到问题所在。这这篇文章间讲的就是oracle session</p><ul class="simple"><li><a class="reference external" href="http://atian25.javaeye.com/blog/447342">Extjsplugs</a></li>
+</ul><p>Extjs 优秀的扩展，我找了表锁定的扩展。</p></div><div class="section" id="id3"><h1>非技术：</h1><ul class="simple"><li><a class="reference external" href="http://sinaurl.cn/hJzO6">高耀洁教授在世界艾滋日记者会书面发言稿全文</a></li>
+</ul><p>内容自己看吧，很震撼。"我已经80多岁了，在世时日有限，此行明知是埋骨异地。为了中国艾滋病疫情的真相，我实在是不得已而为之。"</p><ul class="simple"><li><a class="reference external" href="http://blog.sina.com.cn/s/blog_46e7ba410100g661.html">这是毛泽东的矫诏吗</a></li>
+</ul><p>李承鹏不写足球了，写些娱乐的也不错。</p></div>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本周好文推荐]]></title>
+    <link href="http://xiangjian.github.com/2009/11/week-2-2.html"/>
+    <updated>2009-11-16T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/11/week-2-2</id>
+    <content type="html"><![CDATA[<p><!-- 本周重点文章 --> <br />
+<p>周末没有写，今天补上。</p><div class="section" id="id2"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://blog.pluskid.org/?p=186">V8引擎设计理念</a></li>
+</ul><p>Google chrome浏览器使用的javascript引擎V8，文章翻译了V8的设计理念，看看V8是如何在设计，如何提高在浏览器中运行速度。</p><ul class="simple"><li><a class="reference external" href="http://go-mono.com/monovs/">Novell推出全新VS插件</a></li>
+</ul><p>Novell公司推出一个新的visual studio插件，帮助用户使用C#开发非windows应用程序</p><ul class="simple"><li><a class="reference external" href="http://code.google.com/p/go/">Go语言</a></li>
+</ul><p>google 推出了新的编程语言,google在大规模分布式运算，多核方面python有些力不人心。</p></div><div class="section" id="id3"><h1>非技术</h1><ul class="simple"><li><a class="reference external" href="http://ucdchina.com/snap/5113">人类的非理性</a></li>
+</ul><p>人类的非理性----解读《怪诞行为学》，比较通俗。</p><ul class="simple"><li><a class="reference external" href="http://entertainment.timesonline.co.uk/tol/arts_and_entertainment/film/article6902642.ece?print=yes&randnum=1257554128289">新十年的100部优秀电影</a></li>
+</ul><p>时代评出近十年最优秀的100部电影，看看哪么没有看过，赶紧去看。</p></div>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本周好文推荐]]></title>
+    <link href="http://xiangjian.github.com/2009/11/week-1-2.html"/>
+    <updated>2009-11-08T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/11/week-1-2</id>
+    <content type="html"><![CDATA[<p><!-- 本周好文 --><br />
+<p>上周没有写，工作有点忙（这个似乎不能是借口），这个周末同事结婚，去涿州去闹去了，今天下午才点时间静下来整理。</p><div class="section" id="id1"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://gearman.org/index.php">Gearman</a></li>
+</ul><p>一个分布式处理计算框架，将计算任务分配到多台机器上运行，减少同一机器的CPU运行限制。支持多种语言（不支持C#，开源产品不支持很正常），这个还是比较很不错的。我的想法，GIS空间分析需要大量的CPU运算，不知是否可以利用这个框架来做空间分析，速度上会不会有优势。</p><ul class="simple"><li><a class="reference external" href="http://we.xoyo.com/system/dip">金山DIPS分布式图片处理平台</a></li>
+</ul><p>金山逍遥DIPS分布式图片处理平台，使用了Gearman_,rewinx的PPT分享，使用的效果明显。Gearman_ PHP语言实现，对高CPU利用的程序进行优化效果不错。</p></div><div class="section" id="id2"><h1>非技术：</h1><ul class="simple"><li><a class="reference external" href="http://blog.sina.com.cn/s/blog_4701280b0100fpjr.html">一条船上的人</a></li>
+</ul><p>作者韩寒，内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载1</a></li>
+</ul><p>原版电子书下载，国外的期刊杂志都有，时效性强，看这个学习英文，了解时事不错。还有其它一些内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载2</a></li>
+</ul><p>另一个站点，内容差不多，电子书下载。</p><ul class="simple"><li><a class="reference external" href="http://wiki.mbalib.com/wiki/%E8%A1%8C%E4%B8%BA%E7%BB%8F%E6%B5%8E%E5%AD%A6">行为经济学</a></li>
+</ul><p>这个是智库百科中关于行为经济学的解释，前几天在图书大厦的一本杂志中看到有关理性经济学和行为经济学的文章，回来没有找到原文，找了找相关资料，这个比较全。看到了这个才发现，经济学没有那枯燥，大学学的都是些什么东西。相当同意行为经济学的观点，大家都是理性的，但是真正做出正确决策的一般是非理性因素。</p></div><div class="section" id="id3"><h1>下周计划</h1><ul class="simple"><li>完成没有翻译完的javascript 数组类型（正在翻译），相当不错的文章，10月份就开始了，断断续续，没有翻译多少。希望下周可以完成。</li>
+<li>10月份介绍的"使用开源软件和python进行地图空间处理"的PPT要好好看看。学习python在GIS空间处理这一块大有用武之地。</li>
+</ul><p>苟有恒，何必三更眠五更起；教无益，莫过一日曝十日寒。</p></div>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本周好文推荐]]></title>
+    <link href="http://xiangjian.github.com/2009/10/week-3.html"/>
+    <updated>2009-10-18T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/10/week-3</id>
+    <content type="html"><![CDATA[<p><!-- 本周好文推荐 --> <br />
+<p>每周总结一下这周看过的好文章，分享给大家：</p><div class="section" id="id2"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://www.gis.usu.edu/~chrisg/python/2009/">使用开源软件和python进行地图空间处理</a></li>
+</ul><p>国外一所大学的GIS课程，使用开源软件和python进行地理空间处理，网站有PPT,源代码，源数据，学习GIS空间处理的好资料。</p><ul class="simple"><li><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">几种地图图像技术</a></li>
+</ul><p>Hinting、Anti-alias和subpixelrendering.介绍主要的几种图像字体显示的技术，GIS地图渲染引擎的常用技术。学习GIS有必要<br />
+了解一下。</p><ul class="simple"><li><a class="reference external" href="http://mike.teczno.com/notes/mapnik.html">mapnik介绍</a></li>
+</ul><p>mapnik地图程序的基本介绍，mapnik应该是目前出图效果最好的地图软件之一，关键<br />
+它还是开源的，这个将来很有发展前途。openstreet使用的是它提供的地图。</p><ul class="simple"><li><a class="reference external" href="http://www.hunlock.com/blogs/Mastering_Javascript_Arrays">javascript数组使用</a></li>
+</ul><p>javascript数组的一些功能，大家可以不常用到，这个介绍比较全面，还包括了在不同的javascript版本支持的函数。</p></div><div class="section" id="id4"><h1>其它:</h1><ul class="simple"><li><a class="reference external" href="http://ucdchina.com/snap/4836">餐巾纸的背面读书笔记</a></li>
+</ul><p>视觉化的思考是解决问题非常有效的方法，任何事情都可以通过视觉化的思考来体现</p><ul class="simple"><li><a class="reference external" href="http://ucdchina.com/snap/4869">首先写好你的简历</a></li>
+</ul><p>前几天看了妹妹写的简历，让她改。在ucdchina上看到了这篇文章，分享给大家。</p></div>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

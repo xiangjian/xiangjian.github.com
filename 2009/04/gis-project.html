@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>几个开源GIS坐标投影项目介绍 - 鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="这几个开源GIS坐标投影程序都是OSGeo项目。Proj4 这个是最早的开源GIS坐标投影系统，大部分开源GIS系统均使用他作为坐标投影转换。开源GIS坐标投影使用最为广泛。Proj4js 这是一个javascript写的坐标投影转换系统，支持基准面坐标转换。这个作为一般的坐标投影转换可以满足要求 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/2009/04/gis-project.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">几个开源GIS坐标投影项目介绍</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>这几个开源GIS坐标投影程序都是OSGeo项目。<div><ol><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold; ">Proj4</span>
+</li>
+</ol><div>这个是最早的开源GIS坐标投影系统，大部分开源GIS系统均使用他作为坐标投影转换。开源GIS坐标投影使用最为广泛。</div><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">Proj4js
+</span></li>
+<div>这是一个javascript写的坐标投影转换系统，支持基准面坐标转换。这个作为一般的坐标投影转换可以满足要求，可以在web浏览器中进行，无需安装任务程序，可以跨平台使用。我认为javascript来进行坐标投影转换程序不是一个好的做法，性能应该是他的一个瓶颈。</div><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">CS-MAP
+</span></li>
+<div>看到这个名字你可能很陌生，这是哪来的，其实这是从成熟的商业软件中提取出来的一个模块。如果你用Autodesk的GIS产品，您一定会很熟习，这就是Autodek Mapguide,Autodesk Map3D使用的坐标投影系统。这个是Autodesk捐给OSGeo基金会的，它的功能，性能各方面久经考验，相信不久后这个会在GIS项目中大量应用。
+</div>
+<li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">GeoTIFF
+</span></li><div>不太熟，这个主要是做栅格数据坐标转换的。</div><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">MetaCRS/libgeotiff
+</span></li><div>这个是将以上几个开源的GIS投影系统的组合，用户可以方便的调用这几个坐标投影系统。</div></div>
+</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">xiangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gis/'>gis</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/04/ogc-osgeo.html" title="Previous Post: OGC和OSGeo">&laquo; OGC和OSGeo</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/05/book-relationship.html" title="next Post: [读书]卡耐基人际关系学">[读书]卡耐基人际关系学 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiangjian.github.com/2009/04/gis-project.html';
+        var disqus_url = 'http://xiangjian.github.com/2009/04/gis-project.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

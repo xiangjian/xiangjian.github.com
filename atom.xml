@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[鉴行志]]></title>
+  <link href="http://xiangjian.github.com/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
+    <link href="http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
+    <updated>2011-08-17T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx</id>
+    <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
+怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
+以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
+<p>config</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-8001,gis-8002,gis-8003,gis-8004
+ 
+ 
+[program:gis-8001]
+command=python /home/gis/gis/gisserver.py --port=8001
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-8001.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+ 
+[program:gis-8002]
+command=python /home/gis/gis/gisserver.py --port=8002
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8002.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8003]
+command=python /home/gis/gis/gisserver.py --port=8003
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8003.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8004]
+command=python /home/gis/gis/gisserver.py --port=8004
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8004.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+</pre> 
+<p>怎么让四个端口同时提供服务呢？可以使用web服务神器nginx,nginx自带了负载平衡功能，<br />
+可以让这4个服务同时提供服务。</p> 
+<p>nginx config</p> 
+<pre class="literal-block"> 
+    upstream gisserver{
+            server 127.0.0.1:8001;
+            server 127.0.0.1:8002;
+            server 127.0.0.1:8003;
+            server 127.0.0.1:8004;
+    }
+location /tile/ {
+    proxy_pass        http://gisserver;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_pass_header Set-Cookie;
+}
+</pre> 
+<p>更新：</p> 
+<p>上述配置可以精简，supervisord配置可以使用变量表示</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-web
+ 
+ 
+[program:gis-web]
+command=python /home/gis/gis/gisserver.py --port=80%(process_num)02d
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-80%(process_num)02d.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+numprocs-4
+numprocs_start=1
+</pre> 
+<p>对不同的服务器，之需要调整numprocs值就可以。</p> </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[32位系统充分使用多余的内存]]></title>
+    <link href="http://xiangjian.github.com/2011/08/32bit_use_4g_ram.html"/>
+    <updated>2011-08-15T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/08/32bit_use_4g_ram</id>
+    <content type="html"><![CDATA[<p>我的T410i很久以前就升级了4G内存，但是32位系统使用不了全部的内存，单位的网络准入系统又不支持64位系统。内存一直都没有充分利用，其实可以做一个内存盘把一些暂存的内容放到这个上面来。有几个好处：<br />
+1.速度快，本来这块内存是用不到的，内存的速度比硬盘快很多。<br />
+2.重启系统这一块内容会消失，可以做临时存储。如totalcommand解压缓存。</p>
+
+<p>ramdisk我使用的是<a href="http://www.romexsoftware.com/zh-cn/index.html" title="ramdisk" target="_blank">ramdisk</a> 效果还不错。<br />
+VS2010额编译速度一直不是太快，把编译内容放到ramdisk中可以显着提高速度.配置方法可以参考<a href="http://demo.tc/Post/643" title="asp.net ramdisk配置" target="_blank">asp.net ramdisk配置</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[程序员犯的可乐错误]]></title>
+    <link href="http://xiangjian.github.com/2011/06/program_error.html"/>
+    <updated>2011-06-21T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/06/program_error</id>
+    <content type="html"><![CDATA[<p><p>上周五，reddit programming区有人贴出了个一段代码的code review，引发了大家讨论，堪称是github.com网站最热烈的讨论。一个程序的升级脚本中写了如下一段代码:</p>
+<pre class="literal-block">
+rm -rf /usr /lib/nvidia-current/xorg/xorg
+</pre>
+<p>这个很小但是非常致命的错误，当用户执行升级脚本,他的/usr 目录就会被删除，至少有三个用户中招。<br />
+在这个讨论 <a class="reference external" href="https://github.com/MrMEEE/bumblebee/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac">地址</a> ,人民群众正在进行各种有趣的讨论^_^。</p>
+<p>前一段时间，我编译mapnik 需要occi支持，发了我差不多两周的时间，怎么编译都通不过，后来没有办法给mapnik作者发邮件，很快作者说是个bug,已经改好，让我编译试试。我下载最新代码，果然编译没有问题。好奇心驱使我看到了作者 <a class="reference external" href="http://trac.mapnik.org/changeset/2927">fix</a> 修改了什么东西，居然是写代码时少写个分号，害我编译了好久，换了不少环境。</p>
+<p>昨天早上看到台机启动有一个错误，但是启动太快，没看清是什么错误。我上网查了下，说要在/etc/rc.conf 中加入一行代码，我想也没想就添加了一行代码。重启机器怎么也进不了系统，也进不了console界面。没有办法我只能使用u盘进rescue系统，删除那一行文件，重启后一切恢复恢复正常。</p>
+<p>测试对程序来说是致命的，没有经过测试的程序可能会导致很严重的问题。希望这样的问题会少点，程序员在写程序时尽量多做点测试，少出点这种错误。</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux 系统动态链接库引]]></title>
+    <link href="http://xiangjian.github.com/2011/06/linux_so.html"/>
+    <updated>2011-06-20T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/06/linux_so</id>
+    <content type="html"><![CDATA[<p><p>最近要编译一个mapnik2，其中安装依赖环境icu和boost这两个东西费尽周折。最后总算弄明白了linux下的动态链接库是怎么管理的？动态链接库多版本会不会冲突?</p>
+<p>linux支持unix中的动态链接库方法，使用export LD_LIBRARY_PATH= 这各方式。linux的动态链接库引用是通过ldconfig来实现的。<br />
+linux 动态链接库使用ldconfig命令来查找系统动态链接库，并生成缓存方便系统引用。编译代码时，软件依赖一般是从ldconfig的cache中查找。下面主要说下linux如何管理动态链接库</p>
+<p>ldconfig 有以下几个配置文件:</p>
+<pre class="literal-block">
+/etc/ld.so.conf
+/etc/ld.so.conf.d/*
+</pre>
+<p>在文件中说明了引用动态链接库的路径，与export的效果着不多。指定路径后，只需要运行ldconfig即可重建动态链接库索引。</p>
+<p>使用 ldconfig -p 可以查询系统中注册的dll文件。</p>
+<p>另外还有个查看程序引用的动态链接库在系统中是否存在，使用ldd 加动态链接库地址就可以查看。例如,查看mapnik postgis插件引用的动态链接库在系统中是否存在可以使用</p>
+<pre class="literal-block">
+ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
+
+<p>    linux-vdso.so.1 =&gt;  (0x00007fff3791f000)<br />
+    libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0x00007f00c0306000)<br />
+    libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0x00007f00bfffc000)<br />
+    libm.so.6 =&gt; /lib/libm.so.6 (0x00007f00bfd79000)<br />
+    libgcc_s.so.1 =&gt; /usr/lib/libgcc_s.so.1 (0x00007f00bfb63000)<br />
+    libc.so.6 =&gt; /lib/libc.so.6 (0x00007f00bf805000)<br />
+    libssl.so.1.0.0 =&gt; /usr/lib/libssl.so.1.0.0 (0x00007f00bf5a8000)<br />
+    libcrypto.so.1.0.0 =&gt; /usr/lib/libcrypto.so.1.0.0 (0x00007f00bf1ec000)<br />
+    libpthread.so.0 =&gt; /lib/libpthread.so.0 (0x00007f00befcf000)<br />
+    /lib/ld-linux-x86-64.so.2 (0x00007f00c0791000)<br />
+    libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f00bedca000)<br />
+    libz.so.1 =&gt; /usr/lib/libz.so.1 (0x00007f00bebb2000)
+
+<p>linux 中编译程序或移植环境经常会使用到这两个命令解决实际问题。</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[redhat使用yum安装程序]]></title>
+    <link href="http://xiangjian.github.com/2011/05/redhat_use_yum.html"/>
+    <updated>2011-05-11T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/05/redhat_use_yum</id>
+    <content type="html"><![CDATA[<p><p>最近，要给一台redhat4服务器安装mapnik，在我自己工作的台机使用的是archlinux上，使用ABS安装环境那是相当方便，这台机器安装让人大伤脑筋。rpm包依赖要一个个找，而且，经常要自己编译源代码。</p></p>
+
+<p><p>在centos系统中使用yum安装一点都不折腾，redhat4和centos算是同源，可以使用centos来做rh的更新。下面是安装yum的步骤。</p></p>
+
+<p><h3>安装 yum</h3></p>
+
+<p><p>方便在redhat 系统中安装软件包，现在的系统是redhat4企业版本，可以使用centos的软件包管理器</p>
+
+<p>你可以用yum和rpm文件更新，其实很简单.</p></p>
+
+<p><ol class="arabic" /></p>
+
+<p><li><p class="first">用wget下载yum</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># wget http://packages.sw.be/yum/yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><ol class="arabic" /></p>
+
+<p><li><p class="first">安装此rpm文件</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># rpm -ivh yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">配置 /etc/yum.conf 使用兼容的更新源(这里使用搜狐源，这个比较快。)</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p>[main]</p>
+
+<p>cachedir=/var/cache/yum</p>
+
+<p>debuglevel=2</p>
+
+<p>logfile=/var/log/yum.log</p>
+
+<p>pkgpolicy=newest</p>
+
+<p>distroverpkg=redhat-release</p>
+
+<p>tolerant=1</p>
+
+<p>exactarch=1</p>
+
+<p>[base]</p>
+
+<p>name=CentOS-$releasever – Base</p>
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/os/i386/</p>
+
+<p>gpgcheck=1</p>
+
+<p>[updates]</p>
+
+<p>name=Red Hat Linux $releasever – Updates</p>
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/updates/i386/</p>
+
+<p>gpgcheck=1</p>
+
+<p>[dag] </p>
+
+<p>name=Dag RPM Repository for RHEL5 </p>
+
+<p>baseurl=http://mirrors.sohu.com/dag/redhat/el5/en/$basearch/dag/</p>
+
+<p>enabled=1 </p>
+
+<p>gpgcheck=1 </p>
+
+<p>gpgkey=http://mirrors.sohu.com/dag/RPM-GPG-KEY.dag.txt</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">安装CentOS的GPG Key:</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># rpm --import http://mirrors.sohu.com/centos/RPM-GPG-KEY-CentOS-4</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">测试yum是否正常(下面是更新所有的rpm):</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># yum update //更新系统</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">建立缓存:</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p>#yum makecache</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><p>下篇写mapnik的编译安装。</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3月总结]]></title>
+    <link href="http://xiangjian.github.com/2011/04/summary_3month.html"/>
+    <updated>2011-04-04T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/04/summary_3month</id>
+    <content type="html"><![CDATA[<p><p>三月已经过去了，总体是比较纠结，月底一切都还好。家里的事一直不断，想不到拆迁会到我们那边去，真是没法说。最高兴的是感情稳定，原来自己几个愿望，找一个善善良良的妻子，养一全聪聪明明的孩子，想一个简简单单道理，过一辈子。</p> 
+<p>还可以的：</p> 
+<ul class="simple"> 
+<li>开发工作还算正常,工作基本可以正常进行</li> 
+<li>多页面控制，ajax页面历史记录，多项目接口终于有眉目了。找了很久，终于可以在项目中使用了(简单说就是url hash控制程序)。</li> 
+<li>redis性能测试还不错，window也能正常运行。做好了替换memcache的准备。</li> 
+<li>linux使用更深入，月初试用kvm虚拟机，效果很好，如果有机会做云计算方面工作准备。</li> 
+<li>mapnik 使用，很方便，就是Oracle接口不好办，在非oracle项目中可以很好使用。</li> 
+<li>看了看tornado源代码，原来的GIS项目有些改进。tornado真乃神器也。</li> 
+</ul> 
+<p>不足：<br />
+项目管理上还须改进，现在才几个人的项目，每天花在代码同步，给别人查错上的时间太多了。代码审核也没有做，出了问题只有问我，但我也没有办法，代码没有办法在源头控制。项目管理要学习。任务太多，反而不能专心做好现在做的事。</p> 
+<p>下月改进：</p> 
+<ul class="simple"> 
+<li>多页面控制（url hash应用），写好文档，在部门内推广。</li> 
+<li>写好文档，做好架构设计工作。</li> 
+<li>理清代码管理，梳理好今年的工作.</li> 
+<li>tornado做mapnik的接口。</li> </ul></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本周推荐]]></title>
+    <link href="http://xiangjian.github.com/2011/03/week_2.html"/>
+    <updated>2011-03-20T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/03/week_2</id>
+    <content type="html"><![CDATA[<p><div class="section" id="id2"> 
+<h3>技术</h3> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-overcommit-kvm-resources/index.html">管理超量使用的 KVM 主机资源</a></li> 
+</ul> 
+<p>最新比较关注KVM虚拟机，linux内核虚拟机，虚拟效果相当不错，不需要安装复杂的vmware,vbox.vmware创建的虚拟机也可以很方便的在kvm中运行。这篇文章主要讲kvm主机资源超量使用，kvm性能调优，值得关注。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-cn-pagerecycle/index.html">Linux 2.6 中的页面回收与反向映射</a></li> 
+</ul> 
+<p>2.6页面回收与反向映射，本周linux 2.6.38发布，主要更新之一就是支持透明大内存页(Transparent Hugepages).这个可以显著提高kvm内存使用率。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.wardking.com/2011/03/clonezilla/">clonezllia 再生龙</a></li> 
+</ul> 
+<p>再生龙，功能与ghost相似，提供比ghost更多的功能。不过几乎很少有人使用正版的ghost吧，放心使用再生龙。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ragepank.com/articles/3/preventing-duplicate-content/">防止重复内容</a></li> 
+</ul> 
+<p>这个是关于SEO的，搜索引擎对重复内容有惩罚措施，如果你不清楚你的网站是否有重复内容，你可以看下这篇文章。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.drizzle.org/">drizzle mysql分支数据库</a></li> 
+</ul> 
+<p>Drizzle是一个精简版的MySQL分支，在目前的MySQL代码基本之上，将存储过程、视图、触发器、查询缓存、PREPARE语句等等功能从代码中删掉，简化对数据类型和存储引擎的支持，并且进行大胆的重构。最终要实现的目的是将MySQL的代码大大简化，理顺MySQL的架构，改善 MySQL的代码质量，提高系统的稳定性和性能。</p> 
+</div> 
+<div class="section" id="id4"> 
+<h3>非技术</h3> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.mifengtd.cn/articles/why-we-lack-of-self-discipline.html">一个人为什么会缺少自虑</a></li> 
+</ul> 
+<p>找到人缺少自虑的原因。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.lztopic.com/archives/4669/">从人群中看出真正优秀的人</a></li> 
+</ul> 
+<p>一家之言，也未必全信</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.mgreview.com/archives/151">美股开启攻略</a></li> 
+</ul> 
+<p>有点闲钱，可以到美股投资试试 。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://bigfools.com/2011/03/21682.html">全国密码麦当劳密码</a></li> 
+</ul> 
+<p>记下，下次去麦当劳可能会用上。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ohmymedia.info/%E4%B8%AD%E5%9B%BD%E9%9D%92%E5%B9%B4%E6%8A%A5%EF%BC%9A%E8%80%81%E6%97%A0%E6%89%80%E4%BE%9D%E7%9A%84%E5%8F%B2%E5%AD%A6%E5%A4%A7%E5%AE%B6.html">中国青年报：老无所依的史学大家</a></li> 
+</ul> 
+<p>心酸，看文章，啥也不说</p> 
+</div> </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[wordpress配置及网站SEO]]></title>
+    <link href="http://xiangjian.github.com/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html"/>
+    <updated>2011-03-17T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/03/wordpress_cache_with_nginx_and_duplicate_seo</id>
+    <content type="html"><![CDATA[<p><p>前一段时间使用wordpress 的一个缓存插件，几天使用下来发现好像没有起到缓存作用。晚上查了下nginx配置，终于找到了为什么。原来是我的nginx配置不对，缓存的路径没有设置对。<br />
+找到了问题改正就很容易了。同时也把使用插件生成sitemap.xml也进行了重写，搜索引擎也可以很好的索引相关网页。</p> 
+<pre class="literal-block"> 
+#如果文件存在直接返回，并设定7天的缓存期
+    if (-f $request_filename) {
+        expires 7d;
+        break;
+    }
+#初始supercache缓存变量
+    set $supercache_file ”;
+    set $supercache_uri $request_uri;
+#post不访问缓存
+    if ($request_method = POST) {
+        set $supercache_uri ”;
+    }
+ 
+# 因为使用了url重写，因此有查询条件就不访问缓存
+    if ($query_string) {
+        set $supercache_uri ”;
+    }
+# 如果有缓存，也不访问缓存
+    if ($http_cookie ~* “comment_author_|wordpress|wp-postpass_” ) {
+        set $supercache_uri ”;
+    }
+ 
+# 如果变量不为空，则访问缓存地址
+ 
+    if ($supercache_uri ~ ^(.+)$) {
+        set $supercache_file /wp-content/cache/supercache/$http_host/$1index.html;
+    }
+ 
+# 如果缓存存在，则返回缓存文件
+    if (-f $document_root$supercache_file) {
+        rewrite ^(.*)$ $supercache_file break;
+    }
+#sitemap 重写，动态生成sitemap.xml
+rewrite ^/(sitemap.*)\.xml$ /index.php?feed=$1;
+# 其它访问都内 index.php处理
+    if (!-e $request_filename) {
+        rewrite . /index.php last;
+    }
+  }
+</pre> 
+<p>原来网站使用两个域名，两个域名下都是同样的内容。据说这个不利于SEO，搜索引擎也会有惩罚策略。所以就在其中一个域名上设置了301转移重写。</p> 
+<pre class="literal-block"> 
+server_name  www.xiangjian.info xiangjian.info;
+rewrite ^ http://blog.xiangjian.info$uri permanent;
+</pre> 
+<p>EOF</p> </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[快速图片上传到flickr,google]]></title>
+    <link href="http://xiangjian.github.com/2011/03/picture_upload_flickr_google.html"/>
+    <updated>2011-03-15T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/03/picture_upload_flickr_google</id>
+    <content type="html"><![CDATA[<p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
+邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
+<p>晚上写了如下代码(当然是使用python)::</p> 
+<pre class="literal-block"> 
+#! coding=utf-8
+import smtplib
+import os
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+ 
+family = ['XXXXXXX&#64;photos.flickr.com','XXXXXXXXXXXXX&#64;picasaweb.com']
+SMTP_SERVER='XXXXXXXXXx'
+SMTP_USER='XXXXXXXx'
+SMTP_PASS='XXXXXXX'
+SENDER =&quot;XXXXXXXXXXx&quot;
+ 
+ 
+COMMASPACE = ', '
+ 
+# Create the container (outer) email message.
+msg = MIMEMultipart()
+msg['Subject'] = 'my picture'
+msg['From'] = 'xiangjian'
+msg['To'] = COMMASPACE.join(family)
+msg.preamble = 'my picture'
+ 
+def forward(toAddr, msg):
+    server = smtplib.SMTP( SMTP_SERVER )
+    server.login( SMTP_USER, SMTP_PASS )
+    server.sendmail( SENDER,toAddr , msg )
+    server.quit()
+    return True
+ 
+def sendpic(dir):
+    for root,dirs,files in os.walk(dir):
+        for name in files:
+            if(name.splitext()[1].lower() in ['.jpg','.png']):
+                print name
+                fp=open(name,'rb')
+                img=MIMEImage(fp.read())
+                fp.close()
+                msg.attach(img)
+                forward(COMMASPACE.join(family),msg)
+ 
+sendpic('.')
+</pre> 
+<p>将以上代码拷贝到照片文件夹，配置代码中的XXXXXXX。运行就可以将照片发布到多个服务器图床。经测试速度非常快，比通过http上传数据快很多。</p> </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本周推荐]]></title>
+    <link href="http://xiangjian.github.com/2011/03/week1.html"/>
+    <updated>2011-03-09T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/03/week1</id>
+    <content type="html"><![CDATA[<p>隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。
+<div id="id2" class="section">
+<h2>技术：</h2>
+<ul class="simple">
+	<li><a class="reference external" href="http://redis.io">redis</a></li>
+</ul>
+去年主要使用memcached，memcached在使用过程中发现，有些东西功能不足：不能选择性持久化；存储的值不能太大，默认为4M；加之缓存结构单一。redis可以很好解决这个问题，可以持久化，提供多种数据类型，支持LIST,这个可以方便进行扩展（我想实现一个简单的MQ）
+<ul class="simple">
+	<li><a class="reference external" href="http://headjs.com">headjs</a></li>
+</ul>
+head.js是一个异步加载javascript的js脚本，像它的名字一样，这个脚本只会在head处加载它自己，后台使用javascript异步加载，可以在script比较多的页面中加快加载速度（一般情况下加载javascript浏览器会等待脚本下载）。
+<ul class="simple">
+	<li><a class="reference external" href="http://socket.io">socket.io</a></li>
+</ul>
+这个可以在很多场合使用的javascript包，可以使用IE使用websocket通信。websockets比ajax更好使用到服务器需要推送的环境下。</div></p>
+
+<p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[试用free aws]]></title>
+    <link href="http://xiangjian.github.com/2010/12/movable_vps.html"/>
+    <updated>2010-12-27T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/12/movable_vps</id>
+    <content type="html"><![CDATA[<p><p>vps 下个月就到期了，前一段时间看到amazon有免费一年的free aws,决定试用下，明年不用继续用原来的vps使用amazon提供的aws。free aws 安装配置非常方便，很短时间就可以配置好一个可用服务。服务性能也相当不错。</p> 
+<p>今天下午配置好了服务器，申请了个固定IP，将原来的博客移植到新机器上，以下是使用感受：</p> 
+<ol class="arabic simple"> 
+<li>amozon云主机性能确实不错，网络速度也很快，不是一般vps速度可比的。</li> 
+<li>原来的VPS，使用nginx + movable type,过分想节省资源，但是靠这个节省不了多少资源（就架一个blog用不了多少资源）。相对浪费的时间，一些优化也是在折腾，除了可以学不少东西。</li> 
+<li>wordpress 配置比movable type容易很多，分分钟就可以搞定。插件多得不得了，安装方便。不过movable type静态页面方式速度会快很多。</li> 
+</ol> </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
+    <link href="http://xiangjian.github.com/2010/10/douglas-peucker.html"/>
+    <updated>2010-10-07T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/10/douglas-peucker</id>
+    <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
+<img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
+<p>通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来</p>
+<p>C#版的:</p>
+<pre class="literal-block">
+/// &lt;summary&gt;
+/// Uses the Douglas Peucker algorithm to reduce the number of points.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;Points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;Tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static List&lt;Point&gt; DouglasPeuckerReduction
+(List&lt;Point&gt; Points, Double Tolerance)
+{
+if (Points == null || Points.Count &lt; 3)
+return Points;
+Int32 firstPoint = 0;
+Int32 lastPoint = Points.Count - 1;
+List&lt;Int32&gt; pointIndexsToKeep = new List&lt;Int32&gt;();
+//Add the first and last index to the keepers
+pointIndexsToKeep.Add(firstPoint);
+pointIndexsToKeep.Add(lastPoint);
+//The first and the last point cannot be the same
+while (Points[firstPoint].Equals(Points[lastPoint]))
+{
+lastPoint--;
+}
+DouglasPeuckerReduction(Points, firstPoint, lastPoint,
+Tolerance, ref pointIndexsToKeep);
+List&lt;Point&gt; returnPoints = new List&lt;Point&gt;();
+pointIndexsToKeep.Sort();
+foreach (Int32 index in pointIndexsToKeep)
+{
+returnPoints.Add(Points[index]);
+}
+return returnPoints;
+}
+/// &lt;summary&gt;
+/// Douglases the peucker reduction.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;firstPoint&quot;&gt;The first point.&lt;/param&gt;
+/// &lt;param name=&quot;lastPoint&quot;&gt;The last point.&lt;/param&gt;
+/// &lt;param name=&quot;tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;param name=&quot;pointIndexsToKeep&quot;&gt;The point index to keep.&lt;/param&gt;
+private static void DouglasPeuckerReduction(List&lt;Point&gt;
+points, Int32 firstPoint, Int32 lastPoint, Double tolerance,
+ref List&lt;Int32&gt; pointIndexsToKeep)
+{
+Double maxDistance = 0;
+Int32 indexFarthest = 0;
+for (Int32 index = firstPoint; index &lt; lastPoint; index++)
+{
+Double distance = PerpendicularDistance
+(points[firstPoint], points[lastPoint], points[index]);
+if (distance &gt; maxDistance)
+{
+maxDistance = distance;
+indexFarthest = index;
+}
+}
+if (maxDistance &gt; tolerance &amp;&amp; indexFarthest != 0)
+{
+//Add the largest point that exceeds the tolerance
+pointIndexsToKeep.Add(indexFarthest);
+DouglasPeuckerReduction(points, firstPoint,
+indexFarthest, tolerance, ref pointIndexsToKeep);
+DouglasPeuckerReduction(points, indexFarthest,
+lastPoint, tolerance, ref pointIndexsToKeep);
+}
+}
+/// &lt;summary&gt;
+/// The distance of a point from a line made from point1 and point2.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;pt1&quot;&gt;The PT1.&lt;/param&gt;
+/// &lt;param name=&quot;pt2&quot;&gt;The PT2.&lt;/param&gt;
+/// &lt;param name=&quot;p&quot;&gt;The p.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static Double PerpendicularDistance
+(Point Point1, Point Point2, Point Point)
+{
+//Area = |(1/2)(x1y2 + x2y3 + x3y1 - x2y1 - x3y2 - x1y3)|   *Area of triangle
+//Base = v((x1-x2)2+(x1-x2)2)                               *Base of Triangle*
+//Area = .5*Base*H                                          *Solve for height
+//Height = Area/.5/Base
+Double area = Math.Abs(.5 * (Point1.X * Point2.Y + Point2.X *
+Point.Y + Point.X * Point1.Y - Point2.X * Point1.Y - Point.X *
+Point2.Y - Point1.X * Point.Y));
+Double bottom = Math.Sqrt(Math.Pow(Point1.X - Point2.X, 2) +
+Math.Pow(Point1.Y - Point2.Y, 2));
+Double height = area / bottom * 2;
+return height;
+//Another option
+//Double A = Point.X - Point1.X;
+//Double B = Point.Y - Point1.Y;
+//Double C = Point2.X - Point1.X;
+//Double D = Point2.Y - Point1.Y;
+//Double dot = A * C + B * D;
+//Double len_sq = C * C + D * D;
+//Double param = dot / len_sq;
+//Double xx, yy;
+//if (param &lt; 0)
+//{
+//    xx = Point1.X;
+//    yy = Point1.Y;
+//}
+//else if (param &gt; 1)
+//{
+//    xx = Point2.X;
+//    yy = Point2.Y;
+//}
+//else
+//{
+//    xx = Point1.X + param * C;
+//    yy = Point1.Y + param * D;
+//}
+//Double d = DistanceBetweenOn2DPlane(Point, new Point(xx, yy));
+}
+</pre>
+<p>python 版的:</p>
+<pre class="literal-block">
+# pure-Python Douglas-Peucker line simplification/generalization
+#
+# this code was written by Schuyler Erle &lt;schuyler&#64;nocat.net&gt; and is
+#   made available in the public domain.
+#
+# the code was ported from a freely-licensed example at
+#   http://www.3dsoftware.com/Cartography/Programming/PolyLineReduction/
+#
+# the original page is no longer available, but is mirrored at
+#   http://www.mappinghacks.com/code/PolyLineReduction/
+&quot;&quot;&quot;
+&gt;&gt;&gt; line = [(0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,1),(0,0)]
+&gt;&gt;&gt; simplify_points(line, 1.0)
+[(0, 0), (2, 0), (2, 2), (0, 2), (0, 0)]
+&gt;&gt;&gt; line = [(0,0),(0.5,0.5),(1,0),(1.25,-0.25),(1.5,.5)]
+&gt;&gt;&gt; simplify_points(line, 0.25)
+[(0, 0), (0.5, 0.5), (1.25, -0.25), (1.5, 0.5)]
+&quot;&quot;&quot;
+import math
+def simplify_points (pts, tolerance):
+anchor  = 0
+floater = len(pts) - 1
+stack   = []
+keep    = set()
+stack.append((anchor, floater))
+while stack:
+anchor, floater = stack.pop()
+# initialize line segment
+if pts[floater] != pts[anchor]:
+anchorX = float(pts[floater][0] - pts[anchor][0])
+anchorY = float(pts[floater][1] - pts[anchor][1])
+seg_len = math.sqrt(anchorX ** 2 + anchorY ** 2)
+# get the unit vector
+anchorX /= seg_len
+anchorY /= seg_len
+else:
+anchorX = anchorY = seg_len = 0.0
+# inner loop:
+max_dist = 0.0
+farthest = anchor + 1
+for i in range(anchor + 1, floater):
+dist_to_seg = 0.0
+# compare to anchor
+vecX = float(pts[i][0] - pts[anchor][0])
+vecY = float(pts[i][1] - pts[anchor][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * anchorX + vecY * anchorY
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:
+# compare to floater
+vecX = float(pts[i][0] - pts[floater][0])
+vecY = float(pts[i][1] - pts[floater][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * (-anchorX) + vecY * (-anchorY)
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:  # calculate perpendicular distance to line (pythagorean theorem):
+dist_to_seg = math.sqrt(abs(seg_len ** 2 - proj ** 2))
+if max_dist &lt; dist_to_seg:
+max_dist = dist_to_seg
+farthest = i
+if max_dist &lt;= tolerance: # use line segment
+keep.add(anchor)
+keep.add(floater)
+else:
+stack.append((anchor, farthest))
+stack.append((farthest, floater))
+keep = list(keep)
+keep.sort()
+return [pts[i] for i in keep]
+if __name__ == &quot;__main__&quot;:
+import doctest
+doctest.testmod()
+</pre>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在vps上安装dabr]]></title>
+    <link href="http://xiangjian.github.com/2010/08/vps-dabr.html"/>
+    <updated>2010-08-11T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/08/vps-dabr</id>
+    <content type="html"><![CDATA[<p><p>前几天twa.sh网站访问不了，有一段时间没有上过twitter了。因为知道twa.sh是dabr搭建的，我的vps也有PHP环境，决定架一个dabr. 主要按照http://zou.lu/dabr/ 写的搭建方法，完成dabr环境搭建。有一些小的改动主要是PHP环境配置问题，PHP默认有些包没有使用，没有默认的时区设置。这些可以看nginx输出的的错误日志。使用tail -f /srv/log/nginx/error.log 命令就可以查看，改下配置就可以了。</p>
+<p>话说linux系统很不错，命令行开始可能感觉上手不易，但linux的配置，日志输出都比较固定，查看相应的信息基本上可以看到问题是出在哪了。这点比Windows强的地方，有时真不知道错误出在哪。</p>
+<p>这几天不知道为什么php-cgi在fast-cgi下跑不很稳定，过一段时间就挂掉.不知道是不是系统的问题，我的vps安装的是archlinux。写了个bash脚本扔到/etc/cron.hourly目录中定时检查php-cgi进程是否存在，否则重启php-cgi。暂时就这样了，慢慢再找不稳定的原因。脚本:</p>
+<pre class="literal-block">
+if ['ps x |grep php--cgi|wc -l'=2];then
+echo start php-cgi
+/etc/rc.d/fastcgi start
+fi;
+</pre>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[更新]]></title>
+    <link href="http://xiangjian.github.com/2010/07/update.html"/>
+    <updated>2010-07-25T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/07/update</id>
+    <content type="html"><![CDATA[<p><p>好久没有更新了，上次更新还是4月份从青海回来。主要这段时间工作太忙，基本上都在外面出差，生活没有规律。现在有点问题，鸭梨很大，体重保持在140，要想办法减，肚子已经有点明显胖，原来坚持了几年的跑步也中断了。这些好的习惯要逐渐再拾起来。</p>
+<p>blog我名字改了叫作&#8221;鉴行志&#8221;，鉴：就是镜子，希望这个是我的影子，能够看到我学习生活中的东西，李世民有一句名言就有这个字。其实我原来名字也是用这个字，小学和初中也是这个字，后来不知道怎么就改为建了。行：是我的辈份，一般不用在名字中。这个就是我取这个blog名字的原因。</p>
+<p>总结一下这段时间的工作吧：</p>
+<p>累：前段时间一直到各个油田部署，基本上总是在加班，还没有找到一种可以让自己工作轻松点的方法。路还很长，我还要继续摸索。</p>
+<p>现在oracle spatial和arcgis sde结合使用已经有一些心得了。这个不是oracle spatial好还是arcgis sde好的问题，我也无意卷入这两种观点的论战。那是这两种公司售前做的事情，不论那一种方案的性能好，哪一种方案支持的数据类型多，这种争论毫无意义。重要的是这明白这两种方案的优缺点，具体问题具体分析。现在我做的项目中推荐使用oarcle spatial做存储，并在sde中注册。oracle spatial是在DB层做数据源整合应该是最实用的方案（有时间会专门写一篇说明）。</p>
+<p>Google地图的使用，现在可以下载google地图，在项目中使用，这样就不用太关注基础数据了，基础数据使用google地图数据完全够了。我们现在做GIS的人太少，现在人手可以把注意力放到做专业数据的应用上。尽快能在GIS应用上做出一定的成果。</p>
+<p>在数据库层在做数据缓存功能，目前在项目中使用memcache做了数据缓存，在数据库性能不变情况下改善数据访问能力。当前还不完善，Key-Value库在项目中的应用应该会多一些，也是将来应用的一个方向。</p>
+<p>集中主意力，现在事情太杂，太分散。精力很难集中，事情反而没有做多少，还经常感觉事情太多。上班时间要少开聊天工具，把精力专注在工作上。尽量在上班时间内完成工作。决不拖拉。</p>
+<p>昨天整了下vps，还比较顺利。google adsense也申请通过了，在我的vps上架设了dabr，可以放心上twitter了。在vps上安装还是有点折腾的，linux 系统某些方面还是不错的。</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于地震]]></title>
+    <link href="http://xiangjian.github.com/2010/04/earthquake.html"/>
+    <updated>2010-04-17T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/04/earthquake</id>
+    <content type="html"><![CDATA[<p><p>上周从青海回来,昨天青海玉树发生地震。新闻上报地震是7.1级大地震，好奇上 <a class="reference external" href="http://earthquake.usgs.gov/earthquakes/recenteqsww/Quakes/us2010vacp.php#details">usgs</a> (美国国家地震局),看看地震信息。结果看到地震是6.9级，不知为何中国跟美国测的结果有差别。看到校舍的抗震级别是7级就明白了，有些事明白就行，不能说明白了。</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[十种GIS矢量数据转换工具]]></title>
+    <link href="http://xiangjian.github.com/2010/02/top-10-gis-tools.html"/>
+    <updated>2010-02-27T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/02/top-10-gis-tools</id>
+    <content type="html"><![CDATA[<p><p>做GIS这一块的工作,GIS空间数据的转换处理工作会比较多.下面整理了这几个用过的和知道的一些GIS空间数据转换工具,写了下面的文章.文章也标题党一把,取名&quot;十种GIS矢量数据转换工具&quot;,希望对大家有用.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.safe.com/">FME</a></li>
+</ul>
+<p>Safe FME 是最专业的GIS数据转换工具之一，还支持GIS数据资源的整合。支持大量的GIS空间数据源（应该是支持最多的）,而且还提供二次开发接口可以支持用户特定的数据转换整合。</p>
+<p><img alt="FME" src="http://farm5.static.flickr.com/4052/4388831335_42786b083b.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.esri.com/software/arcgis/index.html">ArcGIS</a></li>
+</ul>
+<p>ArcGIS是全球最成功的GIS软件产品，提到GIS不可避免会提到ESRI的ArcGIS。ArcGIS的ToolBox中有数据转换模块支持大量数据（标准的和ArcGIS支持的数据类型）间的转换。另外说一点ArcGIS ToolBox中的数据转换模块似乎是用的FME技术？如果安装了ArcGIS后，再安装FME会在ArcGIS ToolBox中数据转换菜单中加入一个FME工具项，可以结合ArcGIS ToolBox中的工具转换GIS矢量数据。</p>
+<p><img alt="ArcGIS" src="http://farm3.static.flickr.com/2686/4389602836_a675560a0e.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li><a class="reference external" href="http://fdo.osgeo.org/">FDO</a>  API</li>
+</ul>
+<p>FDO(Feature Data Object)空间数据访问引擎，属于OSGEO的一个开源子项目，由autodesk捐出。autodesk Mapguide的空间数据访问引擎，提供一套数据访问标准，支持用户编写基于FDO的引擎可以访问多种空间数据源。FDO API 提供C#，java接口,可以使用FDO技术进行数据转换。</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.sl-king.com/Fdo2Fdo/fdo2fdo.html">FDO2FDO</a></li>
+</ul>
+<p>FDO2FDO基于FDO技术写的空间数据转换程序,由sl-king(sl-king还开发了免费的oracle fdo provider)开发,免费软件.</p>
+<p><img alt="FDO2FDO" src="http://farm5.static.flickr.com/4066/4391981856_422da64abd.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li>FDO <a class="reference external" href="http://code.google.com/p/fdotoolbox/">ToolBox</a></li>
+</ul>
+<p>FDO ToolBox基于FDO技术,使用.net 2.0技术编写,做很多功能,包含数据的编辑管理等,支持空间数据转换.这个是开源程序,托管在google code上.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.1spatial.com/products/">1Spatial</a></li>
+</ul>
+<p>基于fdo技术,有数据转换程序,我没有用过,在OSGEO FDO官网上看到过介绍.</p>
+<ul class="simple">
+<li>Autodesk(Map 3d,civil 3d) bulk copy</li>
+</ul>
+<p>Autodesk 产品中的批量数据转换工具,基于FDO.可以实现多种空间数据间的转换.
+<img alt="bulkcopy" src="http://farm5.static.flickr.com/4055/4386242005_764045f962.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li>gdal/ogr API</li>
+</ul>
+<p>OGR是GDAL的一部分(矢量数据).OGR是一个读取和处理GSI矢量数据的库。这个库可以读取和处理多种流行的矢量数据.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.gdal.org/ogr2ogr.html">ogr2ogr</a></li>
+</ul>
+<p>命令行程序，核心基于gdal,可以接受gdal支持的数据源间的数据互转换，功能强大。不过命令行的参数众多，很难一次写正确。这个是跨平台的。</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.ogr2gui.ca/">ogr2GUI</a></li>
+</ul>
+<p>专门为ogr2ogr设计的一个GUI界面，核心还是ogr2ogr。通过它的GUI界面可以定制数据转换参数，方便用户使用.界面基于QT,可方便生成命令行参数.</p>
+<p><img alt="ogr2GUI" src="http://farm3.static.flickr.com/2720/4386242007_b46e4d8c57.jpg" style="width: 450px;" /></p>
+<p>可能会有遗漏，mapinfo,国产厂商的GIS（supermap,mapgis）产品，数据转换模块不太熟习，因此不在上面列举。</p>
+<p>总结这一系列转换工具主要包含三个核心转换库:FME(arcgis数据转换模块据说是使用FME技术?待考),FDO,GDAR/OGR.FME是商业软件,支持格式最多,转换工具灵活,大型工程空间数据转换首选.FDO是开源,背后有autodesk支持,前景很好(使用过程中使用FDO技术转换的shp数据部分软件无法识别,尽量不要使用FDO转出shp数据).GDAR/OGR老牌空间数据类库,支持各种编程语言.</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用javascript方法给后台WCF服务直接post对象]]></title>
+    <link href="http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf.html"/>
+    <updated>2010-02-11T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf</id>
+    <content type="html"><![CDATA[<p><p>一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。</p>
+<p>下面直接使用WCF特性做元数据的自定义转换</p>
+<p>定义元数据契约定义:</p>
+<pre class="literal-block">
+[DataContract(Name = &quot;person&quot;)]
+public class person
+{
+[DataMember(Name=&quot;Name&quot;)]
+public string Name
+{
+get;
+set;
+}
+[DataMember(Name = &quot;Age&quot;)]
+public int Age
+{
+get;
+set;
+}
+</pre>
+<p>服务描述:</p>
+<pre class="literal-block">
+[OperationContract]
+[WebInvoke(UriTemplate = &quot;/doit2&quot;,ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+bool testpost(person p);
+</pre>
+<p>注意使用Post方法，post的BodyStyle必须为Wrapped，否则不能正常取到反序列化后的对象。</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[vps使用一月体验]]></title>
+    <link href="http://xiangjian.github.com/2010/02/vps-use-one-month.html"/>
+    <updated>2010-02-02T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/02/vps-use-one-month</id>
+    <content type="html"><![CDATA[<p><p>从买VPS到现在差不多一个月了，经过这段时间的摸索配置，基本已经可用，这个VPS主要使用以下几个功能。</p>
+<ul class="simple">
+<li>网站：架设了一个多用户的 blog 。</li>
+<li>下载服务器：把关注的东西下载到vps上，再使用http下载到本机，vps可以实现24小时不间断下载，vps带宽也很不错。</li>
+<li>访问网站，使用openvpn,ssh可以访问国内无法访问的网站</li>
+</ul>
+<p>相关软件选择。</p>
+<p>操作系统，ramhost.us提供了很多种操作系统选择，我选择的是archlinux。一是archlinux原来在vm中使用过，有一些了解。二是我想选择一个没有跨版本升级的概念，将来会有版本升级的问题，这样就只有archlinux和gentoo可选。vps内存太少，编译安装不太现实，因此不选择gentoo,如果是工作中选择服务器，我会选gentoo.</p>
+<p>博客平台：没有选择wordpress，wordpress安装方便，支持广泛有很多中文资源。我使用的是movable type，还是基于内存的考虑和多用户的考虑，movable type多用户支持好，所有的都是生成静态文件。</p>
+<p>数据库：我没有选择mysql,而是单文件的数据库sqlite。原因有二：mysql使用消耗内存较多，vps内存有限; <a class="reference external" href="http://www.dbanotes.net/database/sqlite_cms.html">sqlite</a> 已经可以满足我的需求。</p>
+<p>web服务器：web服务器似乎没有别的选择：nginx，内存占用少，但是我没有弄好movable type的配置，后来又安装了一个lighttp运行movable type的cgi程序。</p>
+<p>下载软件：没有别的选择mldonkey支持电驴，BT，直接下载，还有web管理介面。唯一的缺陷是内在占用多，30M以上。不过这个不会经常用，偶尔下载还可以。</p>
+<p>服务器监控：ramhost使用自定义的控制面板，功能比较有限，因此我使用国内的一个服务， <a class="reference external" href="http://www.jiankongbao.com/">监控宝</a> 。这个监控比较全面，使用snmpd服务监控。 <a class="reference external" href="http://www.vpser.net/manage/jiankongbao-setup.html">安装方法</a></p>
+<pre class="literal-block">
+archlinux 中找不到snmp的配置文件，可以使用这个命令配置用户net-snmp-config --create-snmpv3-user
+</pre>
+<p>网络连接：使用openvpn和ssh可以访问国外无法访问的网站,</p>
+<p>服务器安装了这些软件，基本内存不会超过50M，如果不开下载，服务器使用时不会超过20M，Movable type发布生成静态页面时除外，因为Movable type发布时内存会到70M左右，vps内存还是够用的.</p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mapguide 绘图引擎 GD与AGG的比较]]></title>
+    <link href="http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg.html"/>
+    <updated>2010-01-31T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg</id>
+    <content type="html"><![CDATA[<p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
+<p>AGG:<br />
+AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口，其产生的图形的质量也非常高。AGG引擎最突出的特点是Anti-alias（反锯齿）和subpixel rendering(亚像素渲染)，使用AGG引擎绘制的地图平滑，清晰，速度快。现在AGG现在还不能使GPU来绘图，将来使用GPU绘图也是绘图引擎的发展趋势。</p>
+<p>GD:<br />
+是一个开源的图像处理库，支持 PNG/JPEG/GIF以及其他格式的图像。GD一般被用来创建图表、图形、缩略图以及其他图像相关的处理操作。</p>
+<p>mapguide使用了AGG和GD双引擎，可以在mapguide server的bin目录中serverconfig.ini文件中Renderer处改变绘图使用的引擎方式。</p>
+<p>下面是我使用mapguide 2.1,地图数据使用默认的Sheboygan地图，分别使用GD引擎，和AGG引擎地图结果：</p>
+<p>AGG图</p>
+<p><img alt="mapguide-AGG" src="http://farm5.static.flickr.com/4069/4313078811_840266dcd6_o.png" /></p>
+<p>GD图</p>
+<p><img alt="mapguide-GD" src="http://farm3.static.flickr.com/2596/4313078943_64343d4326_o.png" /></p>
+<p>可以明显看出GD绘图在线的边缘出现了锯齿。在使用mapguide时尽量使用AGG引擎来出图。</p>
+<p>参考资料：</p>
+<p><a class="reference external" href="http://www.cnblogs.com/kane_zzt/archive/2008/08/19/1271793.html">AGG</a></p>
+<p><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">绘图知识</a></p>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[手机被偷了]]></title>
+    <link href="http://xiangjian.github.com/2010/01/lost_phone.html"/>
+    <updated>2010-01-17T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/01/lost_phone</id>
+    <content type="html"><![CDATA[<p><p>好不容易有时间去西安走走，结果去大雁塔手机被偷，听着歌呢，回头看不出是谁。马上报警，第一次跟警察做笔录，估计找回来的可能性不大了。</p>
+<p>回忆一下我曾经用过的手机：</p>
+<p>第一个手机是大四那年，要找工作了，2005年十一去买了个手机amoi S6手机。滑盖的,当时看着相当不错还可以当收音机使用一直使用到2007年十一整整两年。不用的原因是手机经常自动关机，最后屏幕坏了，弃之不用。妹妹上大学没有手机，就拿这个手机去修理屏幕，修好后她还用了一段时间。</p>
+<a href="http://www.flickr.com/photos/xiangjian/4290253658/" title="amoi_s6 by 项建, on Flickr"><img src="http://farm3.static.flickr.com/2775/4290253658_1c14ffa2fe.jpg" width="300" height="375" alt="amoi_s6" /></a>
+<p>第二个手机就是blackberry 7230最经典的一款全键盘手机，当时花了二百多。用起来手感相当好，打字速度快，最喜欢blackberry手机收发短信，那是相当爽，只有用过才知道。后来不用blackberry手机也提不起发短信的兴趣了。2008年4月来北京的火车上坏了。</p>
+<a href="http://www.flickr.com/photos/xiangjian/4306064938/" title="blackberry_7230_large by 项建, on Flickr"><img src="http://farm3.static.flickr.com/2598/4306064938_652864ebde.jpg" width="288" height="416" alt="blackberry_7230_large" /></a>
+<p>第三个是一山寨机名字不记得了，功能相当多，价格便宜，但是我没有用多久。原因是这机器在办公楼里没有信号，只有在外面才有信号。后来也是给妹妹用，她现在还在用这个手机。</p>
+<p>第四个手机，08年奥运期间买了一个blackberry 8700手机，那个手机相当不错，内存也大。用来看电子书不错。09年7月在北京公交车被偷。</p>
+<a href="http://www.flickr.com/photos/xiangjian/4306065642/" title="8700tmo by 项建, on Flickr"><img src="http://farm5.static.flickr.com/4049/4306065642_3d84dc0f25.jpg" width="436" height="500" alt="8700tmo" /></a>
+<p>第五个手机，gsmart i350手机，台湾产。wm系统，相当不好使，后悔没有接着买blackberry的机器，blackberry是我用过的手机中最好的。</p></p>
+
+<p><!--more-->
+<p>准备给放这几个手机的图，但是今天好像flickr图片不能访问了，还是逃不了google picasa一样的下场。</p>
+</p>
+]]></content>
+  </entry>
+  
+</feed>

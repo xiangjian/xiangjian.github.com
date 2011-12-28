@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[快速图片上传到flickr,google]]></title>
+    <link href="http://xiangjian.github.com/2011/03/picture_upload_flickr_google.html"/>
+    <updated>2011-03-15T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/03/picture_upload_flickr_google</id>
+    <content type="html"><![CDATA[<p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
+邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
+<p>晚上写了如下代码(当然是使用python)::</p> 
+<pre class="literal-block"> 
+#! coding=utf-8
+import smtplib
+import os
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+ 
+family = ['XXXXXXX&#64;photos.flickr.com','XXXXXXXXXXXXX&#64;picasaweb.com']
+SMTP_SERVER='XXXXXXXXXx'
+SMTP_USER='XXXXXXXx'
+SMTP_PASS='XXXXXXX'
+SENDER =&quot;XXXXXXXXXXx&quot;
+ 
+ 
+COMMASPACE = ', '
+ 
+# Create the container (outer) email message.
+msg = MIMEMultipart()
+msg['Subject'] = 'my picture'
+msg['From'] = 'xiangjian'
+msg['To'] = COMMASPACE.join(family)
+msg.preamble = 'my picture'
+ 
+def forward(toAddr, msg):
+    server = smtplib.SMTP( SMTP_SERVER )
+    server.login( SMTP_USER, SMTP_PASS )
+    server.sendmail( SENDER,toAddr , msg )
+    server.quit()
+    return True
+ 
+def sendpic(dir):
+    for root,dirs,files in os.walk(dir):
+        for name in files:
+            if(name.splitext()[1].lower() in ['.jpg','.png']):
+                print name
+                fp=open(name,'rb')
+                img=MIMEImage(fp.read())
+                fp.close()
+                msg.attach(img)
+                forward(COMMASPACE.join(family),msg)
+ 
+sendpic('.')
+</pre> 
+<p>将以上代码拷贝到照片文件夹，配置代码中的XXXXXXX。运行就可以将照片发布到多个服务器图床。经测试速度非常快，比通过http上传数据快很多。</p> </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
+    <link href="http://xiangjian.github.com/2010/10/douglas-peucker.html"/>
+    <updated>2010-10-07T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/10/douglas-peucker</id>
+    <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
+<img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
+<p>通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来</p>
+<p>C#版的:</p>
+<pre class="literal-block">
+/// &lt;summary&gt;
+/// Uses the Douglas Peucker algorithm to reduce the number of points.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;Points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;Tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static List&lt;Point&gt; DouglasPeuckerReduction
+(List&lt;Point&gt; Points, Double Tolerance)
+{
+if (Points == null || Points.Count &lt; 3)
+return Points;
+Int32 firstPoint = 0;
+Int32 lastPoint = Points.Count - 1;
+List&lt;Int32&gt; pointIndexsToKeep = new List&lt;Int32&gt;();
+//Add the first and last index to the keepers
+pointIndexsToKeep.Add(firstPoint);
+pointIndexsToKeep.Add(lastPoint);
+//The first and the last point cannot be the same
+while (Points[firstPoint].Equals(Points[lastPoint]))
+{
+lastPoint--;
+}
+DouglasPeuckerReduction(Points, firstPoint, lastPoint,
+Tolerance, ref pointIndexsToKeep);
+List&lt;Point&gt; returnPoints = new List&lt;Point&gt;();
+pointIndexsToKeep.Sort();
+foreach (Int32 index in pointIndexsToKeep)
+{
+returnPoints.Add(Points[index]);
+}
+return returnPoints;
+}
+/// &lt;summary&gt;
+/// Douglases the peucker reduction.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;firstPoint&quot;&gt;The first point.&lt;/param&gt;
+/// &lt;param name=&quot;lastPoint&quot;&gt;The last point.&lt;/param&gt;
+/// &lt;param name=&quot;tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;param name=&quot;pointIndexsToKeep&quot;&gt;The point index to keep.&lt;/param&gt;
+private static void DouglasPeuckerReduction(List&lt;Point&gt;
+points, Int32 firstPoint, Int32 lastPoint, Double tolerance,
+ref List&lt;Int32&gt; pointIndexsToKeep)
+{
+Double maxDistance = 0;
+Int32 indexFarthest = 0;
+for (Int32 index = firstPoint; index &lt; lastPoint; index++)
+{
+Double distance = PerpendicularDistance
+(points[firstPoint], points[lastPoint], points[index]);
+if (distance &gt; maxDistance)
+{
+maxDistance = distance;
+indexFarthest = index;
+}
+}
+if (maxDistance &gt; tolerance &amp;&amp; indexFarthest != 0)
+{
+//Add the largest point that exceeds the tolerance
+pointIndexsToKeep.Add(indexFarthest);
+DouglasPeuckerReduction(points, firstPoint,
+indexFarthest, tolerance, ref pointIndexsToKeep);
+DouglasPeuckerReduction(points, indexFarthest,
+lastPoint, tolerance, ref pointIndexsToKeep);
+}
+}
+/// &lt;summary&gt;
+/// The distance of a point from a line made from point1 and point2.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;pt1&quot;&gt;The PT1.&lt;/param&gt;
+/// &lt;param name=&quot;pt2&quot;&gt;The PT2.&lt;/param&gt;
+/// &lt;param name=&quot;p&quot;&gt;The p.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static Double PerpendicularDistance
+(Point Point1, Point Point2, Point Point)
+{
+//Area = |(1/2)(x1y2 + x2y3 + x3y1 - x2y1 - x3y2 - x1y3)|   *Area of triangle
+//Base = v((x1-x2)2+(x1-x2)2)                               *Base of Triangle*
+//Area = .5*Base*H                                          *Solve for height
+//Height = Area/.5/Base
+Double area = Math.Abs(.5 * (Point1.X * Point2.Y + Point2.X *
+Point.Y + Point.X * Point1.Y - Point2.X * Point1.Y - Point.X *
+Point2.Y - Point1.X * Point.Y));
+Double bottom = Math.Sqrt(Math.Pow(Point1.X - Point2.X, 2) +
+Math.Pow(Point1.Y - Point2.Y, 2));
+Double height = area / bottom * 2;
+return height;
+//Another option
+//Double A = Point.X - Point1.X;
+//Double B = Point.Y - Point1.Y;
+//Double C = Point2.X - Point1.X;
+//Double D = Point2.Y - Point1.Y;
+//Double dot = A * C + B * D;
+//Double len_sq = C * C + D * D;
+//Double param = dot / len_sq;
+//Double xx, yy;
+//if (param &lt; 0)
+//{
+//    xx = Point1.X;
+//    yy = Point1.Y;
+//}
+//else if (param &gt; 1)
+//{
+//    xx = Point2.X;
+//    yy = Point2.Y;
+//}
+//else
+//{
+//    xx = Point1.X + param * C;
+//    yy = Point1.Y + param * D;
+//}
+//Double d = DistanceBetweenOn2DPlane(Point, new Point(xx, yy));
+}
+</pre>
+<p>python 版的:</p>
+<pre class="literal-block">
+# pure-Python Douglas-Peucker line simplification/generalization
+#
+# this code was written by Schuyler Erle &lt;schuyler&#64;nocat.net&gt; and is
+#   made available in the public domain.
+#
+# the code was ported from a freely-licensed example at
+#   http://www.3dsoftware.com/Cartography/Programming/PolyLineReduction/
+#
+# the original page is no longer available, but is mirrored at
+#   http://www.mappinghacks.com/code/PolyLineReduction/
+&quot;&quot;&quot;
+&gt;&gt;&gt; line = [(0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,1),(0,0)]
+&gt;&gt;&gt; simplify_points(line, 1.0)
+[(0, 0), (2, 0), (2, 2), (0, 2), (0, 0)]
+&gt;&gt;&gt; line = [(0,0),(0.5,0.5),(1,0),(1.25,-0.25),(1.5,.5)]
+&gt;&gt;&gt; simplify_points(line, 0.25)
+[(0, 0), (0.5, 0.5), (1.25, -0.25), (1.5, 0.5)]
+&quot;&quot;&quot;
+import math
+def simplify_points (pts, tolerance):
+anchor  = 0
+floater = len(pts) - 1
+stack   = []
+keep    = set()
+stack.append((anchor, floater))
+while stack:
+anchor, floater = stack.pop()
+# initialize line segment
+if pts[floater] != pts[anchor]:
+anchorX = float(pts[floater][0] - pts[anchor][0])
+anchorY = float(pts[floater][1] - pts[anchor][1])
+seg_len = math.sqrt(anchorX ** 2 + anchorY ** 2)
+# get the unit vector
+anchorX /= seg_len
+anchorY /= seg_len
+else:
+anchorX = anchorY = seg_len = 0.0
+# inner loop:
+max_dist = 0.0
+farthest = anchor + 1
+for i in range(anchor + 1, floater):
+dist_to_seg = 0.0
+# compare to anchor
+vecX = float(pts[i][0] - pts[anchor][0])
+vecY = float(pts[i][1] - pts[anchor][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * anchorX + vecY * anchorY
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:
+# compare to floater
+vecX = float(pts[i][0] - pts[floater][0])
+vecY = float(pts[i][1] - pts[floater][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * (-anchorX) + vecY * (-anchorY)
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:  # calculate perpendicular distance to line (pythagorean theorem):
+dist_to_seg = math.sqrt(abs(seg_len ** 2 - proj ** 2))
+if max_dist &lt; dist_to_seg:
+max_dist = dist_to_seg
+farthest = i
+if max_dist &lt;= tolerance: # use line segment
+keep.add(anchor)
+keep.add(floater)
+else:
+stack.append((anchor, farthest))
+stack.append((farthest, floater))
+keep = list(keep)
+keep.sort()
+return [pts[i] for i in keep]
+if __name__ == &quot;__main__&quot;:
+import doctest
+doctest.testmod()
+</pre>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用python脚本将邮件备份到Gmail]]></title>
+    <link href="http://xiangjian.github.com/2009/01/python-backup-to-gmail.html"/>
+    <updated>2009-01-14T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/01/python-backup-to-gmail</id>
+    <content type="html"><![CDATA[<p>整理磁盘，看到了这个将邮件备份到gmail的python代码（可以备份到任何邮箱），记得不太清楚了，原来好像是从别的地方下载的，时间太长了不记得从哪找的。代码的使用方法：
+<ol>
+<li>将要备份的邮件存为eml格式，保存到一个文件夹中（foxmail,outlook,dreammail,foomail等都可以做到）</li><li>将下面的代码存为一个py文件，放到该文件夹中，在py文件中填好一个可用的SMTP服务器地址，填写用户名密码，写好要发送到的邮箱。</li><li>运行py文件，就会将邮件备份到您指定的邮箱中，备份后会删除原eml文件。
+</li></ol>
+<pre name="code" class="python">import email,smtplib
+import os
+Gmail = ''//备份邮箱
+SMTP_SERVER = ""//
+SMTP_USER = ""
+SMTP_PASS = ""
+SENDER = SMTP_USER + '@' + SMTP_SERVER
+def forward(toAddr, msg):
+server = smtplib.SMTP( SMTP_SERVER )
+server.login( SMTP_USER, SMTP_PASS )
+server.sendmail( SENDER, toAddr, msg )
+server.quit()
+return True
+def backup(dir):
+for root,dirs,files in os.walk(dir):
+for name in files:
+print name
+msg = email.message_from_file( open( os.path.join(root,name) ) )
+forward(Gmail ,msg.as_string())  //转发
+os.remove(os.path.join(root,name))//备份后删除邮件
+backup( '.' ) //当前文件夹
+</pre>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

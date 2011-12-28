@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 杂 | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/杂/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[程序员犯的可乐错误]]></title>
+    <link href="http://xiangjian.github.com/2011/06/program_error.html"/>
+    <updated>2011-06-21T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/06/program_error</id>
+    <content type="html"><![CDATA[<p><p>上周五，reddit programming区有人贴出了个一段代码的code review，引发了大家讨论，堪称是github.com网站最热烈的讨论。一个程序的升级脚本中写了如下一段代码:</p>
+<pre class="literal-block">
+rm -rf /usr /lib/nvidia-current/xorg/xorg
+</pre>
+<p>这个很小但是非常致命的错误，当用户执行升级脚本,他的/usr 目录就会被删除，至少有三个用户中招。<br />
+在这个讨论 <a class="reference external" href="https://github.com/MrMEEE/bumblebee/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac">地址</a> ,人民群众正在进行各种有趣的讨论^_^。</p>
+<p>前一段时间，我编译mapnik 需要occi支持，发了我差不多两周的时间，怎么编译都通不过，后来没有办法给mapnik作者发邮件，很快作者说是个bug,已经改好，让我编译试试。我下载最新代码，果然编译没有问题。好奇心驱使我看到了作者 <a class="reference external" href="http://trac.mapnik.org/changeset/2927">fix</a> 修改了什么东西，居然是写代码时少写个分号，害我编译了好久，换了不少环境。</p>
+<p>昨天早上看到台机启动有一个错误，但是启动太快，没看清是什么错误。我上网查了下，说要在/etc/rc.conf 中加入一行代码，我想也没想就添加了一行代码。重启机器怎么也进不了系统，也进不了console界面。没有办法我只能使用u盘进rescue系统，删除那一行文件，重启后一切恢复恢复正常。</p>
+<p>测试对程序来说是致命的，没有经过测试的程序可能会导致很严重的问题。希望这样的问题会少点，程序员在写程序时尽量多做点测试，少出点这种错误。</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3月总结]]></title>
+    <link href="http://xiangjian.github.com/2011/04/summary_3month.html"/>
+    <updated>2011-04-04T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/04/summary_3month</id>
+    <content type="html"><![CDATA[<p><p>三月已经过去了，总体是比较纠结，月底一切都还好。家里的事一直不断，想不到拆迁会到我们那边去，真是没法说。最高兴的是感情稳定，原来自己几个愿望，找一个善善良良的妻子，养一全聪聪明明的孩子，想一个简简单单道理，过一辈子。</p> 
+<p>还可以的：</p> 
+<ul class="simple"> 
+<li>开发工作还算正常,工作基本可以正常进行</li> 
+<li>多页面控制，ajax页面历史记录，多项目接口终于有眉目了。找了很久，终于可以在项目中使用了(简单说就是url hash控制程序)。</li> 
+<li>redis性能测试还不错，window也能正常运行。做好了替换memcache的准备。</li> 
+<li>linux使用更深入，月初试用kvm虚拟机，效果很好，如果有机会做云计算方面工作准备。</li> 
+<li>mapnik 使用，很方便，就是Oracle接口不好办，在非oracle项目中可以很好使用。</li> 
+<li>看了看tornado源代码，原来的GIS项目有些改进。tornado真乃神器也。</li> 
+</ul> 
+<p>不足：<br />
+项目管理上还须改进，现在才几个人的项目，每天花在代码同步，给别人查错上的时间太多了。代码审核也没有做，出了问题只有问我，但我也没有办法，代码没有办法在源头控制。项目管理要学习。任务太多，反而不能专心做好现在做的事。</p> 
+<p>下月改进：</p> 
+<ul class="simple"> 
+<li>多页面控制（url hash应用），写好文档，在部门内推广。</li> 
+<li>写好文档，做好架构设计工作。</li> 
+<li>理清代码管理，梳理好今年的工作.</li> 
+<li>tornado做mapnik的接口。</li> </ul></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本周推荐]]></title>
+    <link href="http://xiangjian.github.com/2011/03/week1.html"/>
+    <updated>2011-03-09T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/03/week1</id>
+    <content type="html"><![CDATA[<p>隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。
+<div id="id2" class="section">
+<h2>技术：</h2>
+<ul class="simple">
+    <li><a class="reference external" href="http://redis.io">redis</a></li>
+</ul>
+去年主要使用memcached，memcached在使用过程中发现，有些东西功能不足：不能选择性持久化；存储的值不能太大，默认为4M；加之缓存结构单一。redis可以很好解决这个问题，可以持久化，提供多种数据类型，支持LIST,这个可以方便进行扩展（我想实现一个简单的MQ）
+<ul class="simple">
+    <li><a class="reference external" href="http://headjs.com">headjs</a></li>
+</ul>
+head.js是一个异步加载javascript的js脚本，像它的名字一样，这个脚本只会在head处加载它自己，后台使用javascript异步加载，可以在script比较多的页面中加快加载速度（一般情况下加载javascript浏览器会等待脚本下载）。
+<ul class="simple">
+    <li><a class="reference external" href="http://socket.io">socket.io</a></li>
+</ul>
+这个可以在很多场合使用的javascript包，可以使用IE使用websocket通信。websockets比ajax更好使用到服务器需要推送的环境下。</div></p>
+
+
+
+
+<p></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[试用free aws]]></title>
+    <link href="http://xiangjian.github.com/2010/12/movable_vps.html"/>
+    <updated>2010-12-27T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/12/movable_vps</id>
+    <content type="html"><![CDATA[<p><p>vps 下个月就到期了，前一段时间看到amazon有免费一年的free aws,决定试用下，明年不用继续用原来的vps使用amazon提供的aws。free aws 安装配置非常方便，很短时间就可以配置好一个可用服务。服务性能也相当不错。</p> 
+<p>今天下午配置好了服务器，申请了个固定IP，将原来的博客移植到新机器上，以下是使用感受：</p> 
+<ol class="arabic simple"> 
+<li>amozon云主机性能确实不错，网络速度也很快，不是一般vps速度可比的。</li> 
+<li>原来的VPS，使用nginx + movable type,过分想节省资源，但是靠这个节省不了多少资源（就架一个blog用不了多少资源）。相对浪费的时间，一些优化也是在折腾，除了可以学不少东西。</li> 
+<li>wordpress 配置比movable type容易很多，分分钟就可以搞定。插件多得不得了，安装方便。不过movable type静态页面方式速度会快很多。</li> 
+</ol> </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[更新]]></title>
+    <link href="http://xiangjian.github.com/2010/07/update.html"/>
+    <updated>2010-07-25T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/07/update</id>
+    <content type="html"><![CDATA[<p><p>好久没有更新了，上次更新还是4月份从青海回来。主要这段时间工作太忙，基本上都在外面出差，生活没有规律。现在有点问题，鸭梨很大，体重保持在140，要想办法减，肚子已经有点明显胖，原来坚持了几年的跑步也中断了。这些好的习惯要逐渐再拾起来。</p>
+<p>blog我名字改了叫作"鉴行志"，鉴：就是镜子，希望这个是我的影子，能够看到我学习生活中的东西，李世民有一句名言就有这个字。其实我原来名字也是用这个字，小学和初中也是这个字，后来不知道怎么就改为建了。行：是我的辈份，一般不用在名字中。这个就是我取这个blog名字的原因。</p>
+<p>总结一下这段时间的工作吧：</p>
+<p>累：前段时间一直到各个油田部署，基本上总是在加班，还没有找到一种可以让自己工作轻松点的方法。路还很长，我还要继续摸索。</p>
+<p>现在oracle spatial和arcgis sde结合使用已经有一些心得了。这个不是oracle spatial好还是arcgis sde好的问题，我也无意卷入这两种观点的论战。那是这两种公司售前做的事情，不论那一种方案的性能好，哪一种方案支持的数据类型多，这种争论毫无意义。重要的是这明白这两种方案的优缺点，具体问题具体分析。现在我做的项目中推荐使用oarcle spatial做存储，并在sde中注册。oracle spatial是在DB层做数据源整合应该是最实用的方案（有时间会专门写一篇说明）。</p>
+<p>Google地图的使用，现在可以下载google地图，在项目中使用，这样就不用太关注基础数据了，基础数据使用google地图数据完全够了。我们现在做GIS的人太少，现在人手可以把注意力放到做专业数据的应用上。尽快能在GIS应用上做出一定的成果。</p>
+<p>在数据库层在做数据缓存功能，目前在项目中使用memcache做了数据缓存，在数据库性能不变情况下改善数据访问能力。当前还不完善，Key-Value库在项目中的应用应该会多一些，也是将来应用的一个方向。</p>
+<p>集中主意力，现在事情太杂，太分散。精力很难集中，事情反而没有做多少，还经常感觉事情太多。上班时间要少开聊天工具，把精力专注在工作上。尽量在上班时间内完成工作。决不拖拉。</p>
+<p>昨天整了下vps，还比较顺利。google adsense也申请通过了，在我的vps上架设了dabr，可以放心上twitter了。在vps上安装还是有点折腾的，linux 系统某些方面还是不错的。</p>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

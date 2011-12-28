@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: autodesk | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/autodesk/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mapguide 绘图引擎 GD与AGG的比较]]></title>
+    <link href="http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg.html"/>
+    <updated>2010-01-31T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg</id>
+    <content type="html"><![CDATA[<p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
+<p>AGG:<br />
+AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口，其产生的图形的质量也非常高。AGG引擎最突出的特点是Anti-alias（反锯齿）和subpixel rendering(亚像素渲染)，使用AGG引擎绘制的地图平滑，清晰，速度快。现在AGG现在还不能使GPU来绘图，将来使用GPU绘图也是绘图引擎的发展趋势。</p>
+<p>GD:<br />
+是一个开源的图像处理库，支持 PNG/JPEG/GIF以及其他格式的图像。GD一般被用来创建图表、图形、缩略图以及其他图像相关的处理操作。</p>
+<p>mapguide使用了AGG和GD双引擎，可以在mapguide server的bin目录中serverconfig.ini文件中Renderer处改变绘图使用的引擎方式。</p>
+<p>下面是我使用mapguide 2.1,地图数据使用默认的Sheboygan地图，分别使用GD引擎，和AGG引擎地图结果：</p>
+<p>AGG图</p>
+<p><img alt="mapguide-AGG" src="http://farm5.static.flickr.com/4069/4313078811_840266dcd6_o.png" /></p>
+<p>GD图</p>
+<p><img alt="mapguide-GD" src="http://farm3.static.flickr.com/2596/4313078943_64343d4326_o.png" /></p>
+<p>可以明显看出GD绘图在线的边缘出现了锯齿。在使用mapguide时尽量使用AGG引擎来出图。</p>
+<p>参考资料：</p>
+<p><a class="reference external" href="http://www.cnblogs.com/kane_zzt/archive/2008/08/19/1271793.html">AGG</a></p>
+<p><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">绘图知识</a></p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Autodesk University(AU) China介绍]]></title>
+    <link href="http://xiangjian.github.com/2009/03/autodesk-university-china.html"/>
+    <updated>2009-03-18T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/03/autodesk-university-china</id>
+    <content type="html"><![CDATA[<p>Autodesk大学（中国）：是专门针对中国的学生（包括初学者），提供了多种autodesk产品的试用版本和产品的培训。如果你想学习使用Autodesk的产品，了解autodesk产品的最新功能，解决学习过程中遇到的问题，参加免费的培训，就一定要看一看这个网站。<br />
+对于我关心的，地理空间行业的产品的资料和培训这里都没有，应该是产品在中国的市场推广重点的关系。Autodesk空间行业在中国的市场做得太不好，软件已经那么的便宜，功能也不差，推广不开。<br />
+Autodesk空间解决方案应对中国GIS行业ESRI一家独大的局面任重道远啊。<br />
+地址：<a href="http://au.autodesk.com.cn/index.jsp">Autodesk University(AU) China</a>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[firefox中可以查看dwf文件了]]></title>
+    <link href="http://xiangjian.github.com/2009/03/firefox-dwf.html"/>
+    <updated>2009-03-08T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/03/firefox-dwf</id>
+    <content type="html"><![CDATA[<p>autodesk 实验室发布了一个firefox插件，该插件支持在firefox 3中浏览在线的dwf文档，从此告别了只能在IE中浏览dwf文档的历史。该插件目前位于Autodesk labs中，处于实验状态，目前只支持windows下的firefox,相信不久的将来应该可以做得更好。<br />
+详见：<a href="http://labs.autodesk.com/utilities/firefox_adr/">Firefox Add-on for Autodesk Design Review</a>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[automap 3d 的基本概念]]></title>
+    <link href="http://xiangjian.github.com/2007/05/automap-3d-concept.html"/>
+    <updated>2007-05-30T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2007/05/automap-3d-concept</id>
+    <content type="html"><![CDATA[<p><p>摘自map 3d帮助文档中。</p>
+<p>attribute data</p>
+<blockquote>
+Tabular data that describes the characteristics of a feature, for example, the number of lanes and pavement-type belonging to a road feature. See also feature, property.</blockquote>
+<p>属性数据</p>
+<blockquote>
+使用表格化的数据来描述地图要素的特征。举个例子：车道数量和道路类型同属道路要素的信息。也可以看要素属性</blockquote>
+<p>AutoCAD layer</p>
+<blockquote>
+A layer in AutoCAD. An AutoCAD layer differs from the map layers you create in Display Manager, which are referred to as layers, drawing layers, feature layers, or surface layers.</blockquote>
+<p>AutoCAD 图层</p>
+<p>coordinate system</p>
+<blockquote>
+See global coordinate system.</blockquote>
+<p>坐标系统：</p>
+<blockquote>
+查看全球坐标系统.</blockquote>
+<p>Data Connect</p>
+<blockquote>
+Autodesk Map 3D window that allows you to connect to a data store and add specific data to your map. Display the Data Connect window by clicking Data in the Map Explorer or Display Manager view of the Task Pane.</blockquote>
+<p>数据连接</p>
+<blockquote>
+Autodesk Map 3D 窗体允许您连接到数据仓库并且添加特别数据到你的地图中。在地图浏览或显示管理面板点击可以显示数据连接窗体</blockquote>
+<p>Data Grid</p>
+<blockquote>
+In Autodesk Map, the feature-based grid that allows you to view and edit attributes of selected spatial features, perform searches, and work with selection sets.</blockquote>
+<p>数据表格</p>
+<blockquote>
+在Autodesk Map中，</blockquote>
+<p>data provider</p>
+<blockquote>
+Used by Data Connect to connect to geospatial data sources.</blockquote>
+<p>数据提供器</p>
+<blockquote>
+Data Connect用来连接到空间数据源的工具。</blockquote>
+<p>data source</p>
+<blockquote>
+A collection of data and information on how to access that data.</blockquote>
+<p>数据源</p>
+<blockquote>
+收集了可以访问的数据信息</blockquote>
+<dl class="docutils">
+<dt>data store</dt>
+<dd>A collection of feature classes contained in a single data storage location. The data store consists of an integrated set of objects, which are modeled by classes or feature classes defined within one or more schemas. Data stores can be either file-based, such as SDF, or a database, such as Oracle Spatial.</dd>
+</dl>
+<p>数据</p>
+<dl class="docutils">
+<dt>digitize</dt>
+<dd>To convert existing data from paper maps, aerial photos, or raster images into digital form by tracing the maps on a digitizer. Object locations are recorded as X,Y coordinates.</dd>
+<dt>Display Manager</dt>
+<dd>A view of the Task Pane that handles the styling and theming of features in your map. Select Display Manager from the list at the top of the Task Pane.</dd>
+</dl>
+<p>显示管理</p>
+<p>display map</p>
+<blockquote>
+All the settings for a specific map, such as the data to include, the appearance of each layer, and the legend definition. A display map can include objects from attached drawings, raster images, and features stored in data stores such as Oracle databases, SDF or SHP files, and ArcSDE. One map can include multiple display maps.</blockquote>
+<p>drawing layer</p>
+<blockquote>
+A layer in Display Manager that contains drawing objects from a DWG file. See also AutoCAD layer, feature layer, layer.</blockquote>
+<p>drawing set</p>
+<blockquote>
+The set of source drawings attached to a map.</blockquote>
+<p>drawing source</p>
+<blockquote>
+In Autodesk Map, a drawing (DWG) file and also its associated information, such as attached drawing files, drawing-based feature classes, linked template data, and topologies. Compare with feature source.</blockquote>
+<p>DWF</p>
+<blockquote>
+Design Web Format. An Autodesk file format for sharing 2D, 3D, and spatially-enabled design data.</blockquote>
+<p>external data</p>
+<blockquote>
+Attribute data linked to a map object but contained in a database or file outside the map file. See also attribute data and object data.</blockquote>
+<dl class="docutils">
+<dt>FDO</dt>
+<dd>Feature Data Objects. An Autodesk software standard and general purpose API for accessing features and geospatial data regardless of the underlying data store. See also feature, feature class.</dd>
+</dl>
+<p>feature</p>
+<blockquote>
+An abstraction of a natural or man-made real world object. A spatial feature has one or more geometric properties. For example, a road feature might be represented by a line, and a hydrant might be represented by a point. A non-spatial feature does not have geometry, but can be related to a spatial feature that does. For example, a road feature may contain a sidewalk feature that is defined as not containing any geometry. See also attribute data, FDO.</blockquote>
+<p>feature class</p>
+<blockquote>
+A schema element that describes a type of real-world object. It includes a class name and property definitions. Commonly used to refer to a set of features of a particular class, for example, the feature class &quot;roads&quot; or the feature class &quot;hydrants.&quot; See also FDO, property, schema.</blockquote>
+<p>feature layer</p>
+<blockquote>
+A layer in Display Manager containing features from a feature source such as SDF, ESRI SHP, or ArcSDE. Feature layers are brought in using Data Connect. See also AutoCAD layer, drawing layer, layer.</blockquote>
+<p>feature source</p>
+<blockquote>
+Any source of feature data that has been attached to a map. Compare with drawing source.</blockquote>
+<p>field</p>
+<blockquote>
+A specific category of information in a data file, such as Address or Diameter.</blockquote>
+<p>geometry (Oracle Spatial database)</p>
+<blockquote>
+The representation of a spatial feature.</blockquote>
+<p>GIS (Geographic Information System)</p>
+<blockquote>
+A computerized decision support system that integrates geographic data, attribute data, and other spatially referenced data. A GIS is used to capture, store, retrieve, analyze, and display spatial data.</blockquote>
+<p>global coordinate system</p>
+<blockquote>
+A method that converts the earth's spherical coordinates representing latitude and longitude into an Autodesk Map 3D map Cartesian coordinate system, and accounts for the curvature of the earth's surface with a projection. A coordinate system is usually defined by a projection, an ellipsoid definition, a datum definition, one or more standard parallels, and a central meridian.</blockquote>
+<p>label</p>
+<blockquote>
+Text placed on or near a map feature that describes or identifies it.</blockquote>
+<p>layer</p>
+<blockquote>
+A resource that references a feature source or a drawing source that you add using Display Manager. The layer contains styling and theming information, and optionally a collection of scale ranges. See also drawing layer and feature layer.</blockquote>
+<p>lock</p>
+<blockquote>
+To make all or part of a disk file read-only so that it cannot be modified by other users on a network. Object locking applies to objects that are being edited by another user. File locking applies to entire files, for example when an AutoCAD user wants to open a file while the file is in Autodesk Map 3D editing mode.</blockquote>
+<p>logical operator</p>
+<blockquote>
+A symbol such as And, Or, Not, =, &gt;, &gt;=, &lt;, and &lt;= used to define logical relationships.</blockquote>
+<p>map</p>
+<blockquote>
+A collection of layers displayed within a consistent coordinate system and extents. See also layer.</blockquote>
+<p>Map Book</p>
+<blockquote>
+A collection of map tiles that you publish as separate pages. You can specify the layout and properties for your map book on the Map Book view of the Task Pane (select Map Book from the list at the top of the Task Pane).</blockquote>
+<p>Map Explorer</p>
+<blockquote>
+Manages your mapping resources. To view the Map Explorer task, select Map Explorer from the list at the top of the Task Pane.</blockquote>
+<p>map query</p>
+<blockquote>
+A set of conditions that specify the selection of drawing objects from source drawings. Conditions in a Map query can be based on the location or properties of an object or on data stored in the drawing or in a linked database table.</blockquote>
+<p>mpolygon</p>
+<blockquote>
+A polygon object. A polygon differs from a closed polyline in that it stores information about its inner and outer boundaries.</blockquote>
+<p>object data</p>
+<blockquote>
+Attribute data attached to an drawing object and stored in the drawing file. Compare with external data.</blockquote>
+<p>polygon</p>
+<blockquote>
+A closed area that stores information about its inner and outer boundaries, and about other polygons nested within it or grouped with it. In a polygon topology, the polygon can be enclosed by any lines or arcs in the drawing. In addition, Autodesk Map 3D supports a polygon object, sometimes called an mpolygon or mapping polygon.</blockquote>
+<p>property</p>
+<blockquote>
+A single attribute of a class. A class is described by one or more property definitions. For example, a Road feature class may have properties called Name, NumberLanes, or Location. See also attribute data, feature class.</blockquote>
+<p>publish</p>
+<blockquote>
+To generate output from a map.</blockquote>
+<p>query</p>
+<blockquote>
+A set of criteria for specifying the selection of objects or records. For example, a layer-based query can display only the objects on the layers that contain state and district boundaries.</blockquote>
+<p>raster</p>
+<blockquote>
+Images containing individual dots (called pixels or cells) with color values, arranged in a rectangular, evenly spaced array. Aerial photographs and satellite images are examples of raster images used in mapping. Compare with vector.</blockquote>
+<p>resolution</p>
+<blockquote>
+In a raster image, the density of pixels-per-inch (ppi) or dots-per-inch.</blockquote>
+<p>save set</p>
+<blockquote>
+Objects that have been created or modified in the current drawing and are marked to be saved back to source drawings.</blockquote>
+<p>scale</p>
+<blockquote>
+The ratio of the distance on a paper map to the distance on the ground. If a paper map has a scale of 1:100,000 (also represented as 1/100000), then a distance of 1 unit on the paper map corresponds to 100,000 units on the ground. On a digital map, scale represents the scale of the map from which the digital map was derived.</blockquote>
+<p>scale threshold</p>
+<blockquote>
+You can define different styles at different scale thresholds. For example, turn on the display of road names only when the drawing scale factor is below 1:5000.</blockquote>
+<p>schema</p>
+<blockquote>
+The definition of multiple feature classses and the relationships between them. A schema is the logical description of the data types used to model real-world objects, and does not reference the actual data instances (a particular road or land parcel). Rather, it is metadata. See also feature class.</blockquote>
+<p>SDF 2</p>
+<blockquote>
+A previous version of the SDF file format. It was the native file format for Autodesk MapGuide (the last release was Autodesk MapGuide 6.5). Each SDF 2 file generally contained one feature or type of data, for example points, lines, polygons, or text.</blockquote>
+<p>SDF 3</p>
+<blockquote>
+Spatial Database Format. The current version of the SDF format. It is the native format for the MapGuide technology (Autodesk MapGuide Enterprise 2007 and MapGuide Open Source). Each SDF 3 file can contain multiple feature classes or types of data stored in tables with attributes and geometry.</blockquote>
+<p>sheet</p>
+<blockquote>
+An individual named object in a sheet set that can be published. References a layout.</blockquote>
+<p>sheet set</p>
+<blockquote>
+A named collection of sheets and subsets for publishing.</blockquote>
+<p>sheet subset</p>
+<blockquote>
+A named collection of sheets within a sheet set. An individual sheet can only be a member of a single subset.</blockquote>
+<p>sheet template</p>
+<blockquote>
+A drawing file that defines a title block and a layout for use in sheets. Can be specified for sheet sets and sheet subsets.</blockquote>
+<p>source drawing</p>
+<blockquote>
+A drawing file attached to another drawing. The set of all source drawings attached to a drawing is called the drawing set. Use a Map query to retrieve selected objects from multiple source drawings.</blockquote>
+<p>spatial</p>
+<blockquote>
+A generic term used to reference the mathematical concept of n-dimensional data.</blockquote>
+<p>spatial data</p>
+<blockquote>
+Information about the location and shape of geographic features, and the relationships between those features. See also feature.</blockquote>
+<p>spatial database</p>
+<blockquote>
+A database containing information indexed by location.</blockquote>
+<p>style</p>
+<blockquote>
+Settings that specify how to display the objects in a Display Manager layer. You can style things such as color, linetype, linewidth, and scale.</blockquote>
+<p>table</p>
+<blockquote>
+A set of data arranged in records (rows) and fields (columns). When a table is displayed in a grid, records display in horizontal rows and fields display in vertical columns. Each field value in the table displays in a cell.</blockquote>
+<p>Task Pane</p>
+<blockquote>
+Autodesk Map 3D window that displays information about the current drawing. The Task Pane contains three tabs: Map Explorer, Display Manager, and Map Book. The Map Explorer tab displays attached source drawings, databases, queries, and link templates. The Display Manager tab controls display layers and their styles. The Map Book tab displays the map books available for publishing, and lets you create new map books. You can resize the Task Pane and place it where you want.</blockquote>
+<p>theme</p>
+<blockquote>
+A style that varies the appearance of an element in a layer based on the value of a specific property. For example, instead of coloring lakes blue, you could vary the shade of blue based on the depth of the lake. Instead of choosing one line width for all roads, you could vary the line width based on traffic flow.</blockquote>
+<p>vector</p>
+<blockquote>
+A mathematical calculation of an object with precise direction and length. Vector data is stored as X,Y coordinates that form points, lines, and areas. Compare with raster.</blockquote>
+<p>viewport (paper space)</p>
+<blockquote>
+A view of modelspace from a layout.</blockquote>
+<p>workspace</p>
+<blockquote>
+Contains the commands and tools for specific tasks. The Map 3D For Geospatial workspace is tailored to working with spatial features while Map 3D For Drawings is optimized for working with drawing objects.<br />
+To change your workspace, click View menu  Menu/Toolbar Layout. Click a workspace.</blockquote>
+<p>zoom</p>
+<blockquote>
+To change the display magnification so that it focuses on progressively smaller areas (when you zoom in) or larger areas (when you zoom out) of an image.</blockquote>
+<p>zoom extents</p>
+<blockquote>
+To magnify a drawing based on its extents so that the view shows the largest possible view of all spatial objects.</blockquote>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>道格拉斯-普克抽稀算法 - 鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图： 通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来
+C#版的: /// &lt;summary&gt &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/2010/10/douglas-peucker.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">道格拉斯-普克抽稀算法</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-07T00:00:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2010</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
+<img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
+<p>通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来</p>
+<p>C#版的:</p>
+<pre class="literal-block">
+/// &lt;summary&gt;
+/// Uses the Douglas Peucker algorithm to reduce the number of points.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;Points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;Tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static List&lt;Point&gt; DouglasPeuckerReduction
+(List&lt;Point&gt; Points, Double Tolerance)
+{
+if (Points == null || Points.Count &lt; 3)
+return Points;
+Int32 firstPoint = 0;
+Int32 lastPoint = Points.Count - 1;
+List&lt;Int32&gt; pointIndexsToKeep = new List&lt;Int32&gt;();
+//Add the first and last index to the keepers
+pointIndexsToKeep.Add(firstPoint);
+pointIndexsToKeep.Add(lastPoint);
+//The first and the last point cannot be the same
+while (Points[firstPoint].Equals(Points[lastPoint]))
+{
+lastPoint--;
+}
+DouglasPeuckerReduction(Points, firstPoint, lastPoint,
+Tolerance, ref pointIndexsToKeep);
+List&lt;Point&gt; returnPoints = new List&lt;Point&gt;();
+pointIndexsToKeep.Sort();
+foreach (Int32 index in pointIndexsToKeep)
+{
+returnPoints.Add(Points[index]);
+}
+return returnPoints;
+}
+/// &lt;summary&gt;
+/// Douglases the peucker reduction.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;firstPoint&quot;&gt;The first point.&lt;/param&gt;
+/// &lt;param name=&quot;lastPoint&quot;&gt;The last point.&lt;/param&gt;
+/// &lt;param name=&quot;tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;param name=&quot;pointIndexsToKeep&quot;&gt;The point index to keep.&lt;/param&gt;
+private static void DouglasPeuckerReduction(List&lt;Point&gt;
+points, Int32 firstPoint, Int32 lastPoint, Double tolerance,
+ref List&lt;Int32&gt; pointIndexsToKeep)
+{
+Double maxDistance = 0;
+Int32 indexFarthest = 0;
+for (Int32 index = firstPoint; index &lt; lastPoint; index++)
+{
+Double distance = PerpendicularDistance
+(points[firstPoint], points[lastPoint], points[index]);
+if (distance &gt; maxDistance)
+{
+maxDistance = distance;
+indexFarthest = index;
+}
+}
+if (maxDistance &gt; tolerance &amp;&amp; indexFarthest != 0)
+{
+//Add the largest point that exceeds the tolerance
+pointIndexsToKeep.Add(indexFarthest);
+DouglasPeuckerReduction(points, firstPoint,
+indexFarthest, tolerance, ref pointIndexsToKeep);
+DouglasPeuckerReduction(points, indexFarthest,
+lastPoint, tolerance, ref pointIndexsToKeep);
+}
+}
+/// &lt;summary&gt;
+/// The distance of a point from a line made from point1 and point2.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;pt1&quot;&gt;The PT1.&lt;/param&gt;
+/// &lt;param name=&quot;pt2&quot;&gt;The PT2.&lt;/param&gt;
+/// &lt;param name=&quot;p&quot;&gt;The p.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static Double PerpendicularDistance
+(Point Point1, Point Point2, Point Point)
+{
+//Area = |(1/2)(x1y2 + x2y3 + x3y1 - x2y1 - x3y2 - x1y3)|   *Area of triangle
+//Base = v((x1-x2)2+(x1-x2)2)                               *Base of Triangle*
+//Area = .5*Base*H                                          *Solve for height
+//Height = Area/.5/Base
+Double area = Math.Abs(.5 * (Point1.X * Point2.Y + Point2.X *
+Point.Y + Point.X * Point1.Y - Point2.X * Point1.Y - Point.X *
+Point2.Y - Point1.X * Point.Y));
+Double bottom = Math.Sqrt(Math.Pow(Point1.X - Point2.X, 2) +
+Math.Pow(Point1.Y - Point2.Y, 2));
+Double height = area / bottom * 2;
+return height;
+//Another option
+//Double A = Point.X - Point1.X;
+//Double B = Point.Y - Point1.Y;
+//Double C = Point2.X - Point1.X;
+//Double D = Point2.Y - Point1.Y;
+//Double dot = A * C + B * D;
+//Double len_sq = C * C + D * D;
+//Double param = dot / len_sq;
+//Double xx, yy;
+//if (param &lt; 0)
+//{
+//    xx = Point1.X;
+//    yy = Point1.Y;
+//}
+//else if (param &gt; 1)
+//{
+//    xx = Point2.X;
+//    yy = Point2.Y;
+//}
+//else
+//{
+//    xx = Point1.X + param * C;
+//    yy = Point1.Y + param * D;
+//}
+//Double d = DistanceBetweenOn2DPlane(Point, new Point(xx, yy));
+}
+</pre>
+<p>python 版的:</p>
+<pre class="literal-block">
+# pure-Python Douglas-Peucker line simplification/generalization
+#
+# this code was written by Schuyler Erle &lt;schuyler&#64;nocat.net&gt; and is
+#   made available in the public domain.
+#
+# the code was ported from a freely-licensed example at
+#   http://www.3dsoftware.com/Cartography/Programming/PolyLineReduction/
+#
+# the original page is no longer available, but is mirrored at
+#   http://www.mappinghacks.com/code/PolyLineReduction/
+&quot;&quot;&quot;
+&gt;&gt;&gt; line = [(0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,1),(0,0)]
+&gt;&gt;&gt; simplify_points(line, 1.0)
+[(0, 0), (2, 0), (2, 2), (0, 2), (0, 0)]
+&gt;&gt;&gt; line = [(0,0),(0.5,0.5),(1,0),(1.25,-0.25),(1.5,.5)]
+&gt;&gt;&gt; simplify_points(line, 0.25)
+[(0, 0), (0.5, 0.5), (1.25, -0.25), (1.5, 0.5)]
+&quot;&quot;&quot;
+import math
+def simplify_points (pts, tolerance):
+anchor  = 0
+floater = len(pts) - 1
+stack   = []
+keep    = set()
+stack.append((anchor, floater))
+while stack:
+anchor, floater = stack.pop()
+# initialize line segment
+if pts[floater] != pts[anchor]:
+anchorX = float(pts[floater][0] - pts[anchor][0])
+anchorY = float(pts[floater][1] - pts[anchor][1])
+seg_len = math.sqrt(anchorX ** 2 + anchorY ** 2)
+# get the unit vector
+anchorX /= seg_len
+anchorY /= seg_len
+else:
+anchorX = anchorY = seg_len = 0.0
+# inner loop:
+max_dist = 0.0
+farthest = anchor + 1
+for i in range(anchor + 1, floater):
+dist_to_seg = 0.0
+# compare to anchor
+vecX = float(pts[i][0] - pts[anchor][0])
+vecY = float(pts[i][1] - pts[anchor][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * anchorX + vecY * anchorY
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:
+# compare to floater
+vecX = float(pts[i][0] - pts[floater][0])
+vecY = float(pts[i][1] - pts[floater][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * (-anchorX) + vecY * (-anchorY)
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:  # calculate perpendicular distance to line (pythagorean theorem):
+dist_to_seg = math.sqrt(abs(seg_len ** 2 - proj ** 2))
+if max_dist &lt; dist_to_seg:
+max_dist = dist_to_seg
+farthest = i
+if max_dist &lt;= tolerance: # use line segment
+keep.add(anchor)
+keep.add(floater)
+else:
+stack.append((anchor, farthest))
+stack.append((farthest, floater))
+keep = list(keep)
+keep.sort()
+return [pts[i] for i in keep]
+if __name__ == &quot;__main__&quot;:
+import doctest
+doctest.testmod()
+</pre>
+</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">xiangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-07T00:00:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/开发/'>开发</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010/08/vps-dabr.html" title="Previous Post: 在vps上安装dabr">&laquo; 在vps上安装dabr</a>
+      
+      
+        <a class="basic-alignment right" href="/2010/12/movable_vps.html" title="next Post: 试用free aws">试用free aws &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiangjian.github.com/2010/10/douglas-peucker.html';
+        var disqus_url = 'http://xiangjian.github.com/2010/10/douglas-peucker.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

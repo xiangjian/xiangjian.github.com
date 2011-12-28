@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: notes | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/notes/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
+    <link href="http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
+    <updated>2011-08-17T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx</id>
+    <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
+怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
+以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
+<p>config</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-8001,gis-8002,gis-8003,gis-8004
+ 
+ 
+[program:gis-8001]
+command=python /home/gis/gis/gisserver.py --port=8001
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-8001.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+ 
+[program:gis-8002]
+command=python /home/gis/gis/gisserver.py --port=8002
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8002.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8003]
+command=python /home/gis/gis/gisserver.py --port=8003
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8003.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8004]
+command=python /home/gis/gis/gisserver.py --port=8004
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8004.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+</pre> 
+<p>怎么让四个端口同时提供服务呢？可以使用web服务神器nginx,nginx自带了负载平衡功能，<br />
+可以让这4个服务同时提供服务。</p> 
+<p>nginx config</p> 
+<pre class="literal-block"> 
+    upstream gisserver{
+            server 127.0.0.1:8001;
+            server 127.0.0.1:8002;
+            server 127.0.0.1:8003;
+            server 127.0.0.1:8004;
+    }
+location /tile/ {
+    proxy_pass        http://gisserver;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_pass_header Set-Cookie;
+}
+</pre> 
+<p>更新：</p> 
+<p>上述配置可以精简，supervisord配置可以使用变量表示</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-web
+ 
+ 
+[program:gis-web]
+command=python /home/gis/gis/gisserver.py --port=80%(process_num)02d
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-80%(process_num)02d.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+numprocs-4
+numprocs_start=1
+</pre> 
+<p>对不同的服务器，之需要调整numprocs值就可以。</p> </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[32位系统充分使用多余的内存]]></title>
+    <link href="http://xiangjian.github.com/2011/08/32bit_use_4g_ram.html"/>
+    <updated>2011-08-15T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/08/32bit_use_4g_ram</id>
+    <content type="html"><![CDATA[<p>我的T410i很久以前就升级了4G内存，但是32位系统使用不了全部的内存，单位的网络准入系统又不支持64位系统。内存一直都没有充分利用，其实可以做一个内存盘把一些暂存的内容放到这个上面来。有几个好处：<br />
+1.速度快，本来这块内存是用不到的，内存的速度比硬盘快很多。<br />
+2.重启系统这一块内容会消失，可以做临时存储。如totalcommand解压缓存。</p>
+
+
+
+
+<p>ramdisk我使用的是<a href="http://www.romexsoftware.com/zh-cn/index.html" title="ramdisk" target="_blank">ramdisk</a> 效果还不错。<br />
+VS2010额编译速度一直不是太快，把编译内容放到ramdisk中可以显着提高速度.配置方法可以参考<a href="http://demo.tc/Post/643" title="asp.net ramdisk配置" target="_blank">asp.net ramdisk配置</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

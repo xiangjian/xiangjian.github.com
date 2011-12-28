@@ -1,1 +1,1047 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-17T00:00:00+08:00" pubdate data-updated="true">Aug 17<span>th</span>, 2011</time>
+        
+         | <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
+怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
+以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
+<p>config</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-8001,gis-8002,gis-8003,gis-8004
+ 
+ 
+[program:gis-8001]
+command=python /home/gis/gis/gisserver.py --port=8001
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-8001.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+ 
+[program:gis-8002]
+command=python /home/gis/gis/gisserver.py --port=8002
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8002.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8003]
+command=python /home/gis/gis/gisserver.py --port=8003
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8003.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8004]
+command=python /home/gis/gis/gisserver.py --port=8004
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8004.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+</pre> 
+<p>怎么让四个端口同时提供服务呢？可以使用web服务神器nginx,nginx自带了负载平衡功能，<br />
+可以让这4个服务同时提供服务。</p> 
+<p>nginx config</p> 
+<pre class="literal-block"> 
+    upstream gisserver{
+            server 127.0.0.1:8001;
+            server 127.0.0.1:8002;
+            server 127.0.0.1:8003;
+            server 127.0.0.1:8004;
+    }
+location /tile/ {
+    proxy_pass        http://gisserver;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_pass_header Set-Cookie;
+}
+</pre> 
+<p>更新：</p> 
+<p>上述配置可以精简，supervisord配置可以使用变量表示</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-web
+ 
+ 
+[program:gis-web]
+command=python /home/gis/gis/gisserver.py --port=80%(process_num)02d
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-80%(process_num)02d.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+numprocs-4
+numprocs_start=1
+</pre> 
+<p>对不同的服务器，之需要调整numprocs值就可以。</p> </p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-15T00:00:00+08:00" pubdate data-updated="true">Aug 15<span>th</span>, 2011</time>
+        
+         | <a href="/2011/08/32bit_use_4g_ram.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我的T410i很久以前就升级了4G内存，但是32位系统使用不了全部的内存，单位的网络准入系统又不支持64位系统。内存一直都没有充分利用，其实可以做一个内存盘把一些暂存的内容放到这个上面来。有几个好处：<br />
+1.速度快，本来这块内存是用不到的，内存的速度比硬盘快很多。<br />
+2.重启系统这一块内容会消失，可以做临时存储。如totalcommand解压缓存。</p>
+
+<p>ramdisk我使用的是<a href="http://www.romexsoftware.com/zh-cn/index.html" title="ramdisk" target="_blank">ramdisk</a> 效果还不错。<br />
+VS2010额编译速度一直不是太快，把编译内容放到ramdisk中可以显着提高速度.配置方法可以参考<a href="http://demo.tc/Post/643" title="asp.net ramdisk配置" target="_blank">asp.net ramdisk配置</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/06/program_error.html">程序员犯的可乐错误</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-21T00:00:00+08:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time>
+        
+         | <a href="/2011/06/program_error.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>上周五，reddit programming区有人贴出了个一段代码的code review，引发了大家讨论，堪称是github.com网站最热烈的讨论。一个程序的升级脚本中写了如下一段代码:</p>
+<pre class="literal-block">
+rm -rf /usr /lib/nvidia-current/xorg/xorg
+</pre>
+<p>这个很小但是非常致命的错误，当用户执行升级脚本,他的/usr 目录就会被删除，至少有三个用户中招。<br />
+在这个讨论 <a class="reference external" href="https://github.com/MrMEEE/bumblebee/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac">地址</a> ,人民群众正在进行各种有趣的讨论^_^。</p>
+<p>前一段时间，我编译mapnik 需要occi支持，发了我差不多两周的时间，怎么编译都通不过，后来没有办法给mapnik作者发邮件，很快作者说是个bug,已经改好，让我编译试试。我下载最新代码，果然编译没有问题。好奇心驱使我看到了作者 <a class="reference external" href="http://trac.mapnik.org/changeset/2927">fix</a> 修改了什么东西，居然是写代码时少写个分号，害我编译了好久，换了不少环境。</p>
+<p>昨天早上看到台机启动有一个错误，但是启动太快，没看清是什么错误。我上网查了下，说要在/etc/rc.conf 中加入一行代码，我想也没想就添加了一行代码。重启机器怎么也进不了系统，也进不了console界面。没有办法我只能使用u盘进rescue系统，删除那一行文件，重启后一切恢复恢复正常。</p>
+<p>测试对程序来说是致命的，没有经过测试的程序可能会导致很严重的问题。希望这样的问题会少点，程序员在写程序时尽量多做点测试，少出点这种错误。</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/06/linux_so.html">Linux 系统动态链接库引</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-20T00:00:00+08:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
+        
+         | <a href="/2011/06/linux_so.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>最近要编译一个mapnik2，其中安装依赖环境icu和boost这两个东西费尽周折。最后总算弄明白了linux下的动态链接库是怎么管理的？动态链接库多版本会不会冲突?</p>
+<p>linux支持unix中的动态链接库方法，使用export LD_LIBRARY_PATH= 这各方式。linux的动态链接库引用是通过ldconfig来实现的。<br />
+linux 动态链接库使用ldconfig命令来查找系统动态链接库，并生成缓存方便系统引用。编译代码时，软件依赖一般是从ldconfig的cache中查找。下面主要说下linux如何管理动态链接库</p>
+<p>ldconfig 有以下几个配置文件:</p>
+<pre class="literal-block">
+/etc/ld.so.conf
+/etc/ld.so.conf.d/*
+</pre>
+<p>在文件中说明了引用动态链接库的路径，与export的效果着不多。指定路径后，只需要运行ldconfig即可重建动态链接库索引。</p>
+<p>使用 ldconfig -p 可以查询系统中注册的dll文件。</p>
+<p>另外还有个查看程序引用的动态链接库在系统中是否存在，使用ldd 加动态链接库地址就可以查看。例如,查看mapnik postgis插件引用的动态链接库在系统中是否存在可以使用</p>
+<pre class="literal-block">
+ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
+
+<p>    linux-vdso.so.1 =&gt;  (0x00007fff3791f000)<br />
+    libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0x00007f00c0306000)<br />
+    libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0x00007f00bfffc000)<br />
+    libm.so.6 =&gt; /lib/libm.so.6 (0x00007f00bfd79000)<br />
+    libgcc_s.so.1 =&gt; /usr/lib/libgcc_s.so.1 (0x00007f00bfb63000)<br />
+    libc.so.6 =&gt; /lib/libc.so.6 (0x00007f00bf805000)<br />
+    libssl.so.1.0.0 =&gt; /usr/lib/libssl.so.1.0.0 (0x00007f00bf5a8000)<br />
+    libcrypto.so.1.0.0 =&gt; /usr/lib/libcrypto.so.1.0.0 (0x00007f00bf1ec000)<br />
+    libpthread.so.0 =&gt; /lib/libpthread.so.0 (0x00007f00befcf000)<br />
+    /lib/ld-linux-x86-64.so.2 (0x00007f00c0791000)<br />
+    libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f00bedca000)<br />
+    libz.so.1 =&gt; /usr/lib/libz.so.1 (0x00007f00bebb2000)
+
+<p>linux 中编译程序或移植环境经常会使用到这两个命令解决实际问题。</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/05/redhat_use_yum.html">Redhat使用yum安装程序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-11T00:00:00+08:00" pubdate data-updated="true">May 11<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/redhat_use_yum.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>最近，要给一台redhat4服务器安装mapnik，在我自己工作的台机使用的是archlinux上，使用ABS安装环境那是相当方便，这台机器安装让人大伤脑筋。rpm包依赖要一个个找，而且，经常要自己编译源代码。</p></p>
+
+<p><p>在centos系统中使用yum安装一点都不折腾，redhat4和centos算是同源，可以使用centos来做rh的更新。下面是安装yum的步骤。</p></p>
+
+<p><h3>安装 yum</h3></p>
+
+<p><p>方便在redhat 系统中安装软件包，现在的系统是redhat4企业版本，可以使用centos的软件包管理器</p>
+
+<p>你可以用yum和rpm文件更新，其实很简单.</p></p>
+
+<p><ol class="arabic" /></p>
+
+<p><li><p class="first">用wget下载yum</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># wget http://packages.sw.be/yum/yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><ol class="arabic" /></p>
+
+<p><li><p class="first">安装此rpm文件</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># rpm -ivh yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">配置 /etc/yum.conf 使用兼容的更新源(这里使用搜狐源，这个比较快。)</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p>[main]</p>
+
+<p>cachedir=/var/cache/yum</p>
+
+<p>debuglevel=2</p>
+
+<p>logfile=/var/log/yum.log</p>
+
+<p>pkgpolicy=newest</p>
+
+<p>distroverpkg=redhat-release</p>
+
+<p>tolerant=1</p>
+
+<p>exactarch=1</p>
+
+<p>[base]</p>
+
+<p>name=CentOS-$releasever – Base</p>
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/os/i386/</p>
+
+<p>gpgcheck=1</p>
+
+<p>[updates]</p>
+
+<p>name=Red Hat Linux $releasever – Updates</p>
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/updates/i386/</p>
+
+<p>gpgcheck=1</p>
+
+<p>[dag] </p>
+
+<p>name=Dag RPM Repository for RHEL5 </p>
+
+<p>baseurl=http://mirrors.sohu.com/dag/redhat/el5/en/$basearch/dag/</p>
+
+<p>enabled=1 </p>
+
+<p>gpgcheck=1 </p>
+
+<p>gpgkey=http://mirrors.sohu.com/dag/RPM-GPG-KEY.dag.txt</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">安装CentOS的GPG Key:</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># rpm --import http://mirrors.sohu.com/centos/RPM-GPG-KEY-CentOS-4</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">测试yum是否正常(下面是更新所有的rpm):</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># yum update //更新系统</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">建立缓存:</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p>#yum makecache</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><p>下篇写mapnik的编译安装。</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/04/summary_3month.html">3月总结</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-04T00:00:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2011</time>
+        
+         | <a href="/2011/04/summary_3month.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>三月已经过去了，总体是比较纠结，月底一切都还好。家里的事一直不断，想不到拆迁会到我们那边去，真是没法说。最高兴的是感情稳定，原来自己几个愿望，找一个善善良良的妻子，养一全聪聪明明的孩子，想一个简简单单道理，过一辈子。</p> 
+<p>还可以的：</p> 
+<ul class="simple"> 
+<li>开发工作还算正常,工作基本可以正常进行</li> 
+<li>多页面控制，ajax页面历史记录，多项目接口终于有眉目了。找了很久，终于可以在项目中使用了(简单说就是url hash控制程序)。</li> 
+<li>redis性能测试还不错，window也能正常运行。做好了替换memcache的准备。</li> 
+<li>linux使用更深入，月初试用kvm虚拟机，效果很好，如果有机会做云计算方面工作准备。</li> 
+<li>mapnik 使用，很方便，就是Oracle接口不好办，在非oracle项目中可以很好使用。</li> 
+<li>看了看tornado源代码，原来的GIS项目有些改进。tornado真乃神器也。</li> 
+</ul> 
+<p>不足：<br />
+项目管理上还须改进，现在才几个人的项目，每天花在代码同步，给别人查错上的时间太多了。代码审核也没有做，出了问题只有问我，但我也没有办法，代码没有办法在源头控制。项目管理要学习。任务太多，反而不能专心做好现在做的事。</p> 
+<p>下月改进：</p> 
+<ul class="simple"> 
+<li>多页面控制（url hash应用），写好文档，在部门内推广。</li> 
+<li>写好文档，做好架构设计工作。</li> 
+<li>理清代码管理，梳理好今年的工作.</li> 
+<li>tornado做mapnik的接口。</li> </ul></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/week_2.html">本周推荐</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-20T00:00:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/week_2.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><div class="section" id="id2"> 
+<h3>技术</h3> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-overcommit-kvm-resources/index.html">管理超量使用的 KVM 主机资源</a></li> 
+</ul> 
+<p>最新比较关注KVM虚拟机，linux内核虚拟机，虚拟效果相当不错，不需要安装复杂的vmware,vbox.vmware创建的虚拟机也可以很方便的在kvm中运行。这篇文章主要讲kvm主机资源超量使用，kvm性能调优，值得关注。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-cn-pagerecycle/index.html">Linux 2.6 中的页面回收与反向映射</a></li> 
+</ul> 
+<p>2.6页面回收与反向映射，本周linux 2.6.38发布，主要更新之一就是支持透明大内存页(Transparent Hugepages).这个可以显著提高kvm内存使用率。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.wardking.com/2011/03/clonezilla/">clonezllia 再生龙</a></li> 
+</ul> 
+<p>再生龙，功能与ghost相似，提供比ghost更多的功能。不过几乎很少有人使用正版的ghost吧，放心使用再生龙。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ragepank.com/articles/3/preventing-duplicate-content/">防止重复内容</a></li> 
+</ul> 
+<p>这个是关于SEO的，搜索引擎对重复内容有惩罚措施，如果你不清楚你的网站是否有重复内容，你可以看下这篇文章。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.drizzle.org/">drizzle mysql分支数据库</a></li> 
+</ul> 
+<p>Drizzle是一个精简版的MySQL分支，在目前的MySQL代码基本之上，将存储过程、视图、触发器、查询缓存、PREPARE语句等等功能从代码中删掉，简化对数据类型和存储引擎的支持，并且进行大胆的重构。最终要实现的目的是将MySQL的代码大大简化，理顺MySQL的架构，改善 MySQL的代码质量，提高系统的稳定性和性能。</p> 
+</div> 
+<div class="section" id="id4"> 
+<h3>非技术</h3> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.mifengtd.cn/articles/why-we-lack-of-self-discipline.html">一个人为什么会缺少自虑</a></li> 
+</ul> 
+<p>找到人缺少自虑的原因。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.lztopic.com/archives/4669/">从人群中看出真正优秀的人</a></li> 
+</ul> 
+<p>一家之言，也未必全信</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.mgreview.com/archives/151">美股开启攻略</a></li> 
+</ul> 
+<p>有点闲钱，可以到美股投资试试 。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://bigfools.com/2011/03/21682.html">全国密码麦当劳密码</a></li> 
+</ul> 
+<p>记下，下次去麦当劳可能会用上。</p> 
+<ul class="simple"> 
+<li><a class="reference external" href="http://www.ohmymedia.info/%E4%B8%AD%E5%9B%BD%E9%9D%92%E5%B9%B4%E6%8A%A5%EF%BC%9A%E8%80%81%E6%97%A0%E6%89%80%E4%BE%9D%E7%9A%84%E5%8F%B2%E5%AD%A6%E5%A4%A7%E5%AE%B6.html">中国青年报：老无所依的史学大家</a></li> 
+</ul> 
+<p>心酸，看文章，啥也不说</p> 
+</div> </p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html">wordpress配置及网站SEO</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-17T00:00:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>前一段时间使用wordpress 的一个缓存插件，几天使用下来发现好像没有起到缓存作用。晚上查了下nginx配置，终于找到了为什么。原来是我的nginx配置不对，缓存的路径没有设置对。<br />
+找到了问题改正就很容易了。同时也把使用插件生成sitemap.xml也进行了重写，搜索引擎也可以很好的索引相关网页。</p> 
+<pre class="literal-block"> 
+#如果文件存在直接返回，并设定7天的缓存期
+    if (-f $request_filename) {
+        expires 7d;
+        break;
+    }
+#初始supercache缓存变量
+    set $supercache_file ”;
+    set $supercache_uri $request_uri;
+#post不访问缓存
+    if ($request_method = POST) {
+        set $supercache_uri ”;
+    }
+ 
+# 因为使用了url重写，因此有查询条件就不访问缓存
+    if ($query_string) {
+        set $supercache_uri ”;
+    }
+# 如果有缓存，也不访问缓存
+    if ($http_cookie ~* “comment_author_|wordpress|wp-postpass_” ) {
+        set $supercache_uri ”;
+    }
+ 
+# 如果变量不为空，则访问缓存地址
+ 
+    if ($supercache_uri ~ ^(.+)$) {
+        set $supercache_file /wp-content/cache/supercache/$http_host/$1index.html;
+    }
+ 
+# 如果缓存存在，则返回缓存文件
+    if (-f $document_root$supercache_file) {
+        rewrite ^(.*)$ $supercache_file break;
+    }
+#sitemap 重写，动态生成sitemap.xml
+rewrite ^/(sitemap.*)\.xml$ /index.php?feed=$1;
+# 其它访问都内 index.php处理
+    if (!-e $request_filename) {
+        rewrite . /index.php last;
+    }
+  }
+</pre> 
+<p>原来网站使用两个域名，两个域名下都是同样的内容。据说这个不利于SEO，搜索引擎也会有惩罚策略。所以就在其中一个域名上设置了301转移重写。</p> 
+<pre class="literal-block"> 
+server_name  www.xiangjian.info xiangjian.info;
+rewrite ^ http://blog.xiangjian.info$uri permanent;
+</pre> 
+<p>EOF</p> </p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/picture_upload_flickr_google.html">快速图片上传到flickr,google</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/picture_upload_flickr_google.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
+邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
+<p>晚上写了如下代码(当然是使用python)::</p> 
+<pre class="literal-block"> 
+#! coding=utf-8
+import smtplib
+import os
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+ 
+family = ['XXXXXXX&#64;photos.flickr.com','XXXXXXXXXXXXX&#64;picasaweb.com']
+SMTP_SERVER='XXXXXXXXXx'
+SMTP_USER='XXXXXXXx'
+SMTP_PASS='XXXXXXX'
+SENDER =&quot;XXXXXXXXXXx&quot;
+ 
+ 
+COMMASPACE = ', '
+ 
+# Create the container (outer) email message.
+msg = MIMEMultipart()
+msg['Subject'] = 'my picture'
+msg['From'] = 'xiangjian'
+msg['To'] = COMMASPACE.join(family)
+msg.preamble = 'my picture'
+ 
+def forward(toAddr, msg):
+    server = smtplib.SMTP( SMTP_SERVER )
+    server.login( SMTP_USER, SMTP_PASS )
+    server.sendmail( SENDER,toAddr , msg )
+    server.quit()
+    return True
+ 
+def sendpic(dir):
+    for root,dirs,files in os.walk(dir):
+        for name in files:
+            if(name.splitext()[1].lower() in ['.jpg','.png']):
+                print name
+                fp=open(name,'rb')
+                img=MIMEImage(fp.read())
+                fp.close()
+                msg.attach(img)
+                forward(COMMASPACE.join(family),msg)
+ 
+sendpic('.')
+</pre> 
+<p>将以上代码拷贝到照片文件夹，配置代码中的XXXXXXX。运行就可以将照片发布到多个服务器图床。经测试速度非常快，比通过http上传数据快很多。</p> </p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/week1.html">本周推荐</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-09T00:00:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/week1.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。
+<div id="id2" class="section">
+<h2>技术：</h2>
+<ul class="simple">
+	<li><a class="reference external" href="http://redis.io">redis</a></li>
+</ul>
+去年主要使用memcached，memcached在使用过程中发现，有些东西功能不足：不能选择性持久化；存储的值不能太大，默认为4M；加之缓存结构单一。redis可以很好解决这个问题，可以持久化，提供多种数据类型，支持LIST,这个可以方便进行扩展（我想实现一个简单的MQ）
+<ul class="simple">
+	<li><a class="reference external" href="http://headjs.com">headjs</a></li>
+</ul>
+head.js是一个异步加载javascript的js脚本，像它的名字一样，这个脚本只会在head处加载它自己，后台使用javascript异步加载，可以在script比较多的页面中加快加载速度（一般情况下加载javascript浏览器会等待脚本下载）。
+<ul class="simple">
+	<li><a class="reference external" href="http://socket.io">socket.io</a></li>
+</ul>
+这个可以在很多场合使用的javascript包，可以使用IE使用websocket通信。websockets比ajax更好使用到服务器需要推送的环境下。</div></p>
+
+<p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/2/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

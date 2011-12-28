@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 开发 | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/开发/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
+    <link href="http://xiangjian.github.com/2010/10/douglas-peucker.html"/>
+    <updated>2010-10-07T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/10/douglas-peucker</id>
+    <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
+<img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
+<p>通过Google我找到了两段代码，一段是c#的，一段是python的。现将其分享出来</p>
+<p>C#版的:</p>
+<pre class="literal-block">
+/// &lt;summary&gt;
+/// Uses the Douglas Peucker algorithm to reduce the number of points.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;Points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;Tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static List&lt;Point&gt; DouglasPeuckerReduction
+(List&lt;Point&gt; Points, Double Tolerance)
+{
+if (Points == null || Points.Count &lt; 3)
+return Points;
+Int32 firstPoint = 0;
+Int32 lastPoint = Points.Count - 1;
+List&lt;Int32&gt; pointIndexsToKeep = new List&lt;Int32&gt;();
+//Add the first and last index to the keepers
+pointIndexsToKeep.Add(firstPoint);
+pointIndexsToKeep.Add(lastPoint);
+//The first and the last point cannot be the same
+while (Points[firstPoint].Equals(Points[lastPoint]))
+{
+lastPoint--;
+}
+DouglasPeuckerReduction(Points, firstPoint, lastPoint,
+Tolerance, ref pointIndexsToKeep);
+List&lt;Point&gt; returnPoints = new List&lt;Point&gt;();
+pointIndexsToKeep.Sort();
+foreach (Int32 index in pointIndexsToKeep)
+{
+returnPoints.Add(Points[index]);
+}
+return returnPoints;
+}
+/// &lt;summary&gt;
+/// Douglases the peucker reduction.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;points&quot;&gt;The points.&lt;/param&gt;
+/// &lt;param name=&quot;firstPoint&quot;&gt;The first point.&lt;/param&gt;
+/// &lt;param name=&quot;lastPoint&quot;&gt;The last point.&lt;/param&gt;
+/// &lt;param name=&quot;tolerance&quot;&gt;The tolerance.&lt;/param&gt;
+/// &lt;param name=&quot;pointIndexsToKeep&quot;&gt;The point index to keep.&lt;/param&gt;
+private static void DouglasPeuckerReduction(List&lt;Point&gt;
+points, Int32 firstPoint, Int32 lastPoint, Double tolerance,
+ref List&lt;Int32&gt; pointIndexsToKeep)
+{
+Double maxDistance = 0;
+Int32 indexFarthest = 0;
+for (Int32 index = firstPoint; index &lt; lastPoint; index++)
+{
+Double distance = PerpendicularDistance
+(points[firstPoint], points[lastPoint], points[index]);
+if (distance &gt; maxDistance)
+{
+maxDistance = distance;
+indexFarthest = index;
+}
+}
+if (maxDistance &gt; tolerance &amp;&amp; indexFarthest != 0)
+{
+//Add the largest point that exceeds the tolerance
+pointIndexsToKeep.Add(indexFarthest);
+DouglasPeuckerReduction(points, firstPoint,
+indexFarthest, tolerance, ref pointIndexsToKeep);
+DouglasPeuckerReduction(points, indexFarthest,
+lastPoint, tolerance, ref pointIndexsToKeep);
+}
+}
+/// &lt;summary&gt;
+/// The distance of a point from a line made from point1 and point2.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;pt1&quot;&gt;The PT1.&lt;/param&gt;
+/// &lt;param name=&quot;pt2&quot;&gt;The PT2.&lt;/param&gt;
+/// &lt;param name=&quot;p&quot;&gt;The p.&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public static Double PerpendicularDistance
+(Point Point1, Point Point2, Point Point)
+{
+//Area = |(1/2)(x1y2 + x2y3 + x3y1 - x2y1 - x3y2 - x1y3)|   *Area of triangle
+//Base = v((x1-x2)2+(x1-x2)2)                               *Base of Triangle*
+//Area = .5*Base*H                                          *Solve for height
+//Height = Area/.5/Base
+Double area = Math.Abs(.5 * (Point1.X * Point2.Y + Point2.X *
+Point.Y + Point.X * Point1.Y - Point2.X * Point1.Y - Point.X *
+Point2.Y - Point1.X * Point.Y));
+Double bottom = Math.Sqrt(Math.Pow(Point1.X - Point2.X, 2) +
+Math.Pow(Point1.Y - Point2.Y, 2));
+Double height = area / bottom * 2;
+return height;
+//Another option
+//Double A = Point.X - Point1.X;
+//Double B = Point.Y - Point1.Y;
+//Double C = Point2.X - Point1.X;
+//Double D = Point2.Y - Point1.Y;
+//Double dot = A * C + B * D;
+//Double len_sq = C * C + D * D;
+//Double param = dot / len_sq;
+//Double xx, yy;
+//if (param &lt; 0)
+//{
+//    xx = Point1.X;
+//    yy = Point1.Y;
+//}
+//else if (param &gt; 1)
+//{
+//    xx = Point2.X;
+//    yy = Point2.Y;
+//}
+//else
+//{
+//    xx = Point1.X + param * C;
+//    yy = Point1.Y + param * D;
+//}
+//Double d = DistanceBetweenOn2DPlane(Point, new Point(xx, yy));
+}
+</pre>
+<p>python 版的:</p>
+<pre class="literal-block">
+# pure-Python Douglas-Peucker line simplification/generalization
+#
+# this code was written by Schuyler Erle &lt;schuyler&#64;nocat.net&gt; and is
+#   made available in the public domain.
+#
+# the code was ported from a freely-licensed example at
+#   http://www.3dsoftware.com/Cartography/Programming/PolyLineReduction/
+#
+# the original page is no longer available, but is mirrored at
+#   http://www.mappinghacks.com/code/PolyLineReduction/
+&quot;&quot;&quot;
+&gt;&gt;&gt; line = [(0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,1),(0,0)]
+&gt;&gt;&gt; simplify_points(line, 1.0)
+[(0, 0), (2, 0), (2, 2), (0, 2), (0, 0)]
+&gt;&gt;&gt; line = [(0,0),(0.5,0.5),(1,0),(1.25,-0.25),(1.5,.5)]
+&gt;&gt;&gt; simplify_points(line, 0.25)
+[(0, 0), (0.5, 0.5), (1.25, -0.25), (1.5, 0.5)]
+&quot;&quot;&quot;
+import math
+def simplify_points (pts, tolerance):
+anchor  = 0
+floater = len(pts) - 1
+stack   = []
+keep    = set()
+stack.append((anchor, floater))
+while stack:
+anchor, floater = stack.pop()
+# initialize line segment
+if pts[floater] != pts[anchor]:
+anchorX = float(pts[floater][0] - pts[anchor][0])
+anchorY = float(pts[floater][1] - pts[anchor][1])
+seg_len = math.sqrt(anchorX ** 2 + anchorY ** 2)
+# get the unit vector
+anchorX /= seg_len
+anchorY /= seg_len
+else:
+anchorX = anchorY = seg_len = 0.0
+# inner loop:
+max_dist = 0.0
+farthest = anchor + 1
+for i in range(anchor + 1, floater):
+dist_to_seg = 0.0
+# compare to anchor
+vecX = float(pts[i][0] - pts[anchor][0])
+vecY = float(pts[i][1] - pts[anchor][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * anchorX + vecY * anchorY
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:
+# compare to floater
+vecX = float(pts[i][0] - pts[floater][0])
+vecY = float(pts[i][1] - pts[floater][1])
+seg_len = math.sqrt( vecX ** 2 + vecY ** 2 )
+# dot product:
+proj = vecX * (-anchorX) + vecY * (-anchorY)
+if proj &lt; 0.0:
+dist_to_seg = seg_len
+else:  # calculate perpendicular distance to line (pythagorean theorem):
+dist_to_seg = math.sqrt(abs(seg_len ** 2 - proj ** 2))
+if max_dist &lt; dist_to_seg:
+max_dist = dist_to_seg
+farthest = i
+if max_dist &lt;= tolerance: # use line segment
+keep.add(anchor)
+keep.add(floater)
+else:
+stack.append((anchor, farthest))
+stack.append((farthest, floater))
+keep = list(keep)
+keep.sort()
+return [pts[i] for i in keep]
+if __name__ == &quot;__main__&quot;:
+import doctest
+doctest.testmod()
+</pre>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用javascript方法给后台WCF服务直接post对象]]></title>
+    <link href="http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf.html"/>
+    <updated>2010-02-11T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/02/javascript-post-object-to-wcf</id>
+    <content type="html"><![CDATA[<p><p>一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。</p>
+<p>下面直接使用WCF特性做元数据的自定义转换</p>
+<p>定义元数据契约定义:</p>
+<pre class="literal-block">
+[DataContract(Name = &quot;person&quot;)]
+public class person
+{
+[DataMember(Name=&quot;Name&quot;)]
+public string Name
+{
+get;
+set;
+}
+[DataMember(Name = &quot;Age&quot;)]
+public int Age
+{
+get;
+set;
+}
+</pre>
+<p>服务描述:</p>
+<pre class="literal-block">
+[OperationContract]
+[WebInvoke(UriTemplate = &quot;/doit2&quot;,ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+bool testpost(person p);
+</pre>
+<p>注意使用Post方法，post的BodyStyle必须为Wrapped，否则不能正常取到反序列化后的对象。</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[查询oracle联合外键]]></title>
+    <link href="http://xiangjian.github.com/2009/11/oracle-key.html"/>
+    <updated>2009-11-01T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/11/oracle-key</id>
+    <content type="html"><![CDATA[<p><!-- 数据字典 --><br />
+<br />
+从oracle元数据字典中提取数据库表外键信息，写了一个查询，查询出的结果一个字段有多个外键，很困<br />
+惑？查看了我们使用的数据的特点才发现，数据库中多处使用的联合外键。我太土了，一直以来只知道有联合主键，不知道有联合外键这个东西，结果出问题了。查了oracle元数据字典，发现position是描述键序号的，不是数据精度，orz.<br />
+<br />
+改正后的语句:<br />
+<pre name="code" class="sql">select pk.table_name as pk_tab, ucc1.column_name pk_col,fk.table_name as fk_tab,ucc.column_name fk_col
+from all_constraints pk left join all_cons_columns ucc1 on pk.constraint_name=ucc1.constraint_name , all_constraints fk ,all_cons_columns ucc
+where fk.constraint_type = 'R'
+and fk.r_constraint_name = pk.constraint_name
+and fk.constraint_name= ucc.constraint_name
+and ucc1.position=ucc.position ----键序号
+and ucc.OWNER in ('用户名')</pre>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cheat sheet 介绍]]></title>
+    <link href="http://xiangjian.github.com/2009/10/cheat-sheet.html"/>
+    <updated>2009-10-04T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/10/cheat-sheet</id>
+    <content type="html"><![CDATA[<p><!-- 介绍大家经常见到Cheat sheet -->
+<div class="section" id="id1">
+<h1>cheat sheet 简介</h1>
+<p>什么是cheat sheet:</p>
+<blockquote>
+cheat sheet"原来是出自考试作弊，但又不完全是作弊："有些考试时可以带一张小抄, 通常老师会规定它的大小, 或是单面双面等等, 至于字要多小那是你家的事情. 这张小抄就叫 cheat sheet. (故名思议, 作弊用纸) 但是它是合法的.</blockquote>
+<p>cheat sheet主要特点是短小精悍,尽量在一张纸上展示更多有用的信息.对于程序员来说把不太记得住的东西写到一张cheat sheet上,一眼就可以看到,要用的时候先看看Cheat Sheet,不用一开始就去翻文档上网搜索,还是不清楚再去翻文档.</p>
+<p>如下图所示:</p>
+<p><img alt="cheatsheet" src="http://lh4.ggpht.com/_TqPdHmAEwTM/SrtuWLVQZlI/AAAAAAAAFsA/BdsjHHKDUVQ/jquery-visual-cheat-sheet.jpg" /></p>
+</div>
+<div class="section" id="id2">
+<h1>如何使用cheat sheet</h1>
+<p>记得当时YUI发布的时候会有一个制作精美的API Cheat sheet,每一个组件的API文档只在一个页面上,方便我们去快速查找.</p>
+<p>那么如何使用cheat sheet 文件呢,一般情况下不需要我们去制作,有很多已经制作好的Cheat sheet文档,<br />
+我们下载然后打印,把纸贴到桌子上就可以了.</p>
+<dl class="docutils">
+<dt>现在列几个常用的Cheat sheet资源.</dt>
+<dd><ol class="first last arabic simple">
+<li>下载常用的cheat sheet, <a class="reference external" href="http://www.cheat-sheets.org/">cheat-sheets.org</a></li>
+<li><a class="reference external" href="http://www.addedbytes.com/cheat-sheets/">又一cheat-sheets地址</a></li>
+<li><a class="reference external" href="http://www.rajtilak.net/2009/03/50-useful-cheat-sheets-for-designers.html">设计人员的50个cheat-sheets</a></li>
+<li><a class="reference external" href="http://www.webresourcesdepot.com/70-practical-cheat-sheats-for-web-designers-and-developers/">开发人员的70个实用cheat_sheet</a></li>
+</ol>
+</dd>
+</dl>
+<!-- 图片链接,在下面放图片链接,统一管理 -->
+<!-- url地址 -->
+</div>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在firefox中你最想要的5新特性]]></title>
+    <link href="http://xiangjian.github.com/2009/09/new-in-firefox.html"/>
+    <updated>2009-09-12T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/09/new-in-firefox</id>
+    <content type="html"><![CDATA[<p>lifehacker近期整理出了一个5个你最想要的新特性,看看firefox用户希望firefox会有什么新的特性:
+<ol><li>更好的内存管理.现在使用firefox一次打开10来个页面基本是很常见的现象,但是内存占用也很惊人,显然现在的机器内存都比较大,firefox动辄上G的内存使用总是让人不爽.</li><li>firefox同步功能可以同步firefox的一切数据.这样我们在不同的机器上,重装系统后,都可以使用自己原来的东西,不仅仅是书签.</li><li>插件的身后兼容,这个问题一直都有.firefox升级了,有些插件就不能使用了,如果作者没有提供更新,就用不了了.</li><li>一个诊断插件的工具.给用户提供一个插件诊断工具,用户可以找出一些插件错误,什么插件拖慢了系统的速度.</li><li>标签隔离,类似于google chrome.在浏览网页的时候一个页面假死,别的页面也看不了,这个很影响用户体验.google chrome这一点就做得很好,标签隔离,一个死掉其余不受影响.</li></ol>firefox看来还有不少工作要做
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

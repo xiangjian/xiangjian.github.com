@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>常用文件的MIME类型，取自IIS６ - 鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="从iis 6中提取的mime类型列表，写程序时可能会遇到 .asx,video/x-ms-asf
+.xml,text/xml
+.tsv,text/tab-separated-values
+.ra,audio/x-pn-realaudio
+.sv4crc,application/x-sv4crc
+. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/2007/06/mime-type-from-iis%EF%BC%96.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">常用文件的MIME类型，取自IIS６</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-07T00:00:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><p>从iis 6中提取的mime类型列表，写程序时可能会遇到</p>
+<ul class="simple">
+<li>.asx,video/x-ms-asf</li>
+<li>.xml,text/xml</li>
+<li>.tsv,text/tab-separated-values</li>
+<li>.ra,audio/x-pn-realaudio</li>
+<li>.sv4crc,application/x-sv4crc</li>
+<li>.spc,application/x-pkcs7-certificates</li>
+<li>.pmc,application/x-perfmon</li>
+<li>.lit,application/x-ms-reader</li>
+<li>.crd,application/x-mscardfile</li>
+<li>.isp,application/x-internet-signup</li>
+<li>.wmlsc,application/vnd.wap.wmlscriptc</li>
+<li>.vst,application/vnd.visio</li>
+<li>.ttf,application/octet-stream</li>
+<li>.pfm,application/octet-stream</li>
+<li>.csv,application/octet-stream</li>
+<li>.aaf,application/octet-stream</li>
+<li>.hta,application/hta</li>
+<li>.atom,application/atom+xml</li>
+<li>.323,text/h323</li>
+<li>.mhtml,message/rfc822</li>
+<li>.midi,audio/mid</li>
+<li>.p7r,application/x-pkcs7-certreqresp</li>
+<li>.mny,application/x-msmoney</li>
+<li>.clp,application/x-msclip</li>
+<li>.vsd,application/vnd.visio</li>
+<li>.lpk,application/octet-stream</li>
+<li>.bin,application/octet-stream</li>
+<li>.x,application/directx</li>
+<li>.wvx,video/x-ms-wvx</li>
+<li>.vcf,text/x-vcard</li>
+<li>.htc,text/x-component</li>
+<li>.htt,text/webviewhtml</li>
+<li>.h,text/plain</li>
+<li>.mht,message/rfc822</li>
+<li>.mid,audio/mid</li>
+<li>.p7b,application/x-pkcs7-certificates</li>
+<li>.gz,application/x-gzip</li>
+<li>.dvi,application/x-dvi</li>
+<li>.cpio,application/x-cpio</li>
+<li>.vdx,application/vnd.visio</li>
+<li>.xlm,application/vnd.ms-excel</li>
+<li>.fdf,application/vnd.fdf</li>
+<li>.setreg,application/set-registration-initiation</li>
+<li>.eps,application/postscript</li>
+<li>.p7s,application/pkcs7-signature</li>
+<li>.toc,application/octet-stream</li>
+<li>.mdp,application/octet-stream</li>
+<li>.ics,application/octet-stream</li>
+<li>.chm,application/octet-stream</li>
+<li>.asi,application/octet-stream</li>
+<li>.afm,application/octet-stream</li>
+<li>.evy,application/envoy</li>
+<li>.wmp,video/x-ms-wmp</li>
+<li>.qt,video/quicktime</li>
+<li>.mpv2,video/mpeg</li>
+<li>.xslt,text/xml</li>
+<li>.etx,text/x-setext</li>
+<li>.cod,image/cis-cod</li>
+<li>.snd,audio/basic</li>
+<li>.au,audio/basic</li>
+<li>.man,application/x-troff-man</li>
+<li>.qtl,application/x-quicktimeplayer</li>
+<li>.pmw,application/x-perfmon</li>
+<li>.class,application/x-java-applet</li>
+<li>.iii,application/x-iphone</li>
+<li>.csh,application/x-csh</li>
+<li>.z,application/x-compress</li>
+<li>.vtx,application/vnd.visio</li>
+<li>.vsw,application/vnd.visio</li>
+<li>.wps,application/vnd.ms-works</li>
+<li>.ps,application/postscript</li>
+<li>.p7c,application/pkcs7-mime</li>
+<li>.thn,application/octet-stream</li>
+<li>.mso,application/octet-stream</li>
+<li>.dot,application/msword</li>
+<li>.doc,application/msword</li>
+<li>.sgml,text/sgml</li>
+<li>.nws,message/rfc822</li>
+<li>.pbm,image/x-portable-bitmap</li>
+<li>.ief,image/ief</li>
+<li>.wav,audio/wav</li>
+<li>.texi,application/x-texinfo</li>
+<li>.mvb,application/x-msmediaview</li>
+<li>.hdf,application/x-hdf</li>
+<li>.vsx,application/vnd.visio</li>
+<li>.psm,application/octet-stream</li>
+<li>.java,application/octet-stream</li>
+<li>.eot,application/octet-stream</li>
+<li>.jar,application/java-archive</li>
+<li>.mpeg,video/mpeg</li>
+<li>.xsf,text/xml</li>
+<li>.map,text/plain</li>
+<li>.uls,text/iuls</li>
+<li>.rf,image/vnd.rn-realflash</li>
+<li>.m3u,audio/x-mpegurl</li>
+<li>.wma,audio/x-ms-wma</li>
+<li>.aifc,audio/aiff</li>
+<li>.mdb,application/x-msaccess</li>
+<li>.mvc,application/x-miva-compiled</li>
+<li>.stl,application/vnd.ms-pki.stl</li>
+<li>.setpay,application/set-payment-initiation</li>
+<li>.prm,application/octet-stream</li>
+<li>.mix,application/octet-stream</li>
+<li>.lzh,application/octet-stream</li>
+<li>.hhk,application/octet-stream</li>
+<li>.xaf,x-world/x-vrml</li>
+<li>.flr,x-world/x-vrml</li>
+<li>.IVF,video/x-ivf</li>
+<li>.cnf,text/plain</li>
+<li>.asm,text/plain</li>
+<li>.tiff,image/tiff</li>
+<li>.wax,audio/x-ms-wax</li>
+<li>.ms,application/x-troff-ms</li>
+<li>.tcl,application/x-tcl</li>
+<li>.shar,application/x-shar</li>
+<li>.sh,application/x-sh</li>
+<li>.nc,application/x-netcdf</li>
+<li>.hlp,application/winhlp</li>
+<li>.oda,application/oda</li>
+<li>.pfb,application/octet-stream</li>
+<li>.fla,application/octet-stream</li>
+<li>.wm,video/x-ms-wm</li>
+<li>.rgb,image/x-rgb</li>
+<li>.ppm,image/x-portable-pixmap</li>
+<li>.ram,audio/x-pn-realaudio</li>
+<li>.sit,application/x-stuffit</li>
+<li>.dir,application/x-director</li>
+<li>.mpp,application/vnd.ms-project</li>
+<li>.xla,application/vnd.ms-excel</li>
+<li>.ssm,application/streamingmedia</li>
+<li>.axs,application/olescript</li>
+<li>.ods,application/oleobject</li>
+<li>.psp,application/octet-stream</li>
+<li>.jpb,application/octet-stream</li>
+<li>.wrz,x-world/x-vrml</li>
+<li>.m1v,video/mpeg</li>
+<li>.mno,text/xml</li>
+<li>.cmx,image/x-cmx</li>
+<li>.jpeg,image/jpeg</li>
+<li>.dib,image/bmp</li>
+<li>.rmi,audio/mid</li>
+<li>.aiff,audio/aiff</li>
+<li>.wmd,application/x-ms-wmd</li>
+<li>.wri,application/x-mswrite</li>
+<li>.pub,application/x-mspublisher</li>
+<li>.ins,application/x-internet-signup</li>
+<li>.wks,application/vnd.ms-works</li>
+<li>.xls,application/vnd.ms-excel</li>
+<li>.ai,application/postscript</li>
+<li>.crl,application/pkix-crl</li>
+<li>.qxd,application/octet-stream</li>
+<li>.dwp,application/octet-stream</li>
+<li>.xof,x-world/x-vrml</li>
+<li>.wmv,video/x-ms-wmv</li>
+<li>.nsc,video/x-ms-asf</li>
+<li>.mpa,video/mpeg</li>
+<li>.pnm,image/x-portable-anymap</li>
+<li>.rpm,audio/x-pn-realaudio-plugin</li>
+<li>.aif,audio/x-aiff</li>
+<li>.me,application/x-troff-me</li>
+<li>.pml,application/x-perfmon</li>
+<li>.trm,application/x-msterminal</li>
+<li>.m13,application/x-msmediaview</li>
+<li>.js,application/x-javascript</li>
+<li>.dxr,application/x-director</li>
+<li>.xlt,application/vnd.ms-excel</li>
+<li>.xlc,application/vnd.ms-excel</li>
+<li>.p10,application/pkcs10</li>
+<li>.smi,application/octet-stream</li>
+<li>.sea,application/octet-stream</li>
+<li>.hqx,application/mac-binhex40</li>
+<li>.spl,application/futuresplash</li>
+<li>.movie,video/x-sgi-movie</li>
+<li>.lsf,video/x-la-asf</li>
+<li>.txt,text/plain</li>
+<li>.jfif,image/pjpeg</li>
+<li>.jpe,image/jpeg</li>
+<li>.zip,application/x-zip-compressed</li>
+<li>.wmf,application/x-msmetafile</li>
+<li>.m14,application/x-msmediaview</li>
+<li>.latex,application/x-latex</li>
+<li>.wcm,application/vnd.ms-works</li>
+<li>.hhp,application/octet-stream</li>
+<li>.aca,application/octet-stream</li>
+<li>.jcz,application/liquidmotion</li>
+<li>.wrl,x-world/x-vrml</li>
+<li>.wmx,video/x-ms-wmx</li>
+<li>.asr,video/x-ms-asf</li>
+<li>.lsx,video/x-la-asf</li>
+<li>.xsl,text/xml</li>
+<li>.html,text/html</li>
+<li>.tif,image/tiff</li>
+<li>.der,application/x-x509-ca-cert</li>
+<li>.pfx,application/x-pkcs12</li>
+<li>.p12,application/x-pkcs12</li>
+<li>.cur,application/octet-stream</li>
+<li>.hdml,text/x-hdml</li>
+<li>.htm,text/html</li>
+<li>.xbm,image/x-xbitmap</li>
+<li>.jpg,image/jpeg</li>
+<li>.texinfo,application/x-texinfo</li>
+<li>.xlw,application/vnd.ms-excel</li>
+<li>.rm,application/vnd.rn-realmedia</li>
+<li>.pdf,application/pdf</li>
+<li>.rar,application/octet-stream</li>
+<li>.psd,application/octet-stream</li>
+<li>.inf,application/octet-stream</li>
+<li>.emz,application/octet-stream</li>
+<li>.dsp,application/octet-stream</li>
+<li>.jck,application/liquidmotion</li>
+<li>.mpe,video/mpeg</li>
+<li>.mp2,video/mpeg</li>
+<li>.sct,text/scriptlet</li>
+<li>.ras,image/x-cmu-raster</li>
+<li>.swf,application/x-shockwave-flash</li>
+<li>.wmz,application/x-ms-wmz</li>
+<li>.gtar,application/x-gtar</li>
+<li>.dcr,application/x-director</li>
+<li>.pps,application/vnd.ms-pps</li>
+<li>.p7m,application/pkcs7-mime</li>
+<li>.xsn,application/octet-stream</li>
+<li>.ocx,application/octet-stream</li>
+<li>.mov,video/quicktime</li>
+<li>.wmls,text/vnd.wap.wmlscript</li>
+<li>.cpp,text/plain</li>
+<li>.c,text/plain</li>
+<li>.bas,text/plain</li>
+<li>.css,text/css</li>
+<li>.art,image/x-jg</li>
+<li>.mp3,audio/mpeg</li>
+<li>.t,application/x-troff</li>
+<li>.roff,application/x-troff</li>
+<li>.tar,application/x-tar</li>
+<li>.hhc,application/x-oleobject</li>
+<li>.scd,application/x-msschedule</li>
+<li>.pko,application/vnd.ms-pki.pko</li>
+<li>.sst,application/vnd.ms-pki.certstore</li>
+<li>.ppt,application/vnd.ms-powerpoint</li>
+<li>.u32,application/octet-stream</li>
+<li>.pcx,application/octet-stream</li>
+<li>.msi,application/octet-stream</li>
+<li>.exe,application/octet-stream</li>
+<li>.asd,application/octet-stream</li>
+<li>.fif,application/fractals</li>
+<li>.mpg,video/mpeg</li>
+<li>.vml,text/xml</li>
+<li>.xdr,text/plain</li>
+<li>.vcs,text/plain</li>
+<li>.hxt,text/html</li>
+<li>.eml,message/rfc822</li>
+<li>.xpm,image/x-xpixmap</li>
+<li>.ico,image/x-icon</li>
+<li>.gif,image/gif</li>
+<li>.dwf,drawing/x-dwf</li>
+<li>.src,application/x-wais-source</li>
+<li>.tr,application/x-troff</li>
+<li>.pmr,application/x-perfmon</li>
+<li>.pma,application/x-perfmon</li>
+<li>.dll,application/x-msdownload</li>
+<li>.bcpio,application/x-bcpio</li>
+<li>.wmlc,application/vnd.wap.wmlc</li>
+<li>.wdb,application/vnd.ms-works</li>
+<li>.pot,application/vnd.ms-powerpoint</li>
+<li>.rtf,application/rtf</li>
+<li>.prf,application/pics-rules</li>
+<li>.snp,application/octet-stream</li>
+<li>.cab,application/octet-stream</li>
+<li>.avi,video/x-msvideo</li>
+<li>.asf,video/x-ms-asf</li>
+<li>.dtd,text/xml</li>
+<li>.wml,text/vnd.wap.wml</li>
+<li>.vbs,text/vbscript</li>
+<li>.rtx,text/richtext</li>
+<li>.dlm,text/dlm</li>
+<li>.xwd,image/x-xwindowdump</li>
+<li>.pgm,image/x-portable-graymap</li>
+<li>.bmp,image/bmp</li>
+<li>.crt,application/x-x509-ca-cert</li>
+<li>.ustar,application/x-ustar</li>
+<li>.tex,application/x-tex</li>
+<li>.sv4cpio,application/x-sv4cpio</li>
+<li>.tgz,application/x-compressed</li>
+<li>.cdf,application/x-cdf</li>
+<li>.vss,application/vnd.visio</li>
+<li>.cat,application/vnd.ms-pki.seccat</li>
+<li>.prx,application/octet-stream</li>
+<li>.pcz,application/octet-stream</li>
+<li>.acx,application/internet-property-stream</li>
+<li>.webpnp,application/octet-stream</li>
+<li>.wsdl,text/xml</li>
+<li>.disco,text/xml</li>
+<li>.xsd,text/xml</li>
+<li>.wbmp,image/vnd.wap.wbmp</li>
+<li>.png,image/png</li>
+<li>.pnz,image/png</li>
+<li>.smd,audio/x-smd</li>
+<li>.smz,audio/x-smd</li>
+<li>.smx,audio/x-smd</li>
+<li>.mmf,application/x-smaf</li>
+<li>.application,application/x-ms-application</li>
+<li>.manifest,application/x-ms-manifest</li>
+<li>.deploy,application/octet-stream</li>
+<li>.mwf,application/x-mwf</li>
+<li>.mlf,application/x-mlf</li>
+<li>.mdf,application/x-mdf</li>
+<li>.mwx,application/x-mwx</li>
+</ul>
+</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">xiangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-07T00:00:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/开发/'>开发</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/05/autoit-startup.html" title="Previous Post: 使用Autoit脚本做开机程序自动运行脚本">&laquo; 使用Autoit脚本做开机程序自动运行脚本</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/10/javascript-null-judge.html" title="next Post: javascript几种判断空值">javascript几种判断空值 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiangjian.github.com/2007/06/mime-type-from-iis%EF%BC%96.html';
+        var disqus_url = 'http://xiangjian.github.com/2007/06/mime-type-from-iis%EF%BC%96.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

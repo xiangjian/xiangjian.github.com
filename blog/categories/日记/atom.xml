@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 日记 | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/日记/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[更新]]></title>
+    <link href="http://xiangjian.github.com/2010/07/update.html"/>
+    <updated>2010-07-25T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/07/update</id>
+    <content type="html"><![CDATA[<p><p>好久没有更新了，上次更新还是4月份从青海回来。主要这段时间工作太忙，基本上都在外面出差，生活没有规律。现在有点问题，鸭梨很大，体重保持在140，要想办法减，肚子已经有点明显胖，原来坚持了几年的跑步也中断了。这些好的习惯要逐渐再拾起来。</p>
+<p>blog我名字改了叫作"鉴行志"，鉴：就是镜子，希望这个是我的影子，能够看到我学习生活中的东西，李世民有一句名言就有这个字。其实我原来名字也是用这个字，小学和初中也是这个字，后来不知道怎么就改为建了。行：是我的辈份，一般不用在名字中。这个就是我取这个blog名字的原因。</p>
+<p>总结一下这段时间的工作吧：</p>
+<p>累：前段时间一直到各个油田部署，基本上总是在加班，还没有找到一种可以让自己工作轻松点的方法。路还很长，我还要继续摸索。</p>
+<p>现在oracle spatial和arcgis sde结合使用已经有一些心得了。这个不是oracle spatial好还是arcgis sde好的问题，我也无意卷入这两种观点的论战。那是这两种公司售前做的事情，不论那一种方案的性能好，哪一种方案支持的数据类型多，这种争论毫无意义。重要的是这明白这两种方案的优缺点，具体问题具体分析。现在我做的项目中推荐使用oarcle spatial做存储，并在sde中注册。oracle spatial是在DB层做数据源整合应该是最实用的方案（有时间会专门写一篇说明）。</p>
+<p>Google地图的使用，现在可以下载google地图，在项目中使用，这样就不用太关注基础数据了，基础数据使用google地图数据完全够了。我们现在做GIS的人太少，现在人手可以把注意力放到做专业数据的应用上。尽快能在GIS应用上做出一定的成果。</p>
+<p>在数据库层在做数据缓存功能，目前在项目中使用memcache做了数据缓存，在数据库性能不变情况下改善数据访问能力。当前还不完善，Key-Value库在项目中的应用应该会多一些，也是将来应用的一个方向。</p>
+<p>集中主意力，现在事情太杂，太分散。精力很难集中，事情反而没有做多少，还经常感觉事情太多。上班时间要少开聊天工具，把精力专注在工作上。尽量在上班时间内完成工作。决不拖拉。</p>
+<p>昨天整了下vps，还比较顺利。google adsense也申请通过了，在我的vps上架设了dabr，可以放心上twitter了。在vps上安装还是有点折腾的，linux 系统某些方面还是不错的。</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[新blog开始使用了]]></title>
+    <link href="http://xiangjian.github.com/2010/01/blog.html"/>
+    <updated>2010-01-10T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/01/blog</id>
+    <content type="html"><![CDATA[<p><p>原来blog放在blogger上托管，google的服务，什么都不用管。后来由于某些不可抗拒的原因经常不能访问。一个月前买了xiangjian.info这个域名，通过朋友的VPS 反向代理可以看到blog,也还有一点问题。</p><p>前几天信用卡办下来了，通过了paypal的认证。买了ramhost.us 家的vps.2.99美元一个月，80M的内存。</p><p>周末在调试，使用的操作系统是archlinux ,很好用。blog平台使用movable type 5（前天发布的），数据库使用sqlite(不使用mysql节省内存，sqlite的性能并不差对于这个blog够用)。网站服务器使用nginx +lighttpd(mt使用cgi,nginx不支持)。</p><p>blogspot上的东西还没有导入过来。只有等下周再做了。</p><p>----------------------</p></p>
+
+
+
+
+<p><!--more-->
+<p>文章已经导入过来了，还不错</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开通华夏银行支付宝卡通]]></title>
+    <link href="http://xiangjian.github.com/2009/10/hxb-alipay.html"/>
+    <updated>2009-10-08T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/10/hxb-alipay</id>
+    <content type="html"><![CDATA[<p><p>华夏银行支持支付宝的支付宝卡通，支付宝可以直接使用银行卡里的钱支付了。原来需要两步支付，现在只需要一步就可以解决了。网上开通，今天去改的限额。</p><p><img alt="alpayhxb" src="http://farm3.static.flickr.com/2536/3991958975_195d69ba9b.jpg" /></p><p>优点：</p><ul class="simple"><li>不用到网上银行去支付了</li>
+<li>不一定要使用IE了，只要支持支付的浏览器可以网上支付。</li>
+<li>这个是心理原因，一直使用华夏银行，华夏银行每天取款第一次没有手续费。</li>
+<li>华夏银行什么时候去人都不多，不用排队。</li>
+</ul><p>缺点：</p><ul class="simple"><li>不能使用信用卡，信用卡网上购物可以透支</li>
+<li>华夏银行的网点太少了，太难找网点。</li>
+</ul>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[读书]人一生要养成的五十个习惯]]></title>
+    <link href="http://xiangjian.github.com/2009/01/15-habit.html"/>
+    <updated>2009-01-15T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/01/15-habit</id>
+    <content type="html"><![CDATA[<p>前年在西单图书城买，以前没有怎么看，今天整理东西翻出来了。浏览一下书的目录，抄一下书的目录吧。
+<ol><li>相信你自己</li><li>在行动前设定目标</li><li>比别人多做一点</li><li>不给思维栓上辔头</li><li>不浪费每一分钱</li><li>珍惜每一分钟</li><li>换个角度看问题</li><li>别怕犯错</li><li>独立自主的习惯</li><li>控制自己的情绪</li><li>诚信待人</li><li>信守你的承诺</li><li>正确对待压力</li><li>不满足于现状</li><li>勇于承认错误</li><li>每天自省五分钟</li><li>不轻言放弃</li><li>善于借助他人的力量</li><li>耐得住寂寞</li><li>勇于说"不"</li><li>笑对失败</li><li>锻造勇敢的心</li><li>善于与人合作</li><li>每天学一点东西</li><li>马上行动</li><li>珍惜你所拥有的</li><li>不要忽视细节</li><li>不要自我设限</li><li>学会休息</li><li>与人为善</li><li>善于发现别人的优点</li><li>赞美的习惯</li><li>给别人说话的机会</li><li>微笑的习惯</li><li>注意仪表</li><li>关于发挥语言的作用</li><li>学会感恩</li><li>不找任何借口</li><li>不陷入忧虑的沼泽地</li><li>不要为小事发愁
+</li><li>原谅他人的过错</li><li>不要太自负</li><li>专注工作</li><li>遵守时间</li><li>在任何时候都留有余地</li><li>切忌喋喋不休</li><li>多用"我们这个词"</li><li>主动与老板沟通</li><li>不谈论隐私</li><li>对别人的意见要尊重</li>
+</ol>
+看的时候不太意，再看看，看来我要有很多东西要注意了，这么大了，无论哪一方面取得好成绩，习惯不好，要想成功一定要养成好习惯。
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[blogger被GOOGLE锁定了]]></title>
+    <link href="http://xiangjian.github.com/2009/01/google-lock.html"/>
+    <updated>2009-01-14T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/01/google-lock</id>
+    <content type="html"><![CDATA[<p>今天一早收到邮件，Google说我的blog是垃圾博客，要申请解锁。我就不明白了，这个博客申请很久了，06年申请的，只是一直没有怎么更新，不知道GOOGLE是怎么判断我这个是垃圾blogger,虽然没有什么人看，仅仅是我的一个记录而已。已经申请解锁了，不知道能不能解锁，现在blogger也不能导出，如果给我删除了，那就亏大了。昨天申请Adsense也被拒了，看来是和GOOGLE无缘了。<br />
+上网搜索了一下，可能是有人在看我的blog的时候点了标记，google就锁定了我的blogger，看来在blogger中去掉上面的状态栏很有必要。<br />
+还好，下午就已经去掉了锁定
+<div class="zemanta-pixie" style="margin-top:10px;height:15px"><a class="zemanta-pixie-a" href="http://reblog.zemanta.com/zemified/057ecd26-ce0e-48dd-9efc-d6a53feeec9e/" title="Reblog this post [with Zemanta]"><img class="zemanta-pixie-img" src="http://img.zemanta.com/reblog_e.png?x-id=057ecd26-ce0e-48dd-9efc-d6a53feeec9e" alt="Reblog this post [with Zemanta]" style="border:none;float:right" /></a><span class="zem-script more-related pretty-attribution"><script type="text/javascript" src="http://static.zemanta.com/readside/loader.js" defer="defer"></script></span></div>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>翻译－探索使用Yahoo!UI创建跨浏览器的WEB 2.0布局 - 鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="探索使用Yahoo!UI创建跨浏览器的WEB 2.0布局
+Web 2.0 很多公司倾向于创建WEB用户界面，就像桌面应用程序。一个非常好的&#8221;Web 2.0&#8221;的例子是最新的Yahoo!Mail。在这篇文章中我将会去解释与此相关的想法， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/2007/01/use-yui-for-web2-0-layout.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">翻译－探索使用Yahoo!UI创建跨浏览器的WEB 2.0布局</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-13T00:00:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><h2>探索使用Yahoo!UI创建跨浏览器的WEB 2.0布局</h2>
+<p>Web 2.0 很多公司倾向于创建WEB用户界面，就像桌面应用程序。一个非常好的&#8221;Web 2.0&#8221;的例子是最新的Yahoo!Mail。在这篇文章中我将会去解释与此相关的想法，和共享一些开发中的测试使用新的布局组件创建用户界面。
+</p>
+<h4>边界布局</h4>
+<p>几乎所有的桌面应用程序和许多这样的新WEB界面都是从一个通用的布局（甚至并不了解）-边界布局。一个边界布局由5个区域构成：北区，南区，东区，西区，中区。所有这些区域并不是必需的。举个例子，在我的博客中，有北区，西区，和中区，但是没有南区和东欧。边界布局也可以用来嵌套用来达到所有想要的布局效果</p>
+<h4>错误的入门</h4>
+<p></p>
+<h4>需求</h4>
+<p>我从错误中吸取了教训，决定使用JAVASCRIPT创建一个可重用的布局管理叫做BorderLayout。下面是要满足的条件：
+<li>应该可以跨浏览器&#8211;避免不可接受JavaScript 错误和矛盾</li>
+<li>应该在不同的浏览器中有一致的显示&#8211;</li>
+<li>应该速度很快&#8211;初始化布局和下一步的布局必须快速传输到用户-就像桌面布局管理</li>
+<li>应该支持嵌套布局&#8211;为了获得真实有益的BorderLayouts，他应该可以去嵌套</li>
+<li>应该能支持已经存在的HTML</li></p>
+<h4>页面内的布局</h4>
+<p>布局可以应用到页面中body元素或子元素。因此它并不是能控制所有。你能使用它去控制页面中任何容器元素。在下面所有的例子中，它就简单的应用到主页面的body</p>
+<h4>测试1-自适应导航</h4>
+<p>通用基础的测试。一个自适应的左列(西区)和一个滚动中列。这个很简单也可以很容易用CSS实现。</p>
+<h4>测试2-自适应导航，头部和底部</h4>
+<p>这也是一个没有想象力的布局。它包含了一样的自适应的左列(西区)，一个滚动的中列，添加了一个头部和底部。</p>
+<h4>测试3-自适应的可拆分和折叠的导航和头部</h4>
+<p>现在我们开始来做.我们有一个自适应的头部,一个自适应的左列和滚动的中列.我们也可以加入一个标题,一个分隔条和一个可折叠的功能到左列导航上.不像myblog.js和forum.js代码,加入一个分隔条和加入折叠功能就像设置属性一样简单
+<code>
+var layout = new YAHOO.ext.BorderLayout(document.body, {<br />
+north: {<br />
+split:false,<br />
+initialSize: 35<br />
+},<br />
+west: {<br />
+split:true,   <-- Can it get any easier?<br />
+initialSize: 200,<br />
+titlebar: true,<br />
+collapsible: true,  <-- Collapsible<br />
+minSize: 100,<br />
+maxSize: 400<br />
+},<br />
+center: {<br />
+autoScroll: true<br />
+}
+});<br />
+layout.beginUpdate();<br />
+layout.add('north', new YAHOO.ext.ContentPanel('header', {fitToFrame:true}));<br />
+layout.add('west', new YAHOO.ext.ContentPanel('nav', {title: 'Navigation', fitToFrame:true}));<br />
+layout.add('center', new YAHOO.ext.ContentPanel('content'));<br />
+layout.endUpdate();
+</code>
+尽管我在JavaScript使用&#8221;initialSize&#8221;设置了区域初始的尺寸,你也可以使用标准的CSS设置这些值.
+</p>
+<p>通过事件布局管理自动更新用户的界面.使用beginUpdate()和endUpdate()我们能告诉布局管理我要做的一系列更新.
+</p>
+<p>
+fiToFrame属性告诉布局管理这些内容可以调整到自适应的可利用的区域.
+</p>
+<h4>测试4-嵌套的布局创建水平和垂直的分隔条和打叠能力</h4>
+<p>这个非常像phpBB的界面,但是没有复杂的JavaScript事件和控制代码.</p>
+<h4>测试5-带有分隔条和折叠功能的左右列</h4>
+<br />
+<h4>高级特征</h4>
+var layout = new YAHOO.ext.BorderLayout(document.body, {<br />
+north: {<br />
+split:false,<br />
+initialSize: 35<br />
+},<br />
+west: {<br />
+split:true,   <-- Can it get any easier?<br />
+initialSize: 200,<br />
+titlebar: true,<br />
+collapsible: true,  <-- Collapsible<br />
+minSize: 100,<br />
+maxSize: 400<br />
+},<br />
+center: {<br />
+autoScroll: true<br />
+}
+});<br />
+layout.beginUpdate();<br />
+layout.add(&#8216;north&#8217;, new YAHOO.ext.ContentPanel(&#8216;header&#8217;, {fitToFrame:true}));<br />
+layout.add(&#8216;west&#8217;, new YAHOO.ext.ContentPanel(&#8216;nav&#8217;, {title: &#8216;Navigation&#8217;, fitToFrame:true}));<br />
+layout.add(&#8216;center&#8217;, new YAHOO.ext.ContentPanel(&#8216;content&#8217;));<br />
+layout.endUpdate();
+<p>前面所有的例子我展示了基本的BorderLayout功能.这些例子还不够强大.现在我使用布局管理来做一些有高级特性的实例.</p>
+<li>自动的标签页-如果你加入了不止一个面板到一个区域中,它能创建和管理标签页标签标识可以在顶部和底部(默认)</li>
+<li>动态的面板-面板可以动态的添加,关闭和隐藏</li>
+<li>自动调整内容的大小-子布局元素可以自适应的利用空间</li>
+<li>网格面板-网格可以自动控制大小和更新数据</li>
+<li>自定义面板-创建自定义的面板,这需要特别的布局</li>
+<p></p>
+<h4>测试6-更多</h4>
+<p>
+对于一个JavaScript开发的新手来说,去创建这样的用户界面是困难的
+<code>
+var layout = new YAHOO.ext.BorderLayout(document.body, {<br />
+hideOnLayout: true,<br />
+north: {<br />
+initialSize: 25,<br />
+titlebar: false<br />
+},<br />
+west: {<br />
+split:true,<br />
+initialSize: 200,<br />
+minSize: 175,<br />
+maxSize: 400,<br />
+titlebar: true,<br />
+collapsible: true<br />
+},<br />
+east: {<br />
+split:true,<br />
+initialSize: 202,<br />
+minSize: 175,<br />
+maxSize: 400,<br />
+titlebar: true,<br />
+collapsible: true<br />
+},<br />
+south: {<br />
+split:true,<br />
+initialSize: 100,<br />
+minSize: 100,<br />
+maxSize: 200,<br />
+titlebar: true,<br />
+collapsible: true<br />
+},<br />
+center: {<br />
+titlebar: true,<br />
+autoScroll:true<br />
+}
+});<br />
+layout.beginUpdate();<br />
+layout.add('north', new YAHOO.ext.ContentPanel('north', 'North'));<br />
+layout.add('south', new YAHOO.ext.ContentPanel('south', {title: 'South', closable: true}));<br />
+layout.add('west', new YAHOO.ext.ContentPanel('west', {title: 'West'}));<br />
+layout.add('east', new YAHOO.ext.ContentPanel('autoTabs', {title: 'Auto Tabs', closable: true}));<br />
+layout.add('east', new YAHOO.ext.GridPanel(propsGrid, {title: 'Properties', closable: true}));<br />
+layout.add('center', new YAHOO.ext.ContentPanel('center1', {title: 'Close Me', closable: true}));<br />
+layout.add('center', new YAHOO.ext.ContentPanel('center2', {title: 'Center Panel', closable: false}));<br />
+layout.getRegion('center').showPanel('center1');<br />
+layout.getRegion('west').hide();<br />
+layout.endUpdate();
+</code>
+对于这个例子,我也可以创建一个属性编辑器就像Visual Studio中使用grid.它在右边(东区)的面板内.
+</p>
+<p>
+一个最困难的问题是新的布局管理接下来的例子.我仍然认为它不一定正确.还有许多特性我没有示范.我计划创建一个完备的demo应用当有新布局管理的时候.
+</p>
+<h4>下一步</h4>
+<p>
+将会更全面的支持面板的拖放和停靠.我已经有代码去完成这些,但是我一种方法去支持面板停靠到一个区块并不是立即可见.这是一个小问题,我想我能够在新版本中完成
+</p>
+<h4>已知的问题</h4>
+<p>有一些问题需要去</p>
+</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">xiangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-13T00:00:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/javascript/'>javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2006/12/mail-checker-software.html" title="Previous Post: 邮件检测工具集合（网站）">&laquo; 邮件检测工具集合（网站）</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/03/yui-host.html" title="next Post: 翻译-YAHOO开放了YUI包含文件的网络主机">翻译-YAHOO开放了YUI包含文件的网络主机 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiangjian.github.com/2007/01/use-yui-for-web2-0-layout.html';
+        var disqus_url = 'http://xiangjian.github.com/2007/01/use-yui-for-web2-0-layout.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

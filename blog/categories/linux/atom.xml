@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
+    <link href="http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
+    <updated>2011-08-17T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx</id>
+    <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
+怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
+以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
+<p>config</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-8001,gis-8002,gis-8003,gis-8004
+ 
+ 
+[program:gis-8001]
+command=python /home/gis/gis/gisserver.py --port=8001
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-8001.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+ 
+[program:gis-8002]
+command=python /home/gis/gis/gisserver.py --port=8002
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8002.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8003]
+command=python /home/gis/gis/gisserver.py --port=8003
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8003.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8004]
+command=python /home/gis/gis/gisserver.py --port=8004
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8004.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+</pre> 
+<p>怎么让四个端口同时提供服务呢？可以使用web服务神器nginx,nginx自带了负载平衡功能，<br />
+可以让这4个服务同时提供服务。</p> 
+<p>nginx config</p> 
+<pre class="literal-block"> 
+    upstream gisserver{
+            server 127.0.0.1:8001;
+            server 127.0.0.1:8002;
+            server 127.0.0.1:8003;
+            server 127.0.0.1:8004;
+    }
+location /tile/ {
+    proxy_pass        http://gisserver;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_pass_header Set-Cookie;
+}
+</pre> 
+<p>更新：</p> 
+<p>上述配置可以精简，supervisord配置可以使用变量表示</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-web
+ 
+ 
+[program:gis-web]
+command=python /home/gis/gis/gisserver.py --port=80%(process_num)02d
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-80%(process_num)02d.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+numprocs-4
+numprocs_start=1
+</pre> 
+<p>对不同的服务器，之需要调整numprocs值就可以。</p> </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux 系统动态链接库引]]></title>
+    <link href="http://xiangjian.github.com/2011/06/linux_so.html"/>
+    <updated>2011-06-20T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/06/linux_so</id>
+    <content type="html"><![CDATA[<p><p>最近要编译一个mapnik2，其中安装依赖环境icu和boost这两个东西费尽周折。最后总算弄明白了linux下的动态链接库是怎么管理的？动态链接库多版本会不会冲突?</p>
+<p>linux支持unix中的动态链接库方法，使用export LD_LIBRARY_PATH= 这各方式。linux的动态链接库引用是通过ldconfig来实现的。<br />
+linux 动态链接库使用ldconfig命令来查找系统动态链接库，并生成缓存方便系统引用。编译代码时，软件依赖一般是从ldconfig的cache中查找。下面主要说下linux如何管理动态链接库</p>
+<p>ldconfig 有以下几个配置文件:</p>
+<pre class="literal-block">
+/etc/ld.so.conf
+/etc/ld.so.conf.d/*
+</pre>
+<p>在文件中说明了引用动态链接库的路径，与export的效果着不多。指定路径后，只需要运行ldconfig即可重建动态链接库索引。</p>
+<p>使用 ldconfig -p 可以查询系统中注册的dll文件。</p>
+<p>另外还有个查看程序引用的动态链接库在系统中是否存在，使用ldd 加动态链接库地址就可以查看。例如,查看mapnik postgis插件引用的动态链接库在系统中是否存在可以使用</p>
+<pre class="literal-block">
+ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
+
+
+
+
+<p>    linux-vdso.so.1 =&gt;  (0x00007fff3791f000)<br />
+    libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0x00007f00c0306000)<br />
+    libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0x00007f00bfffc000)<br />
+    libm.so.6 =&gt; /lib/libm.so.6 (0x00007f00bfd79000)<br />
+    libgcc_s.so.1 =&gt; /usr/lib/libgcc_s.so.1 (0x00007f00bfb63000)<br />
+    libc.so.6 =&gt; /lib/libc.so.6 (0x00007f00bf805000)<br />
+    libssl.so.1.0.0 =&gt; /usr/lib/libssl.so.1.0.0 (0x00007f00bf5a8000)<br />
+    libcrypto.so.1.0.0 =&gt; /usr/lib/libcrypto.so.1.0.0 (0x00007f00bf1ec000)<br />
+    libpthread.so.0 =&gt; /lib/libpthread.so.0 (0x00007f00befcf000)<br />
+    /lib/ld-linux-x86-64.so.2 (0x00007f00c0791000)<br />
+    libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f00bedca000)<br />
+    libz.so.1 =&gt; /usr/lib/libz.so.1 (0x00007f00bebb2000)
+
+<p>linux 中编译程序或移植环境经常会使用到这两个命令解决实际问题。</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[redhat使用yum安装程序]]></title>
+    <link href="http://xiangjian.github.com/2011/05/redhat_use_yum.html"/>
+    <updated>2011-05-11T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/05/redhat_use_yum</id>
+    <content type="html"><![CDATA[<p><p>最近，要给一台redhat4服务器安装mapnik，在我自己工作的台机使用的是archlinux上，使用ABS安装环境那是相当方便，这台机器安装让人大伤脑筋。rpm包依赖要一个个找，而且，经常要自己编译源代码。</p></p>
+
+
+
+
+<p><p>在centos系统中使用yum安装一点都不折腾，redhat4和centos算是同源，可以使用centos来做rh的更新。下面是安装yum的步骤。</p></p>
+
+
+
+
+<p><h3>安装 yum</h3></p>
+
+
+
+
+<p><p>方便在redhat 系统中安装软件包，现在的系统是redhat4企业版本，可以使用centos的软件包管理器</p>
+
+<p>你可以用yum和rpm文件更新，其实很简单.</p></p>
+
+
+
+
+<p><ol class="arabic" /></p>
+
+
+
+
+<p><li><p class="first">用wget下载yum</p></li></p>
+
+
+
+
+<p><pre class="literal-block" /></p>
+
+
+
+
+<p># wget http://packages.sw.be/yum/yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p><ol class="arabic" /></p>
+
+
+
+
+<p><li><p class="first">安装此rpm文件</p></li></p>
+
+
+
+
+<p><pre class="literal-block" /></p>
+
+
+
+
+<p># rpm -ivh yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p><li><p class="first">配置 /etc/yum.conf 使用兼容的更新源(这里使用搜狐源，这个比较快。)</p></li></p>
+
+
+
+
+<p><pre class="literal-block" /></p>
+
+
+
+
+<p>[main]</p>
+
+
+
+
+<p>cachedir=/var/cache/yum</p>
+
+
+
+
+<p>debuglevel=2</p>
+
+
+
+
+<p>logfile=/var/log/yum.log</p>
+
+
+
+
+<p>pkgpolicy=newest</p>
+
+
+
+
+<p>distroverpkg=redhat-release</p>
+
+
+
+
+<p>tolerant=1</p>
+
+
+
+
+<p>exactarch=1</p>
+
+
+
+
+<p>[base]</p>
+
+
+
+
+<p>name=CentOS-$releasever – Base</p>
+
+
+
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/os/i386/</p>
+
+
+
+
+<p>gpgcheck=1</p>
+
+
+
+
+<p>[updates]</p>
+
+
+
+
+<p>name=Red Hat Linux $releasever – Updates</p>
+
+
+
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/updates/i386/</p>
+
+
+
+
+<p>gpgcheck=1</p>
+
+
+
+
+<p>[dag] </p>
+
+
+
+
+<p>name=Dag RPM Repository for RHEL5 </p>
+
+
+
+
+<p>baseurl=http://mirrors.sohu.com/dag/redhat/el5/en/$basearch/dag/</p>
+
+
+
+
+<p>enabled=1 </p>
+
+
+
+
+<p>gpgcheck=1 </p>
+
+
+
+
+<p>gpgkey=http://mirrors.sohu.com/dag/RPM-GPG-KEY.dag.txt</p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p><li><p class="first">安装CentOS的GPG Key:</p></li></p>
+
+
+
+
+<p><pre class="literal-block" /></p>
+
+
+
+
+<p># rpm --import http://mirrors.sohu.com/centos/RPM-GPG-KEY-CentOS-4</p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p><li><p class="first">测试yum是否正常(下面是更新所有的rpm):</p></li></p>
+
+
+
+
+<p><pre class="literal-block" /></p>
+
+
+
+
+<p># yum update //更新系统</p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p><li><p class="first">建立缓存:</p></li></p>
+
+
+
+
+<p><pre class="literal-block" /></p>
+
+
+
+
+<p>#yum makecache</p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p></p>
+
+
+
+
+<p><p>下篇写mapnik的编译安装。</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开始学习archlinux]]></title>
+    <link href="http://xiangjian.github.com/2008/10/archlinux.html"/>
+    <updated>2008-10-13T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2008/10/archlinux</id>
+    <content type="html"><![CDATA[<p>一直对linux的望而却步，长期以来使用windows系统，看到linux的文件系统，设备管理，和一堆命令行头痛不已。自己在机子上安装过多次ubuntu,可能是ubuntu做得太好了，集成了太多的东西，各个部分关联比较紧，学习起来无从下手。同事推荐了一个叫Archlinux的发行版，这个版本的主要特点是简单，快速（我还没有感觉到，程序主要针对686，x86-64进行了优化），软件安装容易，可以像搭积木一样的构建自己的linux系统。
+<div style="text-align: left;">这几天我在vmware中建了一个archlinux的虚拟机，一步一步安装了一些软件（ssh,nginx,mysql,php,postsql），从安装配置的过程中尝到linux的不少东西
+</div>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

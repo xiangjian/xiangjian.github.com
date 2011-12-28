@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: arcgis | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/arcgis/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[开始学习flex for arcgis server了]]></title>
+    <link href="http://xiangjian.github.com/2009/02/flex-for-arcgis-server.html"/>
+    <updated>2009-02-06T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/02/flex-for-arcgis-server</id>
+    <content type="html"><![CDATA[<p><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_Ea3JwBJzx7s/SYwNxtTKVuI/AAAAAAAAB_A/knCrAoAWwmA/s1600-h/pic.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 400px; height: 260px;" src="http://3.bp.blogspot.com/_Ea3JwBJzx7s/SYwNxtTKVuI/AAAAAAAAB_A/knCrAoAWwmA/s400/pic.png" alt="" id="BLOGGER_PHOTO_ID_5299626009132947170" border="0" /></a>
+由于要使用Arcgis flex开发一个demo。以前没有使用过flex开发，今天上午在Arcgis 的官方网站下载了flex的支持文件，照着esri官方的例子做了几个。还是比较容易上手的，跟xhtml+javascript开发很类似，flex开发真是不错。
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[栅格图像的worldfile总结]]></title>
+    <link href="http://xiangjian.github.com/2008/11/raster-worldfile.html"/>
+    <updated>2008-11-27T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2008/11/raster-worldfile</id>
+    <content type="html"><![CDATA[<p>影像文件的world file文件示例如下：<br />
+20.17541308822119 (左上角X坐标)<br />
+0.00000000000000(X方向旋转量)<br />
+0.00000000000000(Y方向旋转量)<br />
+-20.17541308822119(左上角Y坐标注意这个值为负值)<br />
+424178.11472601280548(X偏移量)<br />
+4313415.90726399607956(Y方向偏移量)<br />
+应用如下公式来表达image-to-world的6参数仿射变换<br />
+x1 = Ax + By + C<br />
+y1 = Dx + Ey + F<br />
+各参数意义如下：<br />
+X1、Y1待求的影像上某一像素的地理坐标<br />
+A、E分别为影像的每一像素点代表的X、Y方向上的分辨率<br />
+B、<br />
+D旋转参数<br />
+C、<br />
+F为影像左上角点的地理坐标值<br />
+通过上述6个参数，我们可以计算影像上任一像素点的真实地理坐标。<br />
+常见的world file文件的命名格式规律(我是通过遇到的几种文件格式总结出来的)：取图像文件扩展名的首尾字母加"w"如下图所示的栅格文件的worldfile命名。<br />
+jpg---jgw<br />
+tiff--tfw<br />
+bmp--bpw<br />
+dwg--dwf
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ArcGIS中的文件拓展名（转）]]></title>
+    <link href="http://xiangjian.github.com/2008/11/arcgis-extension-name.html"/>
+    <updated>2008-11-12T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2008/11/arcgis-extension-name</id>
+    <content type="html"><![CDATA[<p><ul class="simple">
+<li>adf - ARC/INFO coverage data file</li>
+<li>agf - Atlas GIS native binary geodataset file</li>
+<li>ain - attribute index file</li>
+<li>aih - attribute index file</li>
+<li>alg - ER Mapper algorithm</li>
+<li>apr - ArcView Project File (ODB format)</li>
+<li>avl - legend template file (ODB format)</li>
+<li>avp - palette file (ODB format)</li>
+<li>ave - Avenue script</li>
+<li>avx - ArcView extension file (ODB format)</li>
+<li>ai - Adobe Illlustrator picture file</li>
+<li>bat - DOS batch file</li>
+<li>bil - image file (band interleaved by line)</li>
+<li>bip - image file (band interleaved by pixel)</li>
+<li>blw - world file for bil image</li>
+<li>bmp - Windows bitmap image file</li>
+<li>bpw - world file for bip or bmp images</li>
+<li>bsq - image file (band sequential)</li>
+<li>bqw - world file for bsq image</li>
+<li>c - C programming language source code filename</li>
+<li>cat - UNIX hyperhelp supporting file</li>
+<li>cgm - Computer Graphics Metafile</li>
+<li>cls - geocoding classification file</li>
+<li>cnt - help file contents</li>
+<li>dat - generic data file extension dat - INFO attribute file</li>
+<li>db - Object Database File (also ODB)</li>
+<li>dbf - dBASE tabular data file</li>
+<li>dbf - Shapefile attribute table file</li>
+<li>dbg - problem debug log file</li>
+<li>dcp - default codepage file</li>
+<li>dct - geocoding dictionary file</li>
+<li>dec - UNIX hyperhelp supporting file</li>
+<li>def - defaults file (North Arrows, Layout Templates, etc) (ODB format)</li>
+<li>dem - Digital Elevation Model file</li>
+<li>dgn - Design drawing file (Intergraph)</li>
+<li>dir - INFO directory manager file</li>
+<li>dlg - Digital Line Graph file</li>
+<li>dll - Windows Dynamic Link Library file</li>
+<li>doc - MS-Word, MS-Wordpad document file</li>
+<li>dtd - UNIX hyperhelp supporting file</li>
+<li>dwg - Drawing file (AutoCAD)</li>
+<li>dxf - Drawing exchange file</li>
+<li>e00 - ARC/INFO export file</li>
+<li>ecw - ER Mapper Enhanced Compressed Wavelet</li>
+<li>eps - Encapsulated PostScript</li>
+<li>ers - ER Mapper raster file format</li>
+<li>exe - DOS/Windows executable file</li>
+<li>fbn - spatial index file for read-only datasets</li>
+<li>fbx - spatial index file for read-only datasets</li>
+<li>fls - Windows help supporting file</li>
+<li>ftg - UNIX help supporting file</li>
+<li>fts - UNIX help supporting file</li>
+<li>gen - ARC/INFO UnGenerate format</li>
+<li>gfw - world file for gif image</li>
+<li>gif - image file (CompuServe)</li>
+<li>hdr - header file (for ArcView extensions or TIF images)</li>
+<li>hlp - Windows help file</li>
+<li>htm - WWW file (hypertext markup, 3-character DOS version)</li>
+<li>html- WWW file (hypertext markup language, UNIX version)</li>
+<li>ico - Icon file</li>
+<li>idx - geocoding index for read-only datasets</li>
+<li>img - ERDAS Imagine image file</li>
+<li>ini - initialization file</li>
+<li>ixc - geocoding index for read-write coverages</li>
+<li>ixs - geocoding index for read-write shapefiles</li>
+<li>jpg - image file (Joint Photographic Experts Group)</li>
+<li>key - geocoding matching keys (ODB format)</li>
+<li>lin - ARC/INFO lineset symbol file</li>
+<li>lnk - Windows shortcut icon link file</li>
+<li>mat - geocoding matching parameters file</li>
+<li>mcp - image file (MacPaint)</li>
+<li>mid - MapInfo interchange format (always paired with &quot;mif&quot;)</li>
+<li>mif - MapInfo interchange format (always paired with &quot;mid&quot;)</li>
+<li>mrk - ARC/INFO markerset symbol file (not compatible w/ArcView)</li>
+<li>mxc - geocoding index for read-write coverages (ODB format)</li>
+<li>mxs - geocoding index for read-write shapefiles (ODB format)</li>
+<li>nit - INFO table definitions file</li>
+<li>ndx - fonts index file (UNIX only)</li>
+<li>nls - Codepage language files</li>
+<li>odb - Object Database ASCII file (ODB format)</li>
+<li>pat - geocoding pattern recognition file</li>
+<li>pdf - preferences definition file</li>
+<li>pif - Windows program information file (for DOS programs)</li>
+<li>pps - processing set codes</li>
+<li>prj - projections definition file</li>
+<li>ps - PostScript file</li>
+<li>rlc - image file (run-length coding)</li>
+<li>rs - image file (raster snapshot | Sun rasterfile)</li>
+<li>sbn - spatial index for read-write shapefiles</li>
+<li>sbx - spatial index for read-write shapefiles</li>
+<li>shd - ARC/INFO shadeset symbol file</li>
+<li>shp - Shapefile (stores feature geometry)</li>
+<li>shx - Shapefile (stores file lookup index)</li>
+<li>stn - geocoding standardization file</li>
+<li>tab - lookup file</li>
+<li>tbl - geocoding support table</li>
+<li>tif - image file (Tag Image Format file)</li>
+<li>tfw - world file for tif image</li>
+<li>tmp - temporary file</li>
+<li>ttf - TrueType font file</li>
+<li>txt - text file (usually ASCII)</li>
+<li>xbm - image file (X Bitmap)</li>
+<li>wmf - image file (Windows Metafile)</li>
+<li>wld - world file for CAD datasets</li>
+<li>wri - Windows Write.exe file</li>
+</ul> <p>转自：<a href="http://www.higis.cn/index.php/2007/04/86/">HiGIS.cn</a>
+</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[arcgis server cache的几种格式的区别]]></title>
+    <link href="http://xiangjian.github.com/2008/10/arcgis-server-cache-image-type.html"/>
+    <updated>2008-10-19T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2008/10/arcgis-server-cache-image-type</id>
+    <content type="html"><![CDATA[<p>资料参考arcgis 官方blog:<br />
+arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四种格式各有不同的用处。
+<ul><li>PNG8:生成的文件最小，最节省空间.当你的地图文档使用的颜色不超过256色，推荐使用这种文件格式。（ArcGIS9.2在生成PNG8图像时在地图上经常出现小麻点，咨询ESRI技术人员，也不知是何原因）。</li><li>PNG24:与PNG差不多，只是支持更多的地图颜色，文件稍大(不支持IE6以及以前的版本)。</li><li>PNG32:文件最大，支持最多的地图颜色（支持所有浏览器）。</li><li>JPEG:这是一种有损文件压缩格式，生成地图会有颜色损失，一般可以作为影像图的压缩格式。</li></ul>参考：<a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2008/10/17/Tips-for-choosing-a-cache-image-format.aspx">Tips for choosing a cache image format</a>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[arcigis通过oledb连接属性数据库问题]]></title>
+    <link href="http://xiangjian.github.com/2008/09/arcigis-oledb.html"/>
+    <updated>2008-09-25T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2008/09/arcigis-oledb</id>
+    <content type="html"><![CDATA[<p>arcgis通过oledb连oracle数据库,识别number数据有点问题,如果数据库中表的number没有指定number(p,s)中的p,s.arcgis 将数据统一识别为长longinteger,如果数据中含有小数据点,数据全部识别为0.指定了p,值后正常.
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

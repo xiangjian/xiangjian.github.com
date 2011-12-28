@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="前几天extjs发布了extjs 3.1,犹豫是否要升级它，我们项目中真的需要升级吗？
+我们看一个软件是否需要升级的判断主要是升级的原因，和升级的代价两部分来决定的。
+升级的原因：什么原因让我们选择升级，软件升级一般是带来了新特性，修复了原来的bug这两类。这是促使我们升级软件的主要驱动力， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/page/3/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/01/extjs.html">项目中extjs升级</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-17T00:00:00+08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2010</time>
+        
+         | <a href="/2010/01/extjs.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>前几天extjs发布了extjs 3.1,犹豫是否要升级它，我们项目中真的需要升级吗？</p>
+<p>我们看一个软件是否需要升级的判断主要是升级的原因，和升级的代价两部分来决定的。</p>
+<p>升级的原因：什么原因让我们选择升级，软件升级一般是带来了新特性，修复了原来的bug这两类。这是促使我们升级软件的主要驱动力，如果不是要使用新特性，修复原来的bug，一般不建议升级。</p>
+<p>升级的代价：<br />
+升级后会不会与原来的东西的兼容，会不会与已经开发的东西有冲突，升级后我们还要进行很多改动吗？</p>
+<p>看了看extjs 3.1的release note主要吸引我升级的几个东西是：</p>
+<ul class="simple">
+<li>改善在IE上的使用效率（内存使用和效率）</li>
+<li>包含了grid列锁定(我们的项目中使用到的grid列锁定，但不是官方插件)</li>
+<li>修正了一些bug.</li>
+</ul>
+<p>看到这些我应该将升级extjs3.0升级到3.1.0了</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/01/google.html">Google,走好！</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-15T00:00:00+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2010</time>
+        
+         | <a href="/2010/01/google.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>来到西安有几天，连续几天加班，没有上网。今天上twitter上一看，这几天google退出中国市场的消息让人振惊。google真的要退出中国，这一天终于到来了。前一段时间流传Google正在撤走中国地区的服务器看来是真的，google不想玩了，google坚持了自己的底线。国内的互联网环境越来越差了，将来还会怎么样谁也不知道，大局域网时代离我们已经越来越近了。<br />
+记得上大学的时候，刚刚接触电脑，同学告诉我有一个叫google的网站查资料不错，查询国外资料不错，从大学到现在一直用到现在。记得当时gmail发布时，到外国网站守候，等待一个gmail注册邀请，使用了gmail后，我其余所有的邮箱基本都不用了。blogger,calender,reader,前年的chrome等，这几年使用了一个又一个google的服务.作为一个IT从业者，google的作用无可替代。</p>
+<p>每个人对一件事情都要有自己的底线，只要坚持底线，可以做很多事情，即使有所牺牲也无所谓，只有坚持还有意义，一但越过，宁为玉碎，不为瓦全。</p>
+<p>壮士断腕，所存者大。</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo.html">几种栅格图片GIS服务器性能比较(MapServer vs. Geoserver vs ERDAS Apollo)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-13T00:00:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2010</time>
+        
+         | <a href="/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>在这个 <a class="reference external" href="http://blog.webmapper.com.au/image-server-benchmark/">blog</a> 中做了一个关于图像地图服务器性能测试，在同样的情况下测试了(MapServer vs Geoserver vs ERDAS Apollo),mapguide配置出错也就没有参加测试。Arcgis imageserver 没有参加这次测试。</p><ul class="simple"><li>ERDAS Apollo:</li>
+</ul><ol class="arabic simple"><li>ECW (116.8 maps / sec) &#64; 150 users</li>
+<li>TIFF External Pyramid (64.4 maps /sec) &#64; 40 users</li>
+<li>IMG (60.6 maps / sec) &#64; 40 users</li>
+</ol><ul class="simple"><li>Mapserver:</li>
+</ul><ol class="arabic simple"><li>ECW (54.4 maps / sec) &#64; 150 users</li>
+<li>TIFF Internal Pyramid (41.3 maps / sec) &#64; 80 users</li>
+<li>TIFF External Pyramid (38.6 maps / sec) &#64; 80 users</li>
+</ol><ul class="simple"><li>Geoserver:</li>
+</ul><ol class="arabic simple"><li>TIFF Internal pyramid (27.9 maps /sec) &#64; 20 users</li>
+<li>ECW (25.2 maps / sec) &#64; 20 users</li>
+<li>TIFF Tiled (10.3 maps / sec) &#64; 40 users</li>
+</ol><p>以前没有听说过ERDAS Apollo这个产品，想不到性能如此强劲，Geoserver基于java性能一直不是太好，但是功能定制性比较好。比较遗憾的是没有将arcgis image server也放到一起测试。</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/01/blog.html">新blog开始使用了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-10T00:00:00+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2010</time>
+        
+         | <a href="/2010/01/blog.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>原来blog放在blogger上托管，google的服务，什么都不用管。后来由于某些不可抗拒的原因经常不能访问。一个月前买了xiangjian.info这个域名，通过朋友的VPS 反向代理可以看到blog,也还有一点问题。</p><p>前几天信用卡办下来了，通过了paypal的认证。买了ramhost.us 家的vps.2.99美元一个月，80M的内存。</p><p>周末在调试，使用的操作系统是archlinux ,很好用。blog平台使用movable type 5（前天发布的），数据库使用sqlite(不使用mysql节省内存，sqlite的性能并不差对于这个blog够用)。网站服务器使用nginx +lighttpd(mt使用cgi,nginx不支持)。</p><p>blogspot上的东西还没有导入过来。只有等下周再做了。</p><p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</p></p>
+
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2010/01/blog.html">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/increase.html">今后几年增长速度最快的技术</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-27T00:00:00+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2009</time>
+        
+         | <a href="/2009/12/increase.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>在这篇 <a class="reference external" href="http://news.idg.no/cw/art.cfm?id=6F64F930-1A64-67EA-E461E2E958B82E66">文章</a> 里讲到了今后5年快速增长的5大技术，现在看准什么技术比较有前景，现在就往这一块学习。</p><ul class="simple"><li>Cloud computing</li>
+<li>Open source software</li>
+<li>Virtualization</li>
+<li>Service oriented architecture (SOA)</li>
+<li>Geospatial technology</li>
+</ul><p>主要的预计增长数据为：</p><ul class="simple"><li>Cloud computing - $370 million to $1.2 billion - 27 % CAGR</li>
+<li>Virtualization - $800 million to $1.4 billion - 12 % CAGR</li>
+<li>Open source software - $290 million to $430 million - 8 % CAGR</li>
+<li>SOA - $330 million to $660 million - 17 % CAGR</li>
+<li>Geospatial technology - $860 million to $1.4 billion - 8 % CAGR</li>
+</ul><p>看来GIS行业今后几年还是比较有前途的啊！</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/week-1-3.html">本周文章推荐</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-13T00:00:00+08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2009</time>
+        
+         | <a href="/2009/12/week-1-3.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>前一段时间出差，上不了网，blog有一段时间没有更新了。今天一直捣ubuntu，现在终于可以进行基本的工作了，这篇文章就是在ubuntu上写的。</p><div class="section" id="id2"><h1>技术</h1><p>前段时间工作太忙，上不了网，开发需要，只能看机器上的MSDN。把C#没有用到的功能好好看看了,c#增加了对泛型的支持，提供了新的类方法扩展方式，不需要继承，可以直接扩展类型方法，很动态语言javascript prototye很像。</p><ul class="simple"><li><a class="reference external" href="http://donmeltz.com/blog/index.php/2009/10/25/gis-is-dead-long-live-gis/">GIS_IS_dead</a> ?</li>
+</ul><p>GIS 已死？GIS从一开始作为专门的科学研究项目，到现在人人都会接触到的技术。GIS现状怎样，会往哪发展。这篇blog做了些探讨。</p><ul class="simple"><li><a class="reference external" href="http://www.abcdown.net/InfoView/Article_273958.html">OracleDDL</a></li>
+</ul><p>如何使用SQL语句得到oracle数据库的建表DDL，项目中用到，资料主要从这找到的。</p><ul class="simple"><li><a class="reference external" href="http://www.tzwhx.com/newOperate/Html/3/32/321/8395.html">Oracle_Session</a></li>
+</ul><p>前一段时间我们被session问题折腾坏了，IIS session 无故丢失，通过监控oracle找到问题所在。这这篇文章间讲的就是oracle session</p><ul class="simple"><li><a class="reference external" href="http://atian25.javaeye.com/blog/447342">Extjsplugs</a></li>
+</ul><p>Extjs 优秀的扩展，我找了表锁定的扩展。</p></div><div class="section" id="id3"><h1>非技术：</h1><ul class="simple"><li><a class="reference external" href="http://sinaurl.cn/hJzO6">高耀洁教授在世界艾滋日记者会书面发言稿全文</a></li>
+</ul><p>内容自己看吧，很震撼。&#8221;我已经80多岁了，在世时日有限，此行明知是埋骨异地。为了中国艾滋病疫情的真相，我实在是不得已而为之。&#8221;</p><ul class="simple"><li><a class="reference external" href="http://blog.sina.com.cn/s/blog_46e7ba410100g661.html">这是毛泽东的矫诏吗</a></li>
+</ul><p>李承鹏不写足球了，写些娱乐的也不错。</p></div>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/mapguide-open-source-2-1.html">Mapguide Open Source 2.1推出</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-11T00:00:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2009</time>
+        
+         | <a href="/2009/12/mapguide-open-source-2-1.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>11月21日mapguide open source推出2.1版。新版本修正不少错误，主要有以下更新。<br />
+<ul class="simple"><li>在性能，稳定性，可伸缩性方面的改进</li>
+</ul>哪个系统版本升级都可以这么说。<br />
+<ul class="simple"><li>改进的错误报告系统</li>
+<li>栅格数据重投影能力</li>
+</ul>mapguide open source对栅格数据一直不强吧<br />
+<ul class="simple"><li>投影系统使用CS-Map代替proj4</li>
+</ul>CS-Map在原mapguide 6时代就有使用，map 3D,企业版中也有使用，现在这个强大的坐标投影系统库可以在mapguide open source中使用了。关于CS-Map可以看这个篇 <a class="reference external" href="http://blog.csdn.net/MapGuide_Inside/archive/2009/08/02/4401289.aspx">blog</a> ，有CS-Map历史的简介。
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/week-2-2.html">本周好文推荐</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-16T00:00:00+08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/week-2-2.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><!-- 本周重点文章 --> <br />
+<p>周末没有写，今天补上。</p><div class="section" id="id2"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://blog.pluskid.org/?p=186">V8引擎设计理念</a></li>
+</ul><p>Google chrome浏览器使用的javascript引擎V8，文章翻译了V8的设计理念，看看V8是如何在设计，如何提高在浏览器中运行速度。</p><ul class="simple"><li><a class="reference external" href="http://go-mono.com/monovs/">Novell推出全新VS插件</a></li>
+</ul><p>Novell公司推出一个新的visual studio插件，帮助用户使用C#开发非windows应用程序</p><ul class="simple"><li><a class="reference external" href="http://code.google.com/p/go/">Go语言</a></li>
+</ul><p>google 推出了新的编程语言,google在大规模分布式运算，多核方面python有些力不人心。</p></div><div class="section" id="id3"><h1>非技术</h1><ul class="simple"><li><a class="reference external" href="http://ucdchina.com/snap/5113">人类的非理性</a></li>
+</ul><p>人类的非理性&#8212;-解读《怪诞行为学》，比较通俗。</p><ul class="simple"><li><a class="reference external" href="http://entertainment.timesonline.co.uk/tol/arts_and_entertainment/film/article6902642.ece?print=yes&randnum=1257554128289">新十年的100部优秀电影</a></li>
+</ul><p>时代评出近十年最优秀的100部电影，看看哪么没有看过，赶紧去看。</p></div>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/week-1-2.html">本周好文推荐</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-08T00:00:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/week-1-2.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><!-- 本周好文 --><br />
+<p>上周没有写，工作有点忙（这个似乎不能是借口），这个周末同事结婚，去涿州去闹去了，今天下午才点时间静下来整理。</p><div class="section" id="id1"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://gearman.org/index.php">Gearman</a></li>
+</ul><p>一个分布式处理计算框架，将计算任务分配到多台机器上运行，减少同一机器的CPU运行限制。支持多种语言（不支持C#，开源产品不支持很正常），这个还是比较很不错的。我的想法，GIS空间分析需要大量的CPU运算，不知是否可以利用这个框架来做空间分析，速度上会不会有优势。</p><ul class="simple"><li><a class="reference external" href="http://we.xoyo.com/system/dip">金山DIPS分布式图片处理平台</a></li>
+</ul><p>金山逍遥DIPS分布式图片处理平台，使用了Gearman_,rewinx的PPT分享，使用的效果明显。Gearman_ PHP语言实现，对高CPU利用的程序进行优化效果不错。</p></div><div class="section" id="id2"><h1>非技术：</h1><ul class="simple"><li><a class="reference external" href="http://blog.sina.com.cn/s/blog_4701280b0100fpjr.html">一条船上的人</a></li>
+</ul><p>作者韩寒，内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载1</a></li>
+</ul><p>原版电子书下载，国外的期刊杂志都有，时效性强，看这个学习英文，了解时事不错。还有其它一些内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载2</a></li>
+</ul><p>另一个站点，内容差不多，电子书下载。</p><ul class="simple"><li><a class="reference external" href="http://wiki.mbalib.com/wiki/%E8%A1%8C%E4%B8%BA%E7%BB%8F%E6%B5%8E%E5%AD%A6">行为经济学</a></li>
+</ul><p>这个是智库百科中关于行为经济学的解释，前几天在图书大厦的一本杂志中看到有关理性经济学和行为经济学的文章，回来没有找到原文，找了找相关资料，这个比较全。看到了这个才发现，经济学没有那枯燥，大学学的都是些什么东西。相当同意行为经济学的观点，大家都是理性的，但是真正做出正确决策的一般是非理性因素。</p></div><div class="section" id="id3"><h1>下周计划</h1><ul class="simple"><li>完成没有翻译完的javascript 数组类型（正在翻译），相当不错的文章，10月份就开始了，断断续续，没有翻译多少。希望下周可以完成。</li>
+<li>10月份介绍的&#8221;使用开源软件和python进行地图空间处理&#8221;的PPT要好好看看。学习python在GIS空间处理这一块大有用武之地。</li>
+</ul><p>苟有恒，何必三更眠五更起；教无益，莫过一日曝十日寒。</p></div>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/ogr2gui.html">OGR2GUI介绍</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-05T00:00:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/ogr2gui.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><!-- 介绍ogr2ogr图形界面 --> <br />
+<p>OGR2GUI是什么呢？</p><p>首先给介绍GIS空间数据读取的一个通用包，GDAL（Geospatial Data Abstraction Library）。ogr是其中读写矢量数据的包，因为可以读写矢量数据，因此有人做了一个开源项目ogr2ogr，做通用空间矢量数据源间的转换,支持多种数据。ogr2ogr是一个命令行程序，各种参数相当复杂。OGR2GUI就是基于ogr2ogr的GUI界面，方便做空间数据转换生成命令行参数。这个基本上和autodesk mapguide sdf loader提供的GUI一个原理。</p><p>下面介绍一下ogr2gui新版(v0.6)的特点：</p><ul class="simple"><li>基于Nokia的QT(QT现在是Nokia的了)</li>
+<li>这个版本支持空间库Oracle Spatial, PostgreSQL(POSTGIS), MySQL, SQLite 和 ODBC</li>
+<li>支持　GPX, GMT, GeoJSON, Geoconcept and FME Objects Gateway formats</li>
+</ul><br />
+<br />
+<br />
+<img alt="screenshot1" src="http://www.ogr2gui.ca/images/screenshot06/1.jpg" /></p><p><img alt="screenshot2" src="http://www.ogr2gui.ca/images/screenshot06/4.jpg" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

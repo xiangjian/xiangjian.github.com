@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>浏览器排版引擎与javascript引擎的对比 - 鉴行志</title>
+  <meta name="author" content="xiangjian">
+
+  
+  <meta name="description" content="打算给同事讲一下,javacript编程,做了一个几个浏览器排版引擎和javascript引擎的对比. 浏览器 页面排版引擎 Javascript解释器 IE Trident Jscript Firefox Gecko TraceMonkey Apple safari Webkit &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiangjian.github.com/2009/09/web-javascript-engine.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="鉴行志" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6989118-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">鉴行志</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xiangjian.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">浏览器排版引擎与javascript引擎的对比</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-06T00:00:00+08:00" pubdate data-updated="true">Sep 6<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>打算给同事讲一下,javacript编程,做了一个几个浏览器排版引擎和javascript引擎的对比.
+<style> <!--tr  {mso-height-source:auto;} col  {mso-width-source:auto;} td  {padding-top:1.0px;  padding-right:1.0px;  padding-left:1.0px;  mso-ignore:padding;  color:windowtext;  font-size:18.0pt;  font-weight:400;  font-style:normal;  text-decoration:none;  font-family:Arial;  mso-generic-font-family:auto;  mso-font-charset:0;  text-align:general;  vertical-align:bottom;  border:none;  mso-background-source:auto;  mso-pattern:auto;} .oa1  {border-top:1.0pt solid white;  border-right:1.0pt solid white;  border-bottom:3.0pt solid white;  border-left:1.0pt solid white;  background:#F07F09;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa2  {border-top:3.0pt solid white;  border-right:1.0pt solid white;  border-bottom:1.0pt solid white;  border-left:1.0pt solid white;  background:#F9D8CC;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa3  {border:1.0pt solid white;  background:#FCECE7;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa4  {border:1.0pt solid white;  background:#F9D8CC;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} --> </style>  <table style="border-collapse: collapse; width: 641pt;" border="0" cellpadding="0" cellspacing="0" width="855">  <col style="width: 214pt;" span="3" width="285" />  <tbody><tr style="height: 38.23pt;" height="51">   <td class="oa1" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="color: white; font-weight: bold;">浏览器</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>   <td class="oa1" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="color: white; font-weight: bold;">页面排版引擎</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>   <td class="oa1" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: white; font-weight: bold;">Javascript</span><span style="color: white; font-weight: bold;">解释器</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa2" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">IE</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa2" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Trident</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa2" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Jscript</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa3" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Firefox</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Gecko</span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">TraceMonkey</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa4" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Apple</span><span style="font-family: Verdana; color: black; vertical-align: baseline;"> </span><span style="font-family: Verdana; color: black;">safari</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Webkit</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">JavaScriptCore</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa3" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Google Chrome</span><span style="font-family: Verdana; color: black;"> </span></p>   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Webkit</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">V8</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa4" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Opera</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Presto</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Carakan</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr> </tbody></table>
+</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">xiangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-06T00:00:00+08:00" pubdate data-updated="true">Sep 6<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/开发/'>开发</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/08/nginx-reverse-asp-dot-net.html" title="Previous Post: 使用nginx反向代理asp.net">&laquo; 使用nginx反向代理asp.net</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/09/make-an-apology.html" title="next Post: 英国政府正式向图灵道歉">英国政府正式向图灵道歉 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/redhat_use_yum.html">redhat使用yum安装程序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xiangjian">@xiangjian</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiangjian',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("xiangjian", 10, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/xiangjian" class="twitter-follow-button" data-show-count="false">Follow @xiangjian</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/xiangjian?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/xiangjian">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiangjiangis@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - xiangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xiangjian';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xiangjian.github.com/2009/09/web-javascript-engine.html';
+        var disqus_url = 'http://xiangjian.github.com/2009/09/web-javascript-engine.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

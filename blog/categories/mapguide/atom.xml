@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mapguide | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/mapguide/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mapguide 绘图引擎 GD与AGG的比较]]></title>
+    <link href="http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg.html"/>
+    <updated>2010-01-31T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/01/mapguide-dg-vs-gg</id>
+    <content type="html"><![CDATA[<p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
+<p>AGG:<br />
+AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口，其产生的图形的质量也非常高。AGG引擎最突出的特点是Anti-alias（反锯齿）和subpixel rendering(亚像素渲染)，使用AGG引擎绘制的地图平滑，清晰，速度快。现在AGG现在还不能使GPU来绘图，将来使用GPU绘图也是绘图引擎的发展趋势。</p>
+<p>GD:<br />
+是一个开源的图像处理库，支持 PNG/JPEG/GIF以及其他格式的图像。GD一般被用来创建图表、图形、缩略图以及其他图像相关的处理操作。</p>
+<p>mapguide使用了AGG和GD双引擎，可以在mapguide server的bin目录中serverconfig.ini文件中Renderer处改变绘图使用的引擎方式。</p>
+<p>下面是我使用mapguide 2.1,地图数据使用默认的Sheboygan地图，分别使用GD引擎，和AGG引擎地图结果：</p>
+<p>AGG图</p>
+<p><img alt="mapguide-AGG" src="http://farm5.static.flickr.com/4069/4313078811_840266dcd6_o.png" /></p>
+<p>GD图</p>
+<p><img alt="mapguide-GD" src="http://farm3.static.flickr.com/2596/4313078943_64343d4326_o.png" /></p>
+<p>可以明显看出GD绘图在线的边缘出现了锯齿。在使用mapguide时尽量使用AGG引擎来出图。</p>
+<p>参考资料：</p>
+<p><a class="reference external" href="http://www.cnblogs.com/kane_zzt/archive/2008/08/19/1271793.html">AGG</a></p>
+<p><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">绘图知识</a></p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mapguide open source 2.1推出]]></title>
+    <link href="http://xiangjian.github.com/2009/12/mapguide-open-source-2-1.html"/>
+    <updated>2009-12-11T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/12/mapguide-open-source-2-1</id>
+    <content type="html"><![CDATA[<p>11月21日mapguide open source推出2.1版。新版本修正不少错误，主要有以下更新。<br />
+<ul class="simple"><li>在性能，稳定性，可伸缩性方面的改进</li>
+</ul>哪个系统版本升级都可以这么说。<br />
+<ul class="simple"><li>改进的错误报告系统</li>
+<li>栅格数据重投影能力</li>
+</ul>mapguide open source对栅格数据一直不强吧<br />
+<ul class="simple"><li>投影系统使用CS-Map代替proj4</li>
+</ul>CS-Map在原mapguide 6时代就有使用，map 3D,企业版中也有使用，现在这个强大的坐标投影系统库可以在mapguide open source中使用了。关于CS-Map可以看这个篇 <a class="reference external" href="http://blog.csdn.net/MapGuide_Inside/archive/2009/08/02/4401289.aspx">blog</a> ，有CS-Map历史的简介。
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[利用mapguide maestro预生成tile cache]]></title>
+    <link href="http://xiangjian.github.com/2009/03/mapguide-maestro-tile-cache.html"/>
+    <updated>2009-03-09T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/03/mapguide-maestro-tile-cache</id>
+    <content type="html"><![CDATA[<p>mapguide是支持tile cache技术的，但是tile是在用户浏览的时候生成tile的。这样可以保持生成的tile文件比较少，只有用户查看过的区域生成tile，用户这一次查看时生成tile.<br />
+现在mapguide maestro最新升级可以支持事先生成tile，可以直接生成tile,或者生成处理脚本在命令行环境下生成tile cache.<br />
+详细情况参考:<a href="http://www.jasonbirch.com/nodes/2009/02/19/284/now-were-cooking-mgcooker-for-mapguide-tile-seeding/">MapGuide Tile Seeding</a>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mapguide 新消息]]></title>
+    <link href="http://xiangjian.github.com/2008/11/mapguide-new-message.html"/>
+    <updated>2008-11-25T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2008/11/mapguide-new-message</id>
+    <content type="html"><![CDATA[<p>Mapguide opensource的地图编辑工具,相当于autodesk mapguide studio.这个可以在mono2.0下编译成功，具备跨平台能力，window平台下使用.net2.0。<br />
+不知道将.net 2.0移植到mono2.0下似乎是window下软件移植的一个思路。<br />
+最近看到Autodesk将自己的GIS产品中的地图投影转换程序（CS-Map）开源了，Autodesk真不错，原来mapguide和Map3D中的投影坐标用的都是这个。ESRI不断强大，OSGEO有Autodesk这一个强力的支持者，实是GIS之幸。开源GIS坐标投影转换系统现在有两个了：PROJ.4和CS-Map：
+<p><b>参考：</b><a href="http://trac.osgeo.org/mapguide/wiki/maestro">maestro wiki</a><br /><a href="http://trac.osgeo.org/csmap/">CS-Map Wiki</a></p>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

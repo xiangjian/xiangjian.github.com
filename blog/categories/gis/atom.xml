@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: gis | 鉴行志]]></title>
+  <link href="http://xiangjian.github.com/blog/categories/gis/atom.xml" rel="self"/>
+  <link href="http://xiangjian.github.com/"/>
+  <updated>2011-12-28T09:15:25+08:00</updated>
+  <id>http://xiangjian.github.com/</id>
+  <author>
+    <name><![CDATA[xiangjian]]></name>
+    <email><![CDATA[xiangjiangis@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
+    <link href="http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
+    <updated>2011-08-17T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2011/08/deploy_tornado_with_supervisor_nginx</id>
+    <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
+怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
+以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
+<p>config</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-8001,gis-8002,gis-8003,gis-8004
+ 
+ 
+[program:gis-8001]
+command=python /home/gis/gis/gisserver.py --port=8001
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-8001.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+ 
+[program:gis-8002]
+command=python /home/gis/gis/gisserver.py --port=8002
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8002.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8003]
+command=python /home/gis/gis/gisserver.py --port=8003
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8003.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8004]
+command=python /home/gis/gis/gisserver.py --port=8004
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8004.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+</pre> 
+<p>怎么让四个端口同时提供服务呢？可以使用web服务神器nginx,nginx自带了负载平衡功能，<br />
+可以让这4个服务同时提供服务。</p> 
+<p>nginx config</p> 
+<pre class="literal-block"> 
+    upstream gisserver{
+            server 127.0.0.1:8001;
+            server 127.0.0.1:8002;
+            server 127.0.0.1:8003;
+            server 127.0.0.1:8004;
+    }
+location /tile/ {
+    proxy_pass        http://gisserver;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_pass_header Set-Cookie;
+}
+</pre> 
+<p>更新：</p> 
+<p>上述配置可以精简，supervisord配置可以使用变量表示</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-web
+ 
+ 
+[program:gis-web]
+command=python /home/gis/gis/gisserver.py --port=80%(process_num)02d
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-80%(process_num)02d.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+numprocs-4
+numprocs_start=1
+</pre> 
+<p>对不同的服务器，之需要调整numprocs值就可以。</p> </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[十种GIS矢量数据转换工具]]></title>
+    <link href="http://xiangjian.github.com/2010/02/top-10-gis-tools.html"/>
+    <updated>2010-02-27T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/02/top-10-gis-tools</id>
+    <content type="html"><![CDATA[<p><p>做GIS这一块的工作,GIS空间数据的转换处理工作会比较多.下面整理了这几个用过的和知道的一些GIS空间数据转换工具,写了下面的文章.文章也标题党一把,取名&quot;十种GIS矢量数据转换工具&quot;,希望对大家有用.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.safe.com/">FME</a></li>
+</ul>
+<p>Safe FME 是最专业的GIS数据转换工具之一，还支持GIS数据资源的整合。支持大量的GIS空间数据源（应该是支持最多的）,而且还提供二次开发接口可以支持用户特定的数据转换整合。</p>
+<p><img alt="FME" src="http://farm5.static.flickr.com/4052/4388831335_42786b083b.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.esri.com/software/arcgis/index.html">ArcGIS</a></li>
+</ul>
+<p>ArcGIS是全球最成功的GIS软件产品，提到GIS不可避免会提到ESRI的ArcGIS。ArcGIS的ToolBox中有数据转换模块支持大量数据（标准的和ArcGIS支持的数据类型）间的转换。另外说一点ArcGIS ToolBox中的数据转换模块似乎是用的FME技术？如果安装了ArcGIS后，再安装FME会在ArcGIS ToolBox中数据转换菜单中加入一个FME工具项，可以结合ArcGIS ToolBox中的工具转换GIS矢量数据。</p>
+<p><img alt="ArcGIS" src="http://farm3.static.flickr.com/2686/4389602836_a675560a0e.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li><a class="reference external" href="http://fdo.osgeo.org/">FDO</a>  API</li>
+</ul>
+<p>FDO(Feature Data Object)空间数据访问引擎，属于OSGEO的一个开源子项目，由autodesk捐出。autodesk Mapguide的空间数据访问引擎，提供一套数据访问标准，支持用户编写基于FDO的引擎可以访问多种空间数据源。FDO API 提供C#，java接口,可以使用FDO技术进行数据转换。</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.sl-king.com/Fdo2Fdo/fdo2fdo.html">FDO2FDO</a></li>
+</ul>
+<p>FDO2FDO基于FDO技术写的空间数据转换程序,由sl-king(sl-king还开发了免费的oracle fdo provider)开发,免费软件.</p>
+<p><img alt="FDO2FDO" src="http://farm5.static.flickr.com/4066/4391981856_422da64abd.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li>FDO <a class="reference external" href="http://code.google.com/p/fdotoolbox/">ToolBox</a></li>
+</ul>
+<p>FDO ToolBox基于FDO技术,使用.net 2.0技术编写,做很多功能,包含数据的编辑管理等,支持空间数据转换.这个是开源程序,托管在google code上.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.1spatial.com/products/">1Spatial</a></li>
+</ul>
+<p>基于fdo技术,有数据转换程序,我没有用过,在OSGEO FDO官网上看到过介绍.</p>
+<ul class="simple">
+<li>Autodesk(Map 3d,civil 3d) bulk copy</li>
+</ul>
+<p>Autodesk 产品中的批量数据转换工具,基于FDO.可以实现多种空间数据间的转换.
+<img alt="bulkcopy" src="http://farm5.static.flickr.com/4055/4386242005_764045f962.jpg" style="width: 450px;" /></p>
+<ul class="simple">
+<li>gdal/ogr API</li>
+</ul>
+<p>OGR是GDAL的一部分(矢量数据).OGR是一个读取和处理GSI矢量数据的库。这个库可以读取和处理多种流行的矢量数据.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.gdal.org/ogr2ogr.html">ogr2ogr</a></li>
+</ul>
+<p>命令行程序，核心基于gdal,可以接受gdal支持的数据源间的数据互转换，功能强大。不过命令行的参数众多，很难一次写正确。这个是跨平台的。</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.ogr2gui.ca/">ogr2GUI</a></li>
+</ul>
+<p>专门为ogr2ogr设计的一个GUI界面，核心还是ogr2ogr。通过它的GUI界面可以定制数据转换参数，方便用户使用.界面基于QT,可方便生成命令行参数.</p>
+<p><img alt="ogr2GUI" src="http://farm3.static.flickr.com/2720/4386242007_b46e4d8c57.jpg" style="width: 450px;" /></p>
+<p>可能会有遗漏，mapinfo,国产厂商的GIS（supermap,mapgis）产品，数据转换模块不太熟习，因此不在上面列举。</p>
+<p>总结这一系列转换工具主要包含三个核心转换库:FME(arcgis数据转换模块据说是使用FME技术?待考),FDO,GDAR/OGR.FME是商业软件,支持格式最多,转换工具灵活,大型工程空间数据转换首选.FDO是开源,背后有autodesk支持,前景很好(使用过程中使用FDO技术转换的shp数据部分软件无法识别,尽量不要使用FDO转出shp数据).GDAR/OGR老牌空间数据类库,支持各种编程语言.</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[几种栅格图片GIS服务器性能比较(MapServer vs. Geoserver vs ERDAS Apollo)]]></title>
+    <link href="http://xiangjian.github.com/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo.html"/>
+    <updated>2010-01-13T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo</id>
+    <content type="html"><![CDATA[<p><p>在这个 <a class="reference external" href="http://blog.webmapper.com.au/image-server-benchmark/">blog</a> 中做了一个关于图像地图服务器性能测试，在同样的情况下测试了(MapServer vs Geoserver vs ERDAS Apollo),mapguide配置出错也就没有参加测试。Arcgis imageserver 没有参加这次测试。</p><ul class="simple"><li>ERDAS Apollo:</li>
+</ul><ol class="arabic simple"><li>ECW (116.8 maps / sec) &#64; 150 users</li>
+<li>TIFF External Pyramid (64.4 maps /sec) &#64; 40 users</li>
+<li>IMG (60.6 maps / sec) &#64; 40 users</li>
+</ol><ul class="simple"><li>Mapserver:</li>
+</ul><ol class="arabic simple"><li>ECW (54.4 maps / sec) &#64; 150 users</li>
+<li>TIFF Internal Pyramid (41.3 maps / sec) &#64; 80 users</li>
+<li>TIFF External Pyramid (38.6 maps / sec) &#64; 80 users</li>
+</ol><ul class="simple"><li>Geoserver:</li>
+</ul><ol class="arabic simple"><li>TIFF Internal pyramid (27.9 maps /sec) &#64; 20 users</li>
+<li>ECW (25.2 maps / sec) &#64; 20 users</li>
+<li>TIFF Tiled (10.3 maps / sec) &#64; 40 users</li>
+</ol><p>以前没有听说过ERDAS Apollo这个产品，想不到性能如此强劲，Geoserver基于java性能一直不是太好，但是功能定制性比较好。比较遗憾的是没有将arcgis image server也放到一起测试。</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[今后几年增长速度最快的技术]]></title>
+    <link href="http://xiangjian.github.com/2009/12/increase.html"/>
+    <updated>2009-12-27T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/12/increase</id>
+    <content type="html"><![CDATA[<p><p>在这篇 <a class="reference external" href="http://news.idg.no/cw/art.cfm?id=6F64F930-1A64-67EA-E461E2E958B82E66">文章</a> 里讲到了今后5年快速增长的5大技术，现在看准什么技术比较有前景，现在就往这一块学习。</p><ul class="simple"><li>Cloud computing</li>
+<li>Open source software</li>
+<li>Virtualization</li>
+<li>Service oriented architecture (SOA)</li>
+<li>Geospatial technology</li>
+</ul><p>主要的预计增长数据为：</p><ul class="simple"><li>Cloud computing - $370 million to $1.2 billion - 27 % CAGR</li>
+<li>Virtualization - $800 million to $1.4 billion - 12 % CAGR</li>
+<li>Open source software - $290 million to $430 million - 8 % CAGR</li>
+<li>SOA - $330 million to $660 million - 17 % CAGR</li>
+<li>Geospatial technology - $860 million to $1.4 billion - 8 % CAGR</li>
+</ul><p>看来GIS行业今后几年还是比较有前途的啊！</p>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mapguide open source 2.1推出]]></title>
+    <link href="http://xiangjian.github.com/2009/12/mapguide-open-source-2-1.html"/>
+    <updated>2009-12-11T00:00:00+08:00</updated>
+    <id>http://xiangjian.github.com/2009/12/mapguide-open-source-2-1</id>
+    <content type="html"><![CDATA[<p>11月21日mapguide open source推出2.1版。新版本修正不少错误，主要有以下更新。<br />
+<ul class="simple"><li>在性能，稳定性，可伸缩性方面的改进</li>
+</ul>哪个系统版本升级都可以这么说。<br />
+<ul class="simple"><li>改进的错误报告系统</li>
+<li>栅格数据重投影能力</li>
+</ul>mapguide open source对栅格数据一直不强吧<br />
+<ul class="simple"><li>投影系统使用CS-Map代替proj4</li>
+</ul>CS-Map在原mapguide 6时代就有使用，map 3D,企业版中也有使用，现在这个强大的坐标投影系统库可以在mapguide open source中使用了。关于CS-Map可以看这个篇 <a class="reference external" href="http://blog.csdn.net/MapGuide_Inside/archive/2009/08/02/4401289.aspx">blog</a> ，有CS-Map历史的简介。
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>
