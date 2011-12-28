@@ -1,0 +1,14 @@
+---
+layout: post
+title: 使用excel函数将经纬度度分秒格式转为小数点格式
+categories:
+- 开发
+tags: []
+published: true
+comments: true
+---
+<p>excel中数据是按度分秒格式存储的，要将数据转换为小数点格式存放到数据中，试用了Excel中的函数功能，处理的效果不错
+<pre name="code" class="vb">
+=VALUE(MID(M7,1,FIND("°",M7)-1))+VALUE(MID(M7,FIND("°",M7)+1,FIND("'",M7)-FIND("°",M7)-1))/60+VALUE(MIN(M7,FIND("'",M7)+1,FIND("""",M7)-FIND("'",M7)-1))/3600
+</pre>
+</p>

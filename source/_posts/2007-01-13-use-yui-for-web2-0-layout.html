@@ -1,0 +1,159 @@
+---
+layout: post
+title: 翻译－探索使用Yahoo!UI创建跨浏览器的WEB 2.0布局
+categories:
+- javascript
+tags: []
+published: true
+comments: true
+---
+<p><h2>探索使用Yahoo!UI创建跨浏览器的WEB 2.0布局</h2>
+<p>Web 2.0 很多公司倾向于创建WEB用户界面，就像桌面应用程序。一个非常好的"Web 2.0"的例子是最新的Yahoo!Mail。在这篇文章中我将会去解释与此相关的想法，和共享一些开发中的测试使用新的布局组件创建用户界面。
+</p>
+<h4>边界布局</h4>
+<p>几乎所有的桌面应用程序和许多这样的新WEB界面都是从一个通用的布局（甚至并不了解）-边界布局。一个边界布局由5个区域构成：北区，南区，东区，西区，中区。所有这些区域并不是必需的。举个例子，在我的博客中，有北区，西区，和中区，但是没有南区和东欧。边界布局也可以用来嵌套用来达到所有想要的布局效果</p>
+<h4>错误的入门</h4>
+<p></p>
+<h4>需求</h4>
+<p>我从错误中吸取了教训，决定使用JAVASCRIPT创建一个可重用的布局管理叫做BorderLayout。下面是要满足的条件：
+<li>应该可以跨浏览器--避免不可接受JavaScript 错误和矛盾</li>
+<li>应该在不同的浏览器中有一致的显示--</li>
+<li>应该速度很快--初始化布局和下一步的布局必须快速传输到用户-就像桌面布局管理</li>
+<li>应该支持嵌套布局--为了获得真实有益的BorderLayouts，他应该可以去嵌套</li>
+<li>应该能支持已经存在的HTML</li></p>
+<h4>页面内的布局</h4>
+<p>布局可以应用到页面中body元素或子元素。因此它并不是能控制所有。你能使用它去控制页面中任何容器元素。在下面所有的例子中，它就简单的应用到主页面的body</p>
+<h4>测试1-自适应导航</h4>
+<p>通用基础的测试。一个自适应的左列(西区)和一个滚动中列。这个很简单也可以很容易用CSS实现。</p>
+<h4>测试2-自适应导航，头部和底部</h4>
+<p>这也是一个没有想象力的布局。它包含了一样的自适应的左列(西区)，一个滚动的中列，添加了一个头部和底部。</p>
+<h4>测试3-自适应的可拆分和折叠的导航和头部</h4>
+<p>现在我们开始来做.我们有一个自适应的头部,一个自适应的左列和滚动的中列.我们也可以加入一个标题,一个分隔条和一个可折叠的功能到左列导航上.不像myblog.js和forum.js代码,加入一个分隔条和加入折叠功能就像设置属性一样简单
+<code>
+var layout = new YAHOO.ext.BorderLayout(document.body, {<br />
+north: {<br />
+split:false,<br />
+initialSize: 35<br />
+},<br />
+west: {<br />
+split:true,   <-- Can it get any easier?<br />
+initialSize: 200,<br />
+titlebar: true,<br />
+collapsible: true,  <-- Collapsible<br />
+minSize: 100,<br />
+maxSize: 400<br />
+},<br />
+center: {<br />
+autoScroll: true<br />
+}
+});<br />
+layout.beginUpdate();<br />
+layout.add('north', new YAHOO.ext.ContentPanel('header', {fitToFrame:true}));<br />
+layout.add('west', new YAHOO.ext.ContentPanel('nav', {title: 'Navigation', fitToFrame:true}));<br />
+layout.add('center', new YAHOO.ext.ContentPanel('content'));<br />
+layout.endUpdate();
+</code>
+尽管我在JavaScript使用"initialSize"设置了区域初始的尺寸,你也可以使用标准的CSS设置这些值.
+</p>
+<p>通过事件布局管理自动更新用户的界面.使用beginUpdate()和endUpdate()我们能告诉布局管理我要做的一系列更新.
+</p>
+<p>
+fiToFrame属性告诉布局管理这些内容可以调整到自适应的可利用的区域.
+</p>
+<h4>测试4-嵌套的布局创建水平和垂直的分隔条和打叠能力</h4>
+<p>这个非常像phpBB的界面,但是没有复杂的JavaScript事件和控制代码.</p>
+<h4>测试5-带有分隔条和折叠功能的左右列</h4>
+<br />
+<h4>高级特征</h4>
+var layout = new YAHOO.ext.BorderLayout(document.body, {<br />
+north: {<br />
+split:false,<br />
+initialSize: 35<br />
+},<br />
+west: {<br />
+split:true,   <-- Can it get any easier?<br />
+initialSize: 200,<br />
+titlebar: true,<br />
+collapsible: true,  <-- Collapsible<br />
+minSize: 100,<br />
+maxSize: 400<br />
+},<br />
+center: {<br />
+autoScroll: true<br />
+}
+});<br />
+layout.beginUpdate();<br />
+layout.add('north', new YAHOO.ext.ContentPanel('header', {fitToFrame:true}));<br />
+layout.add('west', new YAHOO.ext.ContentPanel('nav', {title: 'Navigation', fitToFrame:true}));<br />
+layout.add('center', new YAHOO.ext.ContentPanel('content'));<br />
+layout.endUpdate();
+<p>前面所有的例子我展示了基本的BorderLayout功能.这些例子还不够强大.现在我使用布局管理来做一些有高级特性的实例.</p>
+<li>自动的标签页-如果你加入了不止一个面板到一个区域中,它能创建和管理标签页标签标识可以在顶部和底部(默认)</li>
+<li>动态的面板-面板可以动态的添加,关闭和隐藏</li>
+<li>自动调整内容的大小-子布局元素可以自适应的利用空间</li>
+<li>网格面板-网格可以自动控制大小和更新数据</li>
+<li>自定义面板-创建自定义的面板,这需要特别的布局</li>
+<p></p>
+<h4>测试6-更多</h4>
+<p>
+对于一个JavaScript开发的新手来说,去创建这样的用户界面是困难的
+<code>
+var layout = new YAHOO.ext.BorderLayout(document.body, {<br />
+hideOnLayout: true,<br />
+north: {<br />
+initialSize: 25,<br />
+titlebar: false<br />
+},<br />
+west: {<br />
+split:true,<br />
+initialSize: 200,<br />
+minSize: 175,<br />
+maxSize: 400,<br />
+titlebar: true,<br />
+collapsible: true<br />
+},<br />
+east: {<br />
+split:true,<br />
+initialSize: 202,<br />
+minSize: 175,<br />
+maxSize: 400,<br />
+titlebar: true,<br />
+collapsible: true<br />
+},<br />
+south: {<br />
+split:true,<br />
+initialSize: 100,<br />
+minSize: 100,<br />
+maxSize: 200,<br />
+titlebar: true,<br />
+collapsible: true<br />
+},<br />
+center: {<br />
+titlebar: true,<br />
+autoScroll:true<br />
+}
+});<br />
+layout.beginUpdate();<br />
+layout.add('north', new YAHOO.ext.ContentPanel('north', 'North'));<br />
+layout.add('south', new YAHOO.ext.ContentPanel('south', {title: 'South', closable: true}));<br />
+layout.add('west', new YAHOO.ext.ContentPanel('west', {title: 'West'}));<br />
+layout.add('east', new YAHOO.ext.ContentPanel('autoTabs', {title: 'Auto Tabs', closable: true}));<br />
+layout.add('east', new YAHOO.ext.GridPanel(propsGrid, {title: 'Properties', closable: true}));<br />
+layout.add('center', new YAHOO.ext.ContentPanel('center1', {title: 'Close Me', closable: true}));<br />
+layout.add('center', new YAHOO.ext.ContentPanel('center2', {title: 'Center Panel', closable: false}));<br />
+layout.getRegion('center').showPanel('center1');<br />
+layout.getRegion('west').hide();<br />
+layout.endUpdate();
+</code>
+对于这个例子,我也可以创建一个属性编辑器就像Visual Studio中使用grid.它在右边(东区)的面板内.
+</p>
+<p>
+一个最困难的问题是新的布局管理接下来的例子.我仍然认为它不一定正确.还有许多特性我没有示范.我计划创建一个完备的demo应用当有新布局管理的时候.
+</p>
+<h4>下一步</h4>
+<p>
+将会更全面的支持面板的拖放和停靠.我已经有代码去完成这些,但是我一种方法去支持面板停靠到一个区块并不是立即可见.这是一个小问题,我想我能够在新版本中完成
+</p>
+<h4>已知的问题</h4>
+<p>有一些问题需要去</p>
+</p>

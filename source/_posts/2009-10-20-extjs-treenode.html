@@ -1,0 +1,20 @@
+---
+layout: post
+title: extjs treenode高亮问题
+categories:
+- javascript
+tags: []
+published: true
+comments: true
+---
+<p><!-- extjs treenode 高亮显示的问题 --> <br />
+<div class="section" id="extjs-treenode"><h1>extjs treenode高亮问题</h1><p>介绍如何做extjs treenode高亮的问题</p><div class="section" id="extjs"><h2>extjs 如果高亮一个对象</h2><p>extjs中有一个highlight方法，可以对任意的dom element对象进行高亮，因此我们只要</p><pre name="code" class="javascript">node.getUI().getEL().highlight();</pre><p>这样就可以实现一个结节的高亮，但是在使用过程中，我发现只是第一次对象可以高亮，以后选择的对象都<br />
+没有高亮，很是苦恼。后在Extjs论坛提问，有人提出使用fly方法来选择dom对象。</p><p>为什么使用fly呢，我查阅了一些资料发现，为了避免查询后的对象占用内存，使用的了Ext.fly()方法，查询对象可以覆盖。改了以后还是这个情况，只是第一次可以高亮，后几次无法高亮。</p></div><div class="section" id="treenode"><h2>为何不能高亮treenode</h2><p>没有办法，我只有通过firebug来调试了，对比可以高亮和不能高亮的树节点，我发现一个问题extjs treenode生成的dom有些生成了id值(很奇怪，Extjs只为部分结点都生成id值)。我想是不是因为没有id所以没有所<br />
+以高亮出错。</p><p>接下来要测试的问题就是给所有的树节点dom生成id，extjs提供了生成id的方法，Ext.id()。<br />
+按下面的代码就可以成功高亮了。</p><br />
+<pre name="code" class="javascript">var el = node.getUI().getEl();
+Ext.id(el);
+var eldoc = Ext.Element.fly(el);
+eldoc.highlight();
+</pre></div></div>
+</p>

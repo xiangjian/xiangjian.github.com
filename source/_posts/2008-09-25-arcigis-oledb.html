@@ -1,0 +1,11 @@
+---
+layout: post
+title: arcigis通过oledb连接属性数据库问题
+categories:
+- arcgis
+tags: []
+published: true
+comments: true
+---
+<p>arcgis通过oledb连oracle数据库,识别number数据有点问题,如果数据库中表的number没有指定number(p,s)中的p,s.arcgis 将数据统一识别为长longinteger,如果数据中含有小数据点,数据全部识别为0.指定了p,值后正常.
+</p>

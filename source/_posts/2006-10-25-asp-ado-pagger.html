@@ -1,0 +1,46 @@
+---
+layout: post
+title: asp利用ADO分页的问题
+categories:
+- 开发
+tags:
+- ADO
+- asp
+published: true
+comments: true
+---
+<p><div>按照书上写的将一个分页程序写出来还是不能正确分页。<br />
+最后查找资料是因为一个属性没有设置引起的下面是代码：</div>
+<div class="code">
+sqlstr="select * from vw_log_login"<br />
+set rs=Server.CreateObject("ADODB.RecordSet")<br />
+rs.cursorlocation=3'如果支持分页必需设置此选项<br />
+rs.Open sqlstr,conn,1,3<br />
+If rs.EOF and rs.BOF Then ' 记录集不为空则处理记录<br />
+Response.Write objlang.langtext("NORecordSet")<br />
+else<br />
+counts=30<br />
+rs.PageSize = counts ' 设置每页显示的记录数<br />
+num=rs.RecordCount ' 记录总数<br />
+pagenum=rs.PageCount ' 页总数<br />
+page=request("page") ' 获取页码的原始信息<br />
+' 处理页码原始信息的开始！<br />
+If isEmpty(page) or Cint(page)<1 then<br />
+page=1<br />
+elseif saf
+<%<br />
+Do While (NOt rs.eof) and counts>0<br />
+%>
+afds
+<%<br />
+counts=counts-1<br />
+rs.moveNext<br />
+if rs.eof then exit do<br />
+loop<br />
+conn.Close<br />
+End if<br />
+%>
+</div>
+中间一段带有tag没有写出来，<br />
+注意：要设置rs.cursorlocation=3，而且是在RS.查询之前。
+</p>

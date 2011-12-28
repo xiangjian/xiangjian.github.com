@@ -1,0 +1,17 @@
+---
+layout: post
+title: OGR2GUI介绍
+categories:
+- gis
+tags: []
+published: true
+comments: true
+---
+<p><!-- 介绍ogr2ogr图形界面 --> <br />
+<p>OGR2GUI是什么呢？</p><p>首先给介绍GIS空间数据读取的一个通用包，GDAL（Geospatial Data Abstraction Library）。ogr是其中读写矢量数据的包，因为可以读写矢量数据，因此有人做了一个开源项目ogr2ogr，做通用空间矢量数据源间的转换,支持多种数据。ogr2ogr是一个命令行程序，各种参数相当复杂。OGR2GUI就是基于ogr2ogr的GUI界面，方便做空间数据转换生成命令行参数。这个基本上和autodesk mapguide sdf loader提供的GUI一个原理。</p><p>下面介绍一下ogr2gui新版(v0.6)的特点：</p><ul class="simple"><li>基于Nokia的QT(QT现在是Nokia的了)</li>
+<li>这个版本支持空间库Oracle Spatial, PostgreSQL(POSTGIS), MySQL, SQLite 和 ODBC</li>
+<li>支持　GPX, GMT, GeoJSON, Geoconcept and FME Objects Gateway formats</li>
+</ul><br />
+<br />
+<br />
+<img alt="screenshot1" src="http://www.ogr2gui.ca/images/screenshot06/1.jpg" /></p><p><img alt="screenshot2" src="http://www.ogr2gui.ca/images/screenshot06/4.jpg" /></p>

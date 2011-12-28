@@ -1,0 +1,16 @@
+---
+layout: post
+title: 页面间相互调用JAVASCRIPT
+categories:
+- javascript
+tags: []
+published: true
+comments: true
+---
+<p><p>原来一直以为在父子窗口对象间可以操作DOM对象，今天试了下，可以用父窗口中的函数来响应子窗口中的事件(当然是在父窗口内起作用).下面是代码：</p>
+<textarea name="code" class="xml" rows="3" cols="60" /><input type="button" value="OK" onclick="opener.Edit()" />;<;input type='button' value='Cancel' onclick=''/>"
+
+<script class="javascript">
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</p>

@@ -1,0 +1,135 @@
+---
+layout: post
+title: redhat使用yum安装程序
+categories:
+- linux
+tags:
+- centos
+- linux
+- redhat
+- yum
+published: true
+comments: true
+---
+<p><p>最近，要给一台redhat4服务器安装mapnik，在我自己工作的台机使用的是archlinux上，使用ABS安装环境那是相当方便，这台机器安装让人大伤脑筋。rpm包依赖要一个个找，而且，经常要自己编译源代码。</p></p>
+
+<p><p>在centos系统中使用yum安装一点都不折腾，redhat4和centos算是同源，可以使用centos来做rh的更新。下面是安装yum的步骤。</p></p>
+
+<p><h3>安装 yum</h3></p>
+
+<p><p>方便在redhat 系统中安装软件包，现在的系统是redhat4企业版本，可以使用centos的软件包管理器</p>
+
+<p>你可以用yum和rpm文件更新，其实很简单.</p></p>
+
+<p><ol class="arabic" /></p>
+
+<p><li><p class="first">用wget下载yum</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># wget http://packages.sw.be/yum/yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><ol class="arabic" /></p>
+
+<p><li><p class="first">安装此rpm文件</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># rpm -ivh yum-2.4.2-0.4.el4.rf.noarch.rpm</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">配置 /etc/yum.conf 使用兼容的更新源(这里使用搜狐源，这个比较快。)</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p>[main]</p>
+
+<p>cachedir=/var/cache/yum</p>
+
+<p>debuglevel=2</p>
+
+<p>logfile=/var/log/yum.log</p>
+
+<p>pkgpolicy=newest</p>
+
+<p>distroverpkg=redhat-release</p>
+
+<p>tolerant=1</p>
+
+<p>exactarch=1</p>
+
+<p>[base]</p>
+
+<p>name=CentOS-$releasever – Base</p>
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/os/i386/</p>
+
+<p>gpgcheck=1</p>
+
+<p>[updates]</p>
+
+<p>name=Red Hat Linux $releasever – Updates</p>
+
+<p>baseurl=http://mirrors.sohu.com/centos/4/updates/i386/</p>
+
+<p>gpgcheck=1</p>
+
+<p>[dag] </p>
+
+<p>name=Dag RPM Repository for RHEL5 </p>
+
+<p>baseurl=http://mirrors.sohu.com/dag/redhat/el5/en/$basearch/dag/</p>
+
+<p>enabled=1 </p>
+
+<p>gpgcheck=1 </p>
+
+<p>gpgkey=http://mirrors.sohu.com/dag/RPM-GPG-KEY.dag.txt</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">安装CentOS的GPG Key:</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># rpm --import http://mirrors.sohu.com/centos/RPM-GPG-KEY-CentOS-4</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">测试yum是否正常(下面是更新所有的rpm):</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p># yum update //更新系统</p>
+
+<p></p>
+
+<p></p>
+
+<p><li><p class="first">建立缓存:</p></li></p>
+
+<p><pre class="literal-block" /></p>
+
+<p>#yum makecache</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><p>下篇写mapnik的编译安装。</p>
+</p>

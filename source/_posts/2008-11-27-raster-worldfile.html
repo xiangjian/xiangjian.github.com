@@ -1,0 +1,34 @@
+---
+layout: post
+title: 栅格图像的worldfile总结
+categories:
+- arcgis
+tags:
+- raster worldfile
+published: true
+comments: true
+---
+<p>影像文件的world file文件示例如下：<br />
+20.17541308822119 (左上角X坐标)<br />
+0.00000000000000(X方向旋转量)<br />
+0.00000000000000(Y方向旋转量)<br />
+-20.17541308822119(左上角Y坐标注意这个值为负值)<br />
+424178.11472601280548(X偏移量)<br />
+4313415.90726399607956(Y方向偏移量)<br />
+应用如下公式来表达image-to-world的6参数仿射变换<br />
+x1 = Ax + By + C<br />
+y1 = Dx + Ey + F<br />
+各参数意义如下：<br />
+X1、Y1待求的影像上某一像素的地理坐标<br />
+A、E分别为影像的每一像素点代表的X、Y方向上的分辨率<br />
+B、<br />
+D旋转参数<br />
+C、<br />
+F为影像左上角点的地理坐标值<br />
+通过上述6个参数，我们可以计算影像上任一像素点的真实地理坐标。<br />
+常见的world file文件的命名格式规律(我是通过遇到的几种文件格式总结出来的)：取图像文件扩展名的首尾字母加"w"如下图所示的栅格文件的worldfile命名。<br />
+jpg---jgw<br />
+tiff--tfw<br />
+bmp--bpw<br />
+dwg--dwf
+</p>

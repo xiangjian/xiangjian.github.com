@@ -1,0 +1,23 @@
+---
+layout: post
+title: 一点Javascript与VBscript的区别
+categories:
+- 开发
+tags:
+- VBscript
+published: true
+comments: true
+---
+<p><p>一般说来浏览器对各种脚本的支持设有什么不同，只是对事件的相应不同而已。JAVASCRIPT是使用在对象中定义onclick,onchange事件相应的函数，而VBSCRIPT是在对象外定义的，如<code>SUB MAPG_onclick ...END SUB</code>定义一MAPG对象的一个onclick的事件的响应。看起来没有什么区别，但在今天的使用的过程中发现了只能使用VBSCRIPT来响应的事件。MapGuide的ActiveX插件的数字化事件响应只能使用VBSCRIPT。代码如下</p>
+<code>《script language="VBscript"　type="text/VBscript"》<br />
+SUB Map_onDigitizedPolygon (map,numPoints,points)<br />
+MapViewer.onDigitizedPolygon map,numPoints,points//这里调用JAVASCRIPT<br />
+END SUB<br />
+SUB Map_onDigitizedPolyline (map,numPoints,points)<br />
+MapViewer.onDigitizedPolyline map,numPoints,points<br />
+END SUB<br />
+SUB Map_onDigitizedPoint (map,point)<br />
+MapViewer.onDigitizedPoint map,point<br />
+END SUB<br />
+《/script》</code>
+</p>

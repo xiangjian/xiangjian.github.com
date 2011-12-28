@@ -1,0 +1,21 @@
+---
+layout: post
+title: 使用sc 命令的一个怪问题？
+categories:
+- 开发
+tags: []
+published: true
+comments: true
+---
+<p><div>今天我想把svn添加为系统服务，按照<a href="http://svn.collab.net/repos/svn/tags/1.4.0/notes/windows-service.txt">说明</a>写了如下的命令：</div>
+<div class="code">
+sc create svn binpath="\"D:\program\svn\bin\svnserve.exe\" --service -r \"D:\data\svndemo\"" displayname="Subversion Repository" depend=Tcpip start=demand
+</div>
+<div>
+结果不能成功。<br />
+试了好几种方法还是不行，到微软的网站上看它的例子，仔细对比发现，它的每个"＝"后都有一个空格。于是将每一个的"＝"后面加一个空格就可以执行了。
+</div>
+<div class="code">
+sc create svn binpath= "\"D:\program\svn\bin\svnserve.exe\" --service -r \"D:\data\svndemo\"" displayname= "Subversion Repository" depend= Tcpip start= demand
+</div>
+</p>

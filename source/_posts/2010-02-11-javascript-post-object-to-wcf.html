@@ -1,0 +1,38 @@
+---
+layout: post
+title: 使用javascript方法给后台WCF服务直接post对象
+categories:
+- 开发
+tags:
+- javascript
+published: true
+comments: true
+---
+<p><p>一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。</p>
+<p>下面直接使用WCF特性做元数据的自定义转换</p>
+<p>定义元数据契约定义:</p>
+<pre class="literal-block">
+[DataContract(Name = &quot;person&quot;)]
+public class person
+{
+[DataMember(Name=&quot;Name&quot;)]
+public string Name
+{
+get;
+set;
+}
+[DataMember(Name = &quot;Age&quot;)]
+public int Age
+{
+get;
+set;
+}
+</pre>
+<p>服务描述:</p>
+<pre class="literal-block">
+[OperationContract]
+[WebInvoke(UriTemplate = &quot;/doit2&quot;,ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+bool testpost(person p);
+</pre>
+<p>注意使用Post方法，post的BodyStyle必须为Wrapped，否则不能正常取到反序列化后的对象。</p>
+</p>

@@ -1,0 +1,32 @@
+---
+layout: post
+title: 在页面上实现多样化的链接标注DLINK
+categories:
+- javascript
+tags: []
+published: true
+comments: true
+---
+<p>通常在页面中会有不少链接，如何让链接的样式多样化，让链接的样式好看。DLINk可以实现这一功能，按下面的步骤就可以使你的页面中的链接更好看。
+<ol>
+<li>在文件头添加JS引用,地址为：
+<pre name="code" class="html">
+<script type="javascript " src="http://oopstudios.com/dlink/dlink.js"></script>
+</pre>
+</li>
+<li>将你要高亮显示的或有链接的地方放到一个div中，div的class为dlink
+</li>
+<li>为不同的链接定义显示样式,例如：
+<pre name="code" class="css">
+a.internal  {color: #D47700;}
+a.external  {color: #0074D4;}
+a.subdomain {color: #D43500;}
+a.email     {color: #00B235;}
+</pre>
+你可以根据你的需要定义样式，当然你不定义也可以，他将展示DLINK默认的样式</li>
+</ol>
+要看详细的文档和demo请参看以下链接
+<blockquote>
+参考：<a href="http://oopstudios.com/dlink/index.html">DLINK网站</a>
+</blockquote>
+</p>

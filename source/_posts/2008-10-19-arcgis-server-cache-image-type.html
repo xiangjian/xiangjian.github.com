@@ -1,0 +1,13 @@
+---
+layout: post
+title: arcgis server cache的几种格式的区别
+categories:
+- arcgis
+tags: []
+published: true
+comments: true
+---
+<p>资料参考arcgis 官方blog:<br />
+arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四种格式各有不同的用处。
+<ul><li>PNG8:生成的文件最小，最节省空间.当你的地图文档使用的颜色不超过256色，推荐使用这种文件格式。（ArcGIS9.2在生成PNG8图像时在地图上经常出现小麻点，咨询ESRI技术人员，也不知是何原因）。</li><li>PNG24:与PNG差不多，只是支持更多的地图颜色，文件稍大(不支持IE6以及以前的版本)。</li><li>PNG32:文件最大，支持最多的地图颜色（支持所有浏览器）。</li><li>JPEG:这是一种有损文件压缩格式，生成地图会有颜色损失，一般可以作为影像图的压缩格式。</li></ul>参考：<a href="http://blogs.esri.com/Dev/blogs/arcgisserver/archive/2008/10/17/Tips-for-choosing-a-cache-image-format.aspx">Tips for choosing a cache image format</a>
+</p>

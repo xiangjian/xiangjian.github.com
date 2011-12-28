@@ -1,0 +1,57 @@
+---
+layout: post
+title: 快速图片上传到flickr,google
+categories:
+- python
+tags:
+- python
+published: true
+comments: true
+---
+<p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
+邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
+<p>晚上写了如下代码(当然是使用python)::</p> 
+<pre class="literal-block"> 
+#! coding=utf-8
+import smtplib
+import os
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+ 
+family = ['XXXXXXX&#64;photos.flickr.com','XXXXXXXXXXXXX&#64;picasaweb.com']
+SMTP_SERVER='XXXXXXXXXx'
+SMTP_USER='XXXXXXXx'
+SMTP_PASS='XXXXXXX'
+SENDER =&quot;XXXXXXXXXXx&quot;
+ 
+ 
+COMMASPACE = ', '
+ 
+# Create the container (outer) email message.
+msg = MIMEMultipart()
+msg['Subject'] = 'my picture'
+msg['From'] = 'xiangjian'
+msg['To'] = COMMASPACE.join(family)
+msg.preamble = 'my picture'
+ 
+def forward(toAddr, msg):
+    server = smtplib.SMTP( SMTP_SERVER )
+    server.login( SMTP_USER, SMTP_PASS )
+    server.sendmail( SENDER,toAddr , msg )
+    server.quit()
+    return True
+ 
+def sendpic(dir):
+    for root,dirs,files in os.walk(dir):
+        for name in files:
+            if(name.splitext()[1].lower() in ['.jpg','.png']):
+                print name
+                fp=open(name,'rb')
+                img=MIMEImage(fp.read())
+                fp.close()
+                msg.attach(img)
+                forward(COMMASPACE.join(family),msg)
+ 
+sendpic('.')
+</pre> 
+<p>将以上代码拷贝到照片文件夹，配置代码中的XXXXXXX。运行就可以将照片发布到多个服务器图床。经测试速度非常快，比通过http上传数据快很多。</p> </p>

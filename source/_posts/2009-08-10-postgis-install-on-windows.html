@@ -1,0 +1,16 @@
+---
+layout: post
+title: postgis在windows平台下的安装
+categories:
+- gis
+tags: []
+published: true
+comments: true
+---
+<p>postgis是postgresql的一个GIS扩展，类似于oracle spatial,支持ogc标准，也是目前开源社区中使用最多的GIS空间数据。postgresql是一个强大的开源数据，类似于mysql，比 mysql功能更强大，提供了说许多商业数据库才支持的数据特性，介绍在这<a title="PostgreSQL" href="http://en.wikipedia.org/wiki/PostgreSQL" id="p24_">PostgreSQL</a>。postgresql在８以后开始对windows提供了很好的支持.<br />
+下面我们在windows平台下安装PostgreSQL:<br />
+1)下载PostgreSQL的安装包，到<a title="postgresql下载" href="http://www.enterprisedb.com/products/download.do" id="rp2i">EnterpriseDB主页下载</a>（EnterpriseDB是一家在PostgreSQL基础上开发的数据库厂商，它们提供的安装文件集成了常用的程序，更好的数据库安装工具）<div id="zpcw" style="text-align: center;"><a target="_blank" href="https://docs.google.com/File?id=dg6cc6b8_76fg22z3ck_b">
+</a><div id="hd2k" style="text-align: left;"><a target="_blank" href="https://docs.google.com/File?id=dg6cc6b8_77gmkjgscq_b"><img style="width: 648px; height: 194.835px;" src="https://docs.google.com/File?id=dg6cc6b8_77gmkjgscq_b" /></a></div> </div>2)然后是安装，一路Next,设置一下postgre用户的密码，安装路径，默认使用端口(5432),就可以了。安装完后这个版本自带了pgAdmin III(数据库管理工具)，Stack Builder(数据库插件，应用程序安装工具)。
+<div id="t-xo" style="text-align: left;"><img style="width: 616px; height: 422px;" src="https://docs.google.com/File?id=dg6cc6b8_78hk4qrsdz_b" /></div><div id="ifsk" style="text-align: left;"><img style="width: 648px; height: 476.7px;" src="https://docs.google.com/File?id=dg6cc6b8_79hfmdwzfw_b" /></div>
+３)我们通过Stack Builder来安装postgis.安装过程也是一路确定，没有什么困难。安装完后，重启数据库，就可以使用pgAdminIII创建空间数据库了。
+</p>

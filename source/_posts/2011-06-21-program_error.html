@@ -1,0 +1,19 @@
+---
+layout: post
+title: 程序员犯的可乐错误
+categories:
+- 杂
+tags: []
+published: true
+comments: true
+---
+<p><p>上周五，reddit programming区有人贴出了个一段代码的code review，引发了大家讨论，堪称是github.com网站最热烈的讨论。一个程序的升级脚本中写了如下一段代码:</p>
+<pre class="literal-block">
+rm -rf /usr /lib/nvidia-current/xorg/xorg
+</pre>
+<p>这个很小但是非常致命的错误，当用户执行升级脚本,他的/usr 目录就会被删除，至少有三个用户中招。<br />
+在这个讨论 <a class="reference external" href="https://github.com/MrMEEE/bumblebee/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac">地址</a> ,人民群众正在进行各种有趣的讨论^_^。</p>
+<p>前一段时间，我编译mapnik 需要occi支持，发了我差不多两周的时间，怎么编译都通不过，后来没有办法给mapnik作者发邮件，很快作者说是个bug,已经改好，让我编译试试。我下载最新代码，果然编译没有问题。好奇心驱使我看到了作者 <a class="reference external" href="http://trac.mapnik.org/changeset/2927">fix</a> 修改了什么东西，居然是写代码时少写个分号，害我编译了好久，换了不少环境。</p>
+<p>昨天早上看到台机启动有一个错误，但是启动太快，没看清是什么错误。我上网查了下，说要在/etc/rc.conf 中加入一行代码，我想也没想就添加了一行代码。重启机器怎么也进不了系统，也进不了console界面。没有办法我只能使用u盘进rescue系统，删除那一行文件，重启后一切恢复恢复正常。</p>
+<p>测试对程序来说是致命的，没有经过测试的程序可能会导致很严重的问题。希望这样的问题会少点，程序员在写程序时尽量多做点测试，少出点这种错误。</p>
+</p>

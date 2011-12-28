@@ -1,0 +1,15 @@
+---
+layout: post
+title: vbscript script字符串处理
+categories:
+- 开发
+tags:
+- asp
+published: true
+comments: true
+---
+<p><div class="post-body">在vbscript和javascript中处理字符串一般是用VBscript，javascript提供的几个函数来处理。<span style="font-weight: bold;">
+</span> <div style="text-align: left;">但是有时候使用正则表达式来处理会很简单：
+<ol style="text-align: left;"><li>在javascript中去掉一个字符串两边的空格：如果是在VBscript中很简单<span style="font-style: italic;">trim(string)</span>就可以了。javascript中有没有提供这样的函数我不知道，我没有查到。用正则表达式就可以很容易的做到string.replace(/(^\s*)|(\s*$)/g,"")</li></ol> <ol style="text-align: left;">简单解释一下这个句子，replace作用是用第二个参数替换第一个参数，第一个参数是匹配字符串string的首尾的空格。^，$分别匹配首和尾；\s匹配空格（包括TAB）。
+</ol></div>
+</div></p>

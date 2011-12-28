@@ -1,0 +1,16 @@
+---
+layout: post
+title: 利用SQL语句查询重复的值
+categories:
+- 开发
+tags:
+- oracle
+published: true
+comments: true
+---
+<p><p>原来一直是用select distinct 来找出没有重复的字段，但是对于如何找到重复或者重复达到指定次数的记录是一个难题，找了一些文章后发现使用 group by having来实现
+</p>
+<code>
+select * from oilwell where uwi in (select uwi from oilwell group by uwi having count(*)>1)
+</code>
+</p>

@@ -1,0 +1,106 @@
+---
+layout: post
+title: 使用supervisor和nginx发布tornado程序
+categories:
+- gis
+- linux
+- notes
+tags: []
+published: true
+comments: true
+---
+<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
+怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
+以下是supervisor的配置，我在一台服务器上配置了四个tornado服务。</p> 
+<p>config</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-8001,gis-8002,gis-8003,gis-8004
+ 
+ 
+[program:gis-8001]
+command=python /home/gis/gis/gisserver.py --port=8001
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-8001.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+ 
+[program:gis-8002]
+command=python /home/gis/gis/gisserver.py --port=8002
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8002.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8003]
+command=python /home/gis/gis/gisserver.py --port=8003
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8003.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+[program:gis-8004]
+command=python /home/gis/gis/gisserver.py --port=8004
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/gis_server-8004.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+</pre> 
+<p>怎么让四个端口同时提供服务呢？可以使用web服务神器nginx,nginx自带了负载平衡功能，<br />
+可以让这4个服务同时提供服务。</p> 
+<p>nginx config</p> 
+<pre class="literal-block"> 
+    upstream gisserver{
+            server 127.0.0.1:8001;
+            server 127.0.0.1:8002;
+            server 127.0.0.1:8003;
+            server 127.0.0.1:8004;
+    }
+location /tile/ {
+    proxy_pass        http://gisserver;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_pass_header Set-Cookie;
+}
+</pre> 
+<p>更新：</p> 
+<p>上述配置可以精简，supervisord配置可以使用变量表示</p> 
+<pre class="literal-block"> 
+; supervisor.
+[group:gisapp]
+programs=gis-web
+ 
+ 
+[program:gis-web]
+command=python /home/gis/gis/gisserver.py --port=80%(process_num)02d
+directory=/home/gis/gis/
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/gis/gis/logs/gis_server-80%(process_num)02d.log
+stdout_logfile_maxbytes=500MB
+stdout_logfile_backups=50
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+loglevel=warn
+numprocs-4
+numprocs_start=1
+</pre> 
+<p>对不同的服务器，之需要调整numprocs值就可以。</p> </p>

@@ -1,0 +1,25 @@
+---
+layout: post
+title: 查询oracle联合外键
+categories:
+- 开发
+tags:
+- db
+- oracle
+published: true
+comments: true
+---
+<p><!-- 数据字典 --><br />
+<br />
+从oracle元数据字典中提取数据库表外键信息，写了一个查询，查询出的结果一个字段有多个外键，很困<br />
+惑？查看了我们使用的数据的特点才发现，数据库中多处使用的联合外键。我太土了，一直以来只知道有联合主键，不知道有联合外键这个东西，结果出问题了。查了oracle元数据字典，发现position是描述键序号的，不是数据精度，orz.<br />
+<br />
+改正后的语句:<br />
+<pre name="code" class="sql">select pk.table_name as pk_tab, ucc1.column_name pk_col,fk.table_name as fk_tab,ucc.column_name fk_col
+from all_constraints pk left join all_cons_columns ucc1 on pk.constraint_name=ucc1.constraint_name , all_constraints fk ,all_cons_columns ucc
+where fk.constraint_type = 'R'
+and fk.r_constraint_name = pk.constraint_name
+and fk.constraint_name= ucc.constraint_name
+and ucc1.position=ucc.position ----键序号
+and ucc.OWNER in ('用户名')</pre>
+</p>

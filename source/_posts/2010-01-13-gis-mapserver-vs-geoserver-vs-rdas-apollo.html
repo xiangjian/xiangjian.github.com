@@ -1,0 +1,23 @@
+---
+layout: post
+title: 几种栅格图片GIS服务器性能比较(MapServer vs. Geoserver vs ERDAS Apollo)
+categories:
+- gis
+tags: []
+published: true
+comments: true
+---
+<p><p>在这个 <a class="reference external" href="http://blog.webmapper.com.au/image-server-benchmark/">blog</a> 中做了一个关于图像地图服务器性能测试，在同样的情况下测试了(MapServer vs Geoserver vs ERDAS Apollo),mapguide配置出错也就没有参加测试。Arcgis imageserver 没有参加这次测试。</p><ul class="simple"><li>ERDAS Apollo:</li>
+</ul><ol class="arabic simple"><li>ECW (116.8 maps / sec) &#64; 150 users</li>
+<li>TIFF External Pyramid (64.4 maps /sec) &#64; 40 users</li>
+<li>IMG (60.6 maps / sec) &#64; 40 users</li>
+</ol><ul class="simple"><li>Mapserver:</li>
+</ul><ol class="arabic simple"><li>ECW (54.4 maps / sec) &#64; 150 users</li>
+<li>TIFF Internal Pyramid (41.3 maps / sec) &#64; 80 users</li>
+<li>TIFF External Pyramid (38.6 maps / sec) &#64; 80 users</li>
+</ol><ul class="simple"><li>Geoserver:</li>
+</ul><ol class="arabic simple"><li>TIFF Internal pyramid (27.9 maps /sec) &#64; 20 users</li>
+<li>ECW (25.2 maps / sec) &#64; 20 users</li>
+<li>TIFF Tiled (10.3 maps / sec) &#64; 40 users</li>
+</ol><p>以前没有听说过ERDAS Apollo这个产品，想不到性能如此强劲，Geoserver基于java性能一直不是太好，但是功能定制性比较好。比较遗憾的是没有将arcgis image server也放到一起测试。</p>
+</p>

@@ -1,0 +1,18 @@
+---
+layout: post
+title: xml中节点的命名规则
+categories:
+- xml
+tags: []
+published: true
+comments: true
+---
+<p><p>XML elements命名必须遵循以下几个规则：<br /></p>
+<ul>
+<li>可以包含字母、数字、和其它的字符</li>
+<li>不能以数字和标点字符开始</li>
+<li>不能包含有空格</li>
+</ul>
+注意在你创建命名的时候注意以下规则：<br />你可以使用任何名字，没有保留字符,最好使用有含义的名字。如果有空格可以使用下划线来分格。.<br />Examples: <code><first_name>, <last_name>.</last_name></first_name></code><br />在名称里避免使用 "-" 和 ".".举个例子, 你取了一个叫"first-name"的名字，如果软件要去掉first就显得有一点混乱。或者你取一个名字 "first.name"，软件可能认为name是first的一个对象。<br /><p>名字可以根据你的需要取得足够长，但是不要太夸张。名字应该短小精悍，就像<book_title> 而不是 <the_title_of_the_book>.</the_title_of_the_book></book_title><br />XML文档通常可以对应的数据库, 数据库字段与XML文档中的元素相对应。一个很好的习惯是在XML文档中使用规则的命名 。</p>
+<p>非英文字符在XML节点命名中可以很好的支持,不过可能出现一些问题如果，软件不能很好的解释的话。<br />":"不能使用在元素命名中，因为它已经使用在XML文档的另一个地方（namespace）。</p>
+</p>

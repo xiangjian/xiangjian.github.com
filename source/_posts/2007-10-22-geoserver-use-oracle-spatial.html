@@ -1,0 +1,11 @@
+---
+layout: post
+title: oracle spatial数据终于能在geoserver中发布了
+categories:
+- gis
+tags: []
+published: true
+comments: true
+---
+<p><p>今天Oracle Spatial数据终于可以在Geoserver中发布了，期间发现了不少的问题：</p><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_Ea3JwBJzx7s/Rxy9NBaiuRI/AAAAAAAAA-A/nsx2Pp4v5ro/s1600-h/2007-10-22_223926.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;" src="http://1.bp.blogspot.com/_Ea3JwBJzx7s/Rxy9NBaiuRI/AAAAAAAAA-A/nsx2Pp4v5ro/s400/2007-10-22_223926.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5124178507456493842" /></a><br /><p>在配置过程中注意的问题：</p><br /><ul class="noindent" /><br /><li>使用oracle 9i还是10g，从理论上讲,Geoserver数据源可以支持Oracle Spatial 9i和10g的数据，但是我们存储到数据库的数据是转换到WGS-84（LL84）的经纬度数据。但是数据Oracle Spatial 9i的部分数据函数不支持测地数据（geodetic data），导致Geoserver不能正常出现浏览数据，而Oracle Spatial 10g可以支持。</li><br /><li>使用数据制作图层的时候，最好不要使用Geoserver提供的自动生成地图的范围，我试过自动生成的范围不对，不能正常出图。因此地图范围的值最好自己输入，大一点小一点没有关系，自动生成的可能会有很大的误差，这会导致看不到数据，并且日志中也不会看出什么异常。</li><br /><br /><p>注意：最好使用oracle 10g,最好自己提供地图范围，不要太依赖Geoserver算出来的结果。<br /></p>
+</p>

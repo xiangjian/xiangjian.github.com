@@ -1,0 +1,36 @@
+---
+layout: post
+title: 使用python脚本将邮件备份到Gmail
+categories:
+- python
+tags: []
+published: true
+comments: true
+---
+<p>整理磁盘，看到了这个将邮件备份到gmail的python代码（可以备份到任何邮箱），记得不太清楚了，原来好像是从别的地方下载的，时间太长了不记得从哪找的。代码的使用方法：
+<ol>
+<li>将要备份的邮件存为eml格式，保存到一个文件夹中（foxmail,outlook,dreammail,foomail等都可以做到）</li><li>将下面的代码存为一个py文件，放到该文件夹中，在py文件中填好一个可用的SMTP服务器地址，填写用户名密码，写好要发送到的邮箱。</li><li>运行py文件，就会将邮件备份到您指定的邮箱中，备份后会删除原eml文件。
+</li></ol>
+<pre name="code" class="python">import email,smtplib
+import os
+Gmail = ''//备份邮箱
+SMTP_SERVER = ""//
+SMTP_USER = ""
+SMTP_PASS = ""
+SENDER = SMTP_USER + '@' + SMTP_SERVER
+def forward(toAddr, msg):
+server = smtplib.SMTP( SMTP_SERVER )
+server.login( SMTP_USER, SMTP_PASS )
+server.sendmail( SENDER, toAddr, msg )
+server.quit()
+return True
+def backup(dir):
+for root,dirs,files in os.walk(dir):
+for name in files:
+print name
+msg = email.message_from_file( open( os.path.join(root,name) ) )
+forward(Gmail ,msg.as_string())  //转发
+os.remove(os.path.join(root,name))//备份后删除邮件
+backup( '.' ) //当前文件夹
+</pre>
+</p>

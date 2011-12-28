@@ -1,0 +1,37 @@
+---
+layout: post
+title: 用python统计文件夹信息
+categories:
+- 开发
+tags: []
+published: true
+comments: true
+---
+<p><p>用python可以很容易的完成，日常生活中的事情。在使用的过程中更多的是关注实际问题，而不需要过多的关注数据结构和编码，python已经集成很多有用的模块，还有一般常用到的数据结构。下面的是简单统计文件信息的代码。</p>
+<textarea name="code" class="python" rows="15" cols="100">
+from os.path import walk, join                        #从导入相关的函数</textarea><br />
+from os import chdir, remove                          #<br />
+def scan(arg, dirname, names):                        #walk调用的函数三个默认参数<br />
+for file in names:                                #判断文件扩展名并写入到一个列表中<br />
+if file[-4:]==".txt":                         #<br />
+txtfile.append(join(dirname,file))        #<br />
+elif file[-4:]==".exe":                       #<br />
+exefile.append(join(dirname,file))        #<br />
+else:                                         #<br />
+otherfile.append(join(dirname,file))      #<br />
+if __name__== "__main__":                             #<br />
+otherfile=[]                                      #<br />
+txtfile=[]                                        #<br />
+exefile=[]                                        #<br />
+path="d:\\"                                       #<br />
+walk(path, scan, 0)                               #<br />
+print "txt file ",txtfile                         #打印文本文件名<br />
+print "exe file ",exefile                         #打印可执行文件名<br />
+print "other file",otherfile                      #打印其余文件名<br />
+print len(txtfile)+len(exefile)+len(otherfile)    #统计文件数
+
+<script class="javascript">
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+<p>这个是参考网页</p><a href="http://www-128.ibm.com/developerworks/cn/linux/tips/l-python/">应用 Python 解决一些实际问题</a>
+</p>

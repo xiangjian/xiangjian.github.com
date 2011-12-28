@@ -1,0 +1,91 @@
+---
+layout: post
+title: ASP中使用类
+categories:
+- 开发
+tags:
+- asp
+- Class
+- VBscript
+published: true
+comments: true
+---
+<p>在写ASP页面时，有时候需要将一系列实现特定功能，而又能在比较多的页面中使用的时候，这时常常，需要将这些功能封装起来。通常的方法是写COM组件，这个方法开发较慢，而且我也不会，使用ASP的VBscript的Class来实现的。
+<div class="code">Class lang<br />
+Private objDoc<br />
+private path<br />
+'private langtext<br />
+Private Sub Class_Initialize<br />
+path=Server.MapPath("/")&"\lang.xml"<br />
+set objDoc=Server.CreateObject("Microsoft.FreeThreadedXMLDOM")<br />
+objDoc.async=false<br />
+objDoc.load path<br />
+End Sub<br />
+Public Function lang(id)<br />
+set langnode=objDoc.SelectSingleNode("Cnodclang/Lang[@id='"&id &"']")<br />
+if langnode is nothing then<br />
+langre="obj is not exist"<br />
+else<br />
+if(Session("language")="en") then<br />
+langre=langnode.getAttribute("En")<br />
+elseif(Session("language")="cn") then<br />
+langre=langnode.getAttribute("Zh")<br />
+else<br />
+langre=langnode.getAttribute("Zh")<br />
+end if<br />
+Response.Write langre<br />
+end if<br />
+End Function<br />
+Public Property Get langtext(id)<br />
+set langnode=objDoc.SelectSingleNode("Cnodclang/Lang[@id='"&id &"']")<br />
+if langnode is nothing then<br />
+langre="obj is not exist"<br />
+else<br />
+if(Session("language")="en") then<br />
+langre=langnode.getAttribute("En")<br />
+elseif(Session("language")="cn") then<br />
+langre=langnode.getAttribute("Zh")<br />
+else<br />
+langre=langnode.getAttribute("Zh")<br />
+end if<br />
+langtext=langre<br />
+end if<br />
+End Property<br />
+Public Sub edit_node(id,lang,value)<br />
+set langnode=objDoc.SelectSingleNode("Cnodclang/Lang[@id='"&id &"']")<br />
+if langnode is nothing then<br />
+set root=objDoc.SelectSingleNode("Cnodclang")<br />
+if root is nothing then<br />
+else<br />
+set new_node=objDoc.createElement("Lang")<br />
+new_node.setAttribute "id",id<br />
+new node.setAttribute lang,value<br />
+root.appendChild(new_node)<br />
+end if<br />
+else<br />
+langnode.setAttribute lang,value<br />
+end if<br />
+objDoc.save path<br />
+End Sub<br />
+Public Sub del_node(id)<br />
+set langnode=objDoc.SelectSingleNode("Cnodclang/Lang[@id='"&id &"']")<br />
+if langnode is nothing then<br />
+else<br />
+set root=objDoc.SelectSingleNode("Cnodclang")<br />
+if root is nothing then<br />
+else<br />
+root.removeChild(langnode)<br />
+end if<br />
+end if<br />
+End Sub<br />
+Private Sub Class_Terminate()<br />
+set objDoc=nothing<br />
+End Sub<br />
+End Class
+</div>
+总结下：<br />
+1.ASP使用Class_Initialize，Class_Terminate()类似构造函数和析构函数。<br />
+2.ASP类函数不能使用return ,因此函数没有返回值（作用和SUB一样）。<br />
+3.对成员的函数的赋值是通过let 来实现的。<br />
+4.如果要返回值，则使用Property GET 来完成的。
+</p>

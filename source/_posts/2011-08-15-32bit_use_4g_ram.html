@@ -1,0 +1,15 @@
+---
+layout: post
+title: 32位系统充分使用多余的内存
+categories:
+- notes
+tags: []
+published: true
+comments: true
+---
+<p>我的T410i很久以前就升级了4G内存，但是32位系统使用不了全部的内存，单位的网络准入系统又不支持64位系统。内存一直都没有充分利用，其实可以做一个内存盘把一些暂存的内容放到这个上面来。有几个好处：<br />
+1.速度快，本来这块内存是用不到的，内存的速度比硬盘快很多。<br />
+2.重启系统这一块内容会消失，可以做临时存储。如totalcommand解压缓存。</p>
+
+<p>ramdisk我使用的是<a href="http://www.romexsoftware.com/zh-cn/index.html" title="ramdisk" target="_blank">ramdisk</a> 效果还不错。<br />
+VS2010额编译速度一直不是太快，把编译内容放到ramdisk中可以显着提高速度.配置方法可以参考<a href="http://demo.tc/Post/643" title="asp.net ramdisk配置" target="_blank">asp.net ramdisk配置</a></p>

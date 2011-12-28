@@ -1,0 +1,29 @@
+---
+layout: post
+title: mapguide 绘图引擎 GD与AGG的比较
+categories:
+- autodesk
+- mapguide
+tags:
+- AGG
+- GD
+- mapguide
+published: true
+comments: true
+---
+<p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
+<p>AGG:<br />
+AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口，其产生的图形的质量也非常高。AGG引擎最突出的特点是Anti-alias（反锯齿）和subpixel rendering(亚像素渲染)，使用AGG引擎绘制的地图平滑，清晰，速度快。现在AGG现在还不能使GPU来绘图，将来使用GPU绘图也是绘图引擎的发展趋势。</p>
+<p>GD:<br />
+是一个开源的图像处理库，支持 PNG/JPEG/GIF以及其他格式的图像。GD一般被用来创建图表、图形、缩略图以及其他图像相关的处理操作。</p>
+<p>mapguide使用了AGG和GD双引擎，可以在mapguide server的bin目录中serverconfig.ini文件中Renderer处改变绘图使用的引擎方式。</p>
+<p>下面是我使用mapguide 2.1,地图数据使用默认的Sheboygan地图，分别使用GD引擎，和AGG引擎地图结果：</p>
+<p>AGG图</p>
+<p><img alt="mapguide-AGG" src="http://farm5.static.flickr.com/4069/4313078811_840266dcd6_o.png" /></p>
+<p>GD图</p>
+<p><img alt="mapguide-GD" src="http://farm3.static.flickr.com/2596/4313078943_64343d4326_o.png" /></p>
+<p>可以明显看出GD绘图在线的边缘出现了锯齿。在使用mapguide时尽量使用AGG引擎来出图。</p>
+<p>参考资料：</p>
+<p><a class="reference external" href="http://www.cnblogs.com/kane_zzt/archive/2008/08/19/1271793.html">AGG</a></p>
+<p><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">绘图知识</a></p>
+</p>

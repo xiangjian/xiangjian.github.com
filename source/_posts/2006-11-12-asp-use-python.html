@@ -1,0 +1,21 @@
+---
+layout: post
+title: 在ASP中使用python脚本
+categories:
+- 开发
+tags: []
+published: true
+comments: true
+---
+<p><p>ASP是Microsoft公司开发的服务器端的脚本环境，是目前流行的开放式Web应用程序开发技术。ASP的主要特性是能够把脚本HTML、组件和强大的Web数据库访问功能结合在一起，形成一个能在服务器上运行的应用程序，并把按用户的要求真心专门制作的HTML页面送给客户端浏览器。<br />
+ASP默认使用的是VBscript,使用VBscript来做网页开发实在不能最大限度的发挥ASP引擎的能力。首先VBscript不是面向对象的，只能简单实现类；其次VBscript要实现比较复杂的功能需要写COM组件来实现，对没有掌握COM组件编程的人员来说，会带来相当的不便。而如果选择一种比VBscript更优秀的语言来进行ASP编程是最好不过的。<br />
+Python 是一种简洁优美的编程语言，它具有面向对象的特征，较好的粘合其他语言的能力及跨平台性。<br />
+在IIS中设置使用python作为ASP脚本可以参考文章<a href="http://support.microsoft.com/kb/276494">kb276494</a>。<br />
+如果对已经有的ASP网页进行Python脚本的扩充怎么办？我原以为需要重写代码因为一个ASP页面中只能使用一种脚本。但也有一办法来实现。把Python脚本代码放到下面的代码中就可以，
+<code>
+《script tyep="text/python" language="python" RUNAT="server"》<br />
+PYTHON代码<br />
+《/script》
+</code>
+<%%>中就放VBscript脚本</p>
+</p>

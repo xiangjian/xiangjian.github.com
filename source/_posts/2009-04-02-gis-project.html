@@ -1,0 +1,21 @@
+---
+layout: post
+title: 几个开源GIS坐标投影项目介绍
+categories:
+- gis
+tags: []
+published: true
+comments: true
+---
+<p>这几个开源GIS坐标投影程序都是OSGeo项目。<div><ol><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold; ">Proj4</span>
+</li>
+</ol><div>这个是最早的开源GIS坐标投影系统，大部分开源GIS系统均使用他作为坐标投影转换。开源GIS坐标投影使用最为广泛。</div><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">Proj4js
+</span></li>
+<div>这是一个javascript写的坐标投影转换系统，支持基准面坐标转换。这个作为一般的坐标投影转换可以满足要求，可以在web浏览器中进行，无需安装任务程序，可以跨平台使用。我认为javascript来进行坐标投影转换程序不是一个好的做法，性能应该是他的一个瓶颈。</div><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">CS-MAP
+</span></li>
+<div>看到这个名字你可能很陌生，这是哪来的，其实这是从成熟的商业软件中提取出来的一个模块。如果你用Autodesk的GIS产品，您一定会很熟习，这就是Autodek Mapguide,Autodesk Map3D使用的坐标投影系统。这个是Autodesk捐给OSGeo基金会的，它的功能，性能各方面久经考验，相信不久后这个会在GIS项目中大量应用。
+</div>
+<li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">GeoTIFF
+</span></li><div>不太熟，这个主要是做栅格数据坐标转换的。</div><li><span class="Apple-style-span" style="border-collapse: collapse; font-family: arial; font-size: 13px; font-weight: bold;">MetaCRS/libgeotiff
+</span></li><div>这个是将以上几个开源的GIS投影系统的组合，用户可以方便的调用这几个坐标投影系统。</div></div>
+</p>

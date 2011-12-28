@@ -1,0 +1,30 @@
+---
+layout: post
+title: clearing float
+categories:
+- 开发
+tags: []
+published: true
+comments: true
+---
+<p>前几天做一个信息显示的界面，布局是左右两边，要这左右两在不同的浏览器情况下都可以自动适应布局，使用div布局方式一直没有很好解决，没有办法只能使用table来做布局。<br />
+后来看到了这篇文章，使用div布局是可以解决这个问题的。<br />
+最终的解决方法是
+<pre name="code" class="css">
+div.container {
+border: 1px solid #000000;
+overflow: hidden;
+width: 100%;
+}
+div.left {
+width: 50%;
+float: left;
+}
+div.right {
+width: 50%;
+float: right;
+}
+</pre>
+引用地址<br />
+http://quirksmode.org/css/clearing.html
+</p>

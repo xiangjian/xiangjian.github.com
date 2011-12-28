@@ -1,0 +1,29 @@
+---
+layout: post
+title: 使用Autoit脚本做开机程序自动运行脚本
+categories:
+- 开发
+- 软件
+tags: []
+published: true
+comments: true
+---
+<p><p>每次机子启动都要运行不少必须要运行的程序，设为开机启动双不太灵活，手动点击太繁。因此写了一个脚本用来启动所有的程序。<br />
+下面是详细的代码
+</p>
+<code>
+#cs ----------------------------------------------------------------------------<br />
+AutoIt 版本: 3.2.4.0第一版)<br />
+脚本作者:*****<br />
+Email:*******************<br />
+QQ/TM:********<br />
+脚本版本:<br />
+脚本功能:一次性运行开机要运行的程序<br />
+#ce ----------------------------------------------------------------------------<br />
+; 脚本开始 - 在这后面添加您的代码.<br />
+if ProcessExists("TM.exe")=0 then                       ;QQ<br />
+Run("D:\Program\tm\CoralQQ.exe","D:\Program\tm")<br />
+EndIf<br />
+if ProcessExists("Popo.exe")=0 And @HOUR<18 then        ;POPO2004     Run("D:\Program\popo2004\Start.exe","D:\Program\popo2004\") Else                                                    ;晚上关闭Popo2004     ProcessClose("Popo.exe") EndIf if ProcessExists("Skype.exe")=0 then                    ;SKYPE     Run("D:\Program\Skype\Phone\Skype.exe","D:\Program\Skype\Phone\") EndIf If ProcessExists("Lingoes.exe")=0 Then                  ;词霸     Run("C:\Program Files\Lingoes\Translator\Lingoes.exe","C:\Program Files\Lingoes\Translator\") EndIf If ProcessExists("SimpleCheck.exe")=0 Then             ;邮件检查     Run("D:\totalcmd\Totalcmd\tools\SimpleCheck\SimpleCheck.exe","D:\totalcmd\Totalcmd\tools\SimpleCheck\") EndIf If ProcessExists("Totalcmd.exe")=0 Then                ;TC     Run("D:\totalcmd\tcvs.exe","D:\totalcmd","@SW_MINIMIZE") EndIf
+</code>
+</p>

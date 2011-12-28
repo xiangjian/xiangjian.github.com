@@ -1,0 +1,20 @@
+---
+layout: post
+title: 在vps上安装dabr
+categories:
+- 软件
+tags:
+- vps
+published: true
+comments: true
+---
+<p><p>前几天twa.sh网站访问不了，有一段时间没有上过twitter了。因为知道twa.sh是dabr搭建的，我的vps也有PHP环境，决定架一个dabr. 主要按照http://zou.lu/dabr/ 写的搭建方法，完成dabr环境搭建。有一些小的改动主要是PHP环境配置问题，PHP默认有些包没有使用，没有默认的时区设置。这些可以看nginx输出的的错误日志。使用tail -f /srv/log/nginx/error.log 命令就可以查看，改下配置就可以了。</p>
+<p>话说linux系统很不错，命令行开始可能感觉上手不易，但linux的配置，日志输出都比较固定，查看相应的信息基本上可以看到问题是出在哪了。这点比Windows强的地方，有时真不知道错误出在哪。</p>
+<p>这几天不知道为什么php-cgi在fast-cgi下跑不很稳定，过一段时间就挂掉.不知道是不是系统的问题，我的vps安装的是archlinux。写了个bash脚本扔到/etc/cron.hourly目录中定时检查php-cgi进程是否存在，否则重启php-cgi。暂时就这样了，慢慢再找不稳定的原因。脚本:</p>
+<pre class="literal-block">
+if ['ps x |grep php--cgi|wc -l'=2];then
+echo start php-cgi
+/etc/rc.d/fastcgi start
+fi;
+</pre>
+</p>

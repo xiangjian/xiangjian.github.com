@@ -1,0 +1,38 @@
+---
+layout: post
+title: linux 系统动态链接库引
+categories:
+- linux
+tags: []
+published: true
+comments: true
+---
+<p><p>最近要编译一个mapnik2，其中安装依赖环境icu和boost这两个东西费尽周折。最后总算弄明白了linux下的动态链接库是怎么管理的？动态链接库多版本会不会冲突?</p>
+<p>linux支持unix中的动态链接库方法，使用export LD_LIBRARY_PATH= 这各方式。linux的动态链接库引用是通过ldconfig来实现的。<br />
+linux 动态链接库使用ldconfig命令来查找系统动态链接库，并生成缓存方便系统引用。编译代码时，软件依赖一般是从ldconfig的cache中查找。下面主要说下linux如何管理动态链接库</p>
+<p>ldconfig 有以下几个配置文件:</p>
+<pre class="literal-block">
+/etc/ld.so.conf
+/etc/ld.so.conf.d/*
+</pre>
+<p>在文件中说明了引用动态链接库的路径，与export的效果着不多。指定路径后，只需要运行ldconfig即可重建动态链接库索引。</p>
+<p>使用 ldconfig -p 可以查询系统中注册的dll文件。</p>
+<p>另外还有个查看程序引用的动态链接库在系统中是否存在，使用ldd 加动态链接库地址就可以查看。例如,查看mapnik postgis插件引用的动态链接库在系统中是否存在可以使用</p>
+<pre class="literal-block">
+ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
+
+<p>    linux-vdso.so.1 =&gt;  (0x00007fff3791f000)<br />
+    libpq.so.5 =&gt; /usr/lib/libpq.so.5 (0x00007f00c0306000)<br />
+    libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0x00007f00bfffc000)<br />
+    libm.so.6 =&gt; /lib/libm.so.6 (0x00007f00bfd79000)<br />
+    libgcc_s.so.1 =&gt; /usr/lib/libgcc_s.so.1 (0x00007f00bfb63000)<br />
+    libc.so.6 =&gt; /lib/libc.so.6 (0x00007f00bf805000)<br />
+    libssl.so.1.0.0 =&gt; /usr/lib/libssl.so.1.0.0 (0x00007f00bf5a8000)<br />
+    libcrypto.so.1.0.0 =&gt; /usr/lib/libcrypto.so.1.0.0 (0x00007f00bf1ec000)<br />
+    libpthread.so.0 =&gt; /lib/libpthread.so.0 (0x00007f00befcf000)<br />
+    /lib/ld-linux-x86-64.so.2 (0x00007f00c0791000)<br />
+    libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f00bedca000)<br />
+    libz.so.1 =&gt; /usr/lib/libz.so.1 (0x00007f00bebb2000)
+
+<p>linux 中编译程序或移植环境经常会使用到这两个命令解决实际问题。</p>
+</p>

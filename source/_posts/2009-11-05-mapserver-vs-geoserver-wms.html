@@ -1,0 +1,16 @@
+---
+layout: post
+title: MapServer与GeoServer WMS服务性能对比
+categories:
+- gis
+tags: []
+published: true
+comments: true
+---
+<p>在悉尼举行的FOSS4G 2009大会上的演讲PPT,关于MapGerver和GeoServer WMS服务性能的对比。测试比较全面，使用了shp,postgis，oracle spatial,arcgis sde(安装在oracle上)。分别测试了点,线,面数据源的WMS性能。<br />
+<br />
+另：因为使用了相同GIS服务器，使用了不同数据引擎，因此我们可以借助这个看一看空间数据引擎的性能（测试可能不全面，仅仅针对这个测试）.<br />
+<br />
+结果是:shp>postgis>oracle spatial=arcgis sde　。postgis性能比oracle spatial,arcgis sde好出乎意料，oracle spatial与arcgis sde性能差不多在意料之中。<br />
+<div style="width:425px;text-align:left" id="__ss_2332151"><object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=foss4g2009-mapserver-project-status-091023180203-phpapp02&stripped_title=wms-performance-shootout" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=foss4g2009-mapserver-project-status-091023180203-phpapp02&stripped_title=wms-performance-shootout" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object></div>
+</p>

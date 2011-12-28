@@ -1,0 +1,21 @@
+---
+layout: post
+title: javascript几种判断空值
+categories:
+- javascript
+tags: []
+published: true
+comments: true
+---
+<p>首先,在JavaScript中"null"是一个对象,还有一个值表示不存在 "undefined"。使用DOM选择的返回值所有的失败都是"undefined"，但在JavaScript中"undefined"可以作为一个值使用。<br />
+第二, 空值的判断并不是简单的相等，如果你想检查是否为空可以：
+<pre name="code" class="javascript">if (null == yourvar) // with castingif (null === yourvar) // without casting</pre>
+如果你要检查一个对象是否存在：
+<pre name="code" class="javascript">if (typeof yourvar != 'undefined') // 任何范围if (window['varname'] != undefined) // 页面内的全局变量if (window['varname'] != void 0) // 早期浏览器</pre>
+如果你知道一个对象存在，但是你想知道这个对中是否存在值：
+<pre name="code" class="javascript">if (undefined != yourvar)if (void 0 != yourvar) // 早期浏览器</pre>
+如果你相知道一个成员是否独立存在，无论该成员是否赋值：
+<pre name="code" class="javascript">if ('membername' in object) // 继承if (object.hasOwnProperty('membername')) // 没有继承</pre>
+如果你想知道一个对名是否可以使用：
+<pre name="code" class="javascript">if(variablename)</pre>
+</p>

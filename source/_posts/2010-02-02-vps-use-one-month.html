@@ -1,0 +1,34 @@
+---
+layout: post
+title: vps使用一月体验
+categories:
+- 杂
+tags:
+- archlinux
+- Movable Type
+- nginx
+- openvpn
+- snmp
+- ssh
+published: true
+comments: true
+---
+<p><p>从买VPS到现在差不多一个月了，经过这段时间的摸索配置，基本已经可用，这个VPS主要使用以下几个功能。</p>
+<ul class="simple">
+<li>网站：架设了一个多用户的 blog 。</li>
+<li>下载服务器：把关注的东西下载到vps上，再使用http下载到本机，vps可以实现24小时不间断下载，vps带宽也很不错。</li>
+<li>访问网站，使用openvpn,ssh可以访问国内无法访问的网站</li>
+</ul>
+<p>相关软件选择。</p>
+<p>操作系统，ramhost.us提供了很多种操作系统选择，我选择的是archlinux。一是archlinux原来在vm中使用过，有一些了解。二是我想选择一个没有跨版本升级的概念，将来会有版本升级的问题，这样就只有archlinux和gentoo可选。vps内存太少，编译安装不太现实，因此不选择gentoo,如果是工作中选择服务器，我会选gentoo.</p>
+<p>博客平台：没有选择wordpress，wordpress安装方便，支持广泛有很多中文资源。我使用的是movable type，还是基于内存的考虑和多用户的考虑，movable type多用户支持好，所有的都是生成静态文件。</p>
+<p>数据库：我没有选择mysql,而是单文件的数据库sqlite。原因有二：mysql使用消耗内存较多，vps内存有限; <a class="reference external" href="http://www.dbanotes.net/database/sqlite_cms.html">sqlite</a> 已经可以满足我的需求。</p>
+<p>web服务器：web服务器似乎没有别的选择：nginx，内存占用少，但是我没有弄好movable type的配置，后来又安装了一个lighttp运行movable type的cgi程序。</p>
+<p>下载软件：没有别的选择mldonkey支持电驴，BT，直接下载，还有web管理介面。唯一的缺陷是内在占用多，30M以上。不过这个不会经常用，偶尔下载还可以。</p>
+<p>服务器监控：ramhost使用自定义的控制面板，功能比较有限，因此我使用国内的一个服务， <a class="reference external" href="http://www.jiankongbao.com/">监控宝</a> 。这个监控比较全面，使用snmpd服务监控。 <a class="reference external" href="http://www.vpser.net/manage/jiankongbao-setup.html">安装方法</a></p>
+<pre class="literal-block">
+archlinux 中找不到snmp的配置文件，可以使用这个命令配置用户net-snmp-config --create-snmpv3-user
+</pre>
+<p>网络连接：使用openvpn和ssh可以访问国外无法访问的网站,</p>
+<p>服务器安装了这些软件，基本内存不会超过50M，如果不开下载，服务器使用时不会超过20M，Movable type发布生成静态页面时除外，因为Movable type发布时内存会到70M左右，vps内存还是够用的.</p>
+</p>

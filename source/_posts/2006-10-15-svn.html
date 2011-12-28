@@ -1,0 +1,39 @@
+---
+layout: post
+title: svn
+categories:
+- 软件
+tags:
+- svn
+published: true
+comments: true
+---
+<p>对源代码进行版本控制<br />
+前言：上周我想将一个改动了页面改回几天前 的状态，由于当时没有备份（没有想到会往回改），只能靠记忆一点点的往回改，这个发了我不少时间（虽然只是改回原来的状态）。周末问JAVA组的夏烨、张骁他们是遇到过这种问题没有。他们说不回有这种情况，JAVA组的代码全部都CVS进行了版本控制。<br />
+什么是版本控制<br />
+版本控制(Revision control)是一种软件工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制提供任何工程项目的设计者，将设计回复到之前任一状态的选择权。这种选择权在开发进入死胡同时特别重要。软件工程的版本控制也是像这样追踪源码、文件、设定档等等的更动，并且提供控制这些更动的控制权的程序。理论上所有的资讯纪录都可以加上版本控制，目前只有软件开发业有使用较复杂的版本控制技巧与工具，但是已有人开始用版本控制软件来管理CAD电子档案，电路板设计，来补足本来由人手工执行的传统版本控制。<br />
+版本控制是管理信息变化的艺术，它很早就成为了程序员重要的工具，程序员经常会花时间做一点小报的修改然后第二天又把它改回来。<br />
+选用什么软件来进行版本控制<br />
+长久以来，在开源世界中，CVS（Concurrent Versions System）一直都是版本控制的首选。但是现在用户有了另一个选择，就是 Subversion。Subversion是下一代版本控制系统，能替代 CVS。 Subversion是一个自由、开放源码的版本控制系统。它是一个通用系统，可用来管理任何类型的文件， 其中包括程序源码。<br />
+CVS（Concurrent Versions System）与SVN（SUBVERSION）的优缺点对比。<br />
+操作 CVS SVN<br />
+文件重命名、拷贝、 不能，只能用一种变通的方法----删除原文件，添加新的文件。但是这样会导致文件的版本信息丢失。 完美支持<br />
+文件的提交和更新 对整个文件进行重新提交和更新 只是对比文件发送差异，只消耗很少的网络<br />
+如何使用<br />
+服务器：<br />
+客户端：<br />
+TortoiseSVN 与<br />
+AnkhSVN - A Subversion addin for Visual Studio® .NET<br />
+下面是它的使用截图(来自官网的截图)。<br />
+浏览版本仓库：
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://photos1.blogger.com/blogger2/7726/632648135096664/1600/repositoryexplorer.0.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 351px; height: 320px;" src="http://photos1.blogger.com/blogger2/7726/632648135096664/320/repositoryexplorer.0.png" alt="" border="0" /></a>
+文件管理器里的右键菜单
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://photos1.blogger.com/blogger2/7726/632648135096664/1600/solutionExplorer%201.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 287px; height: 400px;" src="http://photos1.blogger.com/blogger2/7726/632648135096664/400/solutionExplorer%201.png" alt="" border="0" /></a>
+Blame(不知道中文如何翻译)。
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://photos1.blogger.com/blogger2/7726/632648135096664/1600/blame.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://photos1.blogger.com/blogger2/7726/632648135096664/400/blame.png" alt="" border="0" /></a>
+对比各个版本的区别：
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://photos1.blogger.com/blogger2/7726/632648135096664/1600/diff.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://photos1.blogger.com/blogger2/7726/632648135096664/400/diff.png" alt="" border="0" /></a>
+版本比较对话框：
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://photos1.blogger.com/blogger2/7726/632648135096664/1600/diffdialog.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://photos1.blogger.com/blogger2/7726/632648135096664/400/diffdialog.jpg" alt="" border="0" /></a>锁定文件对话框：
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://photos1.blogger.com/blogger2/7726/632648135096664/1600/lockdialog.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://photos1.blogger.com/blogger2/7726/632648135096664/400/lockdialog.png" alt="" border="0" /></a>
+</p>

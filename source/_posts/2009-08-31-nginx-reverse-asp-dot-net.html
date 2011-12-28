@@ -1,0 +1,21 @@
+---
+layout: post
+title: 使用nginx反向代理asp.net
+categories:
+- 开发
+- 软件
+tags: []
+published: true
+comments: true
+---
+<p>我的笔记本安装的是深度的xp系统，没有安装IIS。我尝试过安装，没有成功没有办法只有使用vs 2008自带的Server开发。今天做了一个Extjs + wcf的例子想给同事看看，结果地址看不了，咱们局域网只能使用80端口做Web服务，vs 2008　Server使用的不是80端口。怎么办？<br />
+想到<span style="font-weight:bold;">nginx </span>支持<span style="font-weight:bold;">反向代理</span>(reverse proxy),刚好前几个下载了一个windows下的版本，配置用了下，同事可以在局域网看了。下面是<br />
+<textarea code="js" /><br />
+location / {<br />
+proxy_pass        http://localhost:14037;//vs 2008 server 动态生成的端口<br />
+proxy_set_header  X-Real-IP  $remote_addr;<br />
+<br />
+}<br />
+<br />
+查资料这还有一篇使用nginx使用iis反向代理的文章：<a href="http://www.napthali.com/ramblings/proxyiis.aspx">Reverse Proxy IIS</a>
+</p>
