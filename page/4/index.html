@@ -9,7 +9,8 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="OGR2GUI是什么呢？首先给介绍GIS空间数据读取的一个通用包，GDAL（Geospatial Data Abstraction Library）。ogr是其中读写矢量数据的包，因为可以读写矢量数据，因此有人做了一个开源项目ogr2ogr，做通用空间矢量数据源间的转换,支持多种数据。 &hellip;">
+  <meta name="description" content="上周没有写，工作有点忙（这个似乎不能是借口），这个周末同事结婚，去涿州去闹去了，今天下午才点时间静下来整理。技术：Gearman
+一个分布式处理计算框架，将计算任务分配到多台机器上运行，减少同一机器的CPU运行限制。支持多种语言（不支持C#，开源产品不支持很正常），这个还是比较很不错的。我的想法 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/week-1-2.html">本周好文推荐</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-08T00:00:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/week-1-2.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><!-- 本周好文 --><br />
+<p>上周没有写，工作有点忙（这个似乎不能是借口），这个周末同事结婚，去涿州去闹去了，今天下午才点时间静下来整理。</p><div class="section" id="id1"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://gearman.org/index.php">Gearman</a></li>
+</ul><p>一个分布式处理计算框架，将计算任务分配到多台机器上运行，减少同一机器的CPU运行限制。支持多种语言（不支持C#，开源产品不支持很正常），这个还是比较很不错的。我的想法，GIS空间分析需要大量的CPU运算，不知是否可以利用这个框架来做空间分析，速度上会不会有优势。</p><ul class="simple"><li><a class="reference external" href="http://we.xoyo.com/system/dip">金山DIPS分布式图片处理平台</a></li>
+</ul><p>金山逍遥DIPS分布式图片处理平台，使用了Gearman_,rewinx的PPT分享，使用的效果明显。Gearman_ PHP语言实现，对高CPU利用的程序进行优化效果不错。</p></div><div class="section" id="id2"><h1>非技术：</h1><ul class="simple"><li><a class="reference external" href="http://blog.sina.com.cn/s/blog_4701280b0100fpjr.html">一条船上的人</a></li>
+</ul><p>作者韩寒，内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载1</a></li>
+</ul><p>原版电子书下载，国外的期刊杂志都有，时效性强，看这个学习英文，了解时事不错。还有其它一些内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载2</a></li>
+</ul><p>另一个站点，内容差不多，电子书下载。</p><ul class="simple"><li><a class="reference external" href="http://wiki.mbalib.com/wiki/%E8%A1%8C%E4%B8%BA%E7%BB%8F%E6%B5%8E%E5%AD%A6">行为经济学</a></li>
+</ul><p>这个是智库百科中关于行为经济学的解释，前几天在图书大厦的一本杂志中看到有关理性经济学和行为经济学的文章，回来没有找到原文，找了找相关资料，这个比较全。看到了这个才发现，经济学没有那枯燥，大学学的都是些什么东西。相当同意行为经济学的观点，大家都是理性的，但是真正做出正确决策的一般是非理性因素。</p></div><div class="section" id="id3"><h1>下周计划</h1><ul class="simple"><li>完成没有翻译完的javascript 数组类型（正在翻译），相当不错的文章，10月份就开始了，断断续续，没有翻译多少。希望下周可以完成。</li>
+<li>10月份介绍的&#8221;使用开源软件和python进行地图空间处理&#8221;的PPT要好好看看。学习python在GIS空间处理这一块大有用武之地。</li>
+</ul><p>苟有恒，何必三更眠五更起；教无益，莫过一日曝十日寒。</p></div>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -479,46 +528,6 @@ eldoc.highlight();
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/10/flickr-upload.html">Flickr图片上传</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-11T00:00:00+08:00" pubdate data-updated="true">Oct 11<span>th</span>, 2009</time>
-        
-         | <a href="/2009/10/flickr-upload.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><h1>flickr图片上传的组件</h1><p>使用用flickr的用户会发现flickr的图片上传很有特色，基于ajax的多个图片上传，界面很清爽。上传体验很不错。</p><p><img alt="pic" src="http://farm3.static.flickr.com/2530/4000631222_8f5c16f739.jpg" /></p><p>查了下这个上传的实现方式，原来是使用YUI的upload组件实现的，flickr被Yahoo收购了，当然使用YUI了。<br />
-YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http://yuiblog.com/blog/2009/02/26/flickr-uploadr/">技术实现</a> .</p><p>如果在自己的项目中要使用这个，可以考虑使用，YUI做得还是很不错的。</p><p>另外，还有一个jquery的多文件上传的组件 <a class="reference external" href="http://sziebert.net/posts/flickr-style-multiple-file-upload-with-jquery/">jquery多文件上传</a> .</p>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/5/">&larr; Older</a>
@@ -536,6 +545,10 @@ YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/happy-new-year.html">happy new year</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
       </li>
     
@@ -549,10 +562,6 @@ YUI官方BLOG 给出了实现的方式  <a class="reference external" href="http
     
       <li class="post">
         <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
       </li>
     
   </ul>

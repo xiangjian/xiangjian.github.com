@@ -9,8 +9,10 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="对源代码进行版本控制
-前言：上周我想将一个改动了页面改回几天前 的状态，由于当时没有备份（没有想到会往回改），只能靠记忆一点点的往回改，这个发了我不少时间（虽然只是改回原来的状态）。周末问JAVA组的夏烨、张骁他们是遇到过这种问题没有。他们说不回有这种情况， &hellip;">
+  <meta name="description" content="在写ASP页面时，有时候需要将一系列实现特定功能，而又能在比较多的页面中使用的时候，这时常常，需要将这些功能封装起来。通常的方法是写COM组件，这个方法开发较慢，而且我也不会，使用ASP的VBscript的Class来实现的。
+Class lang
+Private objDoc
+private &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +79,122 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/10/asp-class.html">ASP中使用类</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-10-16T00:00:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2006</time>
+        
+         | <a href="/2006/10/asp-class.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在写ASP页面时，有时候需要将一系列实现特定功能，而又能在比较多的页面中使用的时候，这时常常，需要将这些功能封装起来。通常的方法是写COM组件，这个方法开发较慢，而且我也不会，使用ASP的VBscript的Class来实现的。
+<div class="code">Class lang<br />
+Private objDoc<br />
+private path<br />
+&#8216;private langtext<br />
+Private Sub Class_Initialize<br />
+path=Server.MapPath(&#8220;/&#8221;)&&#8221;\lang.xml&#8221;<br />
+set objDoc=Server.CreateObject(&#8220;Microsoft.FreeThreadedXMLDOM&#8221;)<br />
+objDoc.async=false<br />
+objDoc.load path<br />
+End Sub<br />
+Public Function lang(id)<br />
+set langnode=objDoc.SelectSingleNode(&#8220;Cnodclang/Lang[@id=&#8217;&#8221;&id &&#8221;&#8217;]&#8221;)<br />
+if langnode is nothing then<br />
+langre=&#8221;obj is not exist&#8221;<br />
+else<br />
+if(Session(&#8220;language&#8221;)=&#8221;en&#8221;) then<br />
+langre=langnode.getAttribute(&#8220;En&#8221;)<br />
+elseif(Session(&#8220;language&#8221;)=&#8221;cn&#8221;) then<br />
+langre=langnode.getAttribute(&#8220;Zh&#8221;)<br />
+else<br />
+langre=langnode.getAttribute(&#8220;Zh&#8221;)<br />
+end if<br />
+Response.Write langre<br />
+end if<br />
+End Function<br />
+Public Property Get langtext(id)<br />
+set langnode=objDoc.SelectSingleNode(&#8220;Cnodclang/Lang[@id=&#8217;&#8221;&id &&#8221;&#8217;]&#8221;)<br />
+if langnode is nothing then<br />
+langre=&#8221;obj is not exist&#8221;<br />
+else<br />
+if(Session(&#8220;language&#8221;)=&#8221;en&#8221;) then<br />
+langre=langnode.getAttribute(&#8220;En&#8221;)<br />
+elseif(Session(&#8220;language&#8221;)=&#8221;cn&#8221;) then<br />
+langre=langnode.getAttribute(&#8220;Zh&#8221;)<br />
+else<br />
+langre=langnode.getAttribute(&#8220;Zh&#8221;)<br />
+end if<br />
+langtext=langre<br />
+end if<br />
+End Property<br />
+Public Sub edit_node(id,lang,value)<br />
+set langnode=objDoc.SelectSingleNode(&#8220;Cnodclang/Lang[@id=&#8217;&#8221;&id &&#8221;&#8217;]&#8221;)<br />
+if langnode is nothing then<br />
+set root=objDoc.SelectSingleNode(&#8220;Cnodclang&#8221;)<br />
+if root is nothing then<br />
+else<br />
+set new_node=objDoc.createElement(&#8220;Lang&#8221;)<br />
+new_node.setAttribute &#8220;id&#8221;,id<br />
+new node.setAttribute lang,value<br />
+root.appendChild(new_node)<br />
+end if<br />
+else<br />
+langnode.setAttribute lang,value<br />
+end if<br />
+objDoc.save path<br />
+End Sub<br />
+Public Sub del_node(id)<br />
+set langnode=objDoc.SelectSingleNode(&#8220;Cnodclang/Lang[@id=&#8217;&#8221;&id &&#8221;&#8217;]&#8221;)<br />
+if langnode is nothing then<br />
+else<br />
+set root=objDoc.SelectSingleNode(&#8220;Cnodclang&#8221;)<br />
+if root is nothing then<br />
+else<br />
+root.removeChild(langnode)<br />
+end if<br />
+end if<br />
+End Sub<br />
+Private Sub Class_Terminate()<br />
+set objDoc=nothing<br />
+End Sub<br />
+End Class
+</div>
+总结下：<br />
+1.ASP使用Class_Initialize，Class_Terminate()类似构造函数和析构函数。<br />
+2.ASP类函数不能使用return ,因此函数没有返回值（作用和SUB一样）。<br />
+3.对成员的函数的赋值是通过let 来实现的。<br />
+4.如果要返回值，则使用Property GET 来完成的。
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -201,6 +319,10 @@ Blame(不知道中文如何翻译)。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/happy-new-year.html">happy new year</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
       </li>
     
@@ -214,10 +336,6 @@ Blame(不知道中文如何翻译)。
     
       <li class="post">
         <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
       </li>
     
   </ul>

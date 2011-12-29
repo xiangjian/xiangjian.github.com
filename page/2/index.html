@@ -9,7 +9,8 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。 技术： redis 去年主要使用memcached，memcached在使用过程中发现，有些东西功能不足：不能选择性持久化；存储的值不能太大，默认为4M；加之缓存结构单一。redis可以很好解决这个问题，可以持久化，提供多种数据类型， &hellip;">
+  <meta name="description" content="今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用
+邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,90 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/picture_upload_flickr_google.html">快速图片上传到flickr,google</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/picture_upload_flickr_google.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
+邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
+<p>晚上写了如下代码(当然是使用python)::</p> 
+<pre class="literal-block"> 
+#! coding=utf-8
+import smtplib
+import os
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+ 
+family = ['XXXXXXX&#64;photos.flickr.com','XXXXXXXXXXXXX&#64;picasaweb.com']
+SMTP_SERVER='XXXXXXXXXx'
+SMTP_USER='XXXXXXXx'
+SMTP_PASS='XXXXXXX'
+SENDER =&quot;XXXXXXXXXXx&quot;
+ 
+ 
+COMMASPACE = ', '
+ 
+# Create the container (outer) email message.
+msg = MIMEMultipart()
+msg['Subject'] = 'my picture'
+msg['From'] = 'xiangjian'
+msg['To'] = COMMASPACE.join(family)
+msg.preamble = 'my picture'
+ 
+def forward(toAddr, msg):
+    server = smtplib.SMTP( SMTP_SERVER )
+    server.login( SMTP_USER, SMTP_PASS )
+    server.sendmail( SENDER,toAddr , msg )
+    server.quit()
+    return True
+ 
+def sendpic(dir):
+    for root,dirs,files in os.walk(dir):
+        for name in files:
+            if(name.splitext()[1].lower() in ['.jpg','.png']):
+                print name
+                fp=open(name,'rb')
+                img=MIMEImage(fp.read())
+                fp.close()
+                msg.attach(img)
+                forward(COMMASPACE.join(family),msg)
+ 
+sendpic('.')
+</pre> 
+<p>将以上代码拷贝到照片文件夹，配置代码中的XXXXXXX。运行就可以将照片发布到多个服务器图床。经测试速度非常快，比通过http上传数据快很多。</p> </p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -751,59 +836,6 @@ archlinux 中找不到snmp的配置文件，可以使用这个命令配置用户
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/01/mapguide-dg-vs-gg.html">Mapguide 绘图引擎 GD与AGG的比较</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-31T00:00:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2010</time>
-        
-         | <a href="/2010/01/mapguide-dg-vs-gg.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
-<p>AGG:<br />
-AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口，其产生的图形的质量也非常高。AGG引擎最突出的特点是Anti-alias（反锯齿）和subpixel rendering(亚像素渲染)，使用AGG引擎绘制的地图平滑，清晰，速度快。现在AGG现在还不能使GPU来绘图，将来使用GPU绘图也是绘图引擎的发展趋势。</p>
-<p>GD:<br />
-是一个开源的图像处理库，支持 PNG/JPEG/GIF以及其他格式的图像。GD一般被用来创建图表、图形、缩略图以及其他图像相关的处理操作。</p>
-<p>mapguide使用了AGG和GD双引擎，可以在mapguide server的bin目录中serverconfig.ini文件中Renderer处改变绘图使用的引擎方式。</p>
-<p>下面是我使用mapguide 2.1,地图数据使用默认的Sheboygan地图，分别使用GD引擎，和AGG引擎地图结果：</p>
-<p>AGG图</p>
-<p><img alt="mapguide-AGG" src="http://farm5.static.flickr.com/4069/4313078811_840266dcd6_o.png" /></p>
-<p>GD图</p>
-<p><img alt="mapguide-GD" src="http://farm3.static.flickr.com/2596/4313078943_64343d4326_o.png" /></p>
-<p>可以明显看出GD绘图在线的边缘出现了锯齿。在使用mapguide时尽量使用AGG引擎来出图。</p>
-<p>参考资料：</p>
-<p><a class="reference external" href="http://www.cnblogs.com/kane_zzt/archive/2008/08/19/1271793.html">AGG</a></p>
-<p><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">绘图知识</a></p>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -821,6 +853,10 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/happy-new-year.html">happy new year</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
       </li>
     
@@ -834,10 +870,6 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
     
       <li class="post">
         <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
       </li>
     
   </ul>

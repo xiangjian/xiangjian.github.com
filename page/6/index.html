@@ -9,7 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="我的笔记本安装的是深度的xp系统，没有安装IIS。我尝试过安装，没有成功没有办法只有使用vs 2008自带的Server开发。今天做了一个Extjs + wcf的例子想给同事看看，结果地址看不了，咱们局域网只能使用80端口做Web服务，vs 2008　Server使用的不是80端口。怎么办？ &hellip;">
+  <meta name="description" content="打算给同事讲一下,javacript编程,做了一个几个浏览器排版引擎和javascript引擎的对比. 浏览器 页面排版引擎 Javascript解释器 IE Trident Jscript Firefox Gecko TraceMonkey Apple safari Webkit &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/web-javascript-engine.html">浏览器排版引擎与javascript引擎的对比</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-06T00:00:00+08:00" pubdate data-updated="true">Sep 6<span>th</span>, 2009</time>
+        
+         | <a href="/2009/09/web-javascript-engine.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>打算给同事讲一下,javacript编程,做了一个几个浏览器排版引擎和javascript引擎的对比.
+<style> <!--tr  {mso-height-source:auto;} col  {mso-width-source:auto;} td  {padding-top:1.0px;  padding-right:1.0px;  padding-left:1.0px;  mso-ignore:padding;  color:windowtext;  font-size:18.0pt;  font-weight:400;  font-style:normal;  text-decoration:none;  font-family:Arial;  mso-generic-font-family:auto;  mso-font-charset:0;  text-align:general;  vertical-align:bottom;  border:none;  mso-background-source:auto;  mso-pattern:auto;} .oa1  {border-top:1.0pt solid white;  border-right:1.0pt solid white;  border-bottom:3.0pt solid white;  border-left:1.0pt solid white;  background:#F07F09;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa2  {border-top:3.0pt solid white;  border-right:1.0pt solid white;  border-bottom:1.0pt solid white;  border-left:1.0pt solid white;  background:#F9D8CC;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa3  {border:1.0pt solid white;  background:#FCECE7;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} .oa4  {border:1.0pt solid white;  background:#F9D8CC;  mso-pattern:auto none;  vertical-align:top;  padding-bottom:3.6pt;  padding-left:7.2pt;  padding-top:3.6pt;  padding-right:7.2pt;} --> </style>  <table style="border-collapse: collapse; width: 641pt;" border="0" cellpadding="0" cellspacing="0" width="855">  <col style="width: 214pt;" span="3" width="285" />  <tbody><tr style="height: 38.23pt;" height="51">   <td class="oa1" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="color: white; font-weight: bold;">浏览器</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>   <td class="oa1" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="color: white; font-weight: bold;">页面排版引擎</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>   <td class="oa1" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: white; font-weight: bold;">Javascript</span><span style="color: white; font-weight: bold;">解释器</span><span style="font-family: Verdana; color: white; font-weight: bold;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa2" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">IE</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa2" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Trident</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa2" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Jscript</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa3" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Firefox</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Gecko</span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">TraceMonkey</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa4" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Apple</span><span style="font-family: Verdana; color: black; vertical-align: baseline;"> </span><span style="font-family: Verdana; color: black;">safari</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Webkit</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">JavaScriptCore</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa3" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Google Chrome</span><span style="font-family: Verdana; color: black;"> </span></p>   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Webkit</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa3" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">V8</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr>  <tr style="height: 38.23pt;" height="51">   <td class="oa4" style="height: 38.23pt; width: 214pt;" height="51" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Opera</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin: 0pt 0in; line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Presto</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>   <td class="oa4" style="width: 214pt;" width="285">   <p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed;"><span style="font-family: Verdana; color: black;">Carakan</span><span style="font-family: Verdana; color: black;"> </span></p>   </td>  </tr> </tbody></table>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -545,51 +585,6 @@ http://quirksmode.org/css/clearing.html
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/08/best-system-restore.html">五个最好用的系统还原工具</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-09T00:00:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2009</time>
-        
-         | <a href="/2009/08/best-system-restore.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>当计算机出现灾难时，备份数据是降低空难损失的最好方法。你是使用什么方法恢复正在使用的的系统呢。下面有５个常用的选择（免费软件）。
-<img alt="" /><ol><li><span style="font-size:130%;"><a href="http://www.macrium.com/reflectfree.asp">Macrium Reflect Free</a> (Windows, Free)</span>
-<div id="b40y" style="text-align: center;"><img style="width: 500px; height: 285px;" src="https://docs.google.com/File?id=dg6cc6b8_82c2rt33h4_b" /></div>Macrium Reflect Free是一款不需要发钱，但可以使用Macrium Reflect disk imaging功能的工具。它可以备份你的磁盘数据到网络上的位置，光盘，和其它磁盘上。内置的任务和DVD读写程序可以让你维护任务变得更轻松， Macrium Reflect Free支持微软的影卷拷备服务，实时备份，多版本备份支持。Macrium Reflect Free的另一个亮点是程序完全兼容bartPE可以，以及支持基于linux的启动盘。</li><li><h3><span style="font-size:130%;"><a href="http://www.runtime.org/driveimage-xml.htm">DriveImageXML</a> (Windows, Free)
-</span></h3><div id="a-03" style="text-align: center;"><img style="width: 500px; height: 283px;" src="https://docs.google.com/File?id=dg6cc6b8_83hrtnfwgb_b" /></div> DriveImageXML创建彻底的磁盘映像，从一个磁盘到另一个磁盘，提供了像原始文件系统一样的浏览备份文件。这就意味着你如果需要从原始备份中还 原一个小文件，不需要还原整个硬盘，只需要抽取这个小文件就可以了。和Macrium Reflect Free差不多，支持微软的影卷拷备服务。</li><li><h3><span style="font-size:130%;"><a href="http://www.paragon-software.com/home/db-express/features.html">Paragon Drive Backup Free</a> (Windows, Free)</span>
-</h3><div id="udxm" style="text-align: center;"><img style="width: 500px; height: 269px;" src="https://docs.google.com/File?id=dg6cc6b8_84cgd9mcgr_b" /></div><p><span style="font-weight: normal;">Paragon Drive Backup是</span>Paragon的商业硬盘软件中的<span style="font-weight: normal;">免费的个人版，但是它支持很多种磁盘类型和文件系统。</span>Paragon支持微软影卷服务和实时备份，同时当磁盘坏掉的时候，它也能恢复多个分区和磁盘快照。可以通过闪存或CD/DVD来恢复备份。还有用户界面，如上面的截图，完全是向导式的，对磁盘不熟悉的用户可以轻松上手。</p></li><li><h3><span style="font-size:130%;"><a href="http://technet.microsoft.com/en-us/library/cc722145%28WS.10%29.aspx">ImageX</a> (Windows, Free)
-</span></h3><div id="zhxe" style="text-align: center;"><img style="width: 500px; height: 300px;" src="https://docs.google.com/File?id=dg6cc6b8_85drwzvx9z_b" /></div><p>ImageX 是被电脑厂商或大型组织用来制作和分发系统到大量的电脑上。它主要是一个命令行工具，因为它在geek中流行，创建了一个GUI系统&#8212;-GImageX， 如上面的截图。尽管有不少关键的限制，它只能运行在现代的windows文件系统之上，如果你使用大量的windows系统， ImageX还是有不少优点。映像文件小你得感谢&#8221;单实例&#8221;模式，如果一个文件出现在不同的位置，映像文件中只会存储一次。ImageX允许重写磁盘，允 许你从映像中还原部分内容。</p></li><li><h3><span style="font-size:130%;"><a href="http://clonezilla.org/">Clonezilla</a> (Windows/Mac/Linux, Free)
-</span></h3><div id="cesf" style="text-align: center;"><img style="width: 500px; height: 252px;" src="https://docs.google.com/File?id=dg6cc6b8_86cxvfqsfs_b" /></div><p><span style="font-size:85%;">Clonezilla是一个强大的开源磁盘映像工具，对新用户使用足够简单</span>。研究它深入的特性，尽管会让用户的需要扩展。它的服务器版本支持网络大磁盘映像，它支持大量的文件系统，包括windows,linux,Mac-based machines.如果你使用一个不常用的文件系统，你依然可以使用<span style="font-size:85%;">Clonezilla进行扇区到扇区的备份，用来代替有高效可以压缩文件的支持文件系统的备份。个人版本是一个live CD,可以定制了各种应用，在</span><span style="font-size:85%;">Clonezilla网站有详细的说明文档。</span></p></li></ol>原文：http://lifehacker.com/5303067/five-best-free-system-restore-tools
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/7/">&larr; Older</a>
@@ -607,6 +602,10 @@ http://quirksmode.org/css/clearing.html
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/happy-new-year.html">happy new year</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
       </li>
     
@@ -620,10 +619,6 @@ http://quirksmode.org/css/clearing.html
     
       <li class="post">
         <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
       </li>
     
   </ul>

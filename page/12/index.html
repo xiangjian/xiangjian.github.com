@@ -9,7 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="今天装好了网线，终于可以在宿舍上网了，好久没有上晚上上过网了，记录一下 ">
+  <meta name="description" content="原来一直是用select distinct 来找出没有重复的字段，但是对于如何找到重复或者重复达到指定次数的记录是一个难题，找了一些文章后发现使用 group by having来实现 select * from oilwell where uwi in (select uwi from &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/05/sql-distinct.html">利用SQL语句查询重复的值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2007</time>
+        
+         | <a href="/2007/05/sql-distinct.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>原来一直是用select distinct 来找出没有重复的字段，但是对于如何找到重复或者重复达到指定次数的记录是一个难题，找了一些文章后发现使用 group by having来实现
+</p>
+<code>
+select * from oilwell where uwi in (select uwi from oilwell group by uwi having count(*)>1)
+</code>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -634,46 +677,6 @@ dp.SyntaxHighlighter.HighlightAll('code');
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/12/setuptools.html">Setuptools</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-12-02T00:00:00+08:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2006</time>
-        
-         | <a href="/2006/12/setuptools.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><p>setuptools:它是 Python Enterprise Application Kit（PEAK）的一个副项目。 setuptools 替换了标准的 distutils 库，并为 Python 添加了版本化的包和依赖性管理。Perl 用户比较熟悉 CPAN，而 Ruby 用户则比较熟悉 Gems；引导 setuptools 的 ez_setup 工具和随之而生的扩展后的 easy_install 与 &#8220;Cheeseshop&#8221;（Python Package Index，也称为 &#8220;PyPI&#8221;）一起工作来实现相同的功能。另外，setuptools 还让我们可以将自己的库包装成一个称为 &#8220;egg&#8221; 的包，它与 Java? 的 JAR 文件类似，不过是用于 Python 的。 </p>
-<p>使用非常简单。</p><a href="http://www-128.ibm.com/developerworks/cn/linux/l-cppeak3.html">原文在这里</a>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/13/">&larr; Older</a>
@@ -691,6 +694,10 @@ dp.SyntaxHighlighter.HighlightAll('code');
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/happy-new-year.html">happy new year</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
       </li>
     
@@ -704,10 +711,6 @@ dp.SyntaxHighlighter.HighlightAll('code');
     
       <li class="post">
         <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
       </li>
     
   </ul>

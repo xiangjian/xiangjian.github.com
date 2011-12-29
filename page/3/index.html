@@ -9,9 +9,9 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="好不容易有时间去西安走走，结果去大雁塔手机被偷，听着歌呢，回头看不出是谁。马上报警，第一次跟警察做笔录，估计找回来的可能性不大了。
-回忆一下我曾经用过的手机：
-第一个手机是大四那年，要找工作了，2005年十一去买了个手机amoi S6手机。滑盖的, &hellip;">
+  <meta name="description" content="GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。
+AGG:
+AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/01/mapguide-dg-vs-gg.html">Mapguide 绘图引擎 GD与AGG的比较</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-31T00:00:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2010</time>
+        
+         | <a href="/2010/01/mapguide-dg-vs-gg.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
+<p>AGG:<br />
+AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口，其产生的图形的质量也非常高。AGG引擎最突出的特点是Anti-alias（反锯齿）和subpixel rendering(亚像素渲染)，使用AGG引擎绘制的地图平滑，清晰，速度快。现在AGG现在还不能使GPU来绘图，将来使用GPU绘图也是绘图引擎的发展趋势。</p>
+<p>GD:<br />
+是一个开源的图像处理库，支持 PNG/JPEG/GIF以及其他格式的图像。GD一般被用来创建图表、图形、缩略图以及其他图像相关的处理操作。</p>
+<p>mapguide使用了AGG和GD双引擎，可以在mapguide server的bin目录中serverconfig.ini文件中Renderer处改变绘图使用的引擎方式。</p>
+<p>下面是我使用mapguide 2.1,地图数据使用默认的Sheboygan地图，分别使用GD引擎，和AGG引擎地图结果：</p>
+<p>AGG图</p>
+<p><img alt="mapguide-AGG" src="http://farm5.static.flickr.com/4069/4313078811_840266dcd6_o.png" /></p>
+<p>GD图</p>
+<p><img alt="mapguide-GD" src="http://farm3.static.flickr.com/2596/4313078943_64343d4326_o.png" /></p>
+<p>可以明显看出GD绘图在线的边缘出现了锯齿。在使用mapguide时尽量使用AGG引擎来出图。</p>
+<p>参考资料：</p>
+<p><a class="reference external" href="http://www.cnblogs.com/kane_zzt/archive/2008/08/19/1271793.html">AGG</a></p>
+<p><a class="reference external" href="http://www.unixresources.net/linux/clf/office/archive/00/00/56/72/567231.html">绘图知识</a></p>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -502,54 +555,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/11/week-1-2.html">本周好文推荐</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-08T00:00:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2009</time>
-        
-         | <a href="/2009/11/week-1-2.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><!-- 本周好文 --><br />
-<p>上周没有写，工作有点忙（这个似乎不能是借口），这个周末同事结婚，去涿州去闹去了，今天下午才点时间静下来整理。</p><div class="section" id="id1"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://gearman.org/index.php">Gearman</a></li>
-</ul><p>一个分布式处理计算框架，将计算任务分配到多台机器上运行，减少同一机器的CPU运行限制。支持多种语言（不支持C#，开源产品不支持很正常），这个还是比较很不错的。我的想法，GIS空间分析需要大量的CPU运算，不知是否可以利用这个框架来做空间分析，速度上会不会有优势。</p><ul class="simple"><li><a class="reference external" href="http://we.xoyo.com/system/dip">金山DIPS分布式图片处理平台</a></li>
-</ul><p>金山逍遥DIPS分布式图片处理平台，使用了Gearman_,rewinx的PPT分享，使用的效果明显。Gearman_ PHP语言实现，对高CPU利用的程序进行优化效果不错。</p></div><div class="section" id="id2"><h1>非技术：</h1><ul class="simple"><li><a class="reference external" href="http://blog.sina.com.cn/s/blog_4701280b0100fpjr.html">一条船上的人</a></li>
-</ul><p>作者韩寒，内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载1</a></li>
-</ul><p>原版电子书下载，国外的期刊杂志都有，时效性强，看这个学习英文，了解时事不错。还有其它一些内容自己去看吧。</p><ul class="simple"><li><a class="reference external" href="http://www.uphost.cn/">原版电子书下载2</a></li>
-</ul><p>另一个站点，内容差不多，电子书下载。</p><ul class="simple"><li><a class="reference external" href="http://wiki.mbalib.com/wiki/%E8%A1%8C%E4%B8%BA%E7%BB%8F%E6%B5%8E%E5%AD%A6">行为经济学</a></li>
-</ul><p>这个是智库百科中关于行为经济学的解释，前几天在图书大厦的一本杂志中看到有关理性经济学和行为经济学的文章，回来没有找到原文，找了找相关资料，这个比较全。看到了这个才发现，经济学没有那枯燥，大学学的都是些什么东西。相当同意行为经济学的观点，大家都是理性的，但是真正做出正确决策的一般是非理性因素。</p></div><div class="section" id="id3"><h1>下周计划</h1><ul class="simple"><li>完成没有翻译完的javascript 数组类型（正在翻译），相当不错的文章，10月份就开始了，断断续续，没有翻译多少。希望下周可以完成。</li>
-<li>10月份介绍的&#8221;使用开源软件和python进行地图空间处理&#8221;的PPT要好好看看。学习python在GIS空间处理这一块大有用武之地。</li>
-</ul><p>苟有恒，何必三更眠五更起；教无益，莫过一日曝十日寒。</p></div>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -567,6 +572,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2011/12/happy-new-year.html">happy new year</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
       </li>
     
@@ -580,10 +589,6 @@
     
       <li class="post">
         <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/linux_so.html">linux 系统动态链接库引</a>
       </li>
     
   </ul>
