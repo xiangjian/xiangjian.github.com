@@ -9,8 +9,9 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="今天是2012年的第一天， 还算不错的2010年过去了，2012年愿望： 今年把自己的个人问题解决，今年把婚结了，我们都稳定下来。结婚意味着跟多的责任，两个人都要融入对方家庭。像女朋友说的，今后就是两个爸爸妈妈，要好好照顾。
-工作要好好搞，有目标，有追求，改变目前被动的状态。 &hellip;">
+  <meta name="description" content="这几天机器换系统,重装了VS2010 ，笔记本在编译是速度很慢，硬盘灯一直是亮的。VS2010调整下可以加快VS的速度。 关特效，关不必要的智能
+加内存，现在内存是白菜价，加一条内存可以起到很好的效果。如果没加内存，可以使用个U盘开启readboost。
+编译过程中会在硬盘写大量文件， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/01/vs2010-accelerate.html">Vs2010 加速</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-02T13:47:00+08:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/01/vs2010-accelerate.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这几天机器换系统,重装了VS2010 ，笔记本在编译是速度很慢，硬盘灯一直是亮的。VS2010调整下可以加快VS的速度。</p>
+
+<ol>
+<li><p>关特效，关不必要的智能</p></li>
+<li><p>加内存，现在内存是白菜价，加一条内存可以起到很好的效果。如果没加内存，可以使用个U盘开启readboost。</p></li>
+<li><p>编译过程中会在硬盘写大量文件，如果系统中安装了杀毒软件，杀毒软件会扫描文件。如果对相应目录设置不被扫描，速度会有很大提高。</p></li>
+<li><p>换固态硬盘，这个调整最明显，花钱有点多，现在SSD成本在10元/1G还是有点贵。</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -760,92 +807,6 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html">wordpress配置及网站SEO</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-17T00:00:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2011</time>
-        
-         | <a href="/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><p>前一段时间使用wordpress 的一个缓存插件，几天使用下来发现好像没有起到缓存作用。晚上查了下nginx配置，终于找到了为什么。原来是我的nginx配置不对，缓存的路径没有设置对。<br />
-找到了问题改正就很容易了。同时也把使用插件生成sitemap.xml也进行了重写，搜索引擎也可以很好的索引相关网页。</p> 
-<pre class="literal-block"> 
-#如果文件存在直接返回，并设定7天的缓存期
-    if (-f $request_filename) {
-        expires 7d;
-        break;
-    }
-#初始supercache缓存变量
-    set $supercache_file ”;
-    set $supercache_uri $request_uri;
-#post不访问缓存
-    if ($request_method = POST) {
-        set $supercache_uri ”;
-    }
- 
-# 因为使用了url重写，因此有查询条件就不访问缓存
-    if ($query_string) {
-        set $supercache_uri ”;
-    }
-# 如果有缓存，也不访问缓存
-    if ($http_cookie ~* “comment_author_|wordpress|wp-postpass_” ) {
-        set $supercache_uri ”;
-    }
- 
-# 如果变量不为空，则访问缓存地址
- 
-    if ($supercache_uri ~ ^(.+)$) {
-        set $supercache_file /wp-content/cache/supercache/$http_host/$1index.html;
-    }
- 
-# 如果缓存存在，则返回缓存文件
-    if (-f $document_root$supercache_file) {
-        rewrite ^(.*)$ $supercache_file break;
-    }
-#sitemap 重写，动态生成sitemap.xml
-rewrite ^/(sitemap.*)\.xml$ /index.php?feed=$1;
-# 其它访问都内 index.php处理
-    if (!-e $request_filename) {
-        rewrite . /index.php last;
-    }
-  }
-</pre> 
-<p>原来网站使用两个域名，两个域名下都是同样的内容。据说这个不利于SEO，搜索引擎也会有惩罚策略。所以就在其中一个域名上设置了301转移重写。</p> 
-<pre class="literal-block"> 
-server_name  www.xiangjian.info xiangjian.info;
-rewrite ^ http://blog.xiangjian.info$uri permanent;
-</pre> 
-<p>EOF</p> </p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -859,6 +820,10 @@ rewrite ^ http://blog.xiangjian.info$uri permanent;
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
+      </li>
     
       <li class="post">
         <a href="/2011/12/happy-new-year.html">happy new year</a>
@@ -876,17 +841,13 @@ rewrite ^ http://blog.xiangjian.info$uri permanent;
         <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
       </li>
     
-      <li class="post">
-        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>Github Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/xiangjian">@xiangjian</a> on Github
@@ -955,7 +916,7 @@ rewrite ^ http://blog.xiangjian.info$uri permanent;
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - xiangjian -
+  Copyright &copy; 2012 - xiangjian -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

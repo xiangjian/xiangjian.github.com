@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>vbscript script字符串处理 - 鉴行志</title>
+  <title>vs2010 加速 - 鉴行志</title>
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="在vbscript和javascript中处理字符串一般是用VBscript，javascript提供的几个函数来处理。 但是有时候使用正则表达式来处理会很简单：
-在javascript中去掉一个字符串两边的空格：如果是在VBscript中很简单trim(string)就可以了。 &hellip;">
+  <meta name="description" content="这几天机器换系统,重装了VS2010 ，笔记本在编译是速度很慢，硬盘灯一直是亮的。VS2010调整下可以加快VS的速度。 关特效，关不必要的智能
+加内存，现在内存是白菜价，加一条内存可以起到很好的效果。如果没加内存，可以使用个U盘开启readboost。
+编译过程中会在硬盘写大量文件， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.xiangjian.info/2006/08/vbscript-vs-javascript.html">
+  <link rel="canonical" href="http://blog.xiangjian.info/2012/01/vs2010-accelerate.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -80,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">Vbscript Script字符串处理</h1>
+      <h1 class="entry-title">Vs2010 加速</h1>
     
     
       <p class="meta">
@@ -96,7 +97,7 @@
   
 
 
-<time datetime="2006-08-17T00:00:00+08:00" pubdate data-updated="true">Aug 17<span>th</span>, 2006</time>
+<time datetime="2012-01-02T13:47:00+08:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,11 +106,15 @@
   </header>
 
 
-<div class="entry-content"><p><div class="post-body">在vbscript和javascript中处理字符串一般是用VBscript，javascript提供的几个函数来处理。<span style="font-weight: bold;">
-</span> <div style="text-align: left;">但是有时候使用正则表达式来处理会很简单：
-<ol style="text-align: left;"><li>在javascript中去掉一个字符串两边的空格：如果是在VBscript中很简单<span style="font-style: italic;">trim(string)</span>就可以了。javascript中有没有提供这样的函数我不知道，我没有查到。用正则表达式就可以很容易的做到string.replace(/(^\s*)|(\s*$)/g,&#8221;&#8220;)</li></ol> <ol style="text-align: left;">简单解释一下这个句子，replace作用是用第二个参数替换第一个参数，第一个参数是匹配字符串string的首尾的空格。^，$分别匹配首和尾；\s匹配空格（包括TAB）。
-</ol></div>
-</div></p>
+<div class="entry-content"><p>这几天机器换系统,重装了VS2010 ，笔记本在编译是速度很慢，硬盘灯一直是亮的。VS2010调整下可以加快VS的速度。</p>
+
+<ol>
+<li><p>关特效，关不必要的智能</p></li>
+<li><p>加内存，现在内存是白菜价，加一条内存可以起到很好的效果。如果没加内存，可以使用个U盘开启readboost。</p></li>
+<li><p>编译过程中会在硬盘写大量文件，如果系统中安装了杀毒软件，杀毒软件会扫描文件。如果对相应目录设置不被扫描，速度会有很大提高。</p></li>
+<li><p>换固态硬盘，这个调整最明显，花钱有点多，现在SSD成本在10元/1G还是有点贵。</p></li>
+</ol>
+
 </div>
 
 
@@ -132,12 +137,12 @@
   
 
 
-<time datetime="2006-08-17T00:00:00+08:00" pubdate data-updated="true">Aug 17<span>th</span>, 2006</time>
+<time datetime="2012-01-02T13:47:00+08:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/开发/'>开发</a>
+    <a class='category' href='/blog/categories/notes/'>notes</a>
   
 </span>
 
@@ -155,8 +160,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/2011/12/happy-new-year.html" title="Previous Post: happy new year">&laquo; happy new year</a>
       
-        <a class="basic-alignment right" href="/2006/10/svn.html" title="next Post: svn">svn &raquo;</a>
       
     </p>
   </footer>
@@ -284,8 +289,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.xiangjian.info/2006/08/vbscript-vs-javascript.html';
-        var disqus_url = 'http://blog.xiangjian.info/2006/08/vbscript-vs-javascript.html';
+        var disqus_identifier = 'http://blog.xiangjian.info/2012/01/vs2010-accelerate.html';
+        var disqus_url = 'http://blog.xiangjian.info/2012/01/vs2010-accelerate.html';
         var disqus_script = 'embed.js';
       
     (function () {

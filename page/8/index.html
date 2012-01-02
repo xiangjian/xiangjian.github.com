@@ -9,8 +9,8 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="autodesk 实验室发布了一个firefox插件，该插件支持在firefox 3中浏览在线的dwf文档，从此告别了只能在IE中浏览dwf文档的历史。该插件目前位于Autodesk labs中，处于实验状态，目前只支持windows下的firefox,相信不久的将来应该可以做得更好。
-详见： &hellip;">
+  <meta name="description" content="前天在电视里看到的：《贫民窟的百万富翁》获得了奥斯卡奖后，印度小童星回到了贫民窟，记者在那里采访了他们。记者问他们的母亲有当获奖后生活有什么不同，那位平凡母亲说出了下面的话：&#8221;没感觉有什么不同，请不要拿我们的贫穷开玩笑&#8221;。
+这是一个贫民窟母亲的声音，贫穷不是她们选择的， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/dont-make-fun-of-my-poor.html">请不要拿我们的贫穷开玩笑</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-09T00:00:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2009</time>
+        
+         | <a href="/2009/03/dont-make-fun-of-my-poor.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前天在电视里看到的：《贫民窟的百万富翁》获得了奥斯卡奖后，印度小童星回到了贫民窟，记者在那里采访了他们。记者问他们的母亲有当获奖后生活有什么不同，那位平凡母亲说出了下面的话：&#8221;没感觉有什么不同，<font style="font-weight: bold;">请不要拿我们的贫穷开玩笑&#8221;</font>。<br />
+这是一个贫民窟母亲的声音，贫穷不是她们选择的，虽然贫穷，但她们有自己的尊严。&#8230;&#8230;.
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -494,70 +534,6 @@ http://fazibear.blogspot.com/2007/09/blogger-syntax-higlighter.html
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/01/python-backup-to-gmail.html">使用python脚本将邮件备份到Gmail</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-14T00:00:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2009</time>
-        
-         | <a href="/2009/01/python-backup-to-gmail.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>整理磁盘，看到了这个将邮件备份到gmail的python代码（可以备份到任何邮箱），记得不太清楚了，原来好像是从别的地方下载的，时间太长了不记得从哪找的。代码的使用方法：
-<ol>
-<li>将要备份的邮件存为eml格式，保存到一个文件夹中（foxmail,outlook,dreammail,foomail等都可以做到）</li><li>将下面的代码存为一个py文件，放到该文件夹中，在py文件中填好一个可用的SMTP服务器地址，填写用户名密码，写好要发送到的邮箱。</li><li>运行py文件，就会将邮件备份到您指定的邮箱中，备份后会删除原eml文件。
-</li></ol>
-<pre name="code" class="python">import email,smtplib
-import os
-Gmail = ''//备份邮箱
-SMTP_SERVER = ""//
-SMTP_USER = ""
-SMTP_PASS = ""
-SENDER = SMTP_USER + '@' + SMTP_SERVER
-def forward(toAddr, msg):
-server = smtplib.SMTP( SMTP_SERVER )
-server.login( SMTP_USER, SMTP_PASS )
-server.sendmail( SENDER, toAddr, msg )
-server.quit()
-return True
-def backup(dir):
-for root,dirs,files in os.walk(dir):
-for name in files:
-print name
-msg = email.message_from_file( open( os.path.join(root,name) ) )
-forward(Gmail ,msg.as_string())  //转发
-os.remove(os.path.join(root,name))//备份后删除邮件
-backup( '.' ) //当前文件夹
-</pre>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/9/">&larr; Older</a>
@@ -575,6 +551,10 @@ backup( '.' ) //当前文件夹
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/happy-new-year.html">happy new year</a>
       </li>
     
@@ -588,10 +568,6 @@ backup( '.' ) //当前文件夹
     
       <li class="post">
         <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
       </li>
     
   </ul>
@@ -669,7 +645,7 @@ backup( '.' ) //当前文件夹
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - xiangjian -
+  Copyright &copy; 2012 - xiangjian -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

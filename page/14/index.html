@@ -9,10 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="在写ASP页面时，有时候需要将一系列实现特定功能，而又能在比较多的页面中使用的时候，这时常常，需要将这些功能封装起来。通常的方法是写COM组件，这个方法开发较慢，而且我也不会，使用ASP的VBscript的Class来实现的。
-Class lang
-Private objDoc
-private &hellip;">
+  <meta name="description" content="今天我想把svn添加为系统服务，按照说明写了如下的命令： sc create svn binpath=&#8221;&#34;D:\program\svn\bin\svnserve.exe&#34; &#8211;service -r &#34;D:\data\svndemo&#34;&#8221 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +76,55 @@ private &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/10/sc-create.html">使用sc 命令的一个怪问题？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-10-18T00:00:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2006</time>
+        
+         | <a href="/2006/10/sc-create.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><div>今天我想把svn添加为系统服务，按照<a href="http://svn.collab.net/repos/svn/tags/1.4.0/notes/windows-service.txt">说明</a>写了如下的命令：</div>
+<div class="code">
+sc create svn binpath=&#8221;&#34;D:\program\svn\bin\svnserve.exe&#34; &#8211;service -r &#34;D:\data\svndemo&#34;&#8221; displayname=&#8221;Subversion Repository&#8221; depend=Tcpip start=demand
+</div>
+<div>
+结果不能成功。<br />
+试了好几种方法还是不行，到微软的网站上看它的例子，仔细对比发现，它的每个&#8221;＝&#8221;后都有一个空格。于是将每一个的&#8221;＝&#8221;后面加一个空格就可以执行了。
+</div>
+<div class="code">
+sc create svn binpath= &#8220;&#34;D:\program\svn\bin\svnserve.exe&#34; &#8211;service -r &#34;D:\data\svndemo&#34;&#8221; displayname= &#8220;Subversion Repository&#8221; depend= Tcpip start= demand
+</div>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -319,6 +365,10 @@ Blame(不知道中文如何翻译)。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/happy-new-year.html">happy new year</a>
       </li>
     
@@ -332,10 +382,6 @@ Blame(不知道中文如何翻译)。
     
       <li class="post">
         <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
       </li>
     
   </ul>
@@ -413,7 +459,7 @@ Blame(不知道中文如何翻译)。
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - xiangjian -
+  Copyright &copy; 2012 - xiangjian -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

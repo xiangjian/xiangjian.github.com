@@ -9,9 +9,9 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。
-AGG:
-AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程接口， &hellip;">
+  <meta name="description" content="从买VPS到现在差不多一个月了，经过这段时间的摸索配置，基本已经可用，这个VPS主要使用以下几个功能。 网站：架设了一个多用户的 blog 。
+下载服务器：把关注的东西下载到vps上，再使用http下载到本机，vps可以实现24小时不间断下载，vps带宽也很不错。
+访问网站，使用openvpn, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,62 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/vps-use-one-month.html">Vps使用一月体验</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-02T00:00:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2010</time>
+        
+         | <a href="/2010/02/vps-use-one-month.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>从买VPS到现在差不多一个月了，经过这段时间的摸索配置，基本已经可用，这个VPS主要使用以下几个功能。</p>
+<ul class="simple">
+<li>网站：架设了一个多用户的 blog 。</li>
+<li>下载服务器：把关注的东西下载到vps上，再使用http下载到本机，vps可以实现24小时不间断下载，vps带宽也很不错。</li>
+<li>访问网站，使用openvpn,ssh可以访问国内无法访问的网站</li>
+</ul>
+<p>相关软件选择。</p>
+<p>操作系统，ramhost.us提供了很多种操作系统选择，我选择的是archlinux。一是archlinux原来在vm中使用过，有一些了解。二是我想选择一个没有跨版本升级的概念，将来会有版本升级的问题，这样就只有archlinux和gentoo可选。vps内存太少，编译安装不太现实，因此不选择gentoo,如果是工作中选择服务器，我会选gentoo.</p>
+<p>博客平台：没有选择wordpress，wordpress安装方便，支持广泛有很多中文资源。我使用的是movable type，还是基于内存的考虑和多用户的考虑，movable type多用户支持好，所有的都是生成静态文件。</p>
+<p>数据库：我没有选择mysql,而是单文件的数据库sqlite。原因有二：mysql使用消耗内存较多，vps内存有限; <a class="reference external" href="http://www.dbanotes.net/database/sqlite_cms.html">sqlite</a> 已经可以满足我的需求。</p>
+<p>web服务器：web服务器似乎没有别的选择：nginx，内存占用少，但是我没有弄好movable type的配置，后来又安装了一个lighttp运行movable type的cgi程序。</p>
+<p>下载软件：没有别的选择mldonkey支持电驴，BT，直接下载，还有web管理介面。唯一的缺陷是内在占用多，30M以上。不过这个不会经常用，偶尔下载还可以。</p>
+<p>服务器监控：ramhost使用自定义的控制面板，功能比较有限，因此我使用国内的一个服务， <a class="reference external" href="http://www.jiankongbao.com/">监控宝</a> 。这个监控比较全面，使用snmpd服务监控。 <a class="reference external" href="http://www.vpser.net/manage/jiankongbao-setup.html">安装方法</a></p>
+<pre class="literal-block">
+archlinux 中找不到snmp的配置文件，可以使用这个命令配置用户net-snmp-config --create-snmpv3-user
+</pre>
+<p>网络连接：使用openvpn和ssh可以访问国外无法访问的网站,</p>
+<p>服务器安装了这些软件，基本内存不会超过50M，如果不开下载，服务器使用时不会超过20M，Movable type发布生成静态页面时除外，因为Movable type发布时内存会到70M左右，vps内存还是够用的.</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -510,51 +566,6 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/11/week-2-2.html">本周好文推荐</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-16T00:00:00+08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
-        
-         | <a href="/2009/11/week-2-2.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><!-- 本周重点文章 --> <br />
-<p>周末没有写，今天补上。</p><div class="section" id="id2"><h1>技术：</h1><ul class="simple"><li><a class="reference external" href="http://blog.pluskid.org/?p=186">V8引擎设计理念</a></li>
-</ul><p>Google chrome浏览器使用的javascript引擎V8，文章翻译了V8的设计理念，看看V8是如何在设计，如何提高在浏览器中运行速度。</p><ul class="simple"><li><a class="reference external" href="http://go-mono.com/monovs/">Novell推出全新VS插件</a></li>
-</ul><p>Novell公司推出一个新的visual studio插件，帮助用户使用C#开发非windows应用程序</p><ul class="simple"><li><a class="reference external" href="http://code.google.com/p/go/">Go语言</a></li>
-</ul><p>google 推出了新的编程语言,google在大规模分布式运算，多核方面python有些力不人心。</p></div><div class="section" id="id3"><h1>非技术</h1><ul class="simple"><li><a class="reference external" href="http://ucdchina.com/snap/5113">人类的非理性</a></li>
-</ul><p>人类的非理性&#8212;-解读《怪诞行为学》，比较通俗。</p><ul class="simple"><li><a class="reference external" href="http://entertainment.timesonline.co.uk/tol/arts_and_entertainment/film/article6902642.ece?print=yes&randnum=1257554128289">新十年的100部优秀电影</a></li>
-</ul><p>时代评出近十年最优秀的100部电影，看看哪么没有看过，赶紧去看。</p></div>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -572,6 +583,10 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/12/happy-new-year.html">happy new year</a>
       </li>
     
@@ -585,10 +600,6 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
     
       <li class="post">
         <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/06/program_error.html">程序员犯的可乐错误</a>
       </li>
     
   </ul>
@@ -666,7 +677,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - xiangjian -
+  Copyright &copy; 2012 - xiangjian -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
