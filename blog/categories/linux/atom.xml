@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | 鉴行志]]></title>
   <link href="http://blog.xiangjian.info/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-01-02T14:45:23+08:00</updated>
+  <updated>2012-10-01T09:43:18+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -14,9 +14,147 @@
 
   
   <entry>
+    <title type="html"><![CDATA[redis webdis install]]></title>
+    <link href="http://blog.xiangjian.info/2012/01/redis-webdis-install.html"/>
+    <updated>2012-01-03T15:33:00+00:00</updated>
+    <id>http://blog.xiangjian.info/2012/01/redis-webdis-install</id>
+    <content type="html"><![CDATA[<p>今天在ubuntu上安装redis(redis.io) 和 webdis(webd.is)。redis和webdis安装都很简单之需要make一下，执行生成代码就可以。软件依赖很少，编译安装很方便。</p>
+
+<p>init 脚本配置</p>
+
+<p><div><script src='https://gist.github.com/1568696.js?file=redis-server'></script>
+<noscript><pre><code>#! /bin/sh
+### BEGIN INIT INFO
+# Provides:		redis-server
+# Required-Start:	$syslog
+# Required-Stop:	$syslog
+# Should-Start:		$local_fs
+# Should-Stop:		$local_fs
+# Default-Start:	2 3 4 5
+# Default-Stop:		0 1 6
+# Short-Description:	redis-server - Persistent key-value db
+# Description:		redis-server - Persistent key-value db
+### END INIT INFO
+
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/redis-server
+DAEMON_ARGS=/etc/redis.conf
+NAME=redis-server
+DESC=redis-server
+PIDFILE=/var/run/redis.pid
+
+test -x $DAEMON || exit 0
+test -x $DAEMONBOOTSTRAP || exit 0
+
+set -e
+
+case &quot;$1&quot; in
+  start)
+	echo -n &quot;Starting $DESC: &quot;
+	touch $PIDFILE
+	chown redis:redis $PIDFILE
+	if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid redis:redis --exec $DAEMON -- $DAEMON_ARGS
+	then
+		echo &quot;$NAME.&quot;
+	else
+		echo &quot;failed&quot;
+	fi
+	;;
+  stop)
+	echo -n &quot;Stopping $DESC: &quot;
+	if start-stop-daemon --stop --retry 10 --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON
+	then
+		echo &quot;$NAME.&quot;
+	else
+		echo &quot;failed&quot;
+	fi
+	rm -f $PIDFILE
+	;;
+
+  restart|force-reload)
+	${0} stop
+	${0} start
+	;;
+  *)
+	echo &quot;Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}&quot; &gt;&amp;2
+	exit 1
+	;;
+esac
+
+exit 0</code></pre></noscript></div>
+</p>
+
+<p><div><script src='https://gist.github.com/1568696.js?file=webdis'></script>
+<noscript><pre><code>#! /bin/sh
+### BEGIN INIT INFO
+# Provides:		webdis-server
+# Required-Start:	$syslog
+# Required-Stop:	$syslog
+# Should-Start:		$local_fs
+# Should-Stop:		$local_fs
+# Default-Start:	2 3 4 5
+# Default-Stop:		0 1 6
+# Short-Description:	webdis-server - Persistent key-value db
+# Description:		webdis-server - Persistent key-value db
+### END INIT INFO
+
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/webdis
+DAEMON_ARGS=/etc/webdis.json
+NAME=webdis
+DESC=webdis
+PIDFILE=/var/run/webdis.pid
+
+test -x $DAEMON || exit 0
+test -x $DAEMONBOOTSTRAP || exit 0
+
+set -e
+
+case &quot;$1&quot; in
+  start)
+	echo -n &quot;Starting $DESC: &quot;
+	touch $PIDFILE
+	chown redis:redis $PIDFILE
+	if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid redis:redis --exec $DAEMON -- $DAEMON_ARGS
+	then
+		echo &quot;$NAME.&quot;
+	else
+		echo &quot;failed&quot;
+	fi
+	;;
+  stop)
+	echo -n &quot;Stopping $DESC: &quot;
+	if start-stop-daemon --stop --retry 10 --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON
+	then
+		echo &quot;$NAME.&quot;
+	else
+		echo &quot;failed&quot;
+	fi
+	rm -f $PIDFILE
+	;;
+
+  restart|force-reload)
+	${0} stop
+	${0} start
+	;;
+  *)
+	echo &quot;Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}&quot; &gt;&amp;2
+	exit 1
+	;;
+esac
+
+exit 0
+</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
     <link href="http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
-    <updated>2011-08-17T00:00:00+08:00</updated>
+    <updated>2011-08-17T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx</id>
     <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
 怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
@@ -120,7 +258,7 @@ numprocs_start=1
   <entry>
     <title type="html"><![CDATA[linux 系统动态链接库引]]></title>
     <link href="http://blog.xiangjian.info/2011/06/linux_so.html"/>
-    <updated>2011-06-20T00:00:00+08:00</updated>
+    <updated>2011-06-20T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/06/linux_so</id>
     <content type="html"><![CDATA[<p><p>最近要编译一个mapnik2，其中安装依赖环境icu和boost这两个东西费尽周折。最后总算弄明白了linux下的动态链接库是怎么管理的？动态链接库多版本会不会冲突?</p>
 <p>linux支持unix中的动态链接库方法，使用export LD_LIBRARY_PATH= 这各方式。linux的动态链接库引用是通过ldconfig来实现的。<br />
@@ -161,7 +299,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   <entry>
     <title type="html"><![CDATA[redhat使用yum安装程序]]></title>
     <link href="http://blog.xiangjian.info/2011/05/redhat_use_yum.html"/>
-    <updated>2011-05-11T00:00:00+08:00</updated>
+    <updated>2011-05-11T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/05/redhat_use_yum</id>
     <content type="html"><![CDATA[<p><p>最近，要给一台redhat4服务器安装mapnik，在我自己工作的台机使用的是archlinux上，使用ABS安装环境那是相当方便，这台机器安装让人大伤脑筋。rpm包依赖要一个个找，而且，经常要自己编译源代码。</p></p>
 
@@ -469,7 +607,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   <entry>
     <title type="html"><![CDATA[开始学习archlinux]]></title>
     <link href="http://blog.xiangjian.info/2008/10/archlinux.html"/>
-    <updated>2008-10-13T00:00:00+08:00</updated>
+    <updated>2008-10-13T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2008/10/archlinux</id>
     <content type="html"><![CDATA[<p>一直对linux的望而却步，长期以来使用windows系统，看到linux的文件系统，设备管理，和一堆命令行头痛不已。自己在机子上安装过多次ubuntu,可能是ubuntu做得太好了，集成了太多的东西，各个部分关联比较紧，学习起来无从下手。同事推荐了一个叫Archlinux的发行版，这个版本的主要特点是简单，快速（我还没有感觉到，程序主要针对686，x86-64进行了优化），软件安装容易，可以像搭积木一样的构建自己的linux系统。
 <div style="text-align: left;">这几天我在vmware中建了一个archlinux的虚拟机，一步一步安装了一些软件（ssh,nginx,mysql,php,postsql），从安装配置的过程中尝到linux的不少东西

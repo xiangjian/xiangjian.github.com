@@ -4,7 +4,7 @@
   <title><![CDATA[Category: xml | 鉴行志]]></title>
   <link href="http://blog.xiangjian.info/blog/categories/xml/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-01-02T14:45:23+08:00</updated>
+  <updated>2012-10-01T09:43:18+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[xml中节点的命名规则]]></title>
     <link href="http://blog.xiangjian.info/2007/10/xml-element-name.html"/>
-    <updated>2007-10-12T00:00:00+08:00</updated>
+    <updated>2007-10-12T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2007/10/xml-element-name</id>
     <content type="html"><![CDATA[<p><p>XML elements命名必须遵循以下几个规则：<br /></p>
 <ul>

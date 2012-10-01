@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 软件 | 鉴行志]]></title>
   <link href="http://blog.xiangjian.info/blog/categories/软件/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-01-02T14:45:23+08:00</updated>
+  <updated>2012-10-01T09:43:18+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[wordpress配置及网站SEO]]></title>
     <link href="http://blog.xiangjian.info/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html"/>
-    <updated>2011-03-17T00:00:00+08:00</updated>
+    <updated>2011-03-17T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/03/wordpress_cache_with_nginx_and_duplicate_seo</id>
     <content type="html"><![CDATA[<p><p>前一段时间使用wordpress 的一个缓存插件，几天使用下来发现好像没有起到缓存作用。晚上查了下nginx配置，终于找到了为什么。原来是我的nginx配置不对，缓存的路径没有设置对。<br />
 找到了问题改正就很容易了。同时也把使用插件生成sitemap.xml也进行了重写，搜索引擎也可以很好的索引相关网页。</p> 
@@ -74,7 +74,7 @@ rewrite ^ http://blog.xiangjian.info$uri permanent;
   <entry>
     <title type="html"><![CDATA[在vps上安装dabr]]></title>
     <link href="http://blog.xiangjian.info/2010/08/vps-dabr.html"/>
-    <updated>2010-08-11T00:00:00+08:00</updated>
+    <updated>2010-08-11T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/08/vps-dabr</id>
     <content type="html"><![CDATA[<p><p>前几天twa.sh网站访问不了，有一段时间没有上过twitter了。因为知道twa.sh是dabr搭建的，我的vps也有PHP环境，决定架一个dabr. 主要按照http://zou.lu/dabr/ 写的搭建方法，完成dabr环境搭建。有一些小的改动主要是PHP环境配置问题，PHP默认有些包没有使用，没有默认的时区设置。这些可以看nginx输出的的错误日志。使用tail -f /srv/log/nginx/error.log 命令就可以查看，改下配置就可以了。</p>
 <p>话说linux系统很不错，命令行开始可能感觉上手不易，但linux的配置，日志输出都比较固定，查看相应的信息基本上可以看到问题是出在哪了。这点比Windows强的地方，有时真不知道错误出在哪。</p>
@@ -93,7 +93,7 @@ fi;
   <entry>
     <title type="html"><![CDATA[介绍一个基于web所想既所得编辑器"WMD"]]></title>
     <link href="http://blog.xiangjian.info/2009/10/web-editor-wmd.html"/>
-    <updated>2009-10-08T00:00:00+08:00</updated>
+    <updated>2009-10-08T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/10/web-editor-wmd</id>
     <content type="html"><![CDATA[<p><!-- 介绍一个所想既所得Web 编辑器 wmd --> <br />
 <div class="section" id="web"><h1>介绍一个基于Web的所想既所得编辑器</h1><p>前面介绍了几个基于Web的所见既所得(<strong>WYSIWYG</strong>)的web编辑器，这一篇介绍一个轻量级的所想既所得(<br />
@@ -109,7 +109,7 @@ fi;
   <entry>
     <title type="html"><![CDATA[五个基于web的所见既所得编辑器]]></title>
     <link href="http://blog.xiangjian.info/2009/10/five-web-editor.html"/>
-    <updated>2009-10-08T00:00:00+08:00</updated>
+    <updated>2009-10-08T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/10/five-web-editor</id>
     <content type="html"><![CDATA[<p>下面将介绍五个基于Web的所见既所得的文本编辑器，这几个编辑器都是使用简单的<textarea>元素来显示文本的。</textarea><br />
 <ul class="simple"><li>Yahoo! UI Rich Text Editor</li>
@@ -143,7 +143,7 @@ fi;
   <entry>
     <title type="html"><![CDATA[五个好用的磁盘整理软件]]></title>
     <link href="http://blog.xiangjian.info/2009/09/disk-defrag.html"/>
-    <updated>2009-09-13T00:00:00+08:00</updated>
+    <updated>2009-09-13T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/09/disk-defrag</id>
     <content type="html"><![CDATA[<p>计算机磁盘是我们在使用的过程中,不可避免产生碎片.碎片过多会影响到系统性能,当磁盘使用一段时间后,需要整理磁盘的碎片.<br />
 lifehack最近列出了五个好用的<span style="font-weight: bold;">磁盘碎片</span>整理软件:

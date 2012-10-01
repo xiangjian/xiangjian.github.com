@@ -4,7 +4,7 @@
   <title><![CDATA[Category: autodesk | 鉴行志]]></title>
   <link href="http://blog.xiangjian.info/blog/categories/autodesk/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-01-02T14:45:23+08:00</updated>
+  <updated>2012-10-01T09:43:18+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[mapguide 绘图引擎 GD与AGG的比较]]></title>
     <link href="http://blog.xiangjian.info/2010/01/mapguide-dg-vs-gg.html"/>
-    <updated>2010-01-31T00:00:00+08:00</updated>
+    <updated>2010-01-31T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/01/mapguide-dg-vs-gg</id>
     <content type="html"><![CDATA[<p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
 <p>AGG:<br />
@@ -41,7 +41,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   <entry>
     <title type="html"><![CDATA[Autodesk University(AU) China介绍]]></title>
     <link href="http://blog.xiangjian.info/2009/03/autodesk-university-china.html"/>
-    <updated>2009-03-18T00:00:00+08:00</updated>
+    <updated>2009-03-18T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/03/autodesk-university-china</id>
     <content type="html"><![CDATA[<p>Autodesk大学（中国）：是专门针对中国的学生（包括初学者），提供了多种autodesk产品的试用版本和产品的培训。如果你想学习使用Autodesk的产品，了解autodesk产品的最新功能，解决学习过程中遇到的问题，参加免费的培训，就一定要看一看这个网站。<br />
 对于我关心的，地理空间行业的产品的资料和培训这里都没有，应该是产品在中国的市场推广重点的关系。Autodesk空间行业在中国的市场做得太不好，软件已经那么的便宜，功能也不差，推广不开。<br />
@@ -55,7 +55,7 @@ Autodesk空间解决方案应对中国GIS行业ESRI一家独大的局面任重�
   <entry>
     <title type="html"><![CDATA[firefox中可以查看dwf文件了]]></title>
     <link href="http://blog.xiangjian.info/2009/03/firefox-dwf.html"/>
-    <updated>2009-03-08T00:00:00+08:00</updated>
+    <updated>2009-03-08T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/03/firefox-dwf</id>
     <content type="html"><![CDATA[<p>autodesk 实验室发布了一个firefox插件，该插件支持在firefox 3中浏览在线的dwf文档，从此告别了只能在IE中浏览dwf文档的历史。该插件目前位于Autodesk labs中，处于实验状态，目前只支持windows下的firefox,相信不久的将来应该可以做得更好。<br />
 详见：<a href="http://labs.autodesk.com/utilities/firefox_adr/">Firefox Add-on for Autodesk Design Review</a>
@@ -67,7 +67,7 @@ Autodesk空间解决方案应对中国GIS行业ESRI一家独大的局面任重�
   <entry>
     <title type="html"><![CDATA[automap 3d 的基本概念]]></title>
     <link href="http://blog.xiangjian.info/2007/05/automap-3d-concept.html"/>
-    <updated>2007-05-30T00:00:00+08:00</updated>
+    <updated>2007-05-30T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2007/05/automap-3d-concept</id>
     <content type="html"><![CDATA[<p><p>摘自map 3d帮助文档中。</p>
 <p>attribute data</p>

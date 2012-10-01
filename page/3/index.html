@@ -9,9 +9,10 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="从买VPS到现在差不多一个月了，经过这段时间的摸索配置，基本已经可用，这个VPS主要使用以下几个功能。 网站：架设了一个多用户的 blog 。
-下载服务器：把关注的东西下载到vps上，再使用http下载到本机，vps可以实现24小时不间断下载，vps带宽也很不错。
-访问网站，使用openvpn, &hellip;">
+  <meta name="description" content="一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。
+下面直接使用WCF特性做元数据的自定义转换
+定义元数据契约定义: [DataContract(Name = &quot;person&quot;)]
+public class &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +85,71 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2010/02/javascript-post-object-to-wcf.html">使用javascript方法给后台WCF服务直接post对象</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-11T00:00:00+00:00" pubdate data-updated="true">Feb 11<span>th</span>, 2010</time>
+        
+         | <a href="/2010/02/javascript-post-object-to-wcf.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。</p>
+<p>下面直接使用WCF特性做元数据的自定义转换</p>
+<p>定义元数据契约定义:</p>
+<pre class="literal-block">
+[DataContract(Name = &quot;person&quot;)]
+public class person
+{
+[DataMember(Name=&quot;Name&quot;)]
+public string Name
+{
+get;
+set;
+}
+[DataMember(Name = &quot;Age&quot;)]
+public int Age
+{
+get;
+set;
+}
+</pre>
+<p>服务描述:</p>
+<pre class="literal-block">
+[OperationContract]
+[WebInvoke(UriTemplate = &quot;/doit2&quot;,ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+bool testpost(person p);
+</pre>
+<p>注意使用Post方法，post的BodyStyle必须为Wrapped，否则不能正常取到反序列化后的对象。</p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2010/02/vps-use-one-month.html">Vps使用一月体验</a></h1>
     
     
@@ -100,7 +166,7 @@
   
 
 
-<time datetime="2010-02-02T00:00:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2010</time>
+<time datetime="2010-02-02T00:00:00+00:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2010</time>
         
          | <a href="/2010/02/vps-use-one-month.html#disqus_thread">Comments</a>
         
@@ -156,7 +222,7 @@ archlinux 中找不到snmp的配置文件，可以使用这个命令配置用户
   
 
 
-<time datetime="2010-01-31T00:00:00+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2010</time>
+<time datetime="2010-01-31T00:00:00+00:00" pubdate data-updated="true">Jan 31<span>st</span>, 2010</time>
         
          | <a href="/2010/01/mapguide-dg-vs-gg.html#disqus_thread">Comments</a>
         
@@ -209,7 +275,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   
 
 
-<time datetime="2010-01-17T00:00:00+08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2010</time>
+<time datetime="2010-01-17T00:00:00+00:00" pubdate data-updated="true">Jan 17<span>th</span>, 2010</time>
         
          | <a href="/2010/01/lost_phone.html#disqus_thread">Comments</a>
         
@@ -261,7 +327,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   
 
 
-<time datetime="2010-01-17T00:00:00+08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2010</time>
+<time datetime="2010-01-17T00:00:00+00:00" pubdate data-updated="true">Jan 17<span>th</span>, 2010</time>
         
          | <a href="/2010/01/extjs.html#disqus_thread">Comments</a>
         
@@ -311,7 +377,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   
 
 
-<time datetime="2010-01-15T00:00:00+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2010</time>
+<time datetime="2010-01-15T00:00:00+00:00" pubdate data-updated="true">Jan 15<span>th</span>, 2010</time>
         
          | <a href="/2010/01/google.html#disqus_thread">Comments</a>
         
@@ -353,7 +419,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   
 
 
-<time datetime="2010-01-13T00:00:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2010</time>
+<time datetime="2010-01-13T00:00:00+00:00" pubdate data-updated="true">Jan 13<span>th</span>, 2010</time>
         
          | <a href="/2010/01/gis-mapserver-vs-geoserver-vs-rdas-apollo.html#disqus_thread">Comments</a>
         
@@ -404,7 +470,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   
 
 
-<time datetime="2010-01-10T00:00:00+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2010</time>
+<time datetime="2010-01-10T00:00:00+00:00" pubdate data-updated="true">Jan 10<span>th</span>, 2010</time>
         
          | <a href="/2010/01/blog.html#disqus_thread">Comments</a>
         
@@ -447,7 +513,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   
 
 
-<time datetime="2009-12-27T00:00:00+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2009</time>
+<time datetime="2009-12-27T00:00:00+00:00" pubdate data-updated="true">Dec 27<span>th</span>, 2009</time>
         
          | <a href="/2009/12/increase.html#disqus_thread">Comments</a>
         
@@ -496,7 +562,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   
 
 
-<time datetime="2009-12-13T00:00:00+08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2009</time>
+<time datetime="2009-12-13T00:00:00+00:00" pubdate data-updated="true">Dec 13<span>th</span>, 2009</time>
         
          | <a href="/2009/12/week-1-3.html#disqus_thread">Comments</a>
         
@@ -512,52 +578,6 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
 </ul><p>Extjs 优秀的扩展，我找了表锁定的扩展。</p></div><div class="section" id="id3"><h1>非技术：</h1><ul class="simple"><li><a class="reference external" href="http://sinaurl.cn/hJzO6">高耀洁教授在世界艾滋日记者会书面发言稿全文</a></li>
 </ul><p>内容自己看吧，很震撼。&#8221;我已经80多岁了，在世时日有限，此行明知是埋骨异地。为了中国艾滋病疫情的真相，我实在是不得已而为之。&#8221;</p><ul class="simple"><li><a class="reference external" href="http://blog.sina.com.cn/s/blog_46e7ba410100g661.html">这是毛泽东的矫诏吗</a></li>
 </ul><p>李承鹏不写足球了，写些娱乐的也不错。</p></div>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/12/mapguide-open-source-2-1.html">Mapguide Open Source 2.1推出</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-11T00:00:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2009</time>
-        
-         | <a href="/2009/12/mapguide-open-source-2-1.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>11月21日mapguide open source推出2.1版。新版本修正不少错误，主要有以下更新。<br />
-<ul class="simple"><li>在性能，稳定性，可伸缩性方面的改进</li>
-</ul>哪个系统版本升级都可以这么说。<br />
-<ul class="simple"><li>改进的错误报告系统</li>
-<li>栅格数据重投影能力</li>
-</ul>mapguide open source对栅格数据一直不强吧<br />
-<ul class="simple"><li>投影系统使用CS-Map代替proj4</li>
-</ul>CS-Map在原mapguide 6时代就有使用，map 3D,企业版中也有使用，现在这个强大的坐标投影系统库可以在mapguide open source中使用了。关于CS-Map可以看这个篇 <a class="reference external" href="http://blog.csdn.net/MapGuide_Inside/archive/2009/08/02/4401289.aspx">blog</a> ，有CS-Map历史的简介。
 </p>
 </div>
   
@@ -583,6 +603,10 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/redis-webdis-install.html">redis webdis install</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
       </li>
     
@@ -596,10 +620,6 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
     
       <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
       </li>
     
   </ul>

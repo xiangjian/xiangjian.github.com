@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | 鉴行志]]></title>
   <link href="http://blog.xiangjian.info/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-01-02T14:45:23+08:00</updated>
+  <updated>2012-10-01T09:43:18+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[快速图片上传到flickr,google]]></title>
     <link href="http://blog.xiangjian.info/2011/03/picture_upload_flickr_google.html"/>
-    <updated>2011-03-15T00:00:00+08:00</updated>
+    <updated>2011-03-15T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/03/picture_upload_flickr_google</id>
     <content type="html"><![CDATA[<p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
 邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
@@ -72,7 +72,7 @@ sendpic('.')
   <entry>
     <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
     <link href="http://blog.xiangjian.info/2010/10/douglas-peucker.html"/>
-    <updated>2010-10-07T00:00:00+08:00</updated>
+    <updated>2010-10-07T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/10/douglas-peucker</id>
     <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
 <img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
@@ -280,7 +280,7 @@ doctest.testmod()
   <entry>
     <title type="html"><![CDATA[使用python脚本将邮件备份到Gmail]]></title>
     <link href="http://blog.xiangjian.info/2009/01/python-backup-to-gmail.html"/>
-    <updated>2009-01-14T00:00:00+08:00</updated>
+    <updated>2009-01-14T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/01/python-backup-to-gmail</id>
     <content type="html"><![CDATA[<p>整理磁盘，看到了这个将邮件备份到gmail的python代码（可以备份到任何邮箱），记得不太清楚了，原来好像是从别的地方下载的，时间太长了不记得从哪找的。代码的使用方法：
 <ol>

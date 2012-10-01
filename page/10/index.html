@@ -9,8 +9,12 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="Mapguide opensource的地图编辑工具,相当于autodesk mapguide studio.这个可以在mono2.0下编译成功，具备跨平台能力，window平台下使用.net2.0。
-不知道将.net 2.0移植到mono2.0下似乎是window下软件移植的一个思路。 &hellip;">
+  <meta name="description" content="影像文件的world file文件示例如下：
+20.17541308822119 (左上角X坐标)
+0.00000000000000(X方向旋转量)
+0.00000000000000(Y方向旋转量)
+-20.17541308822119(左上角Y坐标注意这个值为负值)
+424178. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +87,67 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2008/11/raster-worldfile.html">栅格图像的worldfile总结</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-27T00:00:00+00:00" pubdate data-updated="true">Nov 27<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/raster-worldfile.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>影像文件的world file文件示例如下：<br />
+20.17541308822119 (左上角X坐标)<br />
+0.00000000000000(X方向旋转量)<br />
+0.00000000000000(Y方向旋转量)<br />
+-20.17541308822119(左上角Y坐标注意这个值为负值)<br />
+424178.11472601280548(X偏移量)<br />
+4313415.90726399607956(Y方向偏移量)<br />
+应用如下公式来表达image-to-world的6参数仿射变换<br />
+x1 = Ax + By + C<br />
+y1 = Dx + Ey + F<br />
+各参数意义如下：<br />
+X1、Y1待求的影像上某一像素的地理坐标<br />
+A、E分别为影像的每一像素点代表的X、Y方向上的分辨率<br />
+B、<br />
+D旋转参数<br />
+C、<br />
+F为影像左上角点的地理坐标值<br />
+通过上述6个参数，我们可以计算影像上任一像素点的真实地理坐标。<br />
+常见的world file文件的命名格式规律(我是通过遇到的几种文件格式总结出来的)：取图像文件扩展名的首尾字母加&#8221;w&#8221;如下图所示的栅格文件的worldfile命名。<br />
+jpg&#8212;jgw<br />
+tiff&#8211;tfw<br />
+bmp&#8211;bpw<br />
+dwg&#8211;dwf
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2008/11/mapguide-new-message.html">Mapguide 新消息</a></h1>
     
     
@@ -99,7 +164,7 @@
   
 
 
-<time datetime="2008-11-25T00:00:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2008</time>
+<time datetime="2008-11-25T00:00:00+00:00" pubdate data-updated="true">Nov 25<span>th</span>, 2008</time>
         
          | <a href="/2008/11/mapguide-new-message.html#disqus_thread">Comments</a>
         
@@ -141,7 +206,7 @@
   
 
 
-<time datetime="2008-11-12T00:00:00+08:00" pubdate data-updated="true">Nov 12<span>th</span>, 2008</time>
+<time datetime="2008-11-12T00:00:00+00:00" pubdate data-updated="true">Nov 12<span>th</span>, 2008</time>
         
          | <a href="/2008/11/arcgis-extension-name.html#disqus_thread">Comments</a>
         
@@ -287,7 +352,7 @@
   
 
 
-<time datetime="2008-11-04T00:00:00+08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2008</time>
+<time datetime="2008-11-04T00:00:00+00:00" pubdate data-updated="true">Nov 4<span>th</span>, 2008</time>
         
          | <a href="/2008/11/lyric.html#disqus_thread">Comments</a>
         
@@ -367,7 +432,7 @@
   
 
 
-<time datetime="2008-10-19T00:00:00+08:00" pubdate data-updated="true">Oct 19<span>th</span>, 2008</time>
+<time datetime="2008-10-19T00:00:00+00:00" pubdate data-updated="true">Oct 19<span>th</span>, 2008</time>
         
          | <a href="/2008/10/arcgis-server-cache-image-type.html#disqus_thread">Comments</a>
         
@@ -408,7 +473,7 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
   
 
 
-<time datetime="2008-10-14T00:00:00+08:00" pubdate data-updated="true">Oct 14<span>th</span>, 2008</time>
+<time datetime="2008-10-14T00:00:00+00:00" pubdate data-updated="true">Oct 14<span>th</span>, 2008</time>
         
          | <a href="/2008/10/input-and-select-width.html#disqus_thread">Comments</a>
         
@@ -447,7 +512,7 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
   
 
 
-<time datetime="2008-10-13T00:00:00+08:00" pubdate data-updated="true">Oct 13<span>th</span>, 2008</time>
+<time datetime="2008-10-13T00:00:00+00:00" pubdate data-updated="true">Oct 13<span>th</span>, 2008</time>
         
          | <a href="/2008/10/archlinux.html#disqus_thread">Comments</a>
         
@@ -488,7 +553,7 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
   
 
 
-<time datetime="2008-10-07T00:00:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2008</time>
+<time datetime="2008-10-07T00:00:00+00:00" pubdate data-updated="true">Oct 7<span>th</span>, 2008</time>
         
          | <a href="/2008/10/birthday.html#disqus_thread">Comments</a>
         
@@ -527,7 +592,7 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
   
 
 
-<time datetime="2008-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2008</time>
+<time datetime="2008-09-25T00:00:00+00:00" pubdate data-updated="true">Sep 25<span>th</span>, 2008</time>
         
          | <a href="/2008/09/arcigis-oledb.html#disqus_thread">Comments</a>
         
@@ -566,7 +631,7 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
   
 
 
-<time datetime="2008-09-03T00:00:00+08:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2008</time>
+<time datetime="2008-09-03T00:00:00+00:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2008</time>
         
          | <a href="/2008/09/google-chrome.html#disqus_thread">Comments</a>
         
@@ -577,48 +642,6 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
 
   <div class="entry-content"><p>从今天早上开始，网络上到处都是关于GOOGLE chrome的新闻，出于好奇，我也下载了一个试试。<br />
 试用了一下GOOGLE的docs,在表格中不支持右键功能。我使用safari是正常的，不知为何同是使用webkit内核会出现一个正常一个不正常的问题。
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/09/excel-function.html">使用excel函数将经纬度度分秒格式转为小数点格式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-02T00:00:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2008</time>
-        
-         | <a href="/2008/09/excel-function.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>excel中数据是按度分秒格式存储的，要将数据转换为小数点格式存放到数据中，试用了Excel中的函数功能，处理的效果不错
-<pre name="code" class="vb">
-=VALUE(MID(M7,1,FIND("°",M7)-1))+VALUE(MID(M7,FIND("°",M7)+1,FIND("'",M7)-FIND("°",M7)-1))/60+VALUE(MIN(M7,FIND("'",M7)+1,FIND("""",M7)-FIND("'",M7)-1))/3600
-</pre>
 </p>
 </div>
   
@@ -644,6 +667,10 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/redis-webdis-install.html">redis webdis install</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
       </li>
     
@@ -657,10 +684,6 @@ arcgis server cache可以选择四种格式（PNG8,PNG24,PNG32,JPEG），这四�
     
       <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
       </li>
     
   </ul>

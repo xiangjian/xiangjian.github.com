@@ -4,7 +4,7 @@
   <title><![CDATA[鉴行志]]></title>
   <link href="http://blog.xiangjian.info/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-01-02T14:45:23+08:00</updated>
+  <updated>2012-10-01T09:43:18+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -14,9 +14,151 @@
 
   
   <entry>
+    <title type="html"><![CDATA[redis webdis install]]></title>
+    <link href="http://blog.xiangjian.info/2012/01/redis-webdis-install.html"/>
+    <updated>2012-01-03T15:33:00+00:00</updated>
+    <id>http://blog.xiangjian.info/2012/01/redis-webdis-install</id>
+    <content type="html"><![CDATA[<p>今天在ubuntu上安装redis(redis.io) 和 webdis(webd.is)。redis和webdis安装都很简单之需要make一下，执行生成代码就可以。软件依赖很少，编译安装很方便。</p>
+
+<p>init 脚本配置</p>
+
+<div><script src='https://gist.github.com/1568696.js?file=redis-server'></script>
+<noscript><pre><code>#! /bin/sh
+### BEGIN INIT INFO
+# Provides:     redis-server
+# Required-Start:   $syslog
+# Required-Stop:    $syslog
+# Should-Start:     $local_fs
+# Should-Stop:      $local_fs
+# Default-Start:    2 3 4 5
+# Default-Stop:     0 1 6
+# Short-Description:    redis-server - Persistent key-value db
+# Description:      redis-server - Persistent key-value db
+### END INIT INFO
+
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/redis-server
+DAEMON_ARGS=/etc/redis.conf
+NAME=redis-server
+DESC=redis-server
+PIDFILE=/var/run/redis.pid
+
+test -x $DAEMON || exit 0
+test -x $DAEMONBOOTSTRAP || exit 0
+
+set -e
+
+case &quot;$1&quot; in
+  start)
+    echo -n &quot;Starting $DESC: &quot;
+    touch $PIDFILE
+    chown redis:redis $PIDFILE
+    if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid redis:redis --exec $DAEMON -- $DAEMON_ARGS
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    ;;
+  stop)
+    echo -n &quot;Stopping $DESC: &quot;
+    if start-stop-daemon --stop --retry 10 --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    rm -f $PIDFILE
+    ;;
+
+  restart|force-reload)
+    ${0} stop
+    ${0} start
+    ;;
+  *)
+    echo &quot;Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}&quot; &gt;&amp;2
+    exit 1
+    ;;
+esac
+
+exit 0</code></pre></noscript></div>
+
+
+
+
+<div><script src='https://gist.github.com/1568696.js?file=webdis'></script>
+<noscript><pre><code>#! /bin/sh
+### BEGIN INIT INFO
+# Provides:     webdis-server
+# Required-Start:   $syslog
+# Required-Stop:    $syslog
+# Should-Start:     $local_fs
+# Should-Stop:      $local_fs
+# Default-Start:    2 3 4 5
+# Default-Stop:     0 1 6
+# Short-Description:    webdis-server - Persistent key-value db
+# Description:      webdis-server - Persistent key-value db
+### END INIT INFO
+
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/webdis
+DAEMON_ARGS=/etc/webdis.json
+NAME=webdis
+DESC=webdis
+PIDFILE=/var/run/webdis.pid
+
+test -x $DAEMON || exit 0
+test -x $DAEMONBOOTSTRAP || exit 0
+
+set -e
+
+case &quot;$1&quot; in
+  start)
+    echo -n &quot;Starting $DESC: &quot;
+    touch $PIDFILE
+    chown redis:redis $PIDFILE
+    if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid redis:redis --exec $DAEMON -- $DAEMON_ARGS
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    ;;
+  stop)
+    echo -n &quot;Stopping $DESC: &quot;
+    if start-stop-daemon --stop --retry 10 --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    rm -f $PIDFILE
+    ;;
+
+  restart|force-reload)
+    ${0} stop
+    ${0} start
+    ;;
+  *)
+    echo &quot;Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}&quot; &gt;&amp;2
+    exit 1
+    ;;
+esac
+
+exit 0
+</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[vs2010 加速]]></title>
     <link href="http://blog.xiangjian.info/2012/01/vs2010-accelerate.html"/>
-    <updated>2012-01-02T13:47:00+08:00</updated>
+    <updated>2012-01-02T13:47:00+00:00</updated>
     <id>http://blog.xiangjian.info/2012/01/vs2010-accelerate</id>
     <content type="html"><![CDATA[<p>这几天机器换系统,重装了VS2010 ，笔记本在编译是速度很慢，硬盘灯一直是亮的。VS2010调整下可以加快VS的速度。</p>
 
@@ -33,7 +175,7 @@
   <entry>
     <title type="html"><![CDATA[happy new year]]></title>
     <link href="http://blog.xiangjian.info/2011/12/happy-new-year.html"/>
-    <updated>2011-12-30T02:14:00+08:00</updated>
+    <updated>2011-12-30T02:14:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/12/happy-new-year</id>
     <content type="html"><![CDATA[<p>今天是2012年的第一天，</p>
 
@@ -53,7 +195,7 @@
   <entry>
     <title type="html"><![CDATA[blog 迁移到 octopress]]></title>
     <link href="http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress.html"/>
-    <updated>2011-12-28T09:32:00+08:00</updated>
+    <updated>2011-12-28T09:32:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/12/blog-migrate-to-octopress</id>
     <content type="html"><![CDATA[<p>很久没有写blog了，这次是我的aws一周年试用到期了，准备换一个空间继续写。wordpress使用了一年左右，还是感觉不爽，不够geek。原来是先写rst格式文件，生成html然后再到Wordpress中发布，主要还是有洁癖，不喜欢所见即所得编辑器生成的html代码，相当凌乱。在v2ex上看到讨论jekll模版引擎来写文章，mrakdown我不熟悉，blog发布的原理与movbletype。当年我就想，如果有一个blog程序,有movable type的静态文件生成能力，又能不用写html发布,那就完美了。octopress刚好能满足这种需求，足够简洁， 静态文件发布，爱不失手。</p>
 
@@ -72,7 +214,7 @@
   <entry>
     <title type="html"><![CDATA[使用supervisor和nginx发布tornado程序]]></title>
     <link href="http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx.html"/>
-    <updated>2011-08-17T00:00:00+08:00</updated>
+    <updated>2011-08-17T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/08/deploy_tornado_with_supervisor_nginx</id>
     <content type="html"><![CDATA[<p><p>tornado先天对异步(no-bolocking)处理能力，非常适合作为Web服务。tornado在linux平台使用epoll来实现异步事件的处理，性能非常好。但是python做为一个脚步语言，单进程执行，无法利用多CPU，对当今的多核CPU是一个很大的浪费。为提高性能，提高CPU利用率，一般会将tornado程序允许cup*n个。<br />
 怎样才能放便启动多个tornado程序呢，我们可以用supervisor来管理多个tornado应用。supervisor安装非常方便，easy_install supervisord就可以。<br />
@@ -175,7 +317,7 @@ numprocs_start=1
   <entry>
     <title type="html"><![CDATA[32位系统充分使用多余的内存]]></title>
     <link href="http://blog.xiangjian.info/2011/08/32bit_use_4g_ram.html"/>
-    <updated>2011-08-15T00:00:00+08:00</updated>
+    <updated>2011-08-15T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/08/32bit_use_4g_ram</id>
     <content type="html"><![CDATA[<p>我的T410i很久以前就升级了4G内存，但是32位系统使用不了全部的内存，单位的网络准入系统又不支持64位系统。内存一直都没有充分利用，其实可以做一个内存盘把一些暂存的内容放到这个上面来。有几个好处：<br />
 1.速度快，本来这块内存是用不到的，内存的速度比硬盘快很多。<br />
@@ -189,7 +331,7 @@ VS2010额编译速度一直不是太快，把编译内容放到ramdisk中可以�
   <entry>
     <title type="html"><![CDATA[程序员犯的可乐错误]]></title>
     <link href="http://blog.xiangjian.info/2011/06/program_error.html"/>
-    <updated>2011-06-21T00:00:00+08:00</updated>
+    <updated>2011-06-21T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/06/program_error</id>
     <content type="html"><![CDATA[<p><p>上周五，reddit programming区有人贴出了个一段代码的code review，引发了大家讨论，堪称是github.com网站最热烈的讨论。一个程序的升级脚本中写了如下一段代码:</p>
 <pre class="literal-block">
@@ -207,7 +349,7 @@ rm -rf /usr /lib/nvidia-current/xorg/xorg
   <entry>
     <title type="html"><![CDATA[linux 系统动态链接库引]]></title>
     <link href="http://blog.xiangjian.info/2011/06/linux_so.html"/>
-    <updated>2011-06-20T00:00:00+08:00</updated>
+    <updated>2011-06-20T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/06/linux_so</id>
     <content type="html"><![CDATA[<p><p>最近要编译一个mapnik2，其中安装依赖环境icu和boost这两个东西费尽周折。最后总算弄明白了linux下的动态链接库是怎么管理的？动态链接库多版本会不会冲突?</p>
 <p>linux支持unix中的动态链接库方法，使用export LD_LIBRARY_PATH= 这各方式。linux的动态链接库引用是通过ldconfig来实现的。<br />
@@ -244,7 +386,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   <entry>
     <title type="html"><![CDATA[redhat使用yum安装程序]]></title>
     <link href="http://blog.xiangjian.info/2011/05/redhat_use_yum.html"/>
-    <updated>2011-05-11T00:00:00+08:00</updated>
+    <updated>2011-05-11T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/05/redhat_use_yum</id>
     <content type="html"><![CDATA[<p><p>最近，要给一台redhat4服务器安装mapnik，在我自己工作的台机使用的是archlinux上，使用ABS安装环境那是相当方便，这台机器安装让人大伤脑筋。rpm包依赖要一个个找，而且，经常要自己编译源代码。</p></p>
 
@@ -374,7 +516,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   <entry>
     <title type="html"><![CDATA[3月总结]]></title>
     <link href="http://blog.xiangjian.info/2011/04/summary_3month.html"/>
-    <updated>2011-04-04T00:00:00+08:00</updated>
+    <updated>2011-04-04T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/04/summary_3month</id>
     <content type="html"><![CDATA[<p><p>三月已经过去了，总体是比较纠结，月底一切都还好。家里的事一直不断，想不到拆迁会到我们那边去，真是没法说。最高兴的是感情稳定，原来自己几个愿望，找一个善善良良的妻子，养一全聪聪明明的孩子，想一个简简单单道理，过一辈子。</p> 
 <p>还可以的：</p> 
@@ -400,7 +542,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   <entry>
     <title type="html"><![CDATA[本周推荐]]></title>
     <link href="http://blog.xiangjian.info/2011/03/week_2.html"/>
-    <updated>2011-03-20T00:00:00+08:00</updated>
+    <updated>2011-03-20T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/03/week_2</id>
     <content type="html"><![CDATA[<p><div class="section" id="id2"> 
 <h3>技术</h3> 
@@ -454,7 +596,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   <entry>
     <title type="html"><![CDATA[wordpress配置及网站SEO]]></title>
     <link href="http://blog.xiangjian.info/2011/03/wordpress_cache_with_nginx_and_duplicate_seo.html"/>
-    <updated>2011-03-17T00:00:00+08:00</updated>
+    <updated>2011-03-17T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/03/wordpress_cache_with_nginx_and_duplicate_seo</id>
     <content type="html"><![CDATA[<p><p>前一段时间使用wordpress 的一个缓存插件，几天使用下来发现好像没有起到缓存作用。晚上查了下nginx配置，终于找到了为什么。原来是我的nginx配置不对，缓存的路径没有设置对。<br />
 找到了问题改正就很容易了。同时也把使用插件生成sitemap.xml也进行了重写，搜索引擎也可以很好的索引相关网页。</p> 
@@ -511,7 +653,7 @@ rewrite ^ http://blog.xiangjian.info$uri permanent;
   <entry>
     <title type="html"><![CDATA[快速图片上传到flickr,google]]></title>
     <link href="http://blog.xiangjian.info/2011/03/picture_upload_flickr_google.html"/>
-    <updated>2011-03-15T00:00:00+08:00</updated>
+    <updated>2011-03-15T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/03/picture_upload_flickr_google</id>
     <content type="html"><![CDATA[<p><p>今天准备上传一张照片到flickr上,在上传页面偶然间看到flickr可以通过邮件上传照片。这个我突然想到：flickr上传文件不太稳定（中国的网络环境），通过邮件上传可以比较稳定的上传，同时会不会有其它的服务也使用<br />
 邮件上传照片。果然我在picisa中也找到了通过邮件上传照片的地址。接下来就可以使用邮件将照片发布到多个网络像册中去。</p> 
@@ -566,7 +708,7 @@ sendpic('.')
   <entry>
     <title type="html"><![CDATA[本周推荐]]></title>
     <link href="http://blog.xiangjian.info/2011/03/week1.html"/>
-    <updated>2011-03-09T00:00:00+08:00</updated>
+    <updated>2011-03-09T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2011/03/week1</id>
     <content type="html"><![CDATA[<p>隔了好长一段时间没有写这个推荐阅读了，现在开始要把这个捡起来。
 <div id="id2" class="section">
@@ -591,7 +733,7 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
   <entry>
     <title type="html"><![CDATA[试用free aws]]></title>
     <link href="http://blog.xiangjian.info/2010/12/movable_vps.html"/>
-    <updated>2010-12-27T00:00:00+08:00</updated>
+    <updated>2010-12-27T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/12/movable_vps</id>
     <content type="html"><![CDATA[<p><p>vps 下个月就到期了，前一段时间看到amazon有免费一年的free aws,决定试用下，明年不用继续用原来的vps使用amazon提供的aws。free aws 安装配置非常方便，很短时间就可以配置好一个可用服务。服务性能也相当不错。</p> 
 <p>今天下午配置好了服务器，申请了个固定IP，将原来的博客移植到新机器上，以下是使用感受：</p> 
@@ -606,7 +748,7 @@ head.js是一个异步加载javascript的js脚本，像它的名字一样，这�
   <entry>
     <title type="html"><![CDATA[道格拉斯-普克抽稀算法]]></title>
     <link href="http://blog.xiangjian.info/2010/10/douglas-peucker.html"/>
-    <updated>2010-10-07T00:00:00+08:00</updated>
+    <updated>2010-10-07T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/10/douglas-peucker</id>
     <content type="html"><![CDATA[<p><p>道格拉斯-普克抽稀(Douglas-Peucker)算法是一个常用的线抽稀算法，将一条线在不改变大概形状的情况下，使用最少数量的点描述。基本原理如下图：</p>
 <img alt="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" src="http://farm5.static.flickr.com/4128/5059015147_9dbced272a_m.jpg" />
@@ -813,7 +955,7 @@ doctest.testmod()
   <entry>
     <title type="html"><![CDATA[在vps上安装dabr]]></title>
     <link href="http://blog.xiangjian.info/2010/08/vps-dabr.html"/>
-    <updated>2010-08-11T00:00:00+08:00</updated>
+    <updated>2010-08-11T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/08/vps-dabr</id>
     <content type="html"><![CDATA[<p><p>前几天twa.sh网站访问不了，有一段时间没有上过twitter了。因为知道twa.sh是dabr搭建的，我的vps也有PHP环境，决定架一个dabr. 主要按照http://zou.lu/dabr/ 写的搭建方法，完成dabr环境搭建。有一些小的改动主要是PHP环境配置问题，PHP默认有些包没有使用，没有默认的时区设置。这些可以看nginx输出的的错误日志。使用tail -f /srv/log/nginx/error.log 命令就可以查看，改下配置就可以了。</p>
 <p>话说linux系统很不错，命令行开始可能感觉上手不易，但linux的配置，日志输出都比较固定，查看相应的信息基本上可以看到问题是出在哪了。这点比Windows强的地方，有时真不知道错误出在哪。</p>
@@ -831,7 +973,7 @@ fi;
   <entry>
     <title type="html"><![CDATA[更新]]></title>
     <link href="http://blog.xiangjian.info/2010/07/update.html"/>
-    <updated>2010-07-25T00:00:00+08:00</updated>
+    <updated>2010-07-25T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/07/update</id>
     <content type="html"><![CDATA[<p><p>好久没有更新了，上次更新还是4月份从青海回来。主要这段时间工作太忙，基本上都在外面出差，生活没有规律。现在有点问题，鸭梨很大，体重保持在140，要想办法减，肚子已经有点明显胖，原来坚持了几年的跑步也中断了。这些好的习惯要逐渐再拾起来。</p>
 <p>blog我名字改了叫作&#8221;鉴行志&#8221;，鉴：就是镜子，希望这个是我的影子，能够看到我学习生活中的东西，李世民有一句名言就有这个字。其实我原来名字也是用这个字，小学和初中也是这个字，后来不知道怎么就改为建了。行：是我的辈份，一般不用在名字中。这个就是我取这个blog名字的原因。</p>
@@ -849,7 +991,7 @@ fi;
   <entry>
     <title type="html"><![CDATA[关于地震]]></title>
     <link href="http://blog.xiangjian.info/2010/04/earthquake.html"/>
-    <updated>2010-04-17T00:00:00+08:00</updated>
+    <updated>2010-04-17T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/04/earthquake</id>
     <content type="html"><![CDATA[<p><p>上周从青海回来,昨天青海玉树发生地震。新闻上报地震是7.1级大地震，好奇上 <a class="reference external" href="http://earthquake.usgs.gov/earthquakes/recenteqsww/Quakes/us2010vacp.php#details">usgs</a> (美国国家地震局),看看地震信息。结果看到地震是6.9级，不知为何中国跟美国测的结果有差别。看到校舍的抗震级别是7级就明白了，有些事明白就行，不能说明白了。</p>
 </p>
@@ -859,7 +1001,7 @@ fi;
   <entry>
     <title type="html"><![CDATA[十种GIS矢量数据转换工具]]></title>
     <link href="http://blog.xiangjian.info/2010/02/top-10-gis-tools.html"/>
-    <updated>2010-02-27T00:00:00+08:00</updated>
+    <updated>2010-02-27T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/02/top-10-gis-tools</id>
     <content type="html"><![CDATA[<p><p>做GIS这一块的工作,GIS空间数据的转换处理工作会比较多.下面整理了这几个用过的和知道的一些GIS空间数据转换工具,写了下面的文章.文章也标题党一把,取名&quot;十种GIS矢量数据转换工具&quot;,希望对大家有用.</p>
 <ul class="simple">
@@ -909,42 +1051,6 @@ fi;
 <p><img alt="ogr2GUI" src="http://farm3.static.flickr.com/2720/4386242007_b46e4d8c57.jpg" style="width: 450px;" /></p>
 <p>可能会有遗漏，mapinfo,国产厂商的GIS（supermap,mapgis）产品，数据转换模块不太熟习，因此不在上面列举。</p>
 <p>总结这一系列转换工具主要包含三个核心转换库:FME(arcgis数据转换模块据说是使用FME技术?待考),FDO,GDAR/OGR.FME是商业软件,支持格式最多,转换工具灵活,大型工程空间数据转换首选.FDO是开源,背后有autodesk支持,前景很好(使用过程中使用FDO技术转换的shp数据部分软件无法识别,尽量不要使用FDO转出shp数据).GDAR/OGR老牌空间数据类库,支持各种编程语言.</p>
-</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用javascript方法给后台WCF服务直接post对象]]></title>
-    <link href="http://blog.xiangjian.info/2010/02/javascript-post-object-to-wcf.html"/>
-    <updated>2010-02-11T00:00:00+08:00</updated>
-    <id>http://blog.xiangjian.info/2010/02/javascript-post-object-to-wcf</id>
-    <content type="html"><![CDATA[<p><p>一直没有弄清楚,WCF如何使用post方法自动反序列化对象，看了几篇文章，终于搞清楚了怎么使用post方法进行对象传值。</p>
-<p>下面直接使用WCF特性做元数据的自定义转换</p>
-<p>定义元数据契约定义:</p>
-<pre class="literal-block">
-[DataContract(Name = &quot;person&quot;)]
-public class person
-{
-[DataMember(Name=&quot;Name&quot;)]
-public string Name
-{
-get;
-set;
-}
-[DataMember(Name = &quot;Age&quot;)]
-public int Age
-{
-get;
-set;
-}
-</pre>
-<p>服务描述:</p>
-<pre class="literal-block">
-[OperationContract]
-[WebInvoke(UriTemplate = &quot;/doit2&quot;,ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
-bool testpost(person p);
-</pre>
-<p>注意使用Post方法，post的BodyStyle必须为Wrapped，否则不能正常取到反序列化后的对象。</p>
 </p>
 ]]></content>
   </entry>

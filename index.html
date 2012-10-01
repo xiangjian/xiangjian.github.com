@@ -9,9 +9,9 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="这几天机器换系统,重装了VS2010 ，笔记本在编译是速度很慢，硬盘灯一直是亮的。VS2010调整下可以加快VS的速度。 关特效，关不必要的智能
-加内存，现在内存是白菜价，加一条内存可以起到很好的效果。如果没加内存，可以使用个U盘开启readboost。
-编译过程中会在硬盘写大量文件， &hellip;">
+  <meta name="description" content="今天在ubuntu上安装redis(redis.io) 和 webdis(webd.is)。redis和webdis安装都很简单之需要make一下，执行生成代码就可以。软件依赖很少，编译安装很方便。 init 脚本配置 #! /bin/sh
+### BEGIN INIT INFO
+# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +84,177 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2012/01/redis-webdis-install.html">Redis Webdis Install</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-03T15:33:00+00:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2012</time>
+        
+         | <a href="/2012/01/redis-webdis-install.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天在ubuntu上安装redis(redis.io) 和 webdis(webd.is)。redis和webdis安装都很简单之需要make一下，执行生成代码就可以。软件依赖很少，编译安装很方便。</p>
+
+<p>init 脚本配置</p>
+
+<div><script src='https://gist.github.com/1568696.js?file=redis-server'></script>
+<noscript><pre><code>#! /bin/sh
+### BEGIN INIT INFO
+# Provides:     redis-server
+# Required-Start:   $syslog
+# Required-Stop:    $syslog
+# Should-Start:     $local_fs
+# Should-Stop:      $local_fs
+# Default-Start:    2 3 4 5
+# Default-Stop:     0 1 6
+# Short-Description:    redis-server - Persistent key-value db
+# Description:      redis-server - Persistent key-value db
+### END INIT INFO
+
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/redis-server
+DAEMON_ARGS=/etc/redis.conf
+NAME=redis-server
+DESC=redis-server
+PIDFILE=/var/run/redis.pid
+
+test -x $DAEMON || exit 0
+test -x $DAEMONBOOTSTRAP || exit 0
+
+set -e
+
+case &quot;$1&quot; in
+  start)
+    echo -n &quot;Starting $DESC: &quot;
+    touch $PIDFILE
+    chown redis:redis $PIDFILE
+    if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid redis:redis --exec $DAEMON -- $DAEMON_ARGS
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    ;;
+  stop)
+    echo -n &quot;Stopping $DESC: &quot;
+    if start-stop-daemon --stop --retry 10 --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    rm -f $PIDFILE
+    ;;
+
+  restart|force-reload)
+    ${0} stop
+    ${0} start
+    ;;
+  *)
+    echo &quot;Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}&quot; &gt;&amp;2
+    exit 1
+    ;;
+esac
+
+exit 0</code></pre></noscript></div>
+
+
+
+
+<div><script src='https://gist.github.com/1568696.js?file=webdis'></script>
+<noscript><pre><code>#! /bin/sh
+### BEGIN INIT INFO
+# Provides:     webdis-server
+# Required-Start:   $syslog
+# Required-Stop:    $syslog
+# Should-Start:     $local_fs
+# Should-Stop:      $local_fs
+# Default-Start:    2 3 4 5
+# Default-Stop:     0 1 6
+# Short-Description:    webdis-server - Persistent key-value db
+# Description:      webdis-server - Persistent key-value db
+### END INIT INFO
+
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/webdis
+DAEMON_ARGS=/etc/webdis.json
+NAME=webdis
+DESC=webdis
+PIDFILE=/var/run/webdis.pid
+
+test -x $DAEMON || exit 0
+test -x $DAEMONBOOTSTRAP || exit 0
+
+set -e
+
+case &quot;$1&quot; in
+  start)
+    echo -n &quot;Starting $DESC: &quot;
+    touch $PIDFILE
+    chown redis:redis $PIDFILE
+    if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid redis:redis --exec $DAEMON -- $DAEMON_ARGS
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    ;;
+  stop)
+    echo -n &quot;Stopping $DESC: &quot;
+    if start-stop-daemon --stop --retry 10 --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON
+    then
+        echo &quot;$NAME.&quot;
+    else
+        echo &quot;failed&quot;
+    fi
+    rm -f $PIDFILE
+    ;;
+
+  restart|force-reload)
+    ${0} stop
+    ${0} start
+    ;;
+  *)
+    echo &quot;Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}&quot; &gt;&amp;2
+    exit 1
+    ;;
+esac
+
+exit 0
+</code></pre></noscript></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2012/01/vs2010-accelerate.html">Vs2010 加速</a></h1>
     
     
@@ -100,7 +271,7 @@
   
 
 
-<time datetime="2012-01-02T13:47:00+08:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
+<time datetime="2012-01-02T13:47:00+00:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
         
          | <a href="/2012/01/vs2010-accelerate.html#disqus_thread">Comments</a>
         
@@ -146,7 +317,7 @@
   
 
 
-<time datetime="2011-12-30T02:14:00+08:00" pubdate data-updated="true">Dec 30<span>th</span>, 2011</time>
+<time datetime="2011-12-30T02:14:00+00:00" pubdate data-updated="true">Dec 30<span>th</span>, 2011</time>
         
          | <a href="/2011/12/happy-new-year.html#disqus_thread">Comments</a>
         
@@ -195,7 +366,7 @@
   
 
 
-<time datetime="2011-12-28T09:32:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
+<time datetime="2011-12-28T09:32:00+00:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
         
          | <a href="/2011/12/blog-migrate-to-octopress.html#disqus_thread">Comments</a>
         
@@ -243,7 +414,7 @@
   
 
 
-<time datetime="2011-08-17T00:00:00+08:00" pubdate data-updated="true">Aug 17<span>th</span>, 2011</time>
+<time datetime="2011-08-17T00:00:00+00:00" pubdate data-updated="true">Aug 17<span>th</span>, 2011</time>
         
          | <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html#disqus_thread">Comments</a>
         
@@ -375,7 +546,7 @@ numprocs_start=1
   
 
 
-<time datetime="2011-08-15T00:00:00+08:00" pubdate data-updated="true">Aug 15<span>th</span>, 2011</time>
+<time datetime="2011-08-15T00:00:00+00:00" pubdate data-updated="true">Aug 15<span>th</span>, 2011</time>
         
          | <a href="/2011/08/32bit_use_4g_ram.html#disqus_thread">Comments</a>
         
@@ -418,7 +589,7 @@ VS2010额编译速度一直不是太快，把编译内容放到ramdisk中可以�
   
 
 
-<time datetime="2011-06-21T00:00:00+08:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time>
+<time datetime="2011-06-21T00:00:00+00:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time>
         
          | <a href="/2011/06/program_error.html#disqus_thread">Comments</a>
         
@@ -465,7 +636,7 @@ rm -rf /usr /lib/nvidia-current/xorg/xorg
   
 
 
-<time datetime="2011-06-20T00:00:00+08:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
+<time datetime="2011-06-20T00:00:00+00:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
         
          | <a href="/2011/06/linux_so.html#disqus_thread">Comments</a>
         
@@ -531,7 +702,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   
 
 
-<time datetime="2011-05-11T00:00:00+08:00" pubdate data-updated="true">May 11<span>th</span>, 2011</time>
+<time datetime="2011-05-11T00:00:00+00:00" pubdate data-updated="true">May 11<span>th</span>, 2011</time>
         
          | <a href="/2011/05/redhat_use_yum.html#disqus_thread">Comments</a>
         
@@ -690,7 +861,7 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   
 
 
-<time datetime="2011-04-04T00:00:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2011</time>
+<time datetime="2011-04-04T00:00:00+00:00" pubdate data-updated="true">Apr 4<span>th</span>, 2011</time>
         
          | <a href="/2011/04/summary_3month.html#disqus_thread">Comments</a>
         
@@ -724,89 +895,6 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/03/week_2.html">本周推荐</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-20T00:00:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2011</time>
-        
-         | <a href="/2011/03/week_2.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><div class="section" id="id2"> 
-<h3>技术</h3> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-overcommit-kvm-resources/index.html">管理超量使用的 KVM 主机资源</a></li> 
-</ul> 
-<p>最新比较关注KVM虚拟机，linux内核虚拟机，虚拟效果相当不错，不需要安装复杂的vmware,vbox.vmware创建的虚拟机也可以很方便的在kvm中运行。这篇文章主要讲kvm主机资源超量使用，kvm性能调优，值得关注。</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.ibm.com/developerworks/cn/linux/l-cn-pagerecycle/index.html">Linux 2.6 中的页面回收与反向映射</a></li> 
-</ul> 
-<p>2.6页面回收与反向映射，本周linux 2.6.38发布，主要更新之一就是支持透明大内存页(Transparent Hugepages).这个可以显著提高kvm内存使用率。</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.wardking.com/2011/03/clonezilla/">clonezllia 再生龙</a></li> 
-</ul> 
-<p>再生龙，功能与ghost相似，提供比ghost更多的功能。不过几乎很少有人使用正版的ghost吧，放心使用再生龙。</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.ragepank.com/articles/3/preventing-duplicate-content/">防止重复内容</a></li> 
-</ul> 
-<p>这个是关于SEO的，搜索引擎对重复内容有惩罚措施，如果你不清楚你的网站是否有重复内容，你可以看下这篇文章。</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.drizzle.org/">drizzle mysql分支数据库</a></li> 
-</ul> 
-<p>Drizzle是一个精简版的MySQL分支，在目前的MySQL代码基本之上，将存储过程、视图、触发器、查询缓存、PREPARE语句等等功能从代码中删掉，简化对数据类型和存储引擎的支持，并且进行大胆的重构。最终要实现的目的是将MySQL的代码大大简化，理顺MySQL的架构，改善 MySQL的代码质量，提高系统的稳定性和性能。</p> 
-</div> 
-<div class="section" id="id4"> 
-<h3>非技术</h3> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.mifengtd.cn/articles/why-we-lack-of-self-discipline.html">一个人为什么会缺少自虑</a></li> 
-</ul> 
-<p>找到人缺少自虑的原因。</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.lztopic.com/archives/4669/">从人群中看出真正优秀的人</a></li> 
-</ul> 
-<p>一家之言，也未必全信</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.mgreview.com/archives/151">美股开启攻略</a></li> 
-</ul> 
-<p>有点闲钱，可以到美股投资试试 。</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://bigfools.com/2011/03/21682.html">全国密码麦当劳密码</a></li> 
-</ul> 
-<p>记下，下次去麦当劳可能会用上。</p> 
-<ul class="simple"> 
-<li><a class="reference external" href="http://www.ohmymedia.info/%E4%B8%AD%E5%9B%BD%E9%9D%92%E5%B9%B4%E6%8A%A5%EF%BC%9A%E8%80%81%E6%97%A0%E6%89%80%E4%BE%9D%E7%9A%84%E5%8F%B2%E5%AD%A6%E5%A4%A7%E5%AE%B6.html">中国青年报：老无所依的史学大家</a></li> 
-</ul> 
-<p>心酸，看文章，啥也不说</p> 
-</div> </p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -822,6 +910,10 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/redis-webdis-install.html">redis webdis install</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
       </li>
     
@@ -835,10 +927,6 @@ ldd /usr/lib/mapnik2/input/postgis.input</pre></p>
     
       <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
       </li>
     
   </ul>

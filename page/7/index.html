@@ -9,8 +9,10 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="lifehacker选出了五个最好的在线图片编辑工具： http://lifehacker.com/5307419/five-best-online-image-editors下面是文章内容。
-在你的桌面环境中使用图片编辑软件编辑图片是理想的选择， &hellip;">
+  <meta name="description" content="前几天做一个信息显示的界面，布局是左右两边，要这左右两在不同的浏览器情况下都可以自动适应布局，使用div布局方式一直没有很好解决，没有办法只能使用table来做布局。
+后来看到了这篇文章，使用div布局是可以解决这个问题的。
+最终的解决方法是 div.container {
+border: 1px &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +85,64 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2009/08/css-clearing-float.html">Clearing Float</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-10T00:00:00+00:00" pubdate data-updated="true">Aug 10<span>th</span>, 2009</time>
+        
+         | <a href="/2009/08/css-clearing-float.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前几天做一个信息显示的界面，布局是左右两边，要这左右两在不同的浏览器情况下都可以自动适应布局，使用div布局方式一直没有很好解决，没有办法只能使用table来做布局。<br />
+后来看到了这篇文章，使用div布局是可以解决这个问题的。<br />
+最终的解决方法是
+<pre name="code" class="css">
+div.container {
+border: 1px solid #000000;
+overflow: hidden;
+width: 100%;
+}
+div.left {
+width: 50%;
+float: left;
+}
+div.right {
+width: 50%;
+float: right;
+}
+</pre>
+引用地址<br />
+http://quirksmode.org/css/clearing.html
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2009/08/online-photo-editor.html">五个最好的在线图片编辑工具</a></h1>
     
     
@@ -99,7 +159,7 @@
   
 
 
-<time datetime="2009-08-09T00:00:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2009</time>
+<time datetime="2009-08-09T00:00:00+00:00" pubdate data-updated="true">Aug 9<span>th</span>, 2009</time>
         
          | <a href="/2009/08/online-photo-editor.html#disqus_thread">Comments</a>
         
@@ -152,7 +212,7 @@
   
 
 
-<time datetime="2009-08-09T00:00:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2009</time>
+<time datetime="2009-08-09T00:00:00+00:00" pubdate data-updated="true">Aug 9<span>th</span>, 2009</time>
         
          | <a href="/2009/08/best-system-restore.html#disqus_thread">Comments</a>
         
@@ -197,7 +257,7 @@
   
 
 
-<time datetime="2009-06-27T00:00:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2009</time>
+<time datetime="2009-06-27T00:00:00+00:00" pubdate data-updated="true">Jun 27<span>th</span>, 2009</time>
         
          | <a href="/2009/06/db-comp.html#disqus_thread">Comments</a>
         
@@ -247,7 +307,7 @@ PostgreSQL
   
 
 
-<time datetime="2009-05-12T00:00:00+08:00" pubdate data-updated="true">May 12<span>th</span>, 2009</time>
+<time datetime="2009-05-12T00:00:00+00:00" pubdate data-updated="true">May 12<span>th</span>, 2009</time>
         
          | <a href="/2009/05/book-relationship.html#disqus_thread">Comments</a>
         
@@ -292,7 +352,7 @@ PostgreSQL
   
 
 
-<time datetime="2009-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2009</time>
+<time datetime="2009-04-02T00:00:00+00:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2009</time>
         
          | <a href="/2009/04/gis-project.html#disqus_thread">Comments</a>
         
@@ -341,7 +401,7 @@ PostgreSQL
   
 
 
-<time datetime="2009-04-01T00:00:00+08:00" pubdate data-updated="true">Apr 1<span>st</span>, 2009</time>
+<time datetime="2009-04-01T00:00:00+00:00" pubdate data-updated="true">Apr 1<span>st</span>, 2009</time>
         
          | <a href="/2009/04/ogc-osgeo.html#disqus_thread">Comments</a>
         
@@ -381,7 +441,7 @@ PostgreSQL
   
 
 
-<time datetime="2009-03-23T00:00:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2009</time>
+<time datetime="2009-03-23T00:00:00+00:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2009</time>
         
          | <a href="/2009/03/javascript-ppt.html#disqus_thread">Comments</a>
         
@@ -421,7 +481,7 @@ PostgreSQL
   
 
 
-<time datetime="2009-03-19T00:00:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2009</time>
+<time datetime="2009-03-19T00:00:00+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2009</time>
         
          | <a href="/2009/03/myeclipse-shortcut-key.html#disqus_thread">Comments</a>
         
@@ -514,7 +574,7 @@ Ctrl+Shift+K 文本编辑器 查找下一个
   
 
 
-<time datetime="2009-03-18T00:00:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2009</time>
+<time datetime="2009-03-18T00:00:00+00:00" pubdate data-updated="true">Mar 18<span>th</span>, 2009</time>
         
          | <a href="/2009/03/autodesk-university-china.html#disqus_thread">Comments</a>
         
@@ -527,47 +587,6 @@ Ctrl+Shift+K 文本编辑器 查找下一个
 对于我关心的，地理空间行业的产品的资料和培训这里都没有，应该是产品在中国的市场推广重点的关系。Autodesk空间行业在中国的市场做得太不好，软件已经那么的便宜，功能也不差，推广不开。<br />
 Autodesk空间解决方案应对中国GIS行业ESRI一家独大的局面任重道远啊。<br />
 地址：<a href="http://au.autodesk.com.cn/index.jsp">Autodesk University(AU) China</a>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/mapguide-maestro-tile-cache.html">利用mapguide Maestro预生成tile Cache</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-09T00:00:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2009</time>
-        
-         | <a href="/2009/03/mapguide-maestro-tile-cache.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>mapguide是支持tile cache技术的，但是tile是在用户浏览的时候生成tile的。这样可以保持生成的tile文件比较少，只有用户查看过的区域生成tile，用户这一次查看时生成tile.<br />
-现在mapguide maestro最新升级可以支持事先生成tile，可以直接生成tile,或者生成处理脚本在命令行环境下生成tile cache.<br />
-详细情况参考:<a href="http://www.jasonbirch.com/nodes/2009/02/19/284/now-were-cooking-mgcooker-for-mapguide-tile-seeding/">MapGuide Tile Seeding</a>
 </p>
 </div>
   
@@ -593,6 +612,10 @@ Autodesk空间解决方案应对中国GIS行业ESRI一家独大的局面任重�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/redis-webdis-install.html">redis webdis install</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
       </li>
     
@@ -606,10 +629,6 @@ Autodesk空间解决方案应对中国GIS行业ESRI一家独大的局面任重�
     
       <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
       </li>
     
   </ul>

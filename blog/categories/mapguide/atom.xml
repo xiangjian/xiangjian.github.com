@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mapguide | 鉴行志]]></title>
   <link href="http://blog.xiangjian.info/blog/categories/mapguide/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-01-02T14:45:23+08:00</updated>
+  <updated>2012-10-01T09:43:18+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[mapguide 绘图引擎 GD与AGG的比较]]></title>
     <link href="http://blog.xiangjian.info/2010/01/mapguide-dg-vs-gg.html"/>
-    <updated>2010-01-31T00:00:00+08:00</updated>
+    <updated>2010-01-31T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/01/mapguide-dg-vs-gg</id>
     <content type="html"><![CDATA[<p><p>GIS系统做得好不好，关键看地图怎么样,地图好看与否其中一个决定因素是地图的绘图引擎的好坏。找了一些mapguide绘图引擎的资料，mapguide使用的是AGG和GD双引擎，可以在地图服务器切换引擎。</p>
 <p>AGG:<br />
@@ -41,7 +41,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   <entry>
     <title type="html"><![CDATA[mapguide open source 2.1推出]]></title>
     <link href="http://blog.xiangjian.info/2009/12/mapguide-open-source-2-1.html"/>
-    <updated>2009-12-11T00:00:00+08:00</updated>
+    <updated>2009-12-11T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/12/mapguide-open-source-2-1</id>
     <content type="html"><![CDATA[<p>11月21日mapguide open source推出2.1版。新版本修正不少错误，主要有以下更新。<br />
 <ul class="simple"><li>在性能，稳定性，可伸缩性方面的改进</li>
@@ -59,7 +59,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   <entry>
     <title type="html"><![CDATA[利用mapguide maestro预生成tile cache]]></title>
     <link href="http://blog.xiangjian.info/2009/03/mapguide-maestro-tile-cache.html"/>
-    <updated>2009-03-09T00:00:00+08:00</updated>
+    <updated>2009-03-09T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2009/03/mapguide-maestro-tile-cache</id>
     <content type="html"><![CDATA[<p>mapguide是支持tile cache技术的，但是tile是在用户浏览的时候生成tile的。这样可以保持生成的tile文件比较少，只有用户查看过的区域生成tile，用户这一次查看时生成tile.<br />
 现在mapguide maestro最新升级可以支持事先生成tile，可以直接生成tile,或者生成处理脚本在命令行环境下生成tile cache.<br />
@@ -72,7 +72,7 @@ AGG的功能与GDI+的功能非常类似，但提供了比GDI+更灵活的编程
   <entry>
     <title type="html"><![CDATA[mapguide 新消息]]></title>
     <link href="http://blog.xiangjian.info/2008/11/mapguide-new-message.html"/>
-    <updated>2008-11-25T00:00:00+08:00</updated>
+    <updated>2008-11-25T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2008/11/mapguide-new-message</id>
     <content type="html"><![CDATA[<p>Mapguide opensource的地图编辑工具,相当于autodesk mapguide studio.这个可以在mono2.0下编译成功，具备跨平台能力，window平台下使用.net2.0。<br />
 不知道将.net 2.0移植到mono2.0下似乎是window下软件移植的一个思路。<br />

@@ -9,8 +9,7 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="今天整理磁盘文件，看到年前做的启用IIS6的静态文件压缩功能的批处理文件，避免了手动编辑metabase.xml存在的风险。
-http://www.mediafire.com/?9uecwlt3xt2 ">
+  <meta name="description" content="excel中数据是按度分秒格式存储的，要将数据转换为小数点格式存放到数据中，试用了Excel中的函数功能，处理的效果不错 =VALUE(MID(M7,1,FIND("°",M7)-1))+VALUE(MID(M7,FIND("°",M7)+1,FIND("'",M7)-FIND("°",M7)-1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +82,48 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
       
   <header>
     
+      <h1 class="entry-title"><a href="/2008/09/excel-function.html">使用excel函数将经纬度度分秒格式转为小数点格式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-02T00:00:00+00:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2008</time>
+        
+         | <a href="/2008/09/excel-function.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>excel中数据是按度分秒格式存储的，要将数据转换为小数点格式存放到数据中，试用了Excel中的函数功能，处理的效果不错
+<pre name="code" class="vb">
+=VALUE(MID(M7,1,FIND("°",M7)-1))+VALUE(MID(M7,FIND("°",M7)+1,FIND("'",M7)-FIND("°",M7)-1))/60+VALUE(MIN(M7,FIND("'",M7)+1,FIND("""",M7)-FIND("'",M7)-1))/3600
+</pre>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2008/08/iis6-use-gzip.html">Iis6 对静态文件的gzip压缩</a></h1>
     
     
@@ -99,7 +140,7 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
   
 
 
-<time datetime="2008-08-24T00:00:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2008</time>
+<time datetime="2008-08-24T00:00:00+00:00" pubdate data-updated="true">Aug 24<span>th</span>, 2008</time>
         
          | <a href="/2008/08/iis6-use-gzip.html#disqus_thread">Comments</a>
         
@@ -139,7 +180,7 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
   
 
 
-<time datetime="2008-08-08T00:00:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2008</time>
+<time datetime="2008-08-08T00:00:00+00:00" pubdate data-updated="true">Aug 8<span>th</span>, 2008</time>
         
          | <a href="/2008/08/mediafire-web-upgrade.html#disqus_thread">Comments</a>
         
@@ -182,7 +223,7 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
   
 
 
-<time datetime="2007-10-22T00:00:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2007</time>
+<time datetime="2007-10-22T00:00:00+00:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2007</time>
         
          | <a href="/2007/10/geoserver-use-oracle-spatial.html#disqus_thread">Comments</a>
         
@@ -221,7 +262,7 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
   
 
 
-<time datetime="2007-10-12T00:00:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2007</time>
+<time datetime="2007-10-12T00:00:00+00:00" pubdate data-updated="true">Oct 12<span>th</span>, 2007</time>
         
          | <a href="/2007/10/xml-element-name.html#disqus_thread">Comments</a>
         
@@ -267,7 +308,7 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
   
 
 
-<time datetime="2007-10-11T00:00:00+08:00" pubdate data-updated="true">Oct 11<span>th</span>, 2007</time>
+<time datetime="2007-10-11T00:00:00+00:00" pubdate data-updated="true">Oct 11<span>th</span>, 2007</time>
         
          | <a href="/2007/10/javascript-null-judge.html#disqus_thread">Comments</a>
         
@@ -316,7 +357,7 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
   
 
 
-<time datetime="2007-06-07T00:00:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2007</time>
+<time datetime="2007-06-07T00:00:00+00:00" pubdate data-updated="true">Jun 7<span>th</span>, 2007</time>
         
          | <a href="/2007/06/mime-type-from-iis%EF%BC%96.html#disqus_thread">Comments</a>
         
@@ -663,7 +704,7 @@ http://www.mediafire.com/?9uecwlt3xt2 ">
   
 
 
-<time datetime="2007-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2007</time>
+<time datetime="2007-05-31T00:00:00+00:00" pubdate data-updated="true">May 31<span>st</span>, 2007</time>
         
          | <a href="/2007/05/autoit-startup.html#disqus_thread">Comments</a>
         
@@ -719,7 +760,7 @@ if ProcessExists("Popo.exe")=0 And @HOUR<18 then        ;POPO2004     Run("D:\Pr
   
 
 
-<time datetime="2007-05-30T00:00:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2007</time>
+<time datetime="2007-05-30T00:00:00+00:00" pubdate data-updated="true">May 30<span>th</span>, 2007</time>
         
          | <a href="/2007/05/yui-css-layout.html#disqus_thread">Comments</a>
         
@@ -760,7 +801,7 @@ if ProcessExists("Popo.exe")=0 And @HOUR<18 then        ;POPO2004     Run("D:\Pr
   
 
 
-<time datetime="2007-05-30T00:00:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2007</time>
+<time datetime="2007-05-30T00:00:00+00:00" pubdate data-updated="true">May 30<span>th</span>, 2007</time>
         
          | <a href="/2007/05/automap-3d-concept.html#disqus_thread">Comments</a>
         
@@ -994,45 +1035,6 @@ To magnify a drawing based on its extents so that the view shows the largest pos
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/05/web-visio.html">介绍三个WEB应用程序网站</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-05-26T00:00:00+08:00" pubdate data-updated="true">May 26<span>th</span>, 2007</time>
-        
-         | <a href="/2007/05/web-visio.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><h3>绘制流程图－Cumulate Draw</h3><br /><p><br />优点：web版的VISIO，不用安装昂贵的VISIO，只要有浏览器就可以了使用。和VISIO的基本操作一致，所见既所得，文件可以导出为JPEG、PNG、PDF、SVG、MMD/FMD(Editable)。<br />缺点：不支持中文。<br /></p><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_Ea3JwBJzx7s/RlempV4pFYI/AAAAAAAAA8U/I7lRSR04nyA/s1600-h/cumulate-draw-thumb.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;" src="http://4.bp.blogspot.com/_Ea3JwBJzx7s/RlempV4pFYI/AAAAAAAAA8U/I7lRSR04nyA/s400/cumulate-draw-thumb.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5068703134808348034" /></a><br /><a href="http://www.cumulatelabs.com/draw/draw.html" tittle="使用页面">Cumulate Draw</a><br /><h3>流程图绘制－Gliffy</h3><br /><p><br />这个网站同样是一个制作流程图的一个We了应用程序网站<br />优点：同样是一个优秀的画流程图的Web应用，最大的优点是可以正常支持中文。<br />缺点：这是一个商业网站，需要用户注册，免费用户使用受到一定的限制。<br /></p><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://lh6.google.com/image/xiangjiangis/RlfJwV4pFZI/AAAAAAAAA8c/sBbZCRLjV9E/s144/2007-05-26_134120.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 400px;" src="http://lh6.google.com/image/xiangjiangis/RlfJwV4pFZI/AAAAAAAAA8c/sBbZCRLjV9E/s144/2007-05-26_134120.png" border="0" alt="" /></a><br /><a href="http://gliffy.com/" tittle="使用页面">gliffy</a><br /><h3>OFFICE-AJAX13</h3><br /><p><br />这个网站提供了五个常用的OFFICE组件，ajaxWriter, ajaxSketch,ajaxXLS,ajaxPresents,ajaxTunes。相对于应用程序就是word,visio,excel,PPT,Tunes。功能相当强大，操作界面也是相当的相似。其中，ajaxPresents更是很少见到<br /></p><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_Ea3JwBJzx7s/RlfMZl4pFaI/AAAAAAAAA8k/N4lf3b0APXg/s1600-h/2007-05-26_135622.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;" src="http://1.bp.blogspot.com/_Ea3JwBJzx7s/RlfMZl4pFaI/AAAAAAAAA8k/N4lf3b0APXg/s400/2007-05-26_135622.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5068744645667263906" /></a>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/12/">&larr; Older</a>
@@ -1050,6 +1052,10 @@ To magnify a drawing based on its extents so that the view shows the largest pos
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/01/redis-webdis-install.html">redis webdis install</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/01/vs2010-accelerate.html">vs2010 加速</a>
       </li>
     
@@ -1063,10 +1069,6 @@ To magnify a drawing based on its extents so that the view shows the largest pos
     
       <li class="post">
         <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/08/32bit_use_4g_ram.html">32位系统充分使用多余的内存</a>
       </li>
     
   </ul>
