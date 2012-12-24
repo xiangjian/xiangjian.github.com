@@ -9,7 +9,8 @@
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="绘制流程图－Cumulate Draw优点：web版的VISIO，不用安装昂贵的VISIO，只要有浏览器就可以了使用。和VISIO的基本操作一致，所见既所得，文件可以导出为JPEG、PNG、PDF、SVG、MMD/FMD(Editable)。缺点：不支持中文。Cumulate Draw流程图绘制－ &hellip;">
+  <meta name="description" content="摘自map 3d帮助文档中。
+attribute data Tabular data that describes the characteristics of a feature, for example, the number of lanes and pavement-type &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,261 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/05/automap-3d-concept.html">Automap 3d 的基本概念</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-30T00:00:00+00:00" pubdate data-updated="true">May 30<span>th</span>, 2007</time>
+        
+         | <a href="/2007/05/automap-3d-concept.html#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>摘自map 3d帮助文档中。</p>
+<p>attribute data</p>
+<blockquote>
+Tabular data that describes the characteristics of a feature, for example, the number of lanes and pavement-type belonging to a road feature. See also feature, property.</blockquote>
+<p>属性数据</p>
+<blockquote>
+使用表格化的数据来描述地图要素的特征。举个例子：车道数量和道路类型同属道路要素的信息。也可以看要素属性</blockquote>
+<p>AutoCAD layer</p>
+<blockquote>
+A layer in AutoCAD. An AutoCAD layer differs from the map layers you create in Display Manager, which are referred to as layers, drawing layers, feature layers, or surface layers.</blockquote>
+<p>AutoCAD 图层</p>
+<p>coordinate system</p>
+<blockquote>
+See global coordinate system.</blockquote>
+<p>坐标系统：</p>
+<blockquote>
+查看全球坐标系统.</blockquote>
+<p>Data Connect</p>
+<blockquote>
+Autodesk Map 3D window that allows you to connect to a data store and add specific data to your map. Display the Data Connect window by clicking Data in the Map Explorer or Display Manager view of the Task Pane.</blockquote>
+<p>数据连接</p>
+<blockquote>
+Autodesk Map 3D 窗体允许您连接到数据仓库并且添加特别数据到你的地图中。在地图浏览或显示管理面板点击可以显示数据连接窗体</blockquote>
+<p>Data Grid</p>
+<blockquote>
+In Autodesk Map, the feature-based grid that allows you to view and edit attributes of selected spatial features, perform searches, and work with selection sets.</blockquote>
+<p>数据表格</p>
+<blockquote>
+在Autodesk Map中，</blockquote>
+<p>data provider</p>
+<blockquote>
+Used by Data Connect to connect to geospatial data sources.</blockquote>
+<p>数据提供器</p>
+<blockquote>
+Data Connect用来连接到空间数据源的工具。</blockquote>
+<p>data source</p>
+<blockquote>
+A collection of data and information on how to access that data.</blockquote>
+<p>数据源</p>
+<blockquote>
+收集了可以访问的数据信息</blockquote>
+<dl class="docutils">
+<dt>data store</dt>
+<dd>A collection of feature classes contained in a single data storage location. The data store consists of an integrated set of objects, which are modeled by classes or feature classes defined within one or more schemas. Data stores can be either file-based, such as SDF, or a database, such as Oracle Spatial.</dd>
+</dl>
+<p>数据</p>
+<dl class="docutils">
+<dt>digitize</dt>
+<dd>To convert existing data from paper maps, aerial photos, or raster images into digital form by tracing the maps on a digitizer. Object locations are recorded as X,Y coordinates.</dd>
+<dt>Display Manager</dt>
+<dd>A view of the Task Pane that handles the styling and theming of features in your map. Select Display Manager from the list at the top of the Task Pane.</dd>
+</dl>
+<p>显示管理</p>
+<p>display map</p>
+<blockquote>
+All the settings for a specific map, such as the data to include, the appearance of each layer, and the legend definition. A display map can include objects from attached drawings, raster images, and features stored in data stores such as Oracle databases, SDF or SHP files, and ArcSDE. One map can include multiple display maps.</blockquote>
+<p>drawing layer</p>
+<blockquote>
+A layer in Display Manager that contains drawing objects from a DWG file. See also AutoCAD layer, feature layer, layer.</blockquote>
+<p>drawing set</p>
+<blockquote>
+The set of source drawings attached to a map.</blockquote>
+<p>drawing source</p>
+<blockquote>
+In Autodesk Map, a drawing (DWG) file and also its associated information, such as attached drawing files, drawing-based feature classes, linked template data, and topologies. Compare with feature source.</blockquote>
+<p>DWF</p>
+<blockquote>
+Design Web Format. An Autodesk file format for sharing 2D, 3D, and spatially-enabled design data.</blockquote>
+<p>external data</p>
+<blockquote>
+Attribute data linked to a map object but contained in a database or file outside the map file. See also attribute data and object data.</blockquote>
+<dl class="docutils">
+<dt>FDO</dt>
+<dd>Feature Data Objects. An Autodesk software standard and general purpose API for accessing features and geospatial data regardless of the underlying data store. See also feature, feature class.</dd>
+</dl>
+<p>feature</p>
+<blockquote>
+An abstraction of a natural or man-made real world object. A spatial feature has one or more geometric properties. For example, a road feature might be represented by a line, and a hydrant might be represented by a point. A non-spatial feature does not have geometry, but can be related to a spatial feature that does. For example, a road feature may contain a sidewalk feature that is defined as not containing any geometry. See also attribute data, FDO.</blockquote>
+<p>feature class</p>
+<blockquote>
+A schema element that describes a type of real-world object. It includes a class name and property definitions. Commonly used to refer to a set of features of a particular class, for example, the feature class &quot;roads&quot; or the feature class &quot;hydrants.&quot; See also FDO, property, schema.</blockquote>
+<p>feature layer</p>
+<blockquote>
+A layer in Display Manager containing features from a feature source such as SDF, ESRI SHP, or ArcSDE. Feature layers are brought in using Data Connect. See also AutoCAD layer, drawing layer, layer.</blockquote>
+<p>feature source</p>
+<blockquote>
+Any source of feature data that has been attached to a map. Compare with drawing source.</blockquote>
+<p>field</p>
+<blockquote>
+A specific category of information in a data file, such as Address or Diameter.</blockquote>
+<p>geometry (Oracle Spatial database)</p>
+<blockquote>
+The representation of a spatial feature.</blockquote>
+<p>GIS (Geographic Information System)</p>
+<blockquote>
+A computerized decision support system that integrates geographic data, attribute data, and other spatially referenced data. A GIS is used to capture, store, retrieve, analyze, and display spatial data.</blockquote>
+<p>global coordinate system</p>
+<blockquote>
+A method that converts the earth&#8217;s spherical coordinates representing latitude and longitude into an Autodesk Map 3D map Cartesian coordinate system, and accounts for the curvature of the earth&#8217;s surface with a projection. A coordinate system is usually defined by a projection, an ellipsoid definition, a datum definition, one or more standard parallels, and a central meridian.</blockquote>
+<p>label</p>
+<blockquote>
+Text placed on or near a map feature that describes or identifies it.</blockquote>
+<p>layer</p>
+<blockquote>
+A resource that references a feature source or a drawing source that you add using Display Manager. The layer contains styling and theming information, and optionally a collection of scale ranges. See also drawing layer and feature layer.</blockquote>
+<p>lock</p>
+<blockquote>
+To make all or part of a disk file read-only so that it cannot be modified by other users on a network. Object locking applies to objects that are being edited by another user. File locking applies to entire files, for example when an AutoCAD user wants to open a file while the file is in Autodesk Map 3D editing mode.</blockquote>
+<p>logical operator</p>
+<blockquote>
+A symbol such as And, Or, Not, =, &gt;, &gt;=, &lt;, and &lt;= used to define logical relationships.</blockquote>
+<p>map</p>
+<blockquote>
+A collection of layers displayed within a consistent coordinate system and extents. See also layer.</blockquote>
+<p>Map Book</p>
+<blockquote>
+A collection of map tiles that you publish as separate pages. You can specify the layout and properties for your map book on the Map Book view of the Task Pane (select Map Book from the list at the top of the Task Pane).</blockquote>
+<p>Map Explorer</p>
+<blockquote>
+Manages your mapping resources. To view the Map Explorer task, select Map Explorer from the list at the top of the Task Pane.</blockquote>
+<p>map query</p>
+<blockquote>
+A set of conditions that specify the selection of drawing objects from source drawings. Conditions in a Map query can be based on the location or properties of an object or on data stored in the drawing or in a linked database table.</blockquote>
+<p>mpolygon</p>
+<blockquote>
+A polygon object. A polygon differs from a closed polyline in that it stores information about its inner and outer boundaries.</blockquote>
+<p>object data</p>
+<blockquote>
+Attribute data attached to an drawing object and stored in the drawing file. Compare with external data.</blockquote>
+<p>polygon</p>
+<blockquote>
+A closed area that stores information about its inner and outer boundaries, and about other polygons nested within it or grouped with it. In a polygon topology, the polygon can be enclosed by any lines or arcs in the drawing. In addition, Autodesk Map 3D supports a polygon object, sometimes called an mpolygon or mapping polygon.</blockquote>
+<p>property</p>
+<blockquote>
+A single attribute of a class. A class is described by one or more property definitions. For example, a Road feature class may have properties called Name, NumberLanes, or Location. See also attribute data, feature class.</blockquote>
+<p>publish</p>
+<blockquote>
+To generate output from a map.</blockquote>
+<p>query</p>
+<blockquote>
+A set of criteria for specifying the selection of objects or records. For example, a layer-based query can display only the objects on the layers that contain state and district boundaries.</blockquote>
+<p>raster</p>
+<blockquote>
+Images containing individual dots (called pixels or cells) with color values, arranged in a rectangular, evenly spaced array. Aerial photographs and satellite images are examples of raster images used in mapping. Compare with vector.</blockquote>
+<p>resolution</p>
+<blockquote>
+In a raster image, the density of pixels-per-inch (ppi) or dots-per-inch.</blockquote>
+<p>save set</p>
+<blockquote>
+Objects that have been created or modified in the current drawing and are marked to be saved back to source drawings.</blockquote>
+<p>scale</p>
+<blockquote>
+The ratio of the distance on a paper map to the distance on the ground. If a paper map has a scale of 1:100,000 (also represented as 1/100000), then a distance of 1 unit on the paper map corresponds to 100,000 units on the ground. On a digital map, scale represents the scale of the map from which the digital map was derived.</blockquote>
+<p>scale threshold</p>
+<blockquote>
+You can define different styles at different scale thresholds. For example, turn on the display of road names only when the drawing scale factor is below 1:5000.</blockquote>
+<p>schema</p>
+<blockquote>
+The definition of multiple feature classses and the relationships between them. A schema is the logical description of the data types used to model real-world objects, and does not reference the actual data instances (a particular road or land parcel). Rather, it is metadata. See also feature class.</blockquote>
+<p>SDF 2</p>
+<blockquote>
+A previous version of the SDF file format. It was the native file format for Autodesk MapGuide (the last release was Autodesk MapGuide 6.5). Each SDF 2 file generally contained one feature or type of data, for example points, lines, polygons, or text.</blockquote>
+<p>SDF 3</p>
+<blockquote>
+Spatial Database Format. The current version of the SDF format. It is the native format for the MapGuide technology (Autodesk MapGuide Enterprise 2007 and MapGuide Open Source). Each SDF 3 file can contain multiple feature classes or types of data stored in tables with attributes and geometry.</blockquote>
+<p>sheet</p>
+<blockquote>
+An individual named object in a sheet set that can be published. References a layout.</blockquote>
+<p>sheet set</p>
+<blockquote>
+A named collection of sheets and subsets for publishing.</blockquote>
+<p>sheet subset</p>
+<blockquote>
+A named collection of sheets within a sheet set. An individual sheet can only be a member of a single subset.</blockquote>
+<p>sheet template</p>
+<blockquote>
+A drawing file that defines a title block and a layout for use in sheets. Can be specified for sheet sets and sheet subsets.</blockquote>
+<p>source drawing</p>
+<blockquote>
+A drawing file attached to another drawing. The set of all source drawings attached to a drawing is called the drawing set. Use a Map query to retrieve selected objects from multiple source drawings.</blockquote>
+<p>spatial</p>
+<blockquote>
+A generic term used to reference the mathematical concept of n-dimensional data.</blockquote>
+<p>spatial data</p>
+<blockquote>
+Information about the location and shape of geographic features, and the relationships between those features. See also feature.</blockquote>
+<p>spatial database</p>
+<blockquote>
+A database containing information indexed by location.</blockquote>
+<p>style</p>
+<blockquote>
+Settings that specify how to display the objects in a Display Manager layer. You can style things such as color, linetype, linewidth, and scale.</blockquote>
+<p>table</p>
+<blockquote>
+A set of data arranged in records (rows) and fields (columns). When a table is displayed in a grid, records display in horizontal rows and fields display in vertical columns. Each field value in the table displays in a cell.</blockquote>
+<p>Task Pane</p>
+<blockquote>
+Autodesk Map 3D window that displays information about the current drawing. The Task Pane contains three tabs: Map Explorer, Display Manager, and Map Book. The Map Explorer tab displays attached source drawings, databases, queries, and link templates. The Display Manager tab controls display layers and their styles. The Map Book tab displays the map books available for publishing, and lets you create new map books. You can resize the Task Pane and place it where you want.</blockquote>
+<p>theme</p>
+<blockquote>
+A style that varies the appearance of an element in a layer based on the value of a specific property. For example, instead of coloring lakes blue, you could vary the shade of blue based on the depth of the lake. Instead of choosing one line width for all roads, you could vary the line width based on traffic flow.</blockquote>
+<p>vector</p>
+<blockquote>
+A mathematical calculation of an object with precise direction and length. Vector data is stored as X,Y coordinates that form points, lines, and areas. Compare with raster.</blockquote>
+<p>viewport (paper space)</p>
+<blockquote>
+A view of modelspace from a layout.</blockquote>
+<p>workspace</p>
+<blockquote>
+Contains the commands and tools for specific tasks. The Map 3D For Geospatial workspace is tailored to working with spatial features while Map 3D For Drawings is optimized for working with drawing objects.<br />
+To change your workspace, click View menu  Menu/Toolbar Layout. Click a workspace.</blockquote>
+<p>zoom</p>
+<blockquote>
+To change the display magnification so that it focuses on progressively smaller areas (when you zoom in) or larger areas (when you zoom out) of an image.</blockquote>
+<p>zoom extents</p>
+<blockquote>
+To magnify a drawing based on its extents so that the view shows the largest possible view of all spatial objects.</blockquote>
+</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -607,56 +863,6 @@ dp.SyntaxHighlighter.HighlightAll('code');
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/12/javascript-vbscript.html">一点Javascript与VBscript的区别</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-12-06T00:00:00+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2006</time>
-        
-         | <a href="/2006/12/javascript-vbscript.html#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><p>一般说来浏览器对各种脚本的支持设有什么不同，只是对事件的相应不同而已。JAVASCRIPT是使用在对象中定义onclick,onchange事件相应的函数，而VBSCRIPT是在对象外定义的，如<code>SUB MAPG_onclick ...END SUB</code>定义一MAPG对象的一个onclick的事件的响应。看起来没有什么区别，但在今天的使用的过程中发现了只能使用VBSCRIPT来响应的事件。MapGuide的ActiveX插件的数字化事件响应只能使用VBSCRIPT。代码如下</p>
-<code>《script language="VBscript"　type="text/VBscript"》<br />
-SUB Map_onDigitizedPolygon (map,numPoints,points)<br />
-MapViewer.onDigitizedPolygon map,numPoints,points//这里调用JAVASCRIPT<br />
-END SUB<br />
-SUB Map_onDigitizedPolyline (map,numPoints,points)<br />
-MapViewer.onDigitizedPolyline map,numPoints,points<br />
-END SUB<br />
-SUB Map_onDigitizedPoint (map,point)<br />
-MapViewer.onDigitizedPoint map,point<br />
-END SUB<br />
-《/script》</code>
-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/13/">&larr; Older</a>
@@ -674,6 +880,10 @@ END SUB<br />
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/12/import-existing-code-to-github.html">导入本地代码到github</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/01/redis-webdis-install.html">redis webdis install</a>
       </li>
     
@@ -687,10 +897,6 @@ END SUB<br />
     
       <li class="post">
         <a href="/2011/12/blog-migrate-to-octopress.html">blog 迁移到 octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/08/deploy_tornado_with_supervisor_nginx.html">使用supervisor和nginx发布tornado程序</a>
       </li>
     
   </ul>

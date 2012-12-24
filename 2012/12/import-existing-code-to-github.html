@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>英国政府正式向图灵道歉 - 鉴行志</title>
+  <title>导入本地代码到github - 鉴行志</title>
   <meta name="author" content="xiangjian">
 
   
-  <meta name="description" content="英国首相布朗10日正式代表政府向计算机科学家阿兰.图灵道歉.算是对图灵的平反.
-在大学的时候知道有一个图灵奖,人工智能的测试叫图灵测试,后来才知道图灵是一个人.直到前一段时间在一杂志上看到对图灵的生平的介绍,让人感叹不已,下面写几个不是很为人知道的故事.
-图灵参加了二战,破译了德军的密码, &hellip;">
+  <meta name="description" content="最近把本地得一个项目导入到github，下面是将代码嵌入github得过程。 在github中创建一个项目，获得类似这样得url git://github.com/youruser/somename.git
+如果您本地得项目已经使用git管理，请忽略2-3步。
+在本地项目得根目录，运行git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.xiangjian.info/2009/09/make-an-apology.html">
+  <link rel="canonical" href="http://blog.xiangjian.info/2012/12/import-existing-code-to-github.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">英国政府正式向图灵道歉</h1>
+      <h1 class="entry-title">导入本地代码到github</h1>
     
     
       <p class="meta">
@@ -97,7 +97,7 @@
   
 
 
-<time datetime="2009-09-12T00:00:00+00:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
+<time datetime="2012-12-08T10:11:00+00:00" pubdate data-updated="true">Dec 8<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -106,11 +106,17 @@
   </header>
 
 
-<div class="entry-content"><p>英国首相布朗10日正式代表政府向计算机科学家阿兰.图灵<a target="new" href="http://www.number10.gov.uk/Page20571">道歉</a>.算是对图灵的平反.<br />
-在大学的时候知道有一个图灵奖,人工智能的测试叫图灵测试,后来才知道图灵是一个人.直到前一段时间在一杂志上看到对图灵的生平的介绍,让人感叹不已,下面写几个不是很为人知道的故事.
-<ol><li>图灵参加了二战,破译了德军的密码,对二战起到了很大的作用.直到战后多年才解密这些.</li><li>图灵是一位长跑健将,曾在一次比赛中赢了当年的奥运会银牌.</li><li>图灵是吃了浸过氰化物的苹果自杀的.而这个咬过一口的苹果后来成为一家公司的LOGO,这家公司就是现在人见人爱的苹果公司.以前遇到别人问这个问题:&#8221;苹果公司的那个苹果是谁咬的?&#8221;,最近才知道原来是为了纪念阿兰.图灵.
-</li></ol>
-</p>
+<div class="entry-content"><p>最近把本地得一个项目导入到github，下面是将代码嵌入github得过程。</p>
+
+<ol>
+<li><p>在github中创建一个项目，获得类似这样得url git://github.com/youruser/somename.git
+如果您本地得项目已经使用git管理，请忽略2-3步。</p></li>
+<li><p>在本地项目得根目录，运行git init ,并在.gitignore中写入排除的文件或目录。</p></li>
+<li><p>将本地代码加入版本库(可以执行以下代码git add . git commit -m &#8216;initial commit comment&#8217;)。</p></li>
+<li><p>添加远程得地址  git remote add origin [第一步得地址]</p></li>
+<li><p>推送代码道远程分支中: git push origin master</p></li>
+</ol>
+
 </div>
 
 
@@ -133,12 +139,12 @@
   
 
 
-<time datetime="2009-09-12T00:00:00+00:00" pubdate data-updated="true">Sep 12<span>th</span>, 2009</time>
+<time datetime="2012-12-08T10:11:00+00:00" pubdate data-updated="true">Dec 8<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/杂/'>杂</a>
+    <a class='category' href='/blog/categories/note/'>note</a>
   
 </span>
 
@@ -156,10 +162,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2009/09/web-javascript-engine.html" title="Previous Post: 浏览器排版引擎与javascript引擎的对比">&laquo; 浏览器排版引擎与javascript引擎的对比</a>
+        <a class="basic-alignment left" href="/2012/01/redis-webdis-install.html" title="Previous Post: redis webdis install">&laquo; redis webdis install</a>
       
-      
-        <a class="basic-alignment right" href="/2009/09/new-in-firefox.html" title="next Post: 在firefox中你最想要的5新特性">在firefox中你最想要的5新特性 &raquo;</a>
       
     </p>
   </footer>
@@ -287,8 +291,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.xiangjian.info/2009/09/make-an-apology.html';
-        var disqus_url = 'http://blog.xiangjian.info/2009/09/make-an-apology.html';
+        var disqus_identifier = 'http://blog.xiangjian.info/2012/12/import-existing-code-to-github.html';
+        var disqus_url = 'http://blog.xiangjian.info/2012/12/import-existing-code-to-github.html';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -4,7 +4,7 @@
   <title><![CDATA[鉴行志]]></title>
   <link href="http://blog.xiangjian.info/atom.xml" rel="self"/>
   <link href="http://blog.xiangjian.info/"/>
-  <updated>2012-11-28T21:49:59+00:00</updated>
+  <updated>2012-12-24T21:06:31+00:00</updated>
   <id>http://blog.xiangjian.info/</id>
   <author>
     <name><![CDATA[xiangjian]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[导入本地代码到github]]></title>
+    <link href="http://blog.xiangjian.info/2012/12/import-existing-code-to-github.html"/>
+    <updated>2012-12-08T10:11:00+00:00</updated>
+    <id>http://blog.xiangjian.info/2012/12/import-existing-code-to-github</id>
+    <content type="html"><![CDATA[<p>最近把本地得一个项目导入到github，下面是将代码嵌入github得过程。</p>
+
+<ol>
+<li><p>在github中创建一个项目，获得类似这样得url git://github.com/youruser/somename.git
+如果您本地得项目已经使用git管理，请忽略2-3步。</p></li>
+<li><p>在本地项目得根目录，运行git init ,并在.gitignore中写入排除的文件或目录。</p></li>
+<li><p>将本地代码加入版本库(可以执行以下代码git add . git commit -m &#8216;initial commit comment&#8217;)。</p></li>
+<li><p>添加远程得地址  git remote add origin [第一步得地址]</p></li>
+<li><p>推送代码道远程分支中: git push origin master</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[redis webdis install]]></title>
@@ -994,63 +1013,6 @@ fi;
     <updated>2010-04-17T00:00:00+00:00</updated>
     <id>http://blog.xiangjian.info/2010/04/earthquake</id>
     <content type="html"><![CDATA[<p><p>上周从青海回来,昨天青海玉树发生地震。新闻上报地震是7.1级大地震，好奇上 <a class="reference external" href="http://earthquake.usgs.gov/earthquakes/recenteqsww/Quakes/us2010vacp.php#details">usgs</a> (美国国家地震局),看看地震信息。结果看到地震是6.9级，不知为何中国跟美国测的结果有差别。看到校舍的抗震级别是7级就明白了，有些事明白就行，不能说明白了。</p>
-</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[十种GIS矢量数据转换工具]]></title>
-    <link href="http://blog.xiangjian.info/2010/02/top-10-gis-tools.html"/>
-    <updated>2010-02-27T00:00:00+00:00</updated>
-    <id>http://blog.xiangjian.info/2010/02/top-10-gis-tools</id>
-    <content type="html"><![CDATA[<p><p>做GIS这一块的工作,GIS空间数据的转换处理工作会比较多.下面整理了这几个用过的和知道的一些GIS空间数据转换工具,写了下面的文章.文章也标题党一把,取名&quot;十种GIS矢量数据转换工具&quot;,希望对大家有用.</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.safe.com/">FME</a></li>
-</ul>
-<p>Safe FME 是最专业的GIS数据转换工具之一，还支持GIS数据资源的整合。支持大量的GIS空间数据源（应该是支持最多的）,而且还提供二次开发接口可以支持用户特定的数据转换整合。</p>
-<p><img alt="FME" src="http://farm5.static.flickr.com/4052/4388831335_42786b083b.jpg" style="width: 450px;" /></p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.esri.com/software/arcgis/index.html">ArcGIS</a></li>
-</ul>
-<p>ArcGIS是全球最成功的GIS软件产品，提到GIS不可避免会提到ESRI的ArcGIS。ArcGIS的ToolBox中有数据转换模块支持大量数据（标准的和ArcGIS支持的数据类型）间的转换。另外说一点ArcGIS ToolBox中的数据转换模块似乎是用的FME技术？如果安装了ArcGIS后，再安装FME会在ArcGIS ToolBox中数据转换菜单中加入一个FME工具项，可以结合ArcGIS ToolBox中的工具转换GIS矢量数据。</p>
-<p><img alt="ArcGIS" src="http://farm3.static.flickr.com/2686/4389602836_a675560a0e.jpg" style="width: 450px;" /></p>
-<ul class="simple">
-<li><a class="reference external" href="http://fdo.osgeo.org/">FDO</a>  API</li>
-</ul>
-<p>FDO(Feature Data Object)空间数据访问引擎，属于OSGEO的一个开源子项目，由autodesk捐出。autodesk Mapguide的空间数据访问引擎，提供一套数据访问标准，支持用户编写基于FDO的引擎可以访问多种空间数据源。FDO API 提供C#，java接口,可以使用FDO技术进行数据转换。</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sl-king.com/Fdo2Fdo/fdo2fdo.html">FDO2FDO</a></li>
-</ul>
-<p>FDO2FDO基于FDO技术写的空间数据转换程序,由sl-king(sl-king还开发了免费的oracle fdo provider)开发,免费软件.</p>
-<p><img alt="FDO2FDO" src="http://farm5.static.flickr.com/4066/4391981856_422da64abd.jpg" style="width: 450px;" /></p>
-<ul class="simple">
-<li>FDO <a class="reference external" href="http://code.google.com/p/fdotoolbox/">ToolBox</a></li>
-</ul>
-<p>FDO ToolBox基于FDO技术,使用.net 2.0技术编写,做很多功能,包含数据的编辑管理等,支持空间数据转换.这个是开源程序,托管在google code上.</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.1spatial.com/products/">1Spatial</a></li>
-</ul>
-<p>基于fdo技术,有数据转换程序,我没有用过,在OSGEO FDO官网上看到过介绍.</p>
-<ul class="simple">
-<li>Autodesk(Map 3d,civil 3d) bulk copy</li>
-</ul>
-<p>Autodesk 产品中的批量数据转换工具,基于FDO.可以实现多种空间数据间的转换.
-<img alt="bulkcopy" src="http://farm5.static.flickr.com/4055/4386242005_764045f962.jpg" style="width: 450px;" /></p>
-<ul class="simple">
-<li>gdal/ogr API</li>
-</ul>
-<p>OGR是GDAL的一部分(矢量数据).OGR是一个读取和处理GSI矢量数据的库。这个库可以读取和处理多种流行的矢量数据.</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.gdal.org/ogr2ogr.html">ogr2ogr</a></li>
-</ul>
-<p>命令行程序，核心基于gdal,可以接受gdal支持的数据源间的数据互转换，功能强大。不过命令行的参数众多，很难一次写正确。这个是跨平台的。</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.ogr2gui.ca/">ogr2GUI</a></li>
-</ul>
-<p>专门为ogr2ogr设计的一个GUI界面，核心还是ogr2ogr。通过它的GUI界面可以定制数据转换参数，方便用户使用.界面基于QT,可方便生成命令行参数.</p>
-<p><img alt="ogr2GUI" src="http://farm3.static.flickr.com/2720/4386242007_b46e4d8c57.jpg" style="width: 450px;" /></p>
-<p>可能会有遗漏，mapinfo,国产厂商的GIS（supermap,mapgis）产品，数据转换模块不太熟习，因此不在上面列举。</p>
-<p>总结这一系列转换工具主要包含三个核心转换库:FME(arcgis数据转换模块据说是使用FME技术?待考),FDO,GDAR/OGR.FME是商业软件,支持格式最多,转换工具灵活,大型工程空间数据转换首选.FDO是开源,背后有autodesk支持,前景很好(使用过程中使用FDO技术转换的shp数据部分软件无法识别,尽量不要使用FDO转出shp数据).GDAR/OGR老牌空间数据类库,支持各种编程语言.</p>
 </p>
 ]]></content>
   </entry>
